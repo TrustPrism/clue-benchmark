@@ -1,0 +1,26 @@
+{
+  "source_repository": "https://github.com/TrustPrism/clue-generator",
+  "source_commit": "e21d72fa50ccd59443c957afa02f8ef6f699337d",
+  "source_status": " M README.md\n M clue_generator.py\n M generated_puzzle_states_study.json\n M run_task_playable.py\n M world_sampler.py\n?? UNITY_CLUE_CONSUMER_PROMPT.md\n?? clue_metadata.py\n?? clue_validation.py\n?? generated_puzzle_states_1000.json\n?? generated_puzzle_states_study_v23.json\n?? generated_puzzle_states_study_v24.json\n?? tests/test_clue_metadata.py\n?? tests/test_representative_output.py\n",
+  "imported_sha256": {
+    ".gitignore": "5fe3416850aee182bf161d44392838004b6d50616a6e21e862ee60ebbf4081b6",
+    "README.md": "a15bf01237443c0c5ece105bd0f92a7c16e9b85bca76a5df23064a35bd17ba55",
+    "UNITY_CLUE_CONSUMER_PROMPT.md": "b3abee8dc521efd7f39766325cf7801d5bca0811fbabad09ffdbfa98666970d6",
+    "cli_game.py": "b3a5a270fcff368ee7430fcf8cab5a052a5c0bf58cfc1a0a7b7ab6a582dfb15c",
+    "clue_formatter.py": "4f20f2b30ecaf75d52cb0e850327b15ca03d718785d59861cae0d1db141bc601",
+    "clue_generator.py": "414822432d8bff8eb8e9677bfe88597a69229088b0c700540733e8fe5e86f835",
+    "clue_metadata.py": "e79cf4e8b306f8b66762f2b3932676bb1bcc18159e5e54697322e33639546d11",
+    "clue_validation.py": "1da4c7459ccc9c0eae32393f6e1ff58c8b0a638f7eee629674f0219dfffcb82b",
+    "csp_solver.py": "b1cdad70c3049e01e0dbc74fd3302020aa2e94b30dc404e9c4f5e5a0a3224c1d",
+    "generated_puzzle_states_study_v24.json": "c1c01273960f68c9f740771cc7e79d1406b4b0f8bd651b330eda7360180fa540",
+    "hardness_controller.py": "d8da1bb83a5b34d4124fd60b058306d6305258000e9858cedd1c51ba2b83ba9d",
+    "main.py": "d821485dc209e97312e95f40d2306d0ee48f68e2726875c06bf452dc204dfcd4",
+    "puzzle_generator.py": "9f5a65bfc5b8a2621095677166da288fff663217e151ffeeba35f68db4782e21",
+    "requirements.txt": "22de804e642261df333c7285191191aa122d934cec99a4926423046128d38396",
+    "run_task_playable.py": "89b491312c65c0e6ccd8587d9bfc06bafa0409dd8c087cb1cb37c73ac4389cc0",
+    "solvability_policy.py": "6c94675315ebf6a3c645f00dde36dcdfe45e3873b33b88d3d3d38620df0a775c",
+    "tests/test_clue_metadata.py": "0ce6703296deeebecbd1714f64192c9df14ef302c12714038430a5851f06f002",
+    "tests/test_representative_output.py": "69fb272049583e599b60f5d1c31b6856ccead90a81198d27ae04350b7d8b5b0f",
+    "world_sampler.py": "446f6502db07f97f659212feed90886c361fca9a15b36c2402e801ed2e640e4d"
+  }
+}

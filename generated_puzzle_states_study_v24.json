@@ -1,0 +1,849 @@
+{
+  "version": 24,
+  "generation_policy": "alpha_beta_weighted_sampling_with_solver_rejection",
+  "suspect_count": 4,
+  "difficulty_params": {
+    "easy": {
+      "alpha": 0.95,
+      "beta": 0.95,
+      "target_clues": 5,
+      "min_murderer_links": 1,
+      "max_murderer_links": 2,
+      "min_indirect_clues": 0,
+      "min_unique_subset_size": 3,
+      "require_indirect_essential": false,
+      "max_attempts": 1000,
+      "candidate_sample_size": 96
+    },
+    "medium": {
+      "alpha": 0.7,
+      "beta": 0.75,
+      "target_clues": 7,
+      "min_murderer_links": 1,
+      "max_murderer_links": 2,
+      "max_positive_murderer_links": 1,
+      "min_indirect_clues": 1,
+      "min_unique_subset_size": 4,
+      "require_indirect_essential": true,
+      "max_attempts": 6000,
+      "candidate_sample_size": 128
+    },
+    "hard": {
+      "alpha": 0.45,
+      "beta": 0.55,
+      "target_clues": 8,
+      "min_murderer_links": 2,
+      "max_murderer_links": 3,
+      "max_positive_murderer_links": 1,
+      "min_indirect_clues": 2,
+      "min_unique_subset_size": 5,
+      "require_indirect_essential": true,
+      "max_attempts": 12000,
+      "candidate_sample_size": 160
+    }
+  },
+  "constraints": {
+    "fixed_seeds": [
+      3030
+    ],
+    "independently_solvable_per_bank": true,
+    "unique_murderer_profile_required": true,
+    "min_murderer_linking_clues_per_bank": 1,
+    "solvability_check": "CSP unique murderer validation",
+    "alpha_beta_controls": "full bank clue sampling before rejection",
+    "medium_hard_direct_only_solve_rejected": true,
+    "hard_requires_indirect_reasoning": true,
+    "uniqueness_definition": "unique_murderer",
+    "manual_import_metadata": "clue_records"
+  },
+  "diagnostics": [
+    {
+      "generator_version": "24",
+      "solver_version": "9.15.6755",
+      "seed": 3030,
+      "pool_size": 224,
+      "murderer_profile_collisions": [],
+      "counts": {
+        "easy": 5,
+        "medium": 7,
+        "hard": 8
+      },
+      "generation_attempts": {
+        "easy": 89,
+        "medium": 53,
+        "hard": 196
+      },
+      "clue_type_counts": {
+        "easy": {
+          "crime_positive": 2,
+          "unary_positive": 2,
+          "unary_negative": 1
+        },
+        "medium": {
+          "crime_positive": 1,
+          "unary_positive": 2,
+          "unary_negative": 3,
+          "crime_different_from": 1
+        },
+        "hard": {
+          "crime_positive": 1,
+          "crime_same_as": 1,
+          "unary_positive": 5,
+          "crime_different_from": 1
+        }
+      },
+      "sampled_category_counts": {
+        "easy": {
+          "direct": 5
+        },
+        "medium": {
+          "direct": 6,
+          "indirect_negative": 1
+        },
+        "hard": {
+          "direct": 6,
+          "indirect_positive": 1,
+          "indirect_negative": 1
+        }
+      },
+      "minimal_unique_subset_sizes": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 6
+      },
+      "clue_complexity_counts": {
+        "easy": {
+          "easy": 4,
+          "medium": 1
+        },
+        "medium": {
+          "easy": 3,
+          "hard": 1,
+          "medium": 3
+        },
+        "hard": {
+          "easy": 6,
+          "hard": 2
+        }
+      },
+      "duplicate_counts": {
+        "easy": {
+          "exact_duplicate_fact_count": 0,
+          "exact_duplicate_text_count": 0,
+          "unique_fact_count": 5,
+          "unique_text_count": 5
+        },
+        "medium": {
+          "exact_duplicate_fact_count": 0,
+          "exact_duplicate_text_count": 0,
+          "unique_fact_count": 7,
+          "unique_text_count": 7
+        },
+        "hard": {
+          "exact_duplicate_fact_count": 0,
+          "exact_duplicate_text_count": 0,
+          "unique_fact_count": 8,
+          "unique_text_count": 8
+        },
+        "across_banks": {
+          "exact_duplicate_fact_count": 3,
+          "exact_duplicate_text_count": 3,
+          "unique_fact_count": 17,
+          "unique_text_count": 17
+        }
+      },
+      "generation_duration_seconds": 4.560665250057355,
+      "status": "ok"
+    }
+  ],
+  "states": [
+    {
+      "case_id": "case-3030-v24",
+      "seed": 3030,
+      "murderer": "Marcus Webb",
+      "world": {
+        "James Hartley": {
+          "weapon": "Poison Vial",
+          "location": "Study",
+          "motive": "Inheritance",
+          "time": "Late Evening"
+        },
+        "Eleanor Blackwood": {
+          "weapon": "Rope",
+          "location": "Kitchen",
+          "motive": "Jealousy",
+          "time": "2:00 AM"
+        },
+        "Margaret Finch": {
+          "weapon": "Rope",
+          "location": "Study",
+          "motive": "Jealousy",
+          "time": "1:00 AM"
+        },
+        "Marcus Webb": {
+          "weapon": "Rope",
+          "location": "Master Bedroom",
+          "motive": "Revenge",
+          "time": "Late Evening"
+        }
+      },
+      "clues": {
+        "easy": {
+          "bank_tier": "easy",
+          "alpha": 0.95,
+          "beta": 0.95,
+          "target_clues": 5,
+          "count": 5,
+          "generation_attempts": 89,
+          "murderer_link_count": 2,
+          "positive_murderer_link_count": 2,
+          "indirect_clue_count": 0,
+          "minimal_unique_subset_size": 4,
+          "clue_type_counts": {
+            "crime_positive": 2,
+            "unary_positive": 2,
+            "unary_negative": 1
+          },
+          "clue_complexity_counts": {
+            "easy": 4,
+            "medium": 1
+          },
+          "sampled_category_counts": {
+            "direct": 5
+          },
+          "constraint_adjustments": 0,
+          "candidate_sample_size": 96,
+          "is_unique_solution": true,
+          "items": [
+            "The murder took place in the Master Bedroom.",
+            "The murderer was driven by revenge.",
+            "James Hartley was in the Study.",
+            "Margaret Finch was not in the Master Bedroom.",
+            "Eleanor Blackwood was in the Kitchen."
+          ],
+          "raw_items": [
+            {
+              "type": "crime_positive",
+              "attribute": "location",
+              "value": "Master Bedroom",
+              "difficulty": "easy"
+            },
+            {
+              "type": "crime_positive",
+              "attribute": "motive",
+              "value": "Revenge",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "James Hartley",
+              "attribute": "location",
+              "value": "Study",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_negative",
+              "suspect": "Margaret Finch",
+              "attribute": "location",
+              "value": "Master Bedroom",
+              "difficulty": "medium"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "Eleanor Blackwood",
+              "attribute": "location",
+              "value": "Kitchen",
+              "difficulty": "easy"
+            }
+          ],
+          "records": [
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-f50a868f59574b57",
+              "clue_fact_id": "fact-62024c9ec83063d8",
+              "bank_tier": "easy",
+              "clue_complexity": "easy",
+              "clue_type": "crime_positive",
+              "formatted_text": "The murder took place in the Master Bedroom.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_positive",
+                "attribute": "location",
+                "value": "Master Bedroom"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-30d8be2df5588f85",
+              "clue_fact_id": "fact-de985b46273117d6",
+              "bank_tier": "easy",
+              "clue_complexity": "easy",
+              "clue_type": "crime_positive",
+              "formatted_text": "The murderer was driven by revenge.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "crime_positive",
+                "attribute": "motive",
+                "value": "Revenge"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-3d8d21d11c424e10",
+              "clue_fact_id": "fact-68cce5c5cb8f7815",
+              "bank_tier": "easy",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "James Hartley was in the Study.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "James Hartley",
+                "attribute": "location",
+                "value": "Study"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-7958469e469a1552",
+              "clue_fact_id": "fact-ffd5c91f1d192321",
+              "bank_tier": "easy",
+              "clue_complexity": "medium",
+              "clue_type": "unary_negative",
+              "formatted_text": "Margaret Finch was not in the Master Bedroom.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_negative",
+                "suspect": "Margaret Finch",
+                "attribute": "location",
+                "value": "Master Bedroom"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-cb084e2b35c39518",
+              "clue_fact_id": "fact-267c02fc36c592ed",
+              "bank_tier": "easy",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "Eleanor Blackwood was in the Kitchen.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "Eleanor Blackwood",
+                "attribute": "location",
+                "value": "Kitchen"
+              }
+            }
+          ],
+          "duplicate_stats": {
+            "exact_duplicate_fact_count": 0,
+            "exact_duplicate_text_count": 0,
+            "unique_fact_count": 5,
+            "unique_text_count": 5
+          },
+          "validation": {
+            "truthful_for_generated_world": true,
+            "solver_compatible": true,
+            "unique_murderer": true,
+            "uniqueness_definition": "unique_murderer"
+          }
+        },
+        "medium": {
+          "bank_tier": "medium",
+          "alpha": 0.7,
+          "beta": 0.75,
+          "target_clues": 7,
+          "count": 7,
+          "generation_attempts": 53,
+          "murderer_link_count": 2,
+          "positive_murderer_link_count": 1,
+          "indirect_clue_count": 1,
+          "minimal_unique_subset_size": 4,
+          "clue_type_counts": {
+            "crime_positive": 1,
+            "unary_positive": 2,
+            "unary_negative": 3,
+            "crime_different_from": 1
+          },
+          "clue_complexity_counts": {
+            "easy": 3,
+            "hard": 1,
+            "medium": 3
+          },
+          "sampled_category_counts": {
+            "direct": 6,
+            "indirect_negative": 1
+          },
+          "constraint_adjustments": 1,
+          "candidate_sample_size": 128,
+          "is_unique_solution": true,
+          "items": [
+            "The murderer was driven by revenge.",
+            "James Hartley was in the Study.",
+            "Margaret Finch was not carrying a bloody handkerchief.",
+            "Margaret Finch did not have motive revenge.",
+            "The murderer was in a different location from James Hartley.",
+            "James Hartley did not have motive blackmail.",
+            "Eleanor Blackwood's motive was jealousy."
+          ],
+          "raw_items": [
+            {
+              "type": "crime_positive",
+              "attribute": "motive",
+              "value": "Revenge",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "James Hartley",
+              "attribute": "location",
+              "value": "Study",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_negative",
+              "suspect": "Margaret Finch",
+              "attribute": "weapon",
+              "value": "Bloody Handkerchief",
+              "difficulty": "medium"
+            },
+            {
+              "type": "unary_negative",
+              "suspect": "Margaret Finch",
+              "attribute": "motive",
+              "value": "Revenge",
+              "difficulty": "medium"
+            },
+            {
+              "type": "crime_different_from",
+              "suspect": "James Hartley",
+              "attribute": "location",
+              "difficulty": "hard"
+            },
+            {
+              "type": "unary_negative",
+              "suspect": "James Hartley",
+              "attribute": "motive",
+              "value": "Blackmail",
+              "difficulty": "medium"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "Eleanor Blackwood",
+              "attribute": "motive",
+              "value": "Jealousy",
+              "difficulty": "easy"
+            }
+          ],
+          "records": [
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-75fa9340ac20ca53",
+              "clue_fact_id": "fact-de985b46273117d6",
+              "bank_tier": "medium",
+              "clue_complexity": "easy",
+              "clue_type": "crime_positive",
+              "formatted_text": "The murderer was driven by revenge.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_positive",
+                "attribute": "motive",
+                "value": "Revenge"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-54f5e44490d64013",
+              "clue_fact_id": "fact-68cce5c5cb8f7815",
+              "bank_tier": "medium",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "James Hartley was in the Study.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "James Hartley",
+                "attribute": "location",
+                "value": "Study"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-ab1e067995376125",
+              "clue_fact_id": "fact-4e61d8b52ae9322a",
+              "bank_tier": "medium",
+              "clue_complexity": "medium",
+              "clue_type": "unary_negative",
+              "formatted_text": "Margaret Finch was not carrying a bloody handkerchief.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "unary_negative",
+                "suspect": "Margaret Finch",
+                "attribute": "weapon",
+                "value": "Bloody Handkerchief"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-b4e17f20013a1ef9",
+              "clue_fact_id": "fact-c313beafc0e4eb29",
+              "bank_tier": "medium",
+              "clue_complexity": "medium",
+              "clue_type": "unary_negative",
+              "formatted_text": "Margaret Finch did not have motive revenge.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_negative",
+                "suspect": "Margaret Finch",
+                "attribute": "motive",
+                "value": "Revenge"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-3ef07c4a8a4311df",
+              "clue_fact_id": "fact-2ddc78a2d4561c30",
+              "bank_tier": "medium",
+              "clue_complexity": "hard",
+              "clue_type": "crime_different_from",
+              "formatted_text": "The murderer was in a different location from James Hartley.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_different_from",
+                "suspect": "James Hartley",
+                "attribute": "location"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-107486d09d338824",
+              "clue_fact_id": "fact-b90280213a408990",
+              "bank_tier": "medium",
+              "clue_complexity": "medium",
+              "clue_type": "unary_negative",
+              "formatted_text": "James Hartley did not have motive blackmail.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "unary_negative",
+                "suspect": "James Hartley",
+                "attribute": "motive",
+                "value": "Blackmail"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-757658e67ee160e3",
+              "clue_fact_id": "fact-f44abea827ae42d0",
+              "bank_tier": "medium",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "Eleanor Blackwood's motive was jealousy.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "Eleanor Blackwood",
+                "attribute": "motive",
+                "value": "Jealousy"
+              }
+            }
+          ],
+          "duplicate_stats": {
+            "exact_duplicate_fact_count": 0,
+            "exact_duplicate_text_count": 0,
+            "unique_fact_count": 7,
+            "unique_text_count": 7
+          },
+          "validation": {
+            "truthful_for_generated_world": true,
+            "solver_compatible": true,
+            "unique_murderer": true,
+            "uniqueness_definition": "unique_murderer"
+          }
+        },
+        "hard": {
+          "bank_tier": "hard",
+          "alpha": 0.45,
+          "beta": 0.55,
+          "target_clues": 8,
+          "count": 8,
+          "generation_attempts": 196,
+          "murderer_link_count": 3,
+          "positive_murderer_link_count": 1,
+          "indirect_clue_count": 2,
+          "minimal_unique_subset_size": 6,
+          "clue_type_counts": {
+            "crime_positive": 1,
+            "crime_same_as": 1,
+            "unary_positive": 5,
+            "crime_different_from": 1
+          },
+          "clue_complexity_counts": {
+            "easy": 6,
+            "hard": 2
+          },
+          "sampled_category_counts": {
+            "direct": 6,
+            "indirect_positive": 1,
+            "indirect_negative": 1
+          },
+          "constraint_adjustments": 0,
+          "candidate_sample_size": 160,
+          "is_unique_solution": true,
+          "items": [
+            "The murderer was driven by revenge.",
+            "The murderer was seen at the same time as James Hartley.",
+            "James Hartley's motive was inheritance.",
+            "Margaret Finch was carrying a rope.",
+            "Marcus Webb's motive was revenge.",
+            "Eleanor Blackwood was seen at 2:00 AM.",
+            "James Hartley was seen at Late Evening.",
+            "The murderer had a different motive from Margaret Finch."
+          ],
+          "raw_items": [
+            {
+              "type": "crime_positive",
+              "attribute": "motive",
+              "value": "Revenge",
+              "difficulty": "easy"
+            },
+            {
+              "type": "crime_same_as",
+              "suspect": "James Hartley",
+              "attribute": "time",
+              "difficulty": "hard"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "James Hartley",
+              "attribute": "motive",
+              "value": "Inheritance",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "Margaret Finch",
+              "attribute": "weapon",
+              "value": "Rope",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "Marcus Webb",
+              "attribute": "motive",
+              "value": "Revenge",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "Eleanor Blackwood",
+              "attribute": "time",
+              "value": "2:00 AM",
+              "difficulty": "easy"
+            },
+            {
+              "type": "unary_positive",
+              "suspect": "James Hartley",
+              "attribute": "time",
+              "value": "Late Evening",
+              "difficulty": "easy"
+            },
+            {
+              "type": "crime_different_from",
+              "suspect": "Margaret Finch",
+              "attribute": "motive",
+              "difficulty": "hard"
+            }
+          ],
+          "records": [
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-12fbe65c1b2c19ce",
+              "clue_fact_id": "fact-de985b46273117d6",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "crime_positive",
+              "formatted_text": "The murderer was driven by revenge.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_positive",
+                "attribute": "motive",
+                "value": "Revenge"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-1f1155cc762f2dcb",
+              "clue_fact_id": "fact-ab31ec71944f1c8c",
+              "bank_tier": "hard",
+              "clue_complexity": "hard",
+              "clue_type": "crime_same_as",
+              "formatted_text": "The murderer was seen at the same time as James Hartley.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_same_as",
+                "suspect": "James Hartley",
+                "attribute": "time"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-2635db83cb5c59f2",
+              "clue_fact_id": "fact-7a5d362be3f95b62",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "James Hartley's motive was inheritance.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "James Hartley",
+                "attribute": "motive",
+                "value": "Inheritance"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-b076e563189b2bc4",
+              "clue_fact_id": "fact-a84f02bf2fb330a9",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "Margaret Finch was carrying a rope.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "Margaret Finch",
+                "attribute": "weapon",
+                "value": "Rope"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-f5f7fa9a3bf6468e",
+              "clue_fact_id": "fact-009f9eb2775ea5cb",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "Marcus Webb's motive was revenge.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": false,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "Marcus Webb",
+                "attribute": "motive",
+                "value": "Revenge"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-e83547f363a27932",
+              "clue_fact_id": "fact-5fad54dd3a33ae14",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "Eleanor Blackwood was seen at 2:00 AM.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "Eleanor Blackwood",
+                "attribute": "time",
+                "value": "2:00 AM"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-ab2809d8deff06f5",
+              "clue_fact_id": "fact-d44a9599775e1624",
+              "bank_tier": "hard",
+              "clue_complexity": "easy",
+              "clue_type": "unary_positive",
+              "formatted_text": "James Hartley was seen at Late Evening.",
+              "links_directly_to_murderer": false,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "unary_positive",
+                "suspect": "James Hartley",
+                "attribute": "time",
+                "value": "Late Evening"
+              }
+            },
+            {
+              "case_id": "case-3030-v24",
+              "clue_id": "clue-f086323fc90132d3",
+              "clue_fact_id": "fact-4666febf967d6fa4",
+              "bank_tier": "hard",
+              "clue_complexity": "hard",
+              "clue_type": "crime_different_from",
+              "formatted_text": "The murderer had a different motive from Margaret Finch.",
+              "links_directly_to_murderer": true,
+              "is_indirect": false,
+              "necessary_for_uniqueness": true,
+              "solver_fields": {
+                "type": "crime_different_from",
+                "suspect": "Margaret Finch",
+                "attribute": "motive"
+              }
+            }
+          ],
+          "duplicate_stats": {
+            "exact_duplicate_fact_count": 0,
+            "exact_duplicate_text_count": 0,
+            "unique_fact_count": 8,
+            "unique_text_count": 8
+          },
+          "validation": {
+            "truthful_for_generated_world": true,
+            "solver_compatible": true,
+            "unique_murderer": true,
+            "uniqueness_definition": "unique_murderer"
+          }
+        }
+      },
+      "metadata": {
+        "generator_version": "24",
+        "solver_version": "9.15.6755",
+        "generation_seed": 3030,
+        "generation_duration_seconds": 4.560665250057355,
+        "uniqueness_definition": "unique_murderer",
+        "manual_import_ready": true
+      }
+    }
+  ]
+}

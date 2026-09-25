@@ -12,6 +12,7 @@ RULES = (
     "Different suspects may share values. The crime's attributes equal the murderer's attributes. "
     "All clues are truthful. Only the murderer, not the full world, must be uniquely identifiable."
 )
+PROTOCOL_VERSION = "1.1"
 
 
 def public_puzzle(case):
@@ -42,6 +43,7 @@ class Environment:
         self._case = deepcopy(case)
         self._public = public_puzzle(case)
         self.budget = math.ceil(len(case["clues"]) * budget_fraction)
+        self.max_requests = self.budget + max(2, self.budget)
         self._topics = {}
         for i, c in enumerate(case["clues"]):
             self._topics.setdefault(topic(c), []).append(i)
@@ -52,6 +54,7 @@ class Environment:
 
     def reset(self):
         self.spent = 0
+        self.requests = 0
         self.invalid_actions = 0
         self.answer = None
         self.done = False
@@ -72,31 +75,40 @@ class Environment:
             budget=self.budget,
             spent=self.spent,
             remaining_budget=self.budget - self.spent,
+            max_requests=self.max_requests,
+            requests=self.requests,
+            remaining_requests=self.max_requests - self.requests,
             done=self.done,
         )
         return p
+
+    def _request_status(self):
+        return {
+            "remaining_budget": self.budget - self.spent,
+            "remaining_requests": self.max_requests - self.requests,
+            "inventory": {q: len(items) for q, items in self._remaining.items()},
+        }
 
     def request_clue(self, query_id):
         if self.done:
             return {"error": "episode_finished"}
         if self.spent >= self.budget:
-            return {"error": "budget_exhausted"}
-        self.spent += 1
-        if (
-            not isinstance(query_id, str)
-            or query_id not in self._remaining
-            or not self._remaining[query_id]
-        ):
+            return {"error": "budget_exhausted", **self._request_status()}
+        if self.requests >= self.max_requests:
+            return {"error": "request_limit_exhausted", **self._request_status()}
+        self.requests += 1
+        if not isinstance(query_id, str) or query_id not in self._remaining:
             self.invalid_actions += 1
-            return {
-                "error": "invalid_or_exhausted_query",
-                "observation": self.observation(),
-            }
+            return {"error": "unknown_query_id", **self._request_status()}
+        if not self._remaining[query_id]:
+            self.invalid_actions += 1
+            return {"error": "topic_exhausted", **self._request_status()}
+        self.spent += 1
         index = self._remaining[query_id].pop(0)
         self._seen.append(index)
         return {
             "clue": deepcopy(self._public["clues"][index]),
-            "remaining_budget": self.budget - self.spent,
+            **self._request_status(),
         }
 
     def submit_answer(self, suspect_id):
@@ -113,5 +125,6 @@ class Environment:
         return {
             "correct": int(self.answer == self._case["solution"]["murderer"]),
             "spent": self.spent,
+            "requests": self.requests,
             "invalid_actions": self.invalid_actions,
         }

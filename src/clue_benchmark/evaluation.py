@@ -8,7 +8,7 @@ from collections import defaultdict
 from dataclasses import replace
 
 from .config import VERSION, Config
-from .environment import Environment
+from .environment import PROTOCOL_VERSION, Environment
 from .solver import Outcome, Solver, Unresolved
 
 
@@ -46,6 +46,7 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
         return {
             "correct": int(answer == case["solution"]["murderer"]),
             "spent": len(case["clues"]),
+            "requests": 0,
             "invalid_actions": 0,
             "seconds": time.perf_counter() - start,
             "query_ms": [],
@@ -124,6 +125,7 @@ def summarize(rows, bootstrap=1000):
                     samples[min(bootstrap - 1, int(0.975 * bootstrap))],
                 ],
                 mean_clues=sum(x["spent"] for x in group) / len(group),
+                mean_requests=sum(x["requests"] for x in group) / len(group),
                 invalid_actions=sum(x["invalid_actions"] for x in group),
                 mean_seconds=sum(x["seconds"] for x in group) / len(group),
                 query_p95_ms=latencies[math.ceil(0.95 * len(latencies)) - 1]
@@ -134,6 +136,25 @@ def summarize(rows, bootstrap=1000):
             )
         )
     return results
+
+
+def budget_averages(summary):
+    """Average investigation accuracy across the four declared evidence budgets."""
+    groups = defaultdict(dict)
+    for row in summary:
+        groups[(row["baseline"], row["suspects"])][row["budget_fraction"]] = row[
+            "accuracy"
+        ]
+    fractions = (0.25, 0.5, 0.75, 1.0)
+    return [
+        {
+            "baseline": baseline,
+            "suspects": suspects,
+            "budget_averaged_accuracy": sum(values[f] for f in fractions) / 4,
+        }
+        for (baseline, suspects), values in sorted(groups.items())
+        if all(f in values for f in fractions)
+    ]
 
 
 def evaluate(cases, repeats=1):
@@ -166,9 +187,11 @@ def evaluate(cases, repeats=1):
                             **run_episode(case, baseline, fraction, seed),
                         }
                     )
+    summary = summarize(rows)
     return {
         "manifest": {
             "version": VERSION,
+            "protocol_version": PROTOCOL_VERSION,
             "python": platform.python_version(),
             "platform": platform.platform(),
             "model": "none; deterministic symbolic baselines",
@@ -176,6 +199,7 @@ def evaluate(cases, repeats=1):
             "repeats": repeats,
             "reference_access": "structured revealed clues; no hidden-world access for inference",
         },
-        "summary": summarize(rows),
+        "summary": summary,
+        "budget_averages": budget_averages(summary),
         "episodes": rows,
     }

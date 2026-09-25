@@ -8,7 +8,7 @@ Every complete bank identifies one murderer under the published rules. Full worl
 
 ## Provenance and collection
 
-Generated locally with the code in this repository and OR-Tools 9.15.6755. Seeds start at 140000, 180000, and 220000 respectively and advance in order. The first 30 accepted worlds per size form development; the next 100 form test. `data/v0.1/manifest.json` records exact configurations, counts, versions, and SHA-256 values. Checkpoints retain accepted seeds and rejected candidates.
+Generated locally with the code in this repository and OR-Tools 9.15.6755. Seeds start at 140000, 180000, and 220000 respectively and advance in order. The first 30 accepted worlds per size form development; the next 100 form test. `data/v0.1/manifest.json` records exact configurations, counts, versions, and SHA-256 values. The private case files retain accepted seeds; local generation checkpoints retain detailed rejection diagnostics and are excluded from Git.
 
 The source generator's uncommitted working-tree improvements were copied into an independent Git repository; `PROVENANCE.json` records imported hashes. No human study data, participant identifiers, or scraped text are included. Template language is generated deterministically, not by an LLM.
 

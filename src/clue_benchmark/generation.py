@@ -7,7 +7,7 @@ from importlib.metadata import version
 from itertools import combinations
 
 from .clue_generator import ClueGenerator
-from .config import VERSION, Config, digest
+from .config import DATA_VERSION, Config, digest
 from .logic import clean, fact_key, is_indirect, is_link, truth
 from .solver import Outcome, Solver, Unresolved
 from .world_sampler import WorldSampler
@@ -192,7 +192,7 @@ def generate(config: Config, seed: int):
                     ],
                     "seed": seed,
                     "config": config.to_dict(),
-                    "generator_version": VERSION,
+                    "generator_version": DATA_VERSION,
                     "solver_version": version("ortools"),
                 },
                 "diagnostics": {

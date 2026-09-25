@@ -66,6 +66,8 @@ def test_mock_model_can_submit_without_answer_leak(case, tmp_path, track):
     assert len(seen) == (2 if track == "investigation" else 1)
     if track == "investigation":
         assert sample.metadata["benchmark_result"]["invalid_actions"] == 1
+        assert sample.metadata["benchmark_result"]["spent"] == 0
+        assert sample.metadata["benchmark_result"]["requests"] == 1
 
 
 def test_mock_missing_answer_scores_zero(case, tmp_path):

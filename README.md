@@ -40,11 +40,14 @@ all_evidence = public_puzzle(case)  # deduction track
 env = Environment(case, budget_fraction=0.5)  # investigation track
 observation = env.reset()
 response = env.request_clue(observation["queries"][0]["query_id"])
+remaining_by_topic = response["inventory"]
 env.submit_answer("S01")
 score = env.score()  # evaluator-side only
 ```
 
 Agents receive serialized observations and the two allowed tools, **not the Python environment object**, private JSONL, seeds, targets, or diagnostic files. This is an evaluation protocol, not a security sandbox for arbitrary untrusted Python agents.
+
+Investigation protocol 1.1 spends evidence budget only when a clue is revealed. Unknown or exhausted queries count as invalid requests against a separate, disclosed request limit. Every response includes current counts for all topic IDs without repeating previously revealed clues. The agent chooses topics; clues within a topic arrive in a fixed, seeded order. The primary comparison is accuracy at each evidence budget, with budget-averaged accuracy as an optional summary.
 
 ## Included research artifacts
 

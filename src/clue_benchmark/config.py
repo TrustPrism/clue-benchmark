@@ -5,7 +5,8 @@ import json
 import math
 from dataclasses import asdict, dataclass, field
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
+DATA_VERSION = "0.1.0"
 TYPES = (
     "unary_positive",
     "unary_negative",
@@ -133,7 +134,7 @@ class Config:
 
     @property
     def fingerprint(self):
-        return digest({"version": VERSION, "config": self.to_dict()})
+        return digest({"version": DATA_VERSION, "config": self.to_dict()})
 
 
 STUDY_PRESETS = {

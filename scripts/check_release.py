@@ -5,11 +5,14 @@ import json
 from pathlib import Path
 
 from clue_benchmark import public_puzzle, validate_case
+from clue_benchmark.config import DATA_VERSION, VERSION
 from clue_benchmark.dataset import fingerprints, read_cases
+from clue_benchmark.environment import PROTOCOL_VERSION
 
 root = Path(__file__).resolve().parents[1]
 data = root / "data/v0.1"
 manifest = json.loads((data / "manifest.json").read_text())
+assert manifest["version"] == DATA_VERSION
 for path, expected in manifest["files"].items():
     assert hashlib.sha256((data / path).read_bytes()).hexdigest() == expected, path
 worlds = set()
@@ -29,8 +32,11 @@ for split, expected in [("dev", 90), ("test", 300)]:
         puzzles.add(p)
         total += 1
 results = json.loads((root / "results/baselines.json").read_text())
+assert results["manifest"]["version"] == VERSION
 assert results["manifest"]["episode_count"] == 9000
+assert results["manifest"]["protocol_version"] == PROTOCOL_VERSION
 assert sum(row["episodes"] for row in results["summary"]) == 9000
+assert len(results["budget_averages"]) == 6
 assert not any(row["solver_errors"] for row in results["summary"])
 assert all(
     row["accuracy"] == 1

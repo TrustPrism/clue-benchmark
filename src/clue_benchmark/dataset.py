@@ -7,7 +7,7 @@ from concurrent.futures import ProcessPoolExecutor
 from importlib.metadata import version
 from pathlib import Path
 
-from .config import VERSION, Config, digest
+from .config import DATA_VERSION, Config, digest
 from .environment import public_puzzle
 from .generation import generate, validate_case
 
@@ -86,7 +86,7 @@ def build_bank(config, count, seed, path, workers=1, max_candidates=None):
         raise ValueError("max_candidates must be >= count")
     signature = {
         "config": config.to_dict(),
-        "version": VERSION,
+        "version": DATA_VERSION,
         "solver_version": version("ortools"),
         "count": count,
         "start_seed": seed,
@@ -259,7 +259,7 @@ def create_suite(root, workers=1, dev=30, test=100):
             root / "public" / f"{split}.jsonl", [public_puzzle(c) for c in cases]
         )
     manifest = {
-        "version": VERSION,
+        "version": DATA_VERSION,
         "status": "private-preview",
         "license": "pending",
         "dev_per_size": dev,

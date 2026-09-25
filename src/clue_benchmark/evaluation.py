@@ -52,7 +52,12 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
             "query_ms": [],
             "solver_error": error,
         }
-    if baseline not in ("random_investigation", "round_robin"):
+    if baseline not in (
+        "random_investigation",
+        "round_robin",
+        "topic_heuristic",
+        "privileged_lookahead",
+    ):
         raise ValueError("unknown baseline")
     env = Environment(case, fraction)
     cursor = 0
@@ -73,13 +78,55 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
             break
         if baseline == "random_investigation":
             query = rng.choice(active)
-        else:
+        elif baseline == "round_robin":
             ids = [q["query_id"] for q in obs["queries"]]
             for _ in ids:
                 query = ids[cursor % len(ids)]
                 cursor += 1
                 if query in active:
                     break
+        elif baseline == "topic_heuristic":
+            # Uses only public topic metadata and the currently feasible suspects.
+            try:
+                plausible = set(
+                    candidates.feasible_candidates([case["clues"][i] for i in indices])
+                )
+            except Unresolved:
+                plausible = set(case["suspects"])
+
+            def priority(q):
+                category = q["category"]
+                if category == "suspect_attribute":
+                    return (3 if q["suspect"] in plausible else 0, q["remaining"])
+                return (
+                    {
+                        "crime_attribute": 4,
+                        "crime_comparison": 2,
+                        "suspect_comparison": 1,
+                        "cross_attribute": 1,
+                    }[category],
+                    q["remaining"],
+                )
+
+            query = max((q for q in obs["queries"] if q["remaining"]), key=priority)[
+                "query_id"
+            ]
+        else:
+            # Privileged diagnostic: inspect the next hidden clue in every queue.
+            # This is an upper-bound policy and is never an agent baseline.
+            scored = []
+            for q in active:
+                next_index = env._remaining[q][0]
+                try:
+                    remaining = len(
+                        candidates.feasible_candidates(
+                            [case["clues"][i] for i in indices + [next_index]]
+                        )
+                    )
+                except Unresolved:
+                    remaining = len(case["suspects"])
+                scored.append((remaining, q))
+            query = min(scored)[1]
         t = time.perf_counter()
         env.request_clue(query)
         latencies.append((time.perf_counter() - t) * 1000)
@@ -157,17 +204,21 @@ def budget_averages(summary):
     ]
 
 
-def evaluate(cases, repeats=1):
+def evaluate(cases, repeats=1, include_privileged=False):
     if repeats < 1:
         raise ValueError("repeats must be positive")
     rows = []
     for case in cases:
-        for baseline in (
+        baselines = [
             "random_answer",
             "reference",
             "random_investigation",
             "round_robin",
-        ):
+            "topic_heuristic",
+        ]
+        if include_privileged:
+            baselines.append("privileged_lookahead")
+        for baseline in baselines:
             fractions = (
                 (1.0,)
                 if baseline in ("random_answer", "reference")
@@ -198,6 +249,7 @@ def evaluate(cases, repeats=1):
             "paid_calls": 0,
             "repeats": repeats,
             "reference_access": "structured revealed clues; no hidden-world access for inference",
+            "privileged_diagnostic_included": include_privileged,
         },
         "summary": summary,
         "budget_averages": budget_averages(summary),

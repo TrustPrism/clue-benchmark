@@ -12,7 +12,7 @@ RULES = (
     "Different suspects may share values. The crime's attributes equal the murderer's attributes. "
     "All clues are truthful. Only the murderer, not the full world, must be uniquely identifiable."
 )
-PROTOCOL_VERSION = "1.1"
+PROTOCOL_VERSION = "2.0"
 
 
 def public_puzzle(case):
@@ -30,10 +30,26 @@ def public_puzzle(case):
 
 def topic(c):
     if c["type"].startswith("unary_"):
-        return f"{c['suspect']} / {c['attribute']}"
+        return ("suspect_attribute", c["attribute"], c["suspect"])
+    if c["type"] in ("crime_positive", "crime_negative"):
+        return ("crime_attribute", c["attribute"], None)
     if c["type"].startswith("crime_"):
-        return f"Crime / {c['attribute']}"
-    return "Relationships / " + " + ".join(sorted((c["attr1"], c["attr2"])))
+        return ("crime_comparison", c["attribute"], None)
+    if c["type"].startswith("suspect_"):
+        return ("suspect_comparison", c["attribute"], None)
+    return ("cross_attribute", " + ".join(sorted((c["attr1"], c["attr2"]))), None)
+
+
+def topic_label(key):
+    category, attribute, suspect = key
+    if category == "suspect_attribute":
+        return f"Suspect {suspect} / {attribute}"
+    return {
+        "crime_attribute": "Crime attribute",
+        "crime_comparison": "Crime comparison",
+        "suspect_comparison": "Suspect comparison",
+        "cross_attribute": "Cross-attribute relationship",
+    }[category] + f" / {attribute}"
 
 
 class Environment:
@@ -47,9 +63,11 @@ class Environment:
         self._topics = {}
         for i, c in enumerate(case["clues"]):
             self._topics.setdefault(topic(c), []).append(i)
-        labels = sorted(self._topics)
-        random.Random(int(digest(case["clues"])[:16], 16)).shuffle(labels)
-        self._queries = {f"q{i + 1:03d}": label for i, label in enumerate(labels)}
+        for key, queue in self._topics.items():
+            random.Random(int(digest([case["case_id"], key])[:16], 16)).shuffle(queue)
+        keys = sorted(self._topics)
+        random.Random(int(digest(case["clues"])[:16], 16)).shuffle(keys)
+        self._queries = {f"q{i + 1:03d}": key for i, key in enumerate(keys)}
         self.reset()
 
     def reset(self):
@@ -60,7 +78,7 @@ class Environment:
         self.done = False
         self._seen = []
         self._remaining = {
-            q: list(self._topics[label]) for q, label in self._queries.items()
+            q: list(self._topics[key]) for q, key in self._queries.items()
         }
         return self.observation()
 
@@ -69,8 +87,15 @@ class Environment:
         p["clues"] = [p["clues"][i] for i in self._seen]
         p.update(
             queries=[
-                {"query_id": q, "topic": label, "remaining": len(self._remaining[q])}
-                for q, label in self._queries.items()
+                {
+                    "query_id": q,
+                    "topic": topic_label(key),
+                    "category": key[0],
+                    "attribute": key[1],
+                    "suspect": key[2],
+                    "remaining": len(self._remaining[q]),
+                }
+                for q, key in self._queries.items()
             ],
             budget=self.budget,
             spent=self.spent,

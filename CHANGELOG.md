@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 — measured structure and topic-choice preview
+
+- Add suspect-to-suspect comparisons, typed evidence topics, and deterministic topic queues.
+- Add a paired factorial suite design varying size, attribute schema, value reuse, clue density, and comparison availability. Cross-attribute necessity is measured rather than imposed as a release rule.
+- Add bounded structural audits, exact isomorphism checks for close structural matches, near-duplicate review candidates, and a public-only human-review packet.
+- Add a public-topic heuristic and an explicitly privileged lookahead diagnostic for investigation. Human signoff, paid model experiments, public release, and licensing remain pending.
+
 ## 0.2.0 — mixed evidence generation
 
 - Replace the direct-only construction with a mixed exclusion scaffold. Alpha now affects direct versus relationship exclusions; beta affects positive relationship anchors and filler selection.

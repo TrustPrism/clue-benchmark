@@ -17,6 +17,7 @@ class ClueGenerator:
         self.clue_pool = []
         self._generate_direct_clues()
         self._generate_complex_clues()
+        self._generate_suspect_comparisons()
         self._dedupe_clue_pool()
         rng.shuffle(self.clue_pool)
         return len(self.clue_pool)
@@ -125,6 +126,23 @@ class ClueGenerator:
                                         "difficulty": "very_hard",
                                     }
                                 )
+
+    def _generate_suspect_comparisons(self):
+        suspects = list(self.world)
+        for i, first in enumerate(suspects):
+            for second in suspects[i + 1 :]:
+                for attribute in self.attributes:
+                    same = self.world[first][attribute] == self.world[second][attribute]
+                    self.clue_pool.append(
+                        {
+                            "type": "suspect_same_as"
+                            if same
+                            else "suspect_different_from",
+                            "suspect": first,
+                            "other_suspect": second,
+                            "attribute": attribute,
+                        }
+                    )
 
     def _is_negative_rule_true(self, attr1, val1, attr2, val2):
         """Check if ∀s: X_s,attr1=val1 ⇒ X_s,attr2≠val2"""

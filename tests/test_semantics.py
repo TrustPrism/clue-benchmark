@@ -32,6 +32,10 @@ def reference(c, w, m):
         return w[m][c["attribute"]] == w[c["suspect"]][c["attribute"]]
     if t == "crime_different_from":
         return w[m][c["attribute"]] != w[c["suspect"]][c["attribute"]]
+    if t == "suspect_same_as":
+        return w[c["suspect"]][c["attribute"]] == w[c["other_suspect"]][c["attribute"]]
+    if t == "suspect_different_from":
+        return w[c["suspect"]][c["attribute"]] != w[c["other_suspect"]][c["attribute"]]
     matching = [
         s for s in S if (w[s][c["attr1"]], w[s][c["attr2"]]) == (c["val1"], c["val2"])
     ]
@@ -139,6 +143,9 @@ def test_controlled_language_preserves_literals():
         elif c["type"] in ("crime_same_as", "crime_different_from"):
             assert quoted == [c["attribute"], c["suspect"]]
             assert ("the same" in text) == (c["type"] == "crime_same_as")
+        elif c["type"].startswith("suspect_"):
+            assert quoted == [c["suspect"], c["other_suspect"], c["attribute"]]
+            assert ("the same" in text) == (c["type"] == "suspect_same_as")
         else:
             assert quoted == [c["attr1"], c["val1"], c["attr2"], c["val2"]]
             assert text.startswith("At least one") == (c["type"] == "indirect_positive")

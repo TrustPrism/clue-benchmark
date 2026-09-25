@@ -9,6 +9,7 @@ from .dataset import (
     atomic_json,
     build_bank,
     create_suite,
+    create_suite_v03,
     read_cases,
     study_export,
     write_jsonl,
@@ -39,11 +40,29 @@ def main():
     ev.add_argument("--repeats", type=int, default=1)
     ev.add_argument("--output", required=True)
     ev.add_argument("--summary-only", action="store_true")
+    ev.add_argument("--include-privileged", action="store_true")
     suite = sub.add_parser("suite")
     suite.add_argument("--output", default="data/v0.2")
     suite.add_argument("--workers", type=int, default=1)
     suite.add_argument("--dev", type=int, default=30)
     suite.add_argument("--test", type=int, default=100)
+    suite3 = sub.add_parser("suite-v03")
+    suite3.add_argument("--output", default="data/v0.3")
+    suite3.add_argument("--workers", type=int, default=1)
+    suite3.add_argument("--dev-worlds", type=int, default=12)
+    suite3.add_argument("--test-worlds", type=int, default=28)
+    audit = sub.add_parser("audit")
+    audit.add_argument("input", nargs="+")
+    audit.add_argument("--output", required=True)
+    audit.add_argument("--max-solver-calls", type=int, default=1200)
+    audit.add_argument("--trajectory", action="store_true")
+    review = sub.add_parser("review-packet")
+    review.add_argument("input")
+    review.add_argument("--output", required=True)
+    review.add_argument("--per-cell", type=int, default=2)
+    duplicates = sub.add_parser("duplicate-audit")
+    duplicates.add_argument("input", nargs="+")
+    duplicates.add_argument("--output", required=True)
     args = parser.parse_args()
     try:
         if args.command == "generate":
@@ -67,11 +86,49 @@ def main():
             print(
                 json.dumps(create_suite(args.output, args.workers, args.dev, args.test))
             )
+        elif args.command == "suite-v03":
+            manifest = create_suite_v03(
+                args.output, args.workers, args.dev_worlds, args.test_worlds
+            )
+            print(
+                json.dumps(
+                    {
+                        "version": manifest["version"],
+                        "worlds": manifest["worlds"],
+                        "cases": manifest["cases"],
+                        "output": args.output,
+                    }
+                )
+            )
         else:
-            cases = read_cases(args.input)
+            cases = (
+                [case for path in args.input for case in read_cases(path)]
+                if args.command in ("audit", "duplicate-audit")
+                else read_cases(args.input)
+            )
             if not cases:
                 raise ValueError("no cases")
-            if args.command == "validate":
+            if args.command == "duplicate-audit":
+                from .audit import duplicate_report
+
+                atomic_json(args.output, duplicate_report(cases))
+                print(json.dumps({"cases": len(cases), "output": args.output}))
+            elif args.command == "audit":
+                from .audit import audit_suite
+
+                for c in cases:
+                    validate_case(c)
+                result = audit_suite(cases, args.max_solver_calls, args.trajectory)
+                atomic_json(args.output, result)
+                print(json.dumps({"cases": len(cases), "output": args.output}))
+            elif args.command == "review-packet":
+                from .audit import human_review_packet
+
+                for c in cases:
+                    validate_case(c)
+                atomic_json(args.output, human_review_packet(cases, args.per_cell))
+                print(json.dumps({"cases": len(cases), "output": args.output}))
+            elif args.command == "validate":
                 for c in cases:
                     validate_case(c)
                 print(f"Validated {len(cases)} cases")
@@ -87,7 +144,7 @@ def main():
 
                 for c in cases:
                     validate_case(c)
-                result = evaluate(cases, args.repeats)
+                result = evaluate(cases, args.repeats, args.include_privileged)
                 episode_count = len(result["episodes"])
                 if args.summary_only:
                     result["manifest"]["episode_count"] = episode_count

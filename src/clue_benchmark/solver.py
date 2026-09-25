@@ -80,6 +80,11 @@ class Solver:
                 left = crime[a]
                 right = xs[c["suspect"]][a]
                 model.add(left == right if t == "crime_same_as" else left != right)
+            elif t in ("suspect_same_as", "suspect_different_from"):
+                a = c["attribute"]
+                left = xs[c["suspect"]][a]
+                right = xs[c["other_suspect"]][a]
+                model.add(left == right if t == "suspect_same_as" else left != right)
             else:
                 a, b = c["attr1"], c["attr2"]
                 v, w = (

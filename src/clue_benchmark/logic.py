@@ -11,6 +11,8 @@ FIELDS = {
     "crime_different_from": {"suspect", "attribute"},
     "indirect_positive": {"attr1", "val1", "attr2", "val2"},
     "indirect_negative": {"attr1", "val1", "attr2", "val2"},
+    "suspect_same_as": {"suspect", "other_suspect", "attribute"},
+    "suspect_different_from": {"suspect", "other_suspect", "attribute"},
 }
 
 
@@ -29,6 +31,10 @@ def validate(clue, suspects, domains):
     c = clean(clue)
     if "suspect" in c and c["suspect"] not in suspects:
         raise ValueError("unknown suspect")
+    if "other_suspect" in c and (
+        c["other_suspect"] not in suspects or c["other_suspect"] == c["suspect"]
+    ):
+        raise ValueError("invalid other suspect")
     for attr_key, val_key in (
         ("attribute", "value"),
         ("attr1", "val1"),
@@ -56,6 +62,12 @@ def truth(c, world, murderer):
     if t in ("crime_same_as", "crime_different_from"):
         eq = world[murderer][c["attribute"]] == world[c["suspect"]][c["attribute"]]
         return eq if t == "crime_same_as" else not eq
+    if t in ("suspect_same_as", "suspect_different_from"):
+        eq = (
+            world[c["suspect"]][c["attribute"]]
+            == world[c["other_suspect"]][c["attribute"]]
+        )
+        return eq if t == "suspect_same_as" else not eq
     if t in ("indirect_positive", "indirect_negative"):
         exists = any(
             v[c["attr1"]] == c["val1"] and v[c["attr2"]] == c["val2"]
@@ -70,6 +82,8 @@ def fact_key(c):
     if "attr1" in c and (c["attr1"], c["val1"]) > (c["attr2"], c["val2"]):
         c["attr1"], c["attr2"] = c["attr2"], c["attr1"]
         c["val1"], c["val2"] = c["val2"], c["val1"]
+    if "other_suspect" in c and c["suspect"] > c["other_suspect"]:
+        c["suspect"], c["other_suspect"] = c["other_suspect"], c["suspect"]
     return canonical(c)
 
 
@@ -84,4 +98,6 @@ def is_indirect(c):
         "crime_same_as",
         "crime_different_from",
         "crime_negative",
+        "suspect_same_as",
+        "suspect_different_from",
     )

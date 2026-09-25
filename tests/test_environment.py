@@ -7,6 +7,7 @@ FORBIDDEN = {
     "solution",
     "world",
     "seed",
+    "world_seed",
     "config",
     "solver_fields",
     "necessary_for_uniqueness",

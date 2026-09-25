@@ -23,6 +23,9 @@ class ClueFormatter:
         if t in ("crime_same_as", "crime_different_from"):
             relation = "the same" if t == "crime_same_as" else "a different"
             return f"The murderer has {relation} {q(c['attribute'])} value as suspect {q(c['suspect'])}."
+        if t in ("suspect_same_as", "suspect_different_from"):
+            relation = "the same" if t == "suspect_same_as" else "different"
+            return f"Suspects {q(c['suspect'])} and {q(c['other_suspect'])} have {relation} {q(c['attribute'])} values."
         pair = f"{q(c['attr1'])} = {q(c['val1'])} and {q(c['attr2'])} = {q(c['val2'])}"
         if t == "indirect_positive":
             return f"At least one suspect has {pair}."

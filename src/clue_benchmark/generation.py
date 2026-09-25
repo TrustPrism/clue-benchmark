@@ -18,7 +18,7 @@ def _weight(c, config):
         return config.alpha
     return (1 - config.alpha) * (
         config.beta
-        if c["type"] in ("indirect_positive", "crime_same_as")
+        if c["type"] in ("indirect_positive", "crime_same_as", "suspect_same_as")
         else 1 - config.beta
     )
 
@@ -36,7 +36,8 @@ def _sample(pool, n, rng, config):
                 if not is_indirect(c)
                 else (
                     "positive"
-                    if c["type"] in ("indirect_positive", "crime_same_as")
+                    if c["type"]
+                    in ("indirect_positive", "crime_same_as", "suspect_same_as")
                     else "negative"
                 )
             )
@@ -63,6 +64,8 @@ def _constraints(clues, config, solver):
         return False
     if sum(is_indirect(c) for c in clues) < config.min_indirect_clues:
         return False
+    if sum(c["type"].startswith("suspect_") for c in clues) < config.min_pairwise_clues:
+        return False
     if solver.check(clues).status != Outcome.UNIQUE:
         return False
     for size in range(1, config.min_unique_subset_size):
@@ -81,6 +84,18 @@ def _constraints(clues, config, solver):
             for i, c in enumerate(clues)
         ):
             return False
+    essential_type = {
+        "pairwise": lambda c: c["type"].startswith("suspect_"),
+        "cross_attribute": lambda c: (
+            c["type"] in ("indirect_positive", "indirect_negative")
+        ),
+    }.get(config.reasoning_route)
+    if essential_type and not any(
+        essential_type(c)
+        and solver.check(clues[:i] + clues[i + 1 :]).status != Outcome.UNIQUE
+        for i, c in enumerate(clues)
+    ):
+        return False
     return True
 
 
@@ -96,6 +111,87 @@ def _proof_scaffold(world, murderer, domains, rng, config):
     differences = {
         s: [a for a in attrs if world[s][a] != world[murderer][a]] for s in innocents
     }
+    if config.reasoning_route in ("pairwise", "cross_attribute"):
+        candidates = []
+        for target in innocents:
+            for attribute in differences[target]:
+                if config.reasoning_route == "pairwise":
+                    for reference in world:
+                        if reference == target:
+                            continue
+                        same = world[target][attribute] == world[reference][attribute]
+                        matches_crime = (
+                            world[reference][attribute] == world[murderer][attribute]
+                        )
+                        if same or matches_crime:
+                            candidates.append((target, attribute, reference, same))
+                else:
+                    for other in differences[target]:
+                        if other == attribute:
+                            continue
+                        if not any(
+                            attrs[attribute] == world[target][attribute]
+                            and attrs[other] == world[murderer][other]
+                            for attrs in world.values()
+                        ):
+                            candidates.append((target, attribute, other))
+        if not candidates:
+            return []
+        chosen = rng.choice(candidates)
+        target, attribute = chosen[:2]
+        if config.reasoning_route == "pairwise":
+            reference, same = chosen[2:]
+            special = [
+                dict(
+                    type="suspect_same_as" if same else "suspect_different_from",
+                    suspect=target,
+                    other_suspect=reference,
+                    attribute=attribute,
+                ),
+                dict(
+                    type="unary_positive",
+                    suspect=reference,
+                    attribute=attribute,
+                    value=world[reference][attribute],
+                ),
+                dict(
+                    type="crime_positive",
+                    attribute=attribute,
+                    value=world[murderer][attribute],
+                ),
+            ]
+        else:
+            other = chosen[2]
+            special = [
+                dict(
+                    type="unary_positive",
+                    suspect=target,
+                    attribute=attribute,
+                    value=world[target][attribute],
+                ),
+                dict(
+                    type="crime_positive", attribute=other, value=world[murderer][other]
+                ),
+                dict(
+                    type="indirect_negative",
+                    attr1=attribute,
+                    val1=world[target][attribute],
+                    attr2=other,
+                    val2=world[murderer][other],
+                ),
+            ]
+        # Other suspects receive separate exclusions, leaving the selected route
+        # as the only constructed explanation for this target.
+        for s in innocents:
+            if s != target:
+                special.append(
+                    dict(
+                        type="crime_different_from",
+                        suspect=s,
+                        attribute=rng.choice(differences[s]),
+                    )
+                )
+        return list({fact_key(c): c for c in special}.values())
     direct, relational = [], []
     can_direct = {"unary_positive", "crime_positive"} <= set(config.enabled_types)
     can_relational = "crime_different_from" in config.enabled_types
@@ -156,7 +252,7 @@ def _proof_scaffold(world, murderer, domains, rng, config):
     return list({fact_key(c): c for c in clues}.values())
 
 
-def generate(config: Config, seed: int):
+def generate(config: Config, seed: int, *, fixed_world=None):
     if type(seed) is not int:
         raise ValueError("seed must be an integer")
     config = Config(**config.to_dict())
@@ -166,6 +262,20 @@ def generate(config: Config, seed: int):
     suspects = [f"S{i + 1:02d}" for i in range(config.suspect_count)]
     rejects = Counter()
     calls = 0
+    if fixed_world is not None:
+        world, murderer = fixed_world
+        if (
+            set(world) != set(suspects)
+            or murderer not in suspects
+            or any(
+                set(attrs) != set(config.domains)
+                or any(attrs[a] not in config.domains[a] for a in config.domains)
+                for attrs in world.values()
+            )
+        ):
+            raise ValueError("invalid fixed world")
+        if any(world[s] == world[murderer] for s in suspects if s != murderer):
+            raise ValueError("murderer profile is not unique")
     for attempt in range(1, config.max_attempts + 1):
         if time.monotonic() >= deadline:
             rejects["generation_timeout"] += 1
@@ -173,13 +283,18 @@ def generate(config: Config, seed: int):
         if calls >= config.max_solver_calls:
             rejects["solver_budget"] += 1
             break
-        try:
-            world, murderer = WorldSampler(config.domains).sample_world(
-                suspects, True, max_attempts=1000, rng=rng
-            )
-        except RuntimeError:
-            rejects["world_sampling_exhausted"] += 1
-            break
+        if fixed_world is None:
+            try:
+                world, murderer = WorldSampler(config.domains).sample_world(
+                    suspects,
+                    True,
+                    max_attempts=1000,
+                    rng=rng,
+                    active_values_per_attribute=config.active_values_per_attribute,
+                )
+            except RuntimeError:
+                rejects["world_sampling_exhausted"] += 1
+                break
         builder = ClueGenerator(world, murderer, config.domains)
         builder.build_clue_pool(rng=rng)
         unique = {
@@ -195,15 +310,35 @@ def generate(config: Config, seed: int):
         solver = Solver(suspects, config.domains, config, deadline)
         solver.calls = calls
         scaffold = _proof_scaffold(world, murderer, config.domains, rng, config)
-        if len(scaffold) > config.clue_count or not scaffold:
+        if not scaffold:
+            rejects["proof_route_unavailable"] += 1
+            if fixed_world is not None:
+                break
+            continue
+        if len(scaffold) + config.min_pairwise_clues > config.clue_count:
             rejects["scaffold_size"] += 1
             continue
         keys = {fact_key(c) for c in scaffold}
-        clues = scaffold + _sample(
-            [c for c in pool if fact_key(c) not in keys],
-            config.clue_count - len(scaffold),
+        pairwise = _sample(
+            [
+                c
+                for c in pool
+                if c["type"].startswith("suspect_") and fact_key(c) not in keys
+            ],
+            config.min_pairwise_clues,
             rng,
             config,
+        )
+        keys.update(fact_key(c) for c in pairwise)
+        clues = (
+            scaffold
+            + pairwise
+            + _sample(
+                [c for c in pool if fact_key(c) not in keys],
+                config.clue_count - len(scaffold) - len(pairwise),
+                rng,
+                config,
+            )
         )
         try:
             # Weighted replacements retain verified uniqueness; constraints are checked at the end.

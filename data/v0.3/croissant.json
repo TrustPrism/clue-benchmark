@@ -1,0 +1,32 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "Clue Benchmark v0.3 private preview",
+  "version": "0.3.0",
+  "description": "960 paired synthetic mystery cases from 480 solver-verified worlds, with deduction and budgeted investigation tracks. Private preview; licensing pending.",
+  "url": "https://github.com/TrustPrism/clue-benchmark",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "license": "Pending owner decision; no public redistribution license granted",
+  "creator": {"@type": "sc:Organization", "name": "TrustPrism"},
+  "rai:hasSyntheticData": true,
+  "rai:dataLimitations": "Narrow formal mystery domain; full hidden world need not be unique; structural proof routes are not calibrated model difficulty; no paid model evidence.",
+  "rai:dataBiases": "Constructed exclusion scaffolds and solver rejection affect clue frequencies. Topic labels and remaining counts convey side information by design.",
+  "rai:personalSensitiveInformation": "No human participant data; neutral synthetic suspect IDs.",
+  "rai:dataUseCases": "Formal murderer identification and budgeted evidence selection, not real-world investigative competence.",
+  "prov:wasDerivedFrom": "https://github.com/TrustPrism/clue-generator",
+  "prov:wasGeneratedBy": {"@type": "prov:Activity", "name": "Seeded paired generation and CP-SAT validation; configs and split design in manifest.json."},
+  "distribution": [
+    {"@type": "cr:FileObject", "@id": "public-dev", "name": "dev.jsonl", "contentUrl": "public/dev.jsonl", "encodingFormat": "application/jsonlines", "sha256": "d6dba9a89415d96342c2c6ede9de789651bbc844ee91bc2b5dc4576304e039bf"},
+    {"@type": "cr:FileObject", "@id": "public-test", "name": "test.jsonl", "contentUrl": "public/test.jsonl", "encodingFormat": "application/jsonlines", "sha256": "6f9cd943f83ce40bd4667770e08a5c9343b807eec9d5d79d57dd09256779248b"}
+  ],
+  "recordSet": [
+    {"@type": "cr:RecordSet", "@id": "dev", "name": "dev", "field": [{"@type": "cr:Field", "@id": "dev/case_id", "name": "case_id", "dataType": "sc:Text", "source": {"fileObject": {"@id": "public-dev"}, "extract": {"jsonPath": "$.case_id"}}}]},
+    {"@type": "cr:RecordSet", "@id": "test", "name": "test", "field": [{"@type": "cr:Field", "@id": "test/case_id", "name": "case_id", "dataType": "sc:Text", "source": {"fileObject": {"@id": "public-test"}, "extract": {"jsonPath": "$.case_id"}}}]}
+  ]
+}

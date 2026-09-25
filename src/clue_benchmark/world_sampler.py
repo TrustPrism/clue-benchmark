@@ -20,6 +20,7 @@ class WorldSampler:
         require_unique_murderer_profile=False,
         max_attempts=1000,
         rng=None,
+        active_values_per_attribute=None,
     ):
         """
         Returns: (world_state, murderer)
@@ -28,12 +29,20 @@ class WorldSampler:
         """
         rng = rng or random
         for _ in range(max_attempts):
+            values_by_attribute = {
+                attr: (
+                    rng.sample(values, active_values_per_attribute)
+                    if active_values_per_attribute is not None
+                    else values
+                )
+                for attr, values in self.domains.items()
+            }
             world = {}
             for suspect in suspects:
                 world[suspect] = {}
                 for attr in self.attributes:
                     # Uniform random choice (values CAN repeat)
-                    world[suspect][attr] = rng.choice(self.domains[attr])
+                    world[suspect][attr] = rng.choice(values_by_attribute[attr])
 
             murderer = rng.choice(suspects)
             if not require_unique_murderer_profile or self._has_unique_profile(

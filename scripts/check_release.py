@@ -1,48 +1,59 @@
-"""Release integrity checks: proofs, split grouping, public allowlists, hashes."""
+"""Private release integrity: solver proofs, paired splits, public allowlists, hashes."""
 
 import hashlib
 import json
+from collections import defaultdict
 from pathlib import Path
 
 from clue_benchmark import public_puzzle, validate_case
 from clue_benchmark.config import DATA_VERSION, VERSION
-from clue_benchmark.dataset import fingerprints, read_cases
+from clue_benchmark.dataset import fingerprints, read_cases, reproduce_case
 from clue_benchmark.environment import PROTOCOL_VERSION
 
 root = Path(__file__).resolve().parents[1]
-data = root / "data/v0.2"
+data = root / "data/v0.3"
 manifest = json.loads((data / "manifest.json").read_text())
 assert manifest["version"] == DATA_VERSION
+assert manifest["status"] == "private-preview" and manifest["license"] == "pending"
+assert manifest["worlds"] == 480 and manifest["cases"] == 960
 for path, expected in manifest["files"].items():
     assert hashlib.sha256((data / path).read_bytes()).hexdigest() == expected, path
-worlds = set()
+
+worlds = defaultdict(list)
 puzzles = set()
-total = 0
-for split, expected in [("dev", 90), ("test", 300)]:
+for split, expected in (("dev", 216), ("test", 744)):
     cases = read_cases(data / "private" / f"{split}.jsonl")
     assert len(cases) == expected
     public = read_cases(data / "public" / f"{split}.jsonl")
     assert public == [public_puzzle(c) for c in cases]
-    for c in cases:
-        validate_case(c)
-        w, p = fingerprints(c)
-        assert w == c["world_group"] and p == c["structure_group"]
-        assert w not in worlds and p not in puzzles
-        worlds.add(w)
-        puzzles.add(p)
-        total += 1
-results = json.loads((root / "results/baselines-v0.2.json").read_text())
+    for case in cases:
+        validate_case(case)
+        reproduce_case(case)
+        world, puzzle = fingerprints(case)
+        assert (world, puzzle) == (case["world_group"], case["structure_group"])
+        assert puzzle not in puzzles
+        puzzles.add(puzzle)
+        worlds[world].append((split, case))
+assert len(worlds) == 480
+for pair in worlds.values():
+    assert len(pair) == 2
+    assert pair[0][0] == pair[1][0]
+    assert pair[0][1]["cell"] == pair[1][1]["cell"]
+    assert pair[0][1]["solution"] == pair[1][1]["solution"]
+    n = len(pair[0][1]["suspects"])
+    assert sorted(len(case["clues"]) for _, case in pair) == [n + 4, n + 8]
+
+results = json.loads((root / "results/baselines-v0.3-test.json").read_text())
 assert results["manifest"]["version"] == VERSION
-assert results["manifest"]["episode_count"] == 9000
 assert results["manifest"]["protocol_version"] == PROTOCOL_VERSION
-assert sum(row["episodes"] for row in results["summary"]) == 9000
-assert len(results["budget_averages"]) == 6
+assert results["manifest"]["episode_count"] == 744 * 14
+assert sum(row["episodes"] for row in results["summary"]) == 744 * 14
 assert not any(row["solver_errors"] for row in results["summary"])
 assert all(
     row["accuracy"] == 1
     for row in results["summary"]
     if row["baseline"] == "reference"
-    or row["baseline"] in ("round_robin", "random_investigation")
+    or row["baseline"] in ("round_robin", "random_investigation", "topic_heuristic")
     and row["budget_fraction"] == 1
 )
 assert results["manifest"]["paid_calls"] == 0
@@ -54,6 +65,18 @@ assert (
     )
     < 10
 )
+structure = json.loads((root / "results/structure-v0.3.json").read_text())
+assert len(structure["rows"]) == 960
+assert all(row["complete"] for row in structure["rows"])
+performance = json.loads((root / "results/performance-v0.3.json").read_text())
+assert performance["version"] == DATA_VERSION
+assert performance["generation"]["cases"] == 960
+assert performance["evaluation"]["clue_response_p95_ms"] < 10
+metadata = json.loads((data / "croissant.json").read_text())
+assert all(
+    entry["sha256"] == manifest["files"][entry["contentUrl"]]
+    for entry in metadata["distribution"]
+)
 print(
-    f"{total} cases verified; hashes, disjoint splits, public exports, 9000 summarized baseline episodes, and latency target passed."
+    "960 cases verified; paired splits, hashes, public exports, symbolic baselines, and latency target passed."
 )

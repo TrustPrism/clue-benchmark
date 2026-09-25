@@ -5,8 +5,8 @@ import json
 import math
 from dataclasses import asdict, dataclass, field
 
-VERSION = "0.2.0"
-DATA_VERSION = "0.2.0"
+VERSION = "0.3.0"
+DATA_VERSION = "0.3.0"
 TYPES = (
     "unary_positive",
     "unary_negative",
@@ -16,6 +16,8 @@ TYPES = (
     "crime_different_from",
     "indirect_positive",
     "indirect_negative",
+    "suspect_same_as",
+    "suspect_different_from",
 )
 DEFAULT_DOMAINS = {
     "weapon": ["Rope", "Wrench", "Poison", "Knife"],
@@ -49,6 +51,9 @@ class Config:
     min_indirect_clues: int = 0
     min_unique_subset_size: int = 1
     require_indirect_essential: bool = False
+    min_pairwise_clues: int = 0
+    active_values_per_attribute: int | None = None
+    reasoning_route: str = "standard"
     max_attempts: int = 64
     mutation_steps: int = 12
     max_solver_calls: int = 10000
@@ -102,7 +107,12 @@ class Config:
                 or not 0 <= getattr(self, name) <= 1
             ):
                 raise ValueError(name)
-        for name in ("min_murderer_links", "min_indirect_clues", "mutation_steps"):
+        for name in (
+            "min_murderer_links",
+            "min_indirect_clues",
+            "min_pairwise_clues",
+            "mutation_steps",
+        ):
             if type(getattr(self, name)) is not int or getattr(self, name) < 0:
                 raise ValueError(name)
         for name in ("solver_seconds", "solver_work", "generation_seconds"):
@@ -116,6 +126,7 @@ class Config:
             max(
                 self.min_murderer_links,
                 self.min_indirect_clues,
+                self.min_pairwise_clues,
                 self.min_unique_subset_size,
             )
             > self.clue_count
@@ -128,6 +139,28 @@ class Config:
             raise ValueError("inconsistent link limits")
         if type(self.require_indirect_essential) is not bool:
             raise ValueError("require_indirect_essential")
+        if self.active_values_per_attribute is not None:
+            if type(
+                self.active_values_per_attribute
+            ) is not int or not 2 <= self.active_values_per_attribute <= min(
+                map(len, self.domains.values())
+            ):
+                raise ValueError("active_values_per_attribute")
+        if self.reasoning_route not in ("standard", "pairwise", "cross_attribute"):
+            raise ValueError("reasoning_route")
+        if self.reasoning_route == "pairwise" and not (
+            {"crime_positive", "unary_positive", "suspect_different_from"}
+            <= set(self.enabled_types)
+        ):
+            raise ValueError("pairwise route needs crime, unary, and comparison clues")
+        if self.reasoning_route == "cross_attribute" and not (
+            {"crime_positive", "unary_positive", "indirect_negative"}
+            <= set(self.enabled_types)
+            and len(self.domains) >= 2
+        ):
+            raise ValueError(
+                "cross-attribute route needs two attributes and relevant clues"
+            )
 
     def to_dict(self):
         return json.loads(json.dumps(asdict(self)))

@@ -26,7 +26,7 @@
   "prov:wasDerivedFrom": "https://github.com/TrustPrism/clue-generator",
   "prov:wasGeneratedBy": {
     "@type": "prov:Activity",
-    "name": "Seeded generation and CP-SAT validation; seed/configuration manifests in data/v0.1/checkpoints."
+    "name": "Seeded generation and CP-SAT validation; seed/configuration manifests in data/v0.1/manifest.json."
   },
   "distribution": [
     {

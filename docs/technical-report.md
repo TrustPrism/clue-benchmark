@@ -20,7 +20,7 @@ The core includes a fact about every suspect before replacement to avoid an imme
 
 The package uses local seeded randomness, canonical configuration ordering, deterministic seed consumption across worker counts, and atomic checkpoints. Cases are grouped by world; graph fingerprints screen suspect/value relabelings. This conservative screening may reject non-isomorphic collisions and does not prove that all accepted cases use distinct reasoning patterns.
 
-The dataset has 30 development and 100 test worlds for each of 4/8/12 suspects with 8/12/16 clues. Eight structurally matching candidates were rejected while producing 390 accepted worlds. Rebuilding all cases after the final solver correction reproduced private and public JSONL byte-for-byte. Versions, exact configurations, seeds, diagnostics, and file hashes accompany the dataset.
+The dataset has 30 development and 100 test worlds for each of 4/8/12 suspects with 8/12/16 clues. Eight structurally matching candidates were rejected while producing 390 accepted worlds. Rebuilding all cases after the final solver correction reproduced private and public JSONL byte-for-byte. Versions, exact configurations, seed ranges, rejection counts, and file hashes accompany the dataset. Local generation checkpoints contain detailed attempt diagnostics and can be regenerated; they are excluded from Git.
 
 ## Validation
 
@@ -36,7 +36,7 @@ Each of 300 held-out worlds was evaluated with three seeded repeats. The free ba
 - **8 suspects:** random-answer accuracy 9.3%; at 75% evidence, random investigation 31.3% (95% CI 26.0%–37.0%) and round-robin 24.7% (95% CI 19.3%–29.7%).
 - **12 suspects:** random-answer accuracy 7.7%; at 75% evidence, random investigation 20.0% (95% CI 15.3%–25.0%) and round-robin 19.7% (95% CI 15.3%–24.0%).
 
-Reference deduction and both investigation policies at full evidence achieved 100% accuracy at all sizes. The smaller-budget curves are not strictly monotone in finite random trials; all per-budget results and raw episodes are in `results/baselines.json`. There were zero unresolved solver outcomes. These are protocol sanity checks and symbolic baselines, not model-comparison results.
+Reference deduction and both investigation policies at full evidence achieved 100% accuracy at all sizes. The smaller-budget curves are not strictly monotone in finite random trials; all per-budget aggregate results are in `results/baselines.json`. Raw episodes can be regenerated with the evaluation command. There were zero unresolved solver outcomes. These are protocol sanity checks and symbolic baselines, not model-comparison results.
 
 ## Performance
 
@@ -68,6 +68,6 @@ Other limitations include a narrow murder-themed formal domain, known templates,
 
 ## Release status
 
-The code, dataset, raw results, and this report are prepared for private review. Licensing remains pending at the owner’s request. No public repository switch, package-registry upload, or public dataset hosting has occurred. Draft Croissant metadata must be finalized with approved licensing before a public release. A separately funded model study is needed before making claims about AI-system performance.
+The code, dataset, summarized results, and this report are prepared for private review. Licensing remains pending at the owner’s request. No public repository switch, package-registry upload, or public dataset hosting has occurred. Draft Croissant metadata must be finalized with approved licensing before a public release. A separately funded model study is needed before making claims about AI-system performance.
 
-Reproduce the experiments with the commands in the repository README. `scripts/check_release.py` verifies dataset checksums, all case proofs, split separation, public exports, all 9,000 baseline episodes, and the clue-latency target. `scripts/verify_source.py` checks that the original generator files, Git status, commit, and remote remain untouched.
+Reproduce the experiments with the commands in the repository README. `scripts/check_release.py` verifies dataset checksums, all case proofs, split separation, public exports, the 9,000-episode baseline summary, and the clue-latency target. `scripts/verify_source.py` checks that the original generator files, Git status, commit, and remote remain untouched.

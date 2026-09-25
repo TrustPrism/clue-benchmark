@@ -9,3 +9,5 @@ dist/
 .env.*
 .DS_Store
 *.tmp
+data/v0.1/checkpoints/
+results/baselines-full.json

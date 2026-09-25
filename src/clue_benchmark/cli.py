@@ -38,6 +38,7 @@ def main():
     ev.add_argument("input")
     ev.add_argument("--repeats", type=int, default=1)
     ev.add_argument("--output", required=True)
+    ev.add_argument("--summary-only", action="store_true")
     suite = sub.add_parser("suite")
     suite.add_argument("--output", default="data/v0.1")
     suite.add_argument("--workers", type=int, default=1)
@@ -87,11 +88,11 @@ def main():
                 for c in cases:
                     validate_case(c)
                 result = evaluate(cases, args.repeats)
+                episode_count = len(result["episodes"])
+                if args.summary_only:
+                    result["manifest"]["episode_count"] = episode_count
+                    del result["episodes"]
                 atomic_json(args.output, result)
-                print(
-                    json.dumps(
-                        {"episodes": len(result["episodes"]), "output": args.output}
-                    )
-                )
+                print(json.dumps({"episodes": episode_count, "output": args.output}))
     except (ValueError, RuntimeError) as exc:
         parser.exit(2, f"error: {exc}\n")

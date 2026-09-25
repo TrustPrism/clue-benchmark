@@ -50,7 +50,7 @@ Agents receive serialized observations and the two allowed tools, **not the Pyth
 
 - `data/v0.1`: 390 verified worlds: 30 development and 100 test worlds for each of 4, 8, and 12 suspects. Deduction and investigation share each world's finite bank.
 - `data/v0.1/public`: deduction inputs only. `private`: evaluator records with answers. Both remain in the private repository.
-- `results/baselines.json`: per-episode outcomes and world-clustered 95% bootstrap intervals.
+- `results/baselines.json`: aggregate outcomes and world-clustered 95% bootstrap intervals for 9,000 episodes. Raw episode logs are regenerated locally when needed.
 - `results/performance.json`: measured comparison with the imported generator; distributions differ.
 - [Technical report](docs/technical-report.md), [dataset card](docs/dataset-card.md), [protocol](docs/protocol.md), and [configuration](docs/configuration.md).
 
@@ -58,11 +58,13 @@ Reproduce the suite and free experiments:
 
 ```sh
 clue-benchmark suite --workers 2 --output data/v0.1
-clue-benchmark evaluate data/v0.1/private/test.jsonl --repeats 3 --output results/baselines.json
+clue-benchmark evaluate data/v0.1/private/test.jsonl --repeats 3 --summary-only --output results/baselines.json
 python scripts/profile_generation.py --seeds 10
 python scripts/audit_dataset.py
 python scripts/check_release.py
 ```
+
+The suite writes resumable checkpoints under `data/v0.1/checkpoints/` while generating. They are ignored by Git because the versioned dataset and its manifest are the release artifacts. Omit `--summary-only` and choose a local output path if you need raw baseline episodes.
 
 Generation weights control **proposal sampling**. The constructive starting bank, uniqueness checks, and rejection rules change the accepted distribution. Preset labels and minimum sufficient-subset size are not calibrated model difficulty or reasoning depth.
 

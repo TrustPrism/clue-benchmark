@@ -29,11 +29,12 @@ for split, expected in [("dev", 90), ("test", 300)]:
         puzzles.add(p)
         total += 1
 results = json.loads((root / "results/baselines.json").read_text())
-assert len(results["episodes"]) == 9000
-assert not any(row["solver_error"] for row in results["episodes"])
+assert results["manifest"]["episode_count"] == 9000
+assert sum(row["episodes"] for row in results["summary"]) == 9000
+assert not any(row["solver_errors"] for row in results["summary"])
 assert all(
-    row["correct"] == 1
-    for row in results["episodes"]
+    row["accuracy"] == 1
+    for row in results["summary"]
     if row["baseline"] == "reference"
     or row["baseline"] in ("round_robin", "random_investigation")
     and row["budget_fraction"] == 1
@@ -48,5 +49,5 @@ assert (
     < 10
 )
 print(
-    f"{total} cases verified; hashes, disjoint splits, public exports, 9000 baseline episodes, and latency target passed."
+    f"{total} cases verified; hashes, disjoint splits, public exports, 9000 summarized baseline episodes, and latency target passed."
 )

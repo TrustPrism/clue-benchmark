@@ -1,0 +1,54 @@
+{
+  "suspect_count": 4,
+  "domains": {
+    "location": [
+      "Study",
+      "Kitchen",
+      "Library",
+      "Garden"
+    ],
+    "motive": [
+      "Revenge",
+      "Inheritance",
+      "Jealousy",
+      "Blackmail"
+    ],
+    "time": [
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00"
+    ],
+    "weapon": [
+      "Rope",
+      "Wrench",
+      "Poison",
+      "Knife"
+    ]
+  },
+  "clue_count": 8,
+  "enabled_types": [
+    "crime_different_from",
+    "crime_negative",
+    "crime_positive",
+    "crime_same_as",
+    "indirect_negative",
+    "indirect_positive",
+    "unary_negative",
+    "unary_positive"
+  ],
+  "alpha": 0.7,
+  "beta": 0.75,
+  "min_murderer_links": 1,
+  "max_murderer_links": null,
+  "max_positive_murderer_links": null,
+  "min_indirect_clues": 0,
+  "min_unique_subset_size": 1,
+  "require_indirect_essential": false,
+  "max_attempts": 64,
+  "mutation_steps": 12,
+  "max_solver_calls": 10000,
+  "solver_seconds": 2.0,
+  "solver_work": 0.2,
+  "generation_seconds": 30.0
+}

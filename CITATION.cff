@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Private preview; citation metadata is provisional until public release."
+title: "Clue Benchmark: Deduction and Evidence Gathering in Verifiable Mystery Puzzles"
+type: software
+version: 0.1.0
+authors:
+  - name: "TrustPrism contributors"
+repository-code: "https://github.com/TrustPrism/clue-benchmark"
+abstract: "A procedural evaluation environment with exact murderer verification and separately scored deduction and budgeted investigation tracks."

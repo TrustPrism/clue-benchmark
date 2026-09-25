@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "status": "private-preview",
+  "licensing": "pending",
+  "paid_model_calls": 0,
+  "python": "3.14.6",
+  "cases": 390,
+  "baseline_episodes": 9000,
+  "tests_local": {
+    "python_3_13": 76,
+    "python_3_14": 76
+  },
+  "files": {
+    "data/v0.1/manifest.json": "c056359c29e28d24f971605d301d45f387f9412fe868a560d06951cc105cd855",
+    "docs/configuration.md": "98730a0634a07b4f43d3f1c70e4adee81502b7fb4daa77b8cab4e6351759a011",
+    "docs/dataset-card.md": "9854039ff580ef6675b0b169c9be963aa185b0cf1c7ce5e91c568913150eb995",
+    "docs/protocol.md": "23ac84a831e61cf8f0925f85f52232bafaeb6d0a026ed9c2e211e29cd5e5a150",
+    "docs/release-checklist.md": "8c355d49dcbabead967153c4d826c7a61ecd3686e954a9c52647db5ddb55359c",
+    "docs/technical-report.md": "3028fe4416a22a96a1e2274ea929571b9391675107bc365bfbef30afac1b0241",
+    "results/baselines.json": "57432a4dcd27fec7ab6b86c37e09bd103f3a768d35613d683eff0bb34df1b11e",
+    "results/dataset-audit.json": "bf55e064e53d5c33738270acd06117b67c0abefa710385c42016ae93a9b4816b",
+    "results/performance.json": "90909abc9373c2a1561c450d72e759cda00effa50badad940ec1fe5c00b60497",
+    "src/clue_benchmark/__init__.py": "e6d120cb92dcc5faa9f0c48d1bf187cd5c564b672451e00031630c1a183a9d73",
+    "src/clue_benchmark/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+    "src/clue_benchmark/cli.py": "4f0f7b5d992dc3ec6a9dcee1a58d9d64d6c778c985bbe8f96ae9066a34f0a5b7",
+    "src/clue_benchmark/clue_formatter.py": "46794a7181154aba986865236f4b94534f07b279c60f6cd0bfd901432175b866",
+    "src/clue_benchmark/clue_generator.py": "caed76f742334fb1b686454c20306992b830d3b3c95d4faebb3dda9dccc4d363",
+    "src/clue_benchmark/clue_metadata.py": "d302e4f00c43f7c5b26baf910d9086f5719b4b0cab1019ce3fc286ea180954ce",
+    "src/clue_benchmark/config.py": "632895e575998c49626cb6c307d947dd6667b0df4d2396117f51e883dfb5d20b",
+    "src/clue_benchmark/dataset.py": "c211d1d9ff1016b092879ff52d3a82491289ac6a41a27a8c4f922889fca55bad",
+    "src/clue_benchmark/environment.py": "4b7fb22d83760d1b7fde1bfd4d61744cb9111d351151098ada85065416a20247",
+    "src/clue_benchmark/evaluation.py": "11cb2c80b07384013daf825747037e8dd5352b7ba96630146188e15fd573ec78",
+    "src/clue_benchmark/generation.py": "eb4bfa034255905cf5552b40c52dcae50b6b0d46f15c2955a5fdbf098646a4f0",
+    "src/clue_benchmark/inspect_adapter.py": "1824ed457f36693fbfc2a5de213f15efab2485b1e83f176a701edb558aef1c97",
+    "src/clue_benchmark/logic.py": "239fb25dfd5fef83262ef51a5bbeb6ea07054bd5c837c10f67122917e392eac9",
+    "src/clue_benchmark/solver.py": "31718a23b9dc24a7edeff1d96974fa2232226cd36084eab8d54cd4fb445d84a5",
+    "src/clue_benchmark/world_sampler.py": "5c95c1b8ef207b380ae306cedc5b1b89b6681fc65e2650d8b4bff9e9344ff2c2",
+    "uv.lock": "17073b7e5539d2481109580e77d27d39c1b2bdc9b0c73b9603efb8739f8bf269"
+  }
+}

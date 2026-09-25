@@ -1,0 +1,242 @@
+{
+  "cells": [
+    {
+      "bounded_subset_audit_first_10_dev": [
+        {
+          "case_id": "f81269516a9228152523ea6a",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "ee3f1a1092656a2edb7d7597",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "92ff7be5b54cd04ba48a4c9c",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "a55810c6617e6ee1953987dc",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "34c65e188bd88701942c1435",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "cf3ccbee4b0a879b3f0bbb69",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "31c0874ee6338125c18a7cd7",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "0f734a5fc0f6cbcab26989c6",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "81c862ae42445147e6d53bee",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "ad0523ca972e2b65f8ed5176",
+          "minimum": null,
+          "status": "greater_than_3"
+        }
+      ],
+      "cases": 130,
+      "clue_type_counts": {
+        "crime_different_from": 12,
+        "crime_negative": 1,
+        "crime_positive": 283,
+        "crime_same_as": 6,
+        "indirect_negative": 25,
+        "indirect_positive": 71,
+        "unary_negative": 230,
+        "unary_positive": 412
+      },
+      "direct_only_solvable": 115,
+      "inconclusive": 0,
+      "mean_necessary_clues": 4.8307692307692305,
+      "murderer_counts": {
+        "S01": 27,
+        "S02": 31,
+        "S03": 36,
+        "S04": 36
+      },
+      "suspects": 4
+    },
+    {
+      "bounded_subset_audit_first_10_dev": [
+        {
+          "case_id": "74e30ad23ae94b10582297e8",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "4f63c320452f2da1ecd6429e",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "be0d4d6e8a436bb76bdb2c32",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "c5da51df576caf86c0cc38d2",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "f09e0a44d7989673d0a42a4c",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "20eca528500050b6355e589b",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "2e1b9f1fa8af35bdc4808fb5",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "779ec2aa62e7f6c63a5c1e67",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "fcf99c509a3ac0e766c48a35",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "6a996c72915a20e0d1624c7b",
+          "minimum": null,
+          "status": "greater_than_3"
+        }
+      ],
+      "cases": 130,
+      "clue_type_counts": {
+        "crime_different_from": 8,
+        "crime_negative": 2,
+        "crime_positive": 456,
+        "crime_same_as": 2,
+        "indirect_negative": 6,
+        "indirect_positive": 35,
+        "unary_negative": 113,
+        "unary_positive": 938
+      },
+      "direct_only_solvable": 123,
+      "inconclusive": 0,
+      "mean_necessary_clues": 10.26923076923077,
+      "murderer_counts": {
+        "S01": 20,
+        "S02": 17,
+        "S03": 19,
+        "S04": 15,
+        "S05": 15,
+        "S06": 15,
+        "S07": 17,
+        "S08": 12
+      },
+      "suspects": 8
+    },
+    {
+      "bounded_subset_audit_first_10_dev": [
+        {
+          "case_id": "6dce30afd42329e1951f5d14",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "bb01e50949ababc1d15a839b",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "88aff110546002215f24342f",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "0c421561a4743766c939b186",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "3c806ace365a6b7d434aa553",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "5cce79da5aaf13d9fe8d3501",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "9cee77d134ecb552bcc98194",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "28814ac22cd44efc8dfebd8f",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "a8335174f565d6c63c75d883",
+          "minimum": null,
+          "status": "greater_than_3"
+        },
+        {
+          "case_id": "4ca056457f5d214514886de7",
+          "minimum": null,
+          "status": "greater_than_3"
+        }
+      ],
+      "cases": 130,
+      "clue_type_counts": {
+        "crime_different_from": 10,
+        "crime_negative": 1,
+        "crime_positive": 493,
+        "crime_same_as": 2,
+        "indirect_negative": 3,
+        "indirect_positive": 14,
+        "unary_negative": 73,
+        "unary_positive": 1484
+      },
+      "direct_only_solvable": 123,
+      "inconclusive": 0,
+      "mean_necessary_clues": 14.646153846153846,
+      "murderer_counts": {
+        "S01": 4,
+        "S02": 11,
+        "S03": 6,
+        "S04": 14,
+        "S05": 15,
+        "S06": 10,
+        "S07": 10,
+        "S08": 18,
+        "S09": 14,
+        "S10": 7,
+        "S11": 11,
+        "S12": 10
+      },
+      "suspects": 12
+    }
+  ],
+  "claims": "Diagnostics, not calibrated reasoning difficulty. Subset search capped at size three and ten seconds per case."
+}

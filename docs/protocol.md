@@ -1,0 +1,35 @@
+# Evaluation protocol v1
+
+## Rules and task
+
+There is exactly one murderer. Each suspect has exactly one value for each listed attribute. Values can be shared; no all-different assumption applies. Crime attributes equal the murderer's attributes. All evidence is truthful. The task is to identify the murderer; the rest of the world may remain ambiguous.
+
+Positive relational clues are existential conjunctions. Negative relational clues prohibit any suspect from having both specified properties. Controlled English quotes attribute/value literals exactly. Unknown clue types fail validation.
+
+## Deduction
+
+Supply `public_puzzle(case)` with all clue text, domains, suspects, and rules. The Inspect adapter permits only `submit_answer(suspect_id)`. Exact correct ID scores 1; incorrect, malformed, or missing submission scores 0. A free-text guess is not a valid tool submission.
+
+## Investigation
+
+Begin with rules, suspects, domains, and a query catalogue, but no clue contents. Topic labels and remaining counts are deliberately public information and part of the task. Unary clues are grouped by suspect and attribute, crime clues by attribute, and relational clues by attribute pair. Opaque query IDs are shuffled deterministically, independently of the winning answer label.
+
+Every clue belongs to exactly one queue. Queue order follows the deterministically shuffled bank; repeated valid requests reveal successive clues. A request costs one unit even if its ID is invalid or its queue is exhausted. After the budget is exhausted, further requests return an error and reveal nothing. Calls after a final answer are rejected. Reset starts a new episode with the same bank.
+
+Budgets are ceil(K × fraction) for fractions .25, .5, .75, 1. A final submission is allowed after consuming the last unit. Submission is terminal and returns only acceptance, not correctness. Only the complete bank is guaranteed to identify the murderer. Agents should not be told that a partial observation is uniquely solvable.
+
+## Scoring and reporting
+
+Report the two tracks separately and stratify by suspect count and evidence budget. Exact accuracy is the primary measure. Secondary measures include clues spent, invalid actions, wall time, query latency, and model token usage when available. No arbitrary composite score combines accuracy and cost.
+
+The free baselines are uniform random answer, exact reference deduction, random topic selection with reference inference on revealed facts, and round-robin topic selection with the same inference. Investigation baselines stop when their revealed facts prove uniqueness; at budget exhaustion they guess uniformly among feasible suspects. Symbolic baselines receive structured versions of revealed clues. This parsing advantage must be stated in comparisons with language models. They do not use the hidden world to select an answer.
+
+Results include three seeded repeats and 1,000 bootstrap resamples by world. Variants/repeats of one world are one cluster. Intervals concern the procedural sample, not general human reasoning ability. Report solver errors separately; never silently omit failed episodes. Numeric latencies exclude model API time unless explicitly stated.
+
+## Isolation and reproducibility
+
+Only the evaluator loads private cases. The model sees a serialized public allowlist and the benchmark's two tools. Full evaluator objects, answers, seeds, structured private clues, and necessity annotations are never sent as tool responses. Inspect scoring targets stay evaluator-side and appear only in private logs.
+
+Do not run unrestricted agent code in the evaluator process. The package is not a hardened sandbox. With external agent systems, declare tool access and report results separately; they are outside the v1 protocol.
+
+Keep generator configuration and prompts fixed before test evaluation. Track all variants of a world together. Preserve both seed and configuration manifests privately for regeneration. Public procedural generators and released examples can still be contaminated or memorized; fresh seeds are a mitigation, not proof against leakage.

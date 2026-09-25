@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trustprism-clue-benchmark"
+version = "0.1.0"
+description = "Reproducible deduction and evidence-gathering benchmark"
+readme = "README.md"
+license-files = ["LICENSING.md"]
+requires-python = ">=3.11"
+dependencies = ["ortools==9.15.6755"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "build>=1,<2", "ruff>=0.16,<0.17"]
+inspect = ["inspect-ai>=0.3.268,<0.4"]
+
+[project.scripts]
+clue-benchmark = "clue_benchmark.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

@@ -15,7 +15,7 @@ from clue_benchmark.dataset import atomic_json
 
 p = argparse.ArgumentParser()
 p.add_argument("--seeds", type=int, default=5)
-p.add_argument("--output", default="results/performance.json")
+p.add_argument("--output", default="results/performance-v0.2.json")
 args = p.parse_args()
 root = Path(__file__).resolve().parents[1]
 rows = []
@@ -52,6 +52,8 @@ for n, k in [(4, 8), (8, 12), (12, 16)]:
         cfg = Config(
             suspect_count=n,
             clue_count=k,
+            min_indirect_clues=2,
+            require_indirect_essential=True,
             domains={
                 a: [str(x) for x in range(4)]
                 for a in ["weapon", "location", "motive", "time"]
@@ -83,6 +85,12 @@ for engine in ["legacy", "benchmark"]:
                 n=n,
                 accepted=len(times),
                 attempted=len(group),
+                acceptance_rate=len(times) / len(group),
+                accepted_per_minute=(
+                    60 * len(times) / sum(x["seconds"] for x in group if x["seconds"])
+                    if any(x["seconds"] for x in group)
+                    else None
+                ),
                 median=statistics.median(times) if times else None,
                 p95=times[math.ceil(0.95 * len(times)) - 1] if times else None,
             )

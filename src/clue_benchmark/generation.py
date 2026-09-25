@@ -84,24 +84,76 @@ def _constraints(clues, config, solver):
     return True
 
 
-def _core(world, murderer, domains, rng):
-    # Cover every suspect, avoiding the trivial "unnamed suspect is guilty" shortcut.
+def _proof_scaffold(world, murderer, domains, rng, config):
+    """Build a short, mixed proof that excludes each innocent suspect.
+
+    Direct exclusions need a crime-value anchor. A relationship exclusion does
+    not, so alpha controls a genuine construction choice rather than fillers.
+    Positive relationship anchors use beta and require a supporting unary fact.
+    """
+    attrs = list(domains)
+    innocents = [s for s in world if s != murderer]
+    differences = {
+        s: [a for a in attrs if world[s][a] != world[murderer][a]] for s in innocents
+    }
+    direct, relational = [], []
+    can_direct = {"unary_positive", "crime_positive"} <= set(config.enabled_types)
+    can_relational = "crime_different_from" in config.enabled_types
+    for s in innocents:
+        if can_direct and (not can_relational or rng.random() < config.alpha):
+            direct.append(s)
+        elif can_relational:
+            relational.append(s)
+        else:
+            return []
+
+    # Choose the fewest crime attributes covering all direct exclusions.
+    covers = [
+        group
+        for size in range(len(attrs) + 1)
+        for group in combinations(attrs, size)
+        if all(any(a in differences[s] for a in group) for s in direct)
+    ]
+    minimum = min(map(len, covers))
+    anchors = rng.choice([group for group in covers if len(group) == minimum])
     clues = []
-    used = set()
-    for s, attrs in world.items():
-        options = [
-            a for a in domains if s == murderer or attrs[a] != world[murderer][a]
-        ]
-        a = rng.choice(options)
-        used.add(a)
+    for s in direct:
+        a = rng.choice([a for a in anchors if a in differences[s]])
         clues.append(
-            dict(type="unary_positive", suspect=s, attribute=a, value=attrs[a])
+            dict(type="unary_positive", suspect=s, attribute=a, value=world[s][a])
         )
-    clues.extend(
-        dict(type="crime_positive", attribute=a, value=world[murderer][a])
-        for a in sorted(used)
-    )
-    return clues
+    for s in relational:
+        clues.append(
+            dict(
+                type="crime_different_from",
+                suspect=s,
+                attribute=rng.choice(differences[s]),
+            )
+        )
+    for a in anchors:
+        matching = [s for s in innocents if world[s][a] == world[murderer][a]]
+        if (
+            matching
+            and "crime_same_as" in config.enabled_types
+            and rng.random() < config.beta
+        ):
+            reference = rng.choice(matching)
+            clues.extend(
+                [
+                    dict(
+                        type="unary_positive",
+                        suspect=reference,
+                        attribute=a,
+                        value=world[reference][a],
+                    ),
+                    dict(type="crime_same_as", suspect=reference, attribute=a),
+                ]
+            )
+        else:
+            clues.append(
+                dict(type="crime_positive", attribute=a, value=world[murderer][a])
+            )
+    return list({fact_key(c): c for c in clues}.values())
 
 
 def generate(config: Config, seed: int):
@@ -142,20 +194,17 @@ def generate(config: Config, seed: int):
             break
         solver = Solver(suspects, config.domains, config, deadline)
         solver.calls = calls
-        core = _core(world, murderer, config.domains, rng)
-        if (
-            all(c["type"] in config.enabled_types for c in core)
-            and len(core) <= config.clue_count
-        ):
-            keys = {fact_key(c) for c in core}
-            clues = core + _sample(
-                [c for c in pool if fact_key(c) not in keys],
-                config.clue_count - len(core),
-                rng,
-                config,
-            )
-        else:
-            clues = _sample(pool, config.clue_count, rng, config)
+        scaffold = _proof_scaffold(world, murderer, config.domains, rng, config)
+        if len(scaffold) > config.clue_count or not scaffold:
+            rejects["scaffold_size"] += 1
+            continue
+        keys = {fact_key(c) for c in scaffold}
+        clues = scaffold + _sample(
+            [c for c in pool if fact_key(c) not in keys],
+            config.clue_count - len(scaffold),
+            rng,
+            config,
+        )
         try:
             # Weighted replacements retain verified uniqueness; constraints are checked at the end.
             for _ in range(config.mutation_steps):

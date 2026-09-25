@@ -1,0 +1,617 @@
+{
+  "budget_averages": [
+    {
+      "baseline": "random_investigation",
+      "budget_averaged_accuracy": 0.5316666666666667,
+      "suspects": 4
+    },
+    {
+      "baseline": "random_investigation",
+      "budget_averaged_accuracy": 0.395,
+      "suspects": 8
+    },
+    {
+      "baseline": "random_investigation",
+      "budget_averaged_accuracy": 0.3375,
+      "suspects": 12
+    },
+    {
+      "baseline": "round_robin",
+      "budget_averaged_accuracy": 0.52,
+      "suspects": 4
+    },
+    {
+      "baseline": "round_robin",
+      "budget_averaged_accuracy": 0.39416666666666667,
+      "suspects": 8
+    },
+    {
+      "baseline": "round_robin",
+      "budget_averaged_accuracy": 0.33916666666666667,
+      "suspects": 12
+    }
+  ],
+  "manifest": {
+    "episode_count": 9000,
+    "model": "none; deterministic symbolic baselines",
+    "paid_calls": 0,
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "protocol_version": "1.1",
+    "python": "3.14.6",
+    "reference_access": "structured revealed clues; no hidden-world access for inference",
+    "repeats": 3,
+    "version": "0.2.0"
+  },
+  "summary": [
+    {
+      "accuracy": 0.24666666666666665,
+      "baseline": "random_answer",
+      "budget_fraction": 1.0,
+      "ci95": [
+        0.2033333333333333,
+        0.29333333333333333
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 8.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 1.2662155010427039e-06,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.12,
+      "baseline": "random_answer",
+      "budget_fraction": 1.0,
+      "ci95": [
+        0.08666666666666666,
+        0.15666666666666665
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 12.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 1.8518012560283145e-06,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.09,
+      "baseline": "random_answer",
+      "budget_fraction": 1.0,
+      "ci95": [
+        0.06,
+        0.12333333333333332
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 16.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 2.5249674217775464e-06,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.23666666666666664,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.19333333333333333,
+        0.2833333333333333
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 2.0,
+      "mean_requests": 2.0,
+      "mean_seconds": 0.014859891352825798,
+      "query_p95_ms": 0.01454097218811512,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.33,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.2833333333333333,
+        0.3833333333333333
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 3.9966666666666666,
+      "mean_requests": 3.9966666666666666,
+      "mean_seconds": 0.02289652098668739,
+      "query_p95_ms": 0.014375022146850824,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.56,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.5,
+        0.6166666666666667
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 5.906666666666666,
+      "mean_requests": 5.906666666666666,
+      "mean_seconds": 0.02820261251355987,
+      "query_p95_ms": 0.014625024050474167,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "random_investigation",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 7.24,
+      "mean_requests": 7.24,
+      "mean_seconds": 0.028899439866460548,
+      "query_p95_ms": 0.014541961718350649,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.12,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.09,
+        0.15666666666666665
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 3.0,
+      "mean_requests": 3.0,
+      "mean_seconds": 0.0329362536095626,
+      "query_p95_ms": 0.016250007320195436,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.16666666666666663,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.12333333333333332,
+        0.21
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 6.0,
+      "mean_requests": 6.0,
+      "mean_seconds": 0.05333573420454438,
+      "query_p95_ms": 0.016375037375837564,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.29333333333333333,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.24,
+        0.3466666666666666
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 9.0,
+      "mean_requests": 9.0,
+      "mean_seconds": 0.07040865376882721,
+      "query_p95_ms": 0.01675001112744212,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "random_investigation",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 11.693333333333333,
+      "mean_requests": 11.693333333333333,
+      "mean_seconds": 0.07326102918421384,
+      "query_p95_ms": 0.01633400097489357,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.08666666666666666,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.06,
+        0.11666666666666665
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 4.0,
+      "mean_requests": 4.0,
+      "mean_seconds": 0.049278705737087876,
+      "query_p95_ms": 0.01775001874193549,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.10333333333333332,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.07,
+        0.1433333333333333
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 8.0,
+      "mean_requests": 8.0,
+      "mean_seconds": 0.0837327662401367,
+      "query_p95_ms": 0.017499958630651236,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.16,
+      "baseline": "random_investigation",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.12333333333333332,
+        0.2
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 12.0,
+      "mean_requests": 12.0,
+      "mean_seconds": 0.11339379744701243,
+      "query_p95_ms": 0.017874990589916706,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "random_investigation",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 15.873333333333333,
+      "mean_requests": 15.873333333333333,
+      "mean_seconds": 0.12143683419795707,
+      "query_p95_ms": 0.017666025087237358,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "reference",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 8.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 0.0014923240304536498,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "reference",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 12.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 0.002270658362734442,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "reference",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 16.0,
+      "mean_requests": 0.0,
+      "mean_seconds": 0.0029790789977414533,
+      "query_p95_ms": null,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.2766666666666666,
+      "baseline": "round_robin",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.23,
+        0.32666666666666666
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 2.0,
+      "mean_requests": 2.0,
+      "mean_seconds": 0.015134023464440058,
+      "query_p95_ms": 0.015166006051003933,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.32,
+      "baseline": "round_robin",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.26666666666666666,
+        0.37666666666666665
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 4.0,
+      "mean_requests": 4.0,
+      "mean_seconds": 0.0228245834352371,
+      "query_p95_ms": 0.014666991773992777,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.4833333333333333,
+      "baseline": "round_robin",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.4133333333333333,
+        0.55
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 5.95,
+      "mean_requests": 5.95,
+      "mean_seconds": 0.028415438738302327,
+      "query_p95_ms": 0.014375022146850824,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "round_robin",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 7.44,
+      "mean_requests": 7.44,
+      "mean_seconds": 0.029856960662291387,
+      "query_p95_ms": 0.014625024050474167,
+      "solver_errors": 0,
+      "suspects": 4,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.1433333333333333,
+      "baseline": "round_robin",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.10333333333333332,
+        0.18
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 3.0,
+      "mean_requests": 3.0,
+      "mean_seconds": 0.03328082194648838,
+      "query_p95_ms": 0.016707985196262598,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.19333333333333333,
+      "baseline": "round_robin",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.15,
+        0.23666666666666664
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 6.0,
+      "mean_requests": 6.0,
+      "mean_seconds": 0.05356182903400622,
+      "query_p95_ms": 0.01741695450618863,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.24,
+      "baseline": "round_robin",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.19333333333333333,
+        0.29
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 9.0,
+      "mean_requests": 9.0,
+      "mean_seconds": 0.07068891988717951,
+      "query_p95_ms": 0.016874982975423336,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "round_robin",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 11.77,
+      "mean_requests": 11.77,
+      "mean_seconds": 0.0751946276674668,
+      "query_p95_ms": 0.016749952919781208,
+      "solver_errors": 0,
+      "suspects": 8,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.1,
+      "baseline": "round_robin",
+      "budget_fraction": 0.25,
+      "ci95": [
+        0.06666666666666667,
+        0.13666666666666666
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 4.0,
+      "mean_requests": 4.0,
+      "mean_seconds": 0.04972127247233099,
+      "query_p95_ms": 0.017749960534274578,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.11666666666666665,
+      "baseline": "round_robin",
+      "budget_fraction": 0.5,
+      "ci95": [
+        0.08333333333333331,
+        0.15333333333333332
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 8.0,
+      "mean_requests": 8.0,
+      "mean_seconds": 0.08391648972251763,
+      "query_p95_ms": 0.018250022549182177,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 0.14,
+      "baseline": "round_robin",
+      "budget_fraction": 0.75,
+      "ci95": [
+        0.10333333333333332,
+        0.17666666666666664
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 12.0,
+      "mean_requests": 12.0,
+      "mean_seconds": 0.11453796916796516,
+      "query_p95_ms": 0.018333957996219397,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    },
+    {
+      "accuracy": 1.0,
+      "baseline": "round_robin",
+      "budget_fraction": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "episodes": 300,
+      "invalid_actions": 0,
+      "mean_clues": 15.95,
+      "mean_requests": 15.95,
+      "mean_seconds": 0.12297215446732783,
+      "query_p95_ms": 0.018041988369077444,
+      "solver_errors": 0,
+      "suspects": 12,
+      "tokens": null,
+      "worlds": 100
+    }
+  ]
+}

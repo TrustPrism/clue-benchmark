@@ -1,0 +1,107 @@
+{
+  "note": "Fixed 40 seeds per setting, 12 suspects, 16 clues, no mutation. Descriptive structural sensitivity, not model difficulty or exact quota validation.",
+  "cells": [
+    {
+      "alpha": 0,
+      "beta": 0,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 16.0,
+      "mean_positive_indirect": 0.0,
+      "clue_type_counts": {
+        "crime_different_from": 505,
+        "indirect_negative": 107,
+        "crime_negative": 28
+      }
+    },
+    {
+      "alpha": 0,
+      "beta": 1,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 16.0,
+      "mean_positive_indirect": 5.0,
+      "clue_type_counts": {
+        "crime_different_from": 440,
+        "indirect_positive": 159,
+        "crime_same_as": 41
+      }
+    },
+    {
+      "alpha": 0.7,
+      "beta": 0,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 3.925,
+      "mean_positive_indirect": 0.0,
+      "clue_type_counts": {
+        "unary_positive": 328,
+        "unary_negative": 88,
+        "crime_positive": 67,
+        "crime_different_from": 138,
+        "indirect_negative": 14,
+        "crime_negative": 5
+      }
+    },
+    {
+      "alpha": 0.7,
+      "beta": 0.75,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 4.825,
+      "mean_positive_indirect": 1.625,
+      "clue_type_counts": {
+        "unary_positive": 369,
+        "crime_different_from": 127,
+        "unary_negative": 52,
+        "indirect_positive": 20,
+        "crime_same_as": 45,
+        "crime_positive": 26,
+        "indirect_negative": 1
+      }
+    },
+    {
+      "alpha": 0.7,
+      "beta": 1,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 5.275,
+      "mean_positive_indirect": 2.1,
+      "clue_type_counts": {
+        "unary_positive": 385,
+        "crime_different_from": 127,
+        "unary_negative": 37,
+        "indirect_positive": 18,
+        "crime_same_as": 66,
+        "crime_positive": 7
+      }
+    },
+    {
+      "alpha": 1,
+      "beta": 0,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 0.0,
+      "mean_positive_indirect": 0.0,
+      "clue_type_counts": {
+        "unary_positive": 465,
+        "unary_negative": 97,
+        "crime_positive": 78
+      }
+    },
+    {
+      "alpha": 1,
+      "beta": 1,
+      "seeds": 40,
+      "accepted": 40,
+      "mean_indirect": 1.75,
+      "mean_positive_indirect": 1.75,
+      "clue_type_counts": {
+        "unary_positive": 524,
+        "crime_same_as": 70,
+        "unary_negative": 39,
+        "crime_positive": 7
+      }
+    }
+  ]
+}

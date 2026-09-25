@@ -2,7 +2,7 @@
 
 A reproducible benchmark of **deduction** and **evidence gathering** in generated mystery puzzles. Each complete puzzle has truthful clues and exactly one feasible murderer. Attribute assignments need not be unique.
 
-**Status:** private v0.1 preview. Licensing and public publication are pending the owner's decision. No paid model experiments have been run. The included baselines are symbolic programs, not evidence about LLM performance.
+**Status:** private v0.2 preview. Licensing and public publication are pending the owner's decision. No paid model experiments have been run. The included baselines are symbolic programs, not evidence about LLM performance.
 
 ## Install
 
@@ -51,25 +51,26 @@ Investigation protocol 1.1 spends evidence budget only when a clue is revealed. 
 
 ## Included research artifacts
 
-- `data/v0.1`: 390 verified worlds: 30 development and 100 test worlds for each of 4, 8, and 12 suspects. Deduction and investigation share each world's finite bank.
-- `data/v0.1/public`: deduction inputs only. `private`: evaluator records with answers. Both remain in the private repository.
-- `results/baselines.json`: aggregate outcomes and world-clustered 95% bootstrap intervals for 9,000 episodes. Raw episode logs are regenerated locally when needed.
-- `results/performance.json`: measured comparison with the imported generator; distributions differ.
+- `data/v0.2`: 390 verified worlds: 30 development and 100 test worlds for each of 4, 8, and 12 suspects. Every bank requires indirect evidence for a unique murderer. Deduction and investigation share each world's finite bank. `data/v0.1` remains archived.
+- `data/v0.2/public`: deduction inputs only. `private`: evaluator records with answers. Both remain in the private repository.
+- `results/baselines-v0.2.json`: aggregate outcomes and world-clustered 95% bootstrap intervals for 9,000 episodes. Raw episode logs are regenerated locally when needed.
+- `results/performance-v0.2.json`: measured comparison with the imported generator; distributions differ.
+- `results/weight-sensitivity-v0.2.json`: fixed-seed audit of how alpha and beta change accepted clue types; it is not a model-difficulty study.
 - [Technical report](docs/technical-report.md), [dataset card](docs/dataset-card.md), [protocol](docs/protocol.md), and [configuration](docs/configuration.md).
 
 Reproduce the suite and free experiments:
 
 ```sh
-clue-benchmark suite --workers 2 --output data/v0.1
-clue-benchmark evaluate data/v0.1/private/test.jsonl --repeats 3 --summary-only --output results/baselines.json
+clue-benchmark suite --workers 2 --output data/v0.2
+clue-benchmark evaluate data/v0.2/private/test.jsonl --repeats 3 --summary-only --output results/baselines-v0.2.json
 python scripts/profile_generation.py --seeds 10
 python scripts/audit_dataset.py
 python scripts/check_release.py
 ```
 
-The suite writes resumable checkpoints under `data/v0.1/checkpoints/` while generating. They are ignored by Git because the versioned dataset and its manifest are the release artifacts. Omit `--summary-only` and choose a local output path if you need raw baseline episodes.
+The suite writes resumable checkpoints under `data/v0.2/checkpoints/` while generating. They are ignored by Git because the versioned dataset and its manifest are the release artifacts. Omit `--summary-only` and choose a local output path if you need raw baseline episodes.
 
-Generation weights control **proposal sampling**. The constructive starting bank, uniqueness checks, and rejection rules change the accepted distribution. Preset labels and minimum sufficient-subset size are not calibrated model difficulty or reasoning depth.
+Alpha now controls the probability of using direct attribute evidence rather than a relationship exclusion for each innocent suspect. Beta affects positive relationship anchors and filler selection. Solver checks and rejection rules still change the accepted distribution. The release configuration requires at least two indirect clues and verifies that removing them destroys uniqueness; this is a structural property, not calibrated model difficulty or reasoning depth.
 
 ## Optional model evaluation
 
@@ -79,7 +80,7 @@ The optional adapter follows [Inspect's task and tool interfaces](https://inspec
 from inspect_ai import eval
 from clue_benchmark.inspect_adapter import clue_benchmark
 
-task = clue_benchmark("data/v0.1/private/test.jsonl", track="investigation", budget_fraction=0.5)
+task = clue_benchmark("data/v0.2/private/test.jsonl", track="investigation", budget_fraction=0.5)
 # eval(task, model="provider/model", log_dir="model-logs")
 ```
 

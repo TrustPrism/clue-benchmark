@@ -226,7 +226,12 @@ def create_suite(root, workers=1, dev=30, test=100):
     seen_worlds = set()
     seen_puzzles = set()
     for n, k in ((4, 8), (8, 12), (12, 16)):
-        config = Config(suspect_count=n, clue_count=k)
+        config = Config(
+            suspect_count=n,
+            clue_count=k,
+            min_indirect_clues=2,
+            require_indirect_essential=True,
+        )
         state = build_bank(
             config,
             dev + test,

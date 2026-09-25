@@ -1,0 +1,204 @@
+{
+  "cases": 390,
+  "cells": [
+    {
+      "attempted_seeds": 142,
+      "clues": 8,
+      "config": {
+        "alpha": 0.7,
+        "beta": 0.75,
+        "clue_count": 8,
+        "domains": {
+          "location": [
+            "Study",
+            "Kitchen",
+            "Library",
+            "Garden"
+          ],
+          "motive": [
+            "Revenge",
+            "Inheritance",
+            "Jealousy",
+            "Blackmail"
+          ],
+          "time": [
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"
+          ],
+          "weapon": [
+            "Rope",
+            "Wrench",
+            "Poison",
+            "Knife"
+          ]
+        },
+        "enabled_types": [
+          "crime_different_from",
+          "crime_negative",
+          "crime_positive",
+          "crime_same_as",
+          "indirect_negative",
+          "indirect_positive",
+          "unary_negative",
+          "unary_positive"
+        ],
+        "generation_seconds": 30.0,
+        "max_attempts": 64,
+        "max_murderer_links": null,
+        "max_positive_murderer_links": null,
+        "max_solver_calls": 10000,
+        "min_indirect_clues": 2,
+        "min_murderer_links": 1,
+        "min_unique_subset_size": 1,
+        "mutation_steps": 12,
+        "require_indirect_essential": true,
+        "solver_seconds": 2.0,
+        "solver_work": 0.2,
+        "suspect_count": 4
+      },
+      "statuses": {
+        "duplicate": 12,
+        "ok": 130
+      },
+      "suspects": 4
+    },
+    {
+      "attempted_seeds": 130,
+      "clues": 12,
+      "config": {
+        "alpha": 0.7,
+        "beta": 0.75,
+        "clue_count": 12,
+        "domains": {
+          "location": [
+            "Study",
+            "Kitchen",
+            "Library",
+            "Garden"
+          ],
+          "motive": [
+            "Revenge",
+            "Inheritance",
+            "Jealousy",
+            "Blackmail"
+          ],
+          "time": [
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"
+          ],
+          "weapon": [
+            "Rope",
+            "Wrench",
+            "Poison",
+            "Knife"
+          ]
+        },
+        "enabled_types": [
+          "crime_different_from",
+          "crime_negative",
+          "crime_positive",
+          "crime_same_as",
+          "indirect_negative",
+          "indirect_positive",
+          "unary_negative",
+          "unary_positive"
+        ],
+        "generation_seconds": 30.0,
+        "max_attempts": 64,
+        "max_murderer_links": null,
+        "max_positive_murderer_links": null,
+        "max_solver_calls": 10000,
+        "min_indirect_clues": 2,
+        "min_murderer_links": 1,
+        "min_unique_subset_size": 1,
+        "mutation_steps": 12,
+        "require_indirect_essential": true,
+        "solver_seconds": 2.0,
+        "solver_work": 0.2,
+        "suspect_count": 8
+      },
+      "statuses": {
+        "ok": 130
+      },
+      "suspects": 8
+    },
+    {
+      "attempted_seeds": 130,
+      "clues": 16,
+      "config": {
+        "alpha": 0.7,
+        "beta": 0.75,
+        "clue_count": 16,
+        "domains": {
+          "location": [
+            "Study",
+            "Kitchen",
+            "Library",
+            "Garden"
+          ],
+          "motive": [
+            "Revenge",
+            "Inheritance",
+            "Jealousy",
+            "Blackmail"
+          ],
+          "time": [
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"
+          ],
+          "weapon": [
+            "Rope",
+            "Wrench",
+            "Poison",
+            "Knife"
+          ]
+        },
+        "enabled_types": [
+          "crime_different_from",
+          "crime_negative",
+          "crime_positive",
+          "crime_same_as",
+          "indirect_negative",
+          "indirect_positive",
+          "unary_negative",
+          "unary_positive"
+        ],
+        "generation_seconds": 30.0,
+        "max_attempts": 64,
+        "max_murderer_links": null,
+        "max_positive_murderer_links": null,
+        "max_solver_calls": 10000,
+        "min_indirect_clues": 2,
+        "min_murderer_links": 1,
+        "min_unique_subset_size": 1,
+        "mutation_steps": 12,
+        "require_indirect_essential": true,
+        "solver_seconds": 2.0,
+        "solver_work": 0.2,
+        "suspect_count": 12
+      },
+      "statuses": {
+        "ok": 130
+      },
+      "suspects": 12
+    }
+  ],
+  "dev_per_size": 30,
+  "files": {
+    "private/dev.jsonl": "11729d5446640c2ba3779645e28b5cf006f3a484b7ae11a015e3701af175ede9",
+    "private/test.jsonl": "4e7e6ae1a4fbac0153d17513cb45447d03f4fb3ad187c60657e10c0f9282e3c1",
+    "public/dev.jsonl": "fe1740a96c6a172987c4a68570ee69b4531da3459b774d250c67c96a6e27be56",
+    "public/test.jsonl": "c7478ec2e3a4162e0d0d7362ad57fffcddd1703173b17ca2141d8ae38b302966"
+  },
+  "license": "pending",
+  "solver_version": "9.15.6755",
+  "status": "private-preview",
+  "test_per_size": 100,
+  "version": "0.2.0"
+}

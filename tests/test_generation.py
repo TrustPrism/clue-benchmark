@@ -7,6 +7,8 @@ import pytest
 
 from clue_benchmark import Config, generate, validate_case
 from clue_benchmark.dataset import atomic_json, build_bank, fingerprints, study_export
+from clue_benchmark.logic import is_indirect
+from clue_benchmark.solver import Outcome, Solver
 
 
 @pytest.mark.parametrize("n,k", [(4, 8), (8, 12), (12, 16)])
@@ -120,3 +122,47 @@ def test_configuration_roundtrip_preserves_generation():
     loaded = Config(**json.loads(json.dumps(original.to_dict(), sort_keys=True)))
     assert original.fingerprint == loaded.fingerprint
     assert generate(original, 555)["case"] == generate(loaded, 555)["case"]
+
+
+def test_sampling_weights_change_verified_banks():
+    low_direct = Config(
+        suspect_count=12, clue_count=16, alpha=0, beta=0, mutation_steps=0
+    )
+    high_direct = replace(low_direct, alpha=1)
+    negative = [generate(low_direct, seed)["case"] for seed in range(20)]
+    direct = [generate(high_direct, seed)["case"] for seed in range(20)]
+    assert all(negative) and all(direct)
+    assert sum(is_indirect(c) for case in negative for c in case["clues"]) > sum(
+        is_indirect(c) for case in direct for c in case["clues"]
+    )
+    positive = [
+        generate(replace(low_direct, beta=1), seed)["case"] for seed in range(20)
+    ]
+    assert all(positive)
+    assert sum(
+        c["type"] in ("indirect_positive", "crime_same_as")
+        for case in positive
+        for c in case["clues"]
+    ) > sum(
+        c["type"] in ("indirect_positive", "crime_same_as")
+        for case in negative
+        for c in case["clues"]
+    )
+
+
+@pytest.mark.parametrize("n,k", [(4, 8), (8, 12), (12, 16)])
+def test_release_policy_requires_relationship_reasoning(n, k):
+    config = Config(
+        suspect_count=n,
+        clue_count=k,
+        min_indirect_clues=2,
+        require_indirect_essential=True,
+    )
+    for seed in range(10):
+        result = generate(config, seed)
+        assert result["status"] == "ok", result
+        case = result["case"]
+        assert validate_case(case)
+        direct = [c for c in case["clues"] if not is_indirect(c)]
+        solver = Solver(case["suspects"], case["domains"], config)
+        assert solver.check(direct).status == Outcome.AMBIGUOUS

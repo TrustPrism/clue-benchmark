@@ -10,7 +10,7 @@ from clue_benchmark.dataset import fingerprints, read_cases
 from clue_benchmark.environment import PROTOCOL_VERSION
 
 root = Path(__file__).resolve().parents[1]
-data = root / "data/v0.1"
+data = root / "data/v0.2"
 manifest = json.loads((data / "manifest.json").read_text())
 assert manifest["version"] == DATA_VERSION
 for path, expected in manifest["files"].items():
@@ -31,7 +31,7 @@ for split, expected in [("dev", 90), ("test", 300)]:
         worlds.add(w)
         puzzles.add(p)
         total += 1
-results = json.loads((root / "results/baselines.json").read_text())
+results = json.loads((root / "results/baselines-v0.2.json").read_text())
 assert results["manifest"]["version"] == VERSION
 assert results["manifest"]["episode_count"] == 9000
 assert results["manifest"]["protocol_version"] == PROTOCOL_VERSION

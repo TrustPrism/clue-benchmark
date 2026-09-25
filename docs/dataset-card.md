@@ -1,4 +1,4 @@
-# Dataset card — v0.1 private preview
+# Dataset card — v0.2 private preview
 
 ## Purpose and contents
 
@@ -8,7 +8,7 @@ Every complete bank identifies one murderer under the published rules. Full worl
 
 ## Provenance and collection
 
-Generated locally with the code in this repository and OR-Tools 9.15.6755. Seeds start at 140000, 180000, and 220000 respectively and advance in order. The first 30 accepted worlds per size form development; the next 100 form test. `data/v0.1/manifest.json` records exact configurations, counts, versions, and SHA-256 values. The private case files retain accepted seeds; local generation checkpoints retain detailed rejection diagnostics and are excluded from Git.
+Generated locally with the code in this repository and OR-Tools 9.15.6755. Seeds start at 140000, 180000, and 220000 respectively and advance in order. The first 30 accepted worlds per size form development; the next 100 form test. `data/v0.2/manifest.json` records exact configurations, counts, versions, and SHA-256 values. The private case files retain accepted seeds; local generation checkpoints retain detailed rejection diagnostics and are excluded from Git. The v0.1 files remain archived for comparison.
 
 The source generator's uncommitted working-tree improvements were copied into an independent Git repository; `PROVENANCE.json` records imported hashes. No human study data, participant identifiers, or scraped text are included. Template language is generated deterministically, not by an LLM.
 
@@ -20,9 +20,9 @@ Eight-round Weisfeiler–Lehman graph fingerprints screen both world structure a
 
 ## Sampling bias and limitations
 
-The generator constructs an elimination core when possible, fills remaining slots, and attempts weighted uniqueness-preserving replacements. Rejection and core construction bias the accepted distribution. This is a deliberate speed/variety tradeoff; compare observed clue-type distributions, not nominal sampling weights alone.
+The generator constructs a mixed exclusion scaffold, fills remaining slots, and attempts weighted uniqueness-preserving replacements. Alpha affects how innocent suspects are excluded; beta affects positive relationship anchors and filler selection. Solver rejection and available clue types bias the accepted distribution, so nominal weights are not observed proportions.
 
-Many v1 cases may be solved using direct evidence. Default cells do not require indirect evidence to be essential or impose a minimum sufficient-subset size. Neither puzzle size nor sufficient-subset size establishes reasoning depth. Model difficulty and saturation are uncalibrated until model experiments are performed. Query topic names and counts convey side information by design.
+Every v0.2 release case has at least two indirect-category clues; removing all indirect clues makes the murderer ambiguous, and at least one indirect clue is individually necessary. The full-bank audit found zero direct-only-solvable cases out of 390, versus 361/390 in v0.1. `crime_different_from` can explicitly exclude a suspect, so this policy does not establish deep multi-step reasoning. Neither puzzle size nor sufficient-subset size establishes model difficulty. Model difficulty and saturation remain uncalibrated until model experiments. Query topic names and counts convey side information by design.
 
 The murder theme is fictional and the benchmark measures a narrow formal skill. It should not be used to assess real-world investigative competence, safety, fairness, or general intelligence. No demographic representativeness claim is made.
 

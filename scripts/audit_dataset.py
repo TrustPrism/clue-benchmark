@@ -11,8 +11,8 @@ from clue_benchmark.logic import is_indirect
 from clue_benchmark.solver import Outcome, Solver, Unresolved
 
 root = Path(__file__).resolve().parents[1]
-cases = read_cases(root / "data/v0.1/private/dev.jsonl") + read_cases(
-    root / "data/v0.1/private/test.jsonl"
+cases = read_cases(root / "data/v0.2/private/dev.jsonl") + read_cases(
+    root / "data/v0.2/private/test.jsonl"
 )
 summary = []
 for n in (4, 8, 12):
@@ -80,7 +80,7 @@ for n in (4, 8, 12):
     )
     print(n, "audited", flush=True)
 atomic_json(
-    root / "results/dataset-audit.json",
+    root / "results/dataset-audit-v0.2.json",
     {
         "cells": summary,
         "claims": "Diagnostics, not calibrated reasoning difficulty. Subset search capped at size three and ten seconds per case.",

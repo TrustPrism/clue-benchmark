@@ -10,4 +10,5 @@ dist/
 .DS_Store
 *.tmp
 data/v0.1/checkpoints/
+data/v0.2/checkpoints/
 results/baselines-full.json

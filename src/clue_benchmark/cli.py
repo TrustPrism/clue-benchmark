@@ -40,7 +40,7 @@ def main():
     ev.add_argument("--output", required=True)
     ev.add_argument("--summary-only", action="store_true")
     suite = sub.add_parser("suite")
-    suite.add_argument("--output", default="data/v0.1")
+    suite.add_argument("--output", default="data/v0.2")
     suite.add_argument("--workers", type=int, default=1)
     suite.add_argument("--dev", type=int, default=30)
     suite.add_argument("--test", type=int, default=100)

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Private preview; citation metadata is provisional until public release."
 title: "Clue Benchmark: Deduction and Evidence Gathering in Verifiable Mystery Puzzles"
 type: software
-version: 0.1.1
+version: 0.2.0
 authors:
   - name: "TrustPrism contributors"
 repository-code: "https://github.com/TrustPrism/clue-benchmark"

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trustprism-clue-benchmark"
-version = "0.1.1"
+version = "0.2.0"
 description = "Reproducible deduction and evidence-gathering benchmark"
 readme = "README.md"
 license-files = ["LICENSING.md"]

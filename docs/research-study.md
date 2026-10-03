@@ -1,7 +1,8 @@
 # Model study protocol
 
-This is a prepared study, with no paid model calls and no model-performance
-results. The v0.3 cases remain unchanged. Software 0.3.1 adds study preparation,
+This document describes the prepared full study. Model measurements are confined
+to the separate [development pilot](pilot-protocol.md), whose
+[results](pilot-results.md) record execution status. The v0.3 cases remain unchanged. Software 0.3.1 adds study preparation,
 explicit menu conditions, and failure-inclusive result export.
 
 ## Questions and comparisons
@@ -29,7 +30,7 @@ The standard prompt is fixed in the plan. An optional deliberate prompt asks the
 system to check the logical consequences before answering; selecting it adds a
 declared prompt condition. A complete study should use multiple model families
 and capability levels, with immutable model versions where providers offer them.
-These models have not been selected.
+Full-study models remain unselected; the pilot selects three explicitly named models separately.
 
 ## Preparation and freezing
 
@@ -92,8 +93,9 @@ for model, task in tasks:
     pass
 ~~~
 
-No execution command is run as part of this readiness phase. Provider cost limits
-and an overall spending budget must be set separately before real execution.
+The full study remains preparation-only. The separate development pilot adds
+`prepare-pilot` and `run-study`, with native provider checks and a frozen $50 ceiling.
+A full study needs its own approved spending budget before real execution.
 Provider retries default to zero and are frozen as a generation setting; changing
 that policy requires a new plan and its cost estimate.
 Inspect records native logs, model identifiers, settings, messages, usage, and

@@ -1,5 +1,14 @@
 # Changelog
 
+## Development pilot runner (0.3.1)
+
+- Deterministic 12-world/24-case development pilot with three pinned provider roles, nine conditions, and 648 declared scored episodes.
+- Native Google and Ollama tools, model-specific thinking/sampling, 600-second deadlines, zero retries, compatibility gates, and a locked Google dependency.
+- Durable sequential request reservations under a $50 combined Gemini ceiling; interrupted/completed episodes never repeat on resume.
+- Failure-inclusive results, world-clustered paired comparisons, full-study cost estimates, and separate compatibility logs.
+- Original generator, dataset, test-set execution boundary, repository privacy, and pending licensing preserved.
+
+
 ## 0.3.1 — research study and release preparation
 
 - Validate the immutable v0.3 release in CI and smoke-test the installed wheel outside the checkout.

@@ -2,7 +2,7 @@
 
 A reproducible benchmark of **deduction** and **evidence gathering** in generated mystery puzzles. Each complete puzzle has truthful clues and exactly one feasible murderer. Attribute assignments need not be unique.
 
-**Status:** private v0.3 preview. Licensing and public publication are pending the owner's decision. No paid model experiments have been run. The included baselines are symbolic programs, not evidence about LLM performance. V0.3 measures structural properties rather than requiring every case to contain an essential cross-attribute clue; see the [revised design](docs/v0.3-design.md).
+**Status:** private v0.3 preview. Licensing and public publication are pending the owner's decision. A three-model exploratory development pilot is now supported; see [pilot protocol](docs/pilot-protocol.md) and [pilot results](docs/pilot-results.md) for execution status. The included baselines are symbolic programs, not evidence about LLM performance. V0.3 measures structural properties rather than requiring every case to contain an essential cross-attribute clue; see the [revised design](docs/v0.3-design.md).
 
 ## Install
 
@@ -10,7 +10,7 @@ Python 3.11–3.14 is covered by the CI matrix. Development was verified on macO
 
 ```sh
 python -m pip install uv
-uv sync --locked --extra test --extra inspect --extra metadata
+uv sync --locked --extra test --extra inspect --extra metadata --extra providers
 uv run --locked clue-benchmark --help
 ```
 
@@ -107,7 +107,7 @@ The adapter uses exact `submit_answer` scoring, a 32,768-token episode cap, 4,09
 
 ## Development and provenance
 
-Software 0.3.1 prepares the next research phase without making paid model calls.
+Software 0.3.1 supports study preparation and explicit, spending-limited pilot execution.
 The unchanged v0.3 dataset remains the private pilot. The existing targeted menu
 is still the API compatibility default. Prepared studies default to an experimental
 menu grouping suspect facts by attribute (protocol 2.1-experimental), because

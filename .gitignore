@@ -13,3 +13,6 @@ data/v0.1/checkpoints/
 data/v0.2/checkpoints/
 data/v0.3/checkpoints/
 results/baselines-full.json
+
+results/pilot-*/ledger*.sqlite3*
+results/pilot-*/runner.lock

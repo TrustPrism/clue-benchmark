@@ -89,6 +89,19 @@ def main():
         if command == "study-export":
             check.add_argument("logs", nargs="+")
             check.add_argument("--output", required=True)
+    pilot = sub.add_parser("prepare-pilot")
+    pilot.add_argument("--dev", default="data/v0.3/private/dev.jsonl")
+    pilot.add_argument("--test", default="data/v0.3/private/test.jsonl")
+    pilot.add_argument("--root", default=".")
+    pilot.add_argument("--local-identity")
+    pilot.add_argument("--execution-directory", default="results/pilot-v0.3")
+    pilot.add_argument("--output", required=True)
+    runtime = sub.add_parser("local-runtime")
+    runtime.add_argument("--output", required=True)
+    run = sub.add_parser("run-study")
+    run.add_argument("plan")
+    run.add_argument("--root", default=".")
+    run.add_argument("--dry-run", action="store_true")
     review_preparation = sub.add_parser("prepare-review")
     review_preparation.add_argument("input", nargs="+")
     review_preparation.add_argument("--output", required=True)
@@ -107,6 +120,50 @@ def main():
     ready.add_argument("--public", action="store_true")
     args = parser.parse_args()
     try:
+        if args.command in ("prepare-pilot", "run-study", "local-runtime"):
+            if args.command == "local-runtime":
+                from .providers import ollama_identity
+
+                identity = ollama_identity()
+                atomic_json(args.output, identity)
+                print(json.dumps(identity))
+            elif args.command == "prepare-pilot":
+                from .pilot import prepare_pilot
+
+                identity = (
+                    json.loads(Path(args.local_identity).read_text())
+                    if args.local_identity
+                    else None
+                )
+                plan = prepare_pilot(
+                    args.dev, args.test, args.root, identity, args.execution_directory
+                )
+                atomic_json(args.output, plan)
+                print(
+                    json.dumps(
+                        {
+                            "plan_id": plan["plan_id"],
+                            "episodes_per_model": 216,
+                            "expected_episodes": 648,
+                            "generation_calls": 0,
+                            "local_runtime_pinned": plan["local_runtime_pinned"],
+                        }
+                    )
+                )
+            else:
+                from .runner import run_study
+
+                plan = json.loads(Path(args.plan).read_text())
+                result = run_study(
+                    plan,
+                    args.root,
+                    args.dry_run,
+                    progress=lambda event: print(json.dumps(event), flush=True),
+                )
+                print(json.dumps(result if args.dry_run else result["manifest"]))
+                if not args.dry_run and result["manifest"]["status"] != "complete":
+                    raise SystemExit(2)
+            return
         if args.command in ("prepare-study", "study-check", "study-export"):
             from .study import export_study, prepare_study, verify_study
 

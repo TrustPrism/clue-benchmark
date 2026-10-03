@@ -111,6 +111,11 @@ def prepare_study(
         "dependencies": {name: version(name) for name in ("ortools", "inspect-ai")},
         "prompts": {style: PROMPTS[style] for style in prompt_styles},
         "models": list(models),
+        "execution_split": "test",
+        "selected_case_ids": [c["case_id"] for c in test_cases],
+        "per_model_settings": {m: settings for m in models},
+        "model_runtime_identities": {},
+        "spending": None,
         "repeats": repeats,
         "conditions": conditions,
         "generation_config": settings,
@@ -187,10 +192,16 @@ def study_tasks(plan, root):
         yield (
             model,
             clue_benchmark(
-                str(Path(root) / plan["datasets"]["test"]["path"]),
+                str(
+                    Path(root)
+                    / plan["datasets"][plan.get("execution_split", "test")]["path"]
+                ),
                 **condition,
                 request_seed=repeat,
-                generation_config=plan["generation_config"],
+                generation_config=plan.get("per_model_settings", {}).get(
+                    model, plan["generation_config"]
+                ),
+                case_ids=plan.get("selected_case_ids"),
                 token_limit=plan["token_limit"],
                 time_limit=plan["time_limit_seconds"],
                 run_metadata=metadata,
@@ -203,7 +214,11 @@ def export_study(plan, root, logs):
     verify_study(plan, root, require_models=True)
     cases = {
         c["case_id"]: c
-        for c in read_cases(Path(root) / plan["datasets"]["test"]["path"])
+        for c in read_cases(
+            Path(root) / plan["datasets"][plan.get("execution_split", "test")]["path"]
+        )
+        if not plan.get("selected_case_ids")
+        or c["case_id"] in plan["selected_case_ids"]
     }
     observed = {}
     log_records = []
@@ -225,7 +240,9 @@ def export_study(plan, root, logs):
         if log.eval.model != model:
             raise ValueError("logged model differs from frozen model identifier")
         actual_settings = log.plan.config.model_dump(exclude_none=True)
-        if actual_settings != plan["generation_config"]:
+        if actual_settings != plan.get("per_model_settings", {}).get(
+            model, plan["generation_config"]
+        ):
             raise ValueError("logged generation settings differ from frozen settings")
         if (
             log.eval.config.token_limit != plan["token_limit"]
@@ -352,6 +369,10 @@ def export_study(plan, root, logs):
         "manifest": {
             "plan_id": plan["plan_id"],
             "test_sha256": plan["datasets"]["test"]["sha256"],
+            "execution_split": plan.get("execution_split", "test"),
+            "execution_sha256": plan["datasets"][plan.get("execution_split", "test")][
+                "sha256"
+            ],
             "expected_episodes": len(rows),
             "observed_samples": len(observed),
             "models": plan["models"],

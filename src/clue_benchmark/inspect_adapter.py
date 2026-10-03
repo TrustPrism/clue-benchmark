@@ -199,6 +199,7 @@ def clue_benchmark(
     token_limit: int = 32768,
     time_limit: int = 120,
     run_metadata: dict | None = None,
+    case_ids: list[str] | None = None,
 ):
     if track not in ("deduction", "investigation"):
         raise ValueError("invalid track")
@@ -210,6 +211,13 @@ def clue_benchmark(
         raise ValueError("deduction uses full evidence and no request policy")
     version = protocol_version(topic_mode)
     cases = read_cases(dataset)
+    if case_ids is not None:
+        if not case_ids or len(set(case_ids)) != len(case_ids):
+            raise ValueError("empty or duplicate selected case IDs")
+        selected = set(case_ids)
+        cases = [c for c in cases if c["case_id"] in selected]
+        if {c["case_id"] for c in cases} != selected:
+            raise ValueError("unknown selected case ID")
     for c in cases:
         validate_case(c)
     if len({c["case_id"] for c in cases}) != len(cases) or not cases:

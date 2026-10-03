@@ -14,9 +14,11 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install uv
-      - run: uv sync --locked --extra test --extra inspect --python "${{ matrix.python }}"
+      - run: uv sync --locked --extra test --extra inspect --extra metadata --python "${{ matrix.python }}"
       - run: uv run --locked ruff check src tests scripts
       - run: uv run --locked ruff format --check src tests scripts
       - run: uv run --locked pytest -q
       - run: uv run --locked python -m build
-      - run: uv run --locked python -m clue_benchmark validate data/v0.2/private/test.jsonl
+      - run: uv run --locked python scripts/check_release.py
+      - run: uv run --locked python scripts/smoke_wheel.py
+      - run: uv run --locked mlcroissant validate --jsonld data/v0.3/croissant.json

@@ -63,8 +63,166 @@ def main():
     duplicates = sub.add_parser("duplicate-audit")
     duplicates.add_argument("input", nargs="+")
     duplicates.add_argument("--output", required=True)
+    comparison = sub.add_parser("compare-investigation")
+    comparison.add_argument("input")
+    comparison.add_argument("--repeats", type=int, default=3)
+    comparison.add_argument("--output", required=True)
+    comparison.add_argument("--summary-only", action="store_true")
+    preparation = sub.add_parser("prepare-study")
+    preparation.add_argument("--dev", required=True)
+    preparation.add_argument("--test", required=True)
+    preparation.add_argument("--root", default=".")
+    preparation.add_argument("--model", action="append", default=[])
+    preparation.add_argument("--repeats", type=int, default=3)
+    preparation.add_argument(
+        "--topic-mode", action="append", choices=["targeted", "attribute"]
+    )
+    preparation.add_argument(
+        "--prompt-style", action="append", choices=["standard", "deliberate"]
+    )
+    preparation.add_argument("--generation-config")
+    preparation.add_argument("--output", required=True)
+    for command in ("study-check", "study-export"):
+        check = sub.add_parser(command)
+        check.add_argument("plan")
+        check.add_argument("--root", default=".")
+        if command == "study-export":
+            check.add_argument("logs", nargs="+")
+            check.add_argument("--output", required=True)
+    review_preparation = sub.add_parser("prepare-review")
+    review_preparation.add_argument("input", nargs="+")
+    review_preparation.add_argument("--output", required=True)
+    review_preparation.add_argument("--template")
+    review_check = sub.add_parser("review-check")
+    review_check.add_argument("packet")
+    review_check.add_argument("responses", nargs="*")
+    review_check.add_argument("--output", required=True)
+    review_check.add_argument("--cases", nargs="*")
+    review_check.add_argument("--require-approved", action="store_true")
+    ready = sub.add_parser("readiness")
+    ready.add_argument("dataset")
+    ready.add_argument("--output", required=True)
+    ready.add_argument("--review-report")
+    ready.add_argument("--study-results")
+    ready.add_argument("--public", action="store_true")
     args = parser.parse_args()
     try:
+        if args.command in ("prepare-study", "study-check", "study-export"):
+            from .study import export_study, prepare_study, verify_study
+
+            if args.command == "prepare-study":
+                settings = (
+                    json.loads(Path(args.generation_config).read_text())
+                    if args.generation_config
+                    else None
+                )
+                plan = prepare_study(
+                    args.dev,
+                    args.test,
+                    args.root,
+                    args.model,
+                    args.repeats,
+                    args.topic_mode or ("attribute",),
+                    args.prompt_style or ("standard",),
+                    settings,
+                )
+                atomic_json(args.output, plan)
+                print(
+                    json.dumps(
+                        {
+                            "plan_id": plan["plan_id"],
+                            "status": plan["status"],
+                            "paid_calls": 0,
+                        }
+                    )
+                )
+            else:
+                plan = json.loads(Path(args.plan).read_text())
+                if args.command == "study-check":
+                    print(json.dumps(verify_study(plan, args.root)))
+                else:
+                    from inspect_ai.log import read_eval_log
+
+                    result = export_study(
+                        plan, args.root, [read_eval_log(path) for path in args.logs]
+                    )
+                    atomic_json(args.output, result)
+                    print(json.dumps(result["manifest"]))
+            return
+        if args.command in (
+            "prepare-review",
+            "review-check",
+            "readiness",
+            "compare-investigation",
+        ):
+            if args.command == "prepare-review":
+                from .review import prepare_review, review_template
+
+                cases = [c for path in args.input for c in read_cases(path)]
+                for c in cases:
+                    validate_case(c)
+                packet = prepare_review(cases)
+                atomic_json(args.output, packet)
+                if args.template:
+                    atomic_json(args.template, review_template(packet))
+                print(
+                    json.dumps(
+                        {
+                            "packet_id": packet["packet_id"],
+                            "items": len(packet["items"]),
+                            "status": packet["status"],
+                        }
+                    )
+                )
+            elif args.command == "review-check":
+                from .review import collect_reviews
+
+                packet = json.loads(Path(args.packet).read_text())
+                responses = [json.loads(Path(p).read_text()) for p in args.responses]
+                cases = [c for p in args.cases or [] for c in read_cases(p)]
+                report = collect_reviews(packet, responses, cases)
+                atomic_json(args.output, report)
+                print(
+                    json.dumps(
+                        {
+                            "status": report["status"],
+                            "reviewers": len(report["reviewers"]),
+                            "blocking_issues": report["blocking_issues"],
+                        }
+                    )
+                )
+                if args.require_approved and report["status"] != "approved":
+                    raise SystemExit(2)
+            elif args.command == "readiness":
+                from .readiness import readiness_report
+
+                review = (
+                    json.loads(Path(args.review_report).read_text())
+                    if args.review_report
+                    else None
+                )
+                results = (
+                    json.loads(Path(args.study_results).read_text())
+                    if args.study_results
+                    else None
+                )
+                report = readiness_report(args.dataset, review, results)
+                atomic_json(args.output, report)
+                print(json.dumps(report))
+                if args.public and not report["public_release_ready"]:
+                    raise SystemExit(2)
+            else:
+                from .investigation import compare_investigation
+
+                cases = read_cases(args.input)
+                for c in cases:
+                    validate_case(c)
+                report = compare_investigation(cases, args.repeats)
+                if args.summary_only:
+                    del report["episodes"]
+                atomic_json(args.output, report)
+                print(json.dumps(report["manifest"]))
+            return
         if args.command == "generate":
             config = json.loads(Path(args.config).read_text()) if args.config else {}
             if args.suspects is not None:
@@ -153,3 +311,8 @@ def main():
                 print(json.dumps({"episodes": episode_count, "output": args.output}))
     except (ValueError, RuntimeError) as exc:
         parser.exit(2, f"error: {exc}\n")
+    except ImportError as exc:
+        parser.exit(
+            2,
+            f"error: install the optional dependencies required by this command: {exc}\n",
+        )

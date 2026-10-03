@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trustprism-clue-benchmark"
-version = "0.3.0"
+version = "0.3.1"
 description = "Reproducible deduction and evidence-gathering benchmark"
 readme = "README.md"
 license-files = ["LICENSING.md"]
@@ -14,6 +14,7 @@ dependencies = ["ortools==9.15.6755"]
 [project.optional-dependencies]
 test = ["pytest>=8,<10", "build>=1,<2", "ruff>=0.16,<0.17"]
 inspect = ["inspect-ai>=0.3.268,<0.4"]
+metadata = ["mlcroissant>=1.1,<1.2"]
 
 [project.scripts]
 clue-benchmark = "clue_benchmark.cli:main"

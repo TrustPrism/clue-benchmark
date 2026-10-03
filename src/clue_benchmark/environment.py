@@ -13,6 +13,13 @@ RULES = (
     "All clues are truthful. Only the murderer, not the full world, must be uniquely identifiable."
 )
 PROTOCOL_VERSION = "2.0"
+TOPIC_MODES = ("targeted", "attribute")
+
+
+def protocol_version(topic_mode="targeted"):
+    if topic_mode not in TOPIC_MODES:
+        raise ValueError("unknown topic mode")
+    return PROTOCOL_VERSION if topic_mode == "targeted" else "2.1-experimental"
 
 
 def public_puzzle(case):
@@ -28,9 +35,13 @@ def public_puzzle(case):
     }
 
 
-def topic(c):
+def topic(c, topic_mode="targeted"):
     if c["type"].startswith("unary_"):
-        return ("suspect_attribute", c["attribute"], c["suspect"])
+        return (
+            "suspect_attribute",
+            c["attribute"],
+            c["suspect"] if topic_mode == "targeted" else None,
+        )
     if c["type"] in ("crime_positive", "crime_negative"):
         return ("crime_attribute", c["attribute"], None)
     if c["type"].startswith("crime_"):
@@ -43,7 +54,11 @@ def topic(c):
 def topic_label(key):
     category, attribute, suspect = key
     if category == "suspect_attribute":
-        return f"Suspect {suspect} / {attribute}"
+        return (
+            f"Suspect {suspect} / {attribute}"
+            if suspect is not None
+            else f"Suspect attributes / {attribute}"
+        )
     return {
         "crime_attribute": "Crime attribute",
         "crime_comparison": "Crime comparison",
@@ -53,16 +68,18 @@ def topic_label(key):
 
 
 class Environment:
-    def __init__(self, case, budget_fraction=1.0):
+    def __init__(self, case, budget_fraction=1.0, topic_mode="targeted"):
         if not math.isfinite(budget_fraction) or not 0 < budget_fraction <= 1:
             raise ValueError("budget_fraction must be in (0,1]")
         self._case = deepcopy(case)
+        self.topic_mode = topic_mode
+        self.protocol_version = protocol_version(topic_mode)
         self._public = public_puzzle(case)
         self.budget = math.ceil(len(case["clues"]) * budget_fraction)
         self.max_requests = self.budget + max(2, self.budget)
         self._topics = {}
         for i, c in enumerate(case["clues"]):
-            self._topics.setdefault(topic(c), []).append(i)
+            self._topics.setdefault(topic(c, topic_mode), []).append(i)
         for key, queue in self._topics.items():
             random.Random(int(digest([case["case_id"], key])[:16], 16)).shuffle(queue)
         keys = sorted(self._topics)

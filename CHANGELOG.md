@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.1 — research study and release preparation
+
+- Validate the immutable v0.3 release in CI and smoke-test the installed wheel outside the checkout.
+- Add an attribute-grouped investigation menu, all-budget paired policy comparisons, a capacity-weighted topic sampling control, and bounded privileged next-clue diagnostics.
+- Audit menu-only answer shortcuts and default prepared studies to grouping, while retaining the targeted API protocol for compatibility.
+- Prepare content-addressed model study plans with fixed prompts/settings, random-evidence controls, drift checks, and failure-inclusive exports with world-clustered summaries and token usage.
+- Prepare hash-bound public human-review packets with response examples, reviewer attestations, coverage checks, and issue adjudication.
+- Correct Croissant context/extraction, add responsible-use metadata, and check local record loading with the official validator.
+- Keep the dataset at 0.3.0, the existing targeted menu at protocol 2.0, and the experimental grouped menu at 2.1-experimental. Model runs, independent reviews, ownership/licensing, and public hosting remain pending.
+
 ## 0.3.0 — measured structure and topic-choice preview
 
 - Add suspect-to-suspect comparisons, typed evidence topics, and deterministic topic queues.

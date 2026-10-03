@@ -1,0 +1,1 @@
+{"completed_at":null,"instructions":"For each review_id record wording_clear, topic_expectation_clear, optional suspect answer, and issues with severity blocking/minor. Attest human independent review only after performing it.","packet_id":"91f2a741b3cadd9b4718cdb908266fb0e7e213d65a8db7b4ce1c2055ba490829","reviewer":{"human":false,"id":"","independent":false},"reviews":[]}

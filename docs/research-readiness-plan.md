@@ -26,7 +26,7 @@ requested study preparation with no paid model calls.
 
 ## 3. Investigation validity, measured without enforcing positive results
 
-- Preserve the existing targeted topic menu as the default.
+- Preserve the existing targeted topic menu as the API compatibility default.
 - Add an experimental attribute-grouped menu for paired comparison on identical
   clue banks. It reduces one-clue queues without changing clues or answer rules.
 - Compare random, round-robin, and public-topic policies at all four budgets,
@@ -34,6 +34,8 @@ requested study preparation with no paid model calls.
 - Record inconclusive solver checks; do not discard failed episodes.
 - Add a bounded diagnostic of alternative next-clue effects. Hidden-clue
   lookahead is explicitly privileged and is not an optimal-policy bound.
+- Audit whether public topic labels and counts predict the answer without clues;
+  use the findings to select the prepared study's recommended menu.
 - Use development data for these exploratory design diagnostics. Freeze the
   selected protocol before confirmatory model evaluation. If construction or
   protocol is tuned after test inspection, regenerate an untouched final test.
@@ -68,6 +70,23 @@ requested study preparation with no paid model calls.
 
 ## Completion record
 
-Implementation and measured outcomes will be recorded here after verification.
-External decisions and observations remain pending; they are not satisfied by
-creating a plan or a review packet.
+Implemented on 2 October 2026. The baseline passed 93 tests, package build, all
+960 reproduction checks, and source isolation before its push was verified.
+Readiness changes pass 117 tests and a clean installed-wheel smoke check.
+
+The free development study completed 20,736 episodes across both menus, four
+policies, four budgets, and three repeats, with zero inconclusive solver
+episodes. Attribute grouping deepens queues but does not consistently improve
+policy performance. A separate menu-only audit found above-chance accuracy from
+the targeted menu's named-topic counts. The prepared study therefore defaults
+to grouping, which removes that particular hint; targeted remains available for
+compatibility and declared comparison.
+
+The model-study plan and independent-review workflow are prepared. The local
+Croissant validator and loader accept the corrected draft and read every public
+record. See [measured outcomes](readiness-results.md) for methods and limitations.
+
+External gates remain pending: selected models and an approved execution budget,
+independent human signoff, ownership/license decisions, public hosting, and
+validation against that final host. No paid provider calls, public publication,
+or human-validation claims were made.

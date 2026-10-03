@@ -10,7 +10,7 @@ Python 3.11–3.14 is covered by the CI matrix. Development was verified on macO
 
 ```sh
 python -m pip install uv
-uv sync --locked --extra test --extra inspect
+uv sync --locked --extra test --extra inspect --extra metadata
 uv run --locked clue-benchmark --help
 ```
 
@@ -107,6 +107,34 @@ The adapter uses exact `submit_answer` scoring, a 32,768-token episode cap, 4,09
 
 ## Development and provenance
 
+Software 0.3.1 prepares the next research phase without making paid model calls.
+The unchanged v0.3 dataset remains the private pilot. The existing targeted menu
+is still the API compatibility default. Prepared studies default to an experimental
+menu grouping suspect facts by attribute (protocol 2.1-experimental), because
+named-topic counts in the legacy menu predict answers above chance without clues.
+Grouping removes that particular hint; other shortcuts still need study. See the
+[implementation plan](docs/research-readiness-plan.md),
+[model study protocol](docs/research-study.md), and
+[independent human review workflow](docs/human-review.md), and
+[measured readiness results](docs/readiness-results.md).
+
+~~~sh
+clue-benchmark compare-investigation data/v0.3/private/dev.jsonl --repeats 3 --summary-only --output results/investigation-readiness-dev.json
+clue-benchmark prepare-study --dev data/v0.3/private/dev.jsonl --test data/v0.3/private/test.jsonl --output studies/readiness-v0.3.json
+clue-benchmark study-check studies/readiness-v0.3.json
+clue-benchmark prepare-review data/v0.3/private/dev.jsonl data/v0.3/private/test.jsonl --output reviews/readiness-packet.json --template reviews/response-template.json
+clue-benchmark review-check reviews/readiness-packet.json --output results/human-review-readiness.json
+clue-benchmark readiness data/v0.3 --review-report results/human-review-readiness.json --output results/release-readiness.json
+mlcroissant validate --jsonld data/v0.3/croissant.json
+~~~
+
+The readiness command reports outstanding gates. Add --public to fail while any
+public-release gate remains pending. Local Croissant validation and record
+loading do not establish that future hosted URLs are accessible or that a
+redistribution license has been granted. Investigation diagnostics inspect all
+budgets on development data; a positive policy effect is a result to measure,
+not a condition used to remove unfavorable cases.
+
 ```sh
 uv run --locked pytest -q
 uv run --locked ruff check src tests scripts
@@ -114,6 +142,6 @@ uv run --locked ruff format --check src tests scripts
 uv run --locked python -m build
 ```
 
-`main` began as an exact imported working-tree snapshot; development is on `codex/benchmark-v1`. `PROVENANCE.json` records original file hashes, source commit, and original uncommitted status. `legacy/` retains that baseline for comparisons, including its known limitations. It is not installed with the package and must not be used to score this benchmark. The new batch API starts with the requested seed, resolving the legacy skipped-seed behavior.
+`main` began as an exact imported working-tree snapshot; the verified v0.3 preview is on `codex/benchmark-v1`, with readiness work on `codex/research-readiness`. `PROVENANCE.json` records original file hashes, source commit, and original uncommitted status. `legacy/` retains that baseline for comparisons, including its known limitations. It is not installed with the package and must not be used to score this benchmark. The new batch API starts with the requested seed, resolving the legacy skipped-seed behavior.
 
 The original `TrustPrism/clue-generator` repository and local directory are untouched. [LICENSING.md](LICENSING.md) describes why this preview is not a public open-source release yet.

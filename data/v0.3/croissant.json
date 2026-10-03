@@ -1,9 +1,50 @@
 {
   "@context": {
+    "@language": "en",
     "@vocab": "https://schema.org/",
-    "sc": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
     "cr": "http://mlcommons.org/croissant/",
     "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
     "prov": "http://www.w3.org/ns/prov#"
   },
   "@type": "sc:Dataset",
@@ -13,20 +54,141 @@
   "url": "https://github.com/TrustPrism/clue-benchmark",
   "conformsTo": "http://mlcommons.org/croissant/1.1",
   "license": "Pending owner decision; no public redistribution license granted",
-  "creator": {"@type": "sc:Organization", "name": "TrustPrism"},
+  "creator": {
+    "@type": "sc:Organization",
+    "name": "TrustPrism"
+  },
   "rai:hasSyntheticData": true,
   "rai:dataLimitations": "Narrow formal mystery domain; full hidden world need not be unique; structural proof routes are not calibrated model difficulty; no paid model evidence.",
   "rai:dataBiases": "Constructed exclusion scaffolds and solver rejection affect clue frequencies. Topic labels and remaining counts convey side information by design.",
   "rai:personalSensitiveInformation": "No human participant data; neutral synthetic suspect IDs.",
-  "rai:dataUseCases": "Formal murderer identification and budgeted evidence selection, not real-world investigative competence.",
+  "rai:dataUseCases": "Established: synthetic puzzle correctness, exact murderer scoring, reproducible finite evidence replay. Pending: construct validity for model reasoning, strategic evidence selection across sizes, and generalization beyond controlled templates. Not recommended for real-world criminal investigation, safety assessment, fairness auditing, or ranking general intelligence.",
   "prov:wasDerivedFrom": "https://github.com/TrustPrism/clue-generator",
-  "prov:wasGeneratedBy": {"@type": "prov:Activity", "name": "Seeded paired generation and CP-SAT validation; configs and split design in manifest.json."},
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "name": "Seeded paired generation and CP-SAT validation; configs and split design in manifest.json."
+  },
   "distribution": [
-    {"@type": "cr:FileObject", "@id": "public-dev", "name": "dev.jsonl", "contentUrl": "public/dev.jsonl", "encodingFormat": "application/jsonlines", "sha256": "d6dba9a89415d96342c2c6ede9de789651bbc844ee91bc2b5dc4576304e039bf"},
-    {"@type": "cr:FileObject", "@id": "public-test", "name": "test.jsonl", "contentUrl": "public/test.jsonl", "encodingFormat": "application/jsonlines", "sha256": "6f9cd943f83ce40bd4667770e08a5c9343b807eec9d5d79d57dd09256779248b"}
+    {
+      "@type": "cr:FileObject",
+      "@id": "public-dev",
+      "name": "dev.jsonl",
+      "contentUrl": "public/dev.jsonl",
+      "encodingFormat": "application/jsonlines",
+      "sha256": "d6dba9a89415d96342c2c6ede9de789651bbc844ee91bc2b5dc4576304e039bf"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "public-test",
+      "name": "test.jsonl",
+      "contentUrl": "public/test.jsonl",
+      "encodingFormat": "application/jsonlines",
+      "sha256": "6f9cd943f83ce40bd4667770e08a5c9343b807eec9d5d79d57dd09256779248b"
+    }
   ],
   "recordSet": [
-    {"@type": "cr:RecordSet", "@id": "dev", "name": "dev", "field": [{"@type": "cr:Field", "@id": "dev/case_id", "name": "case_id", "dataType": "sc:Text", "source": {"fileObject": {"@id": "public-dev"}, "extract": {"jsonPath": "$.case_id"}}}]},
-    {"@type": "cr:RecordSet", "@id": "test", "name": "test", "field": [{"@type": "cr:Field", "@id": "test/case_id", "name": "case_id", "dataType": "sc:Text", "source": {"fileObject": {"@id": "public-test"}, "extract": {"jsonPath": "$.case_id"}}}]}
-  ]
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dev",
+      "name": "dev",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dev/case_id",
+          "name": "case_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-dev"
+            },
+            "extract": {
+              "column": "case_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dev/rules",
+          "name": "rules",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-dev"
+            },
+            "extract": {
+              "column": "rules"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dev/suspects",
+          "name": "suspects",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-dev"
+            },
+            "extract": {
+              "column": "suspects"
+            }
+          },
+          "repeated": true
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "test",
+      "name": "test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "test/case_id",
+          "name": "case_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-test"
+            },
+            "extract": {
+              "column": "case_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "test/rules",
+          "name": "rules",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-test"
+            },
+            "extract": {
+              "column": "rules"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "test/suspects",
+          "name": "suspects",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "public-test"
+            },
+            "extract": {
+              "column": "suspects"
+            }
+          },
+          "repeated": true
+        }
+      ]
+    }
+  ],
+  "rai:dataSocialImpact": "May support reproducible study of formal deduction and evidence selection. Scores must not be used as evidence of real-world investigative competence or general intelligence. No human participant or demographic data is used.",
+  "citeAs": "TrustPrism. Clue Benchmark v0.3 private technical preview (2026). Public licensing and publication pending.",
+  "dateCreated": "2026-09-25"
 }

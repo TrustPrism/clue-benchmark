@@ -14,15 +14,19 @@ from .solver import Outcome, Solver, Unresolved
 
 def _solver(case):
     config = replace(
-        Config(**case["config"]), generation_seconds=60, max_solver_calls=50000
+        Config(**case["config"]),
+        generation_seconds=60,
+        max_solver_calls=50000,
+        solver_seconds=10,
+        solver_work=2,
     )
     return Solver(case["suspects"], case["domains"], config)
 
 
-def _answer(case, indices, rng):
+def _answer(case, indices, rng, solver=None):
     # Reference baselines have structured versions of revealed facts, never hidden facts.
     try:
-        solver = _solver(case)
+        solver = solver or _solver(case)
         revealed = [case["clues"][i] for i in indices]
         check = solver.check(revealed)
         if check.status == Outcome.UNIQUE:
@@ -33,7 +37,9 @@ def _answer(case, indices, rng):
     return (rng.choice(candidates) if candidates else None), None
 
 
-def run_episode(case, baseline="reference", fraction=1.0, seed=0):
+def run_episode(
+    case, baseline="reference", fraction=1.0, seed=0, topic_mode="targeted"
+):
     rng = random.Random(seed)
     start = time.perf_counter()
     error = None
@@ -54,17 +60,18 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
         }
     if baseline not in (
         "random_investigation",
+        "random_clue",
         "round_robin",
         "topic_heuristic",
         "privileged_lookahead",
     ):
         raise ValueError("unknown baseline")
-    env = Environment(case, fraction)
+    env = Environment(case, fraction, topic_mode)
+    candidates = _solver(case)
     cursor = 0
     while env.spent < env.budget:
         obs = env.observation()
         indices = [int(c["clue_id"][1:]) - 1 for c in obs["clues"]]
-        candidates = _solver(case)
         try:
             check = candidates.check([case["clues"][i] for i in indices])
             if check.status == Outcome.UNIQUE:
@@ -78,6 +85,11 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
             break
         if baseline == "random_investigation":
             query = rng.choice(active)
+        elif baseline == "random_clue":
+            queries = [q for q in obs["queries"] if q["remaining"]]
+            query = rng.choices(queries, weights=[q["remaining"] for q in queries])[0][
+                "query_id"
+            ]
         elif baseline == "round_robin":
             ids = [q["query_id"] for q in obs["queries"]]
             for _ in ids:
@@ -92,12 +104,16 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
                     candidates.feasible_candidates([case["clues"][i] for i in indices])
                 )
             except Unresolved:
+                error = "inconclusive"
                 plausible = set(case["suspects"])
 
             def priority(q):
                 category = q["category"]
                 if category == "suspect_attribute":
-                    return (3 if q["suspect"] in plausible else 0, q["remaining"])
+                    return (
+                        3 if q["suspect"] is None or q["suspect"] in plausible else 0,
+                        q["remaining"],
+                    )
                 return (
                     {
                         "crime_attribute": 4,
@@ -113,7 +129,7 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
             ]
         else:
             # Privileged diagnostic: inspect the next hidden clue in every queue.
-            # This is an upper-bound policy and is never an agent baseline.
+            # Greedy one-step lookahead is not an optimal-policy bound.
             scored = []
             for q in active:
                 next_index = env._remaining[q][0]
@@ -124,6 +140,7 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
                         )
                     )
                 except Unresolved:
+                    error = "inconclusive"
                     remaining = len(case["suspects"])
                 scored.append((remaining, q))
             query = min(scored)[1]
@@ -132,7 +149,7 @@ def run_episode(case, baseline="reference", fraction=1.0, seed=0):
         latencies.append((time.perf_counter() - t) * 1000)
     if not env.done:
         indices = [int(c["clue_id"][1:]) - 1 for c in env.observation()["clues"]]
-        answer, answer_error = _answer(case, indices, rng)
+        answer, answer_error = _answer(case, indices, rng, candidates)
         error = error or answer_error
         env.submit_answer(answer)
     return {

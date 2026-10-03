@@ -16,3 +16,5 @@ results/baselines-full.json
 
 results/pilot-*/ledger*.sqlite3*
 results/pilot-*/runner.lock
+
+results/pilot-*/runner-*.lock

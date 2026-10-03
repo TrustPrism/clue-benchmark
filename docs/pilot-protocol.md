@@ -1,5 +1,10 @@
 # Three-model development pilot
 
+The original pilot is preserved at commit `b8b2ecf`. The current authorized
+[$25 continuation](pilot-continuation.md) has a new frozen manifest and audited
+ledger; its service-error policy and lower cumulative ceiling supersede the
+original stop policy only for that continuation.
+
 This exploratory pilot measures reasoning and evidence gathering on 24 development
 cases from 12 hidden worlds. Four worlds at each of 4, 8, and 12 suspects are selected
 by Python's seeded PRNG (seed 0) from sorted world IDs. Both density variants stay

@@ -47,6 +47,16 @@ class Ledger:
               id TEXT PRIMARY KEY, status TEXT NOT NULL, result TEXT);
             """
         )
+        columns = {r[1] for r in self.db.execute("PRAGMA table_info(requests)")}
+        for name, kind in (
+            ("config", "TEXT"),
+            ("http_status", "INTEGER"),
+            ("held_reason", "TEXT"),
+        ):
+            if name not in columns:
+                self.db.execute(f"ALTER TABLE requests ADD COLUMN {name} {kind}")
+        self.db.commit()
+        self.policy = plan.get("continuation_policy", {})
         ceiling = plan.get("spending", {}).get("combined_google_usd")
         if ceiling is None or not 0 < ceiling <= 50:
             raise ValueError(
@@ -66,10 +76,14 @@ class Ledger:
     def close(self):
         self.db.close()
 
-    def guard(self):
-        if self.db.execute(
-            "SELECT 1 FROM requests WHERE status IN ('reserved','uncertain') LIMIT 1"
-        ).fetchone():
+    def guard(self, models=None):
+        sql = "SELECT 1 FROM requests WHERE status IN ('reserved','uncertain')"
+        params = ()
+        if models and self.policy.get("local_accounting_independent"):
+            families = {m.split("/", 1)[0] for m in models}
+            sql += " AND (" + " OR ".join("model LIKE ?" for _ in families) + ")"
+            params = tuple(f + "/%" for f in sorted(families))
+        if self.db.execute(sql + " LIMIT 1", params).fetchone():
             raise AccountingStop(
                 "unresolved request accounting; execution remains stopped"
             )
@@ -79,15 +93,15 @@ class Ledger:
             "SELECT COALESCE(SUM(COALESCE(actual,reserved)),0) FROM requests"
         ).fetchone()[0]
 
-    def reserve(self, episode, model, phase, amount):
+    def reserve(self, episode, model, phase, amount, config=None):
         self.db.execute("BEGIN IMMEDIATE")
         try:
-            self.guard()
-            if self.committed() + amount > self.ceiling:
+            self.guard([model])
+            if amount and self.committed() + amount > self.ceiling:
                 raise BudgetStop("remaining allowance cannot cover the next request")
             row = self.db.execute(
-                "INSERT INTO requests(episode,model,phase,reserved,status) VALUES(?,?,?,?,'reserved')",
-                (episode, model, phase, amount),
+                "INSERT INTO requests(episode,model,phase,reserved,status,config) VALUES(?,?,?,?,'reserved',?)",
+                (episode, model, phase, amount, json.dumps(config) if config else None),
             )
             self.db.commit()
             return row.lastrowid
@@ -121,6 +135,19 @@ class Ledger:
                 "UPDATE requests SET status='uncertain',error=? WHERE id=? AND status='reserved'",
                 (error, request_id),
             )
+
+    def hold(self, request_id, status, reason):
+        if status not in self.policy.get("hold_service_error_codes", []):
+            raise AccountingStop(
+                "service error is not authorized for held continuation"
+            )
+        with self.db:
+            changed = self.db.execute(
+                "UPDATE requests SET status='held',http_status=?,held_reason=? WHERE id=? AND status IN ('reserved','uncertain') AND actual IS NULL",
+                (status, reason, request_id),
+            ).rowcount
+        if changed != 1:
+            raise AccountingStop("only an unresolved reservation may be held")
 
     def begin_episode(self, episode):
         with self.db:
@@ -165,6 +192,8 @@ class Ledger:
         for row in requests:
             if row["usage"]:
                 row["usage"] = json.loads(row["usage"])
+            if row["config"]:
+                row["config"] = json.loads(row["config"])
         return {
             "plan_id": dict(self.db.execute("SELECT key,value FROM metadata"))[
                 "plan_id"

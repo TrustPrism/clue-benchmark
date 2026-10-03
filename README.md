@@ -2,7 +2,7 @@
 
 A reproducible benchmark of **deduction** and **evidence gathering** in generated mystery puzzles. Each complete puzzle has truthful clues and exactly one feasible murderer. Attribute assignments need not be unique.
 
-**Status:** private v0.3 preview. Licensing and public publication are pending the owner's decision. A three-model exploratory development pilot is now supported; see [pilot protocol](docs/pilot-protocol.md) and [pilot results](docs/pilot-results.md) for execution status. The included baselines are symbolic programs, not evidence about LLM performance. V0.3 measures structural properties rather than requiring every case to contain an essential cross-attribute clue; see the [revised design](docs/v0.3-design.md).
+**Status:** private v0.3 preview. Licensing and public publication are pending the owner's decision. A three-model exploratory development pilot is now supported; see [pilot protocol](docs/pilot-protocol.md) and [pilot results](docs/pilot-results.md) for execution status. The [first-$25 continuation](docs/pilot-continuation.md) preserves prior costs and runs additional development diagnostics. The included baselines are symbolic programs, not evidence about LLM performance. V0.3 measures structural properties rather than requiring every case to contain an essential cross-attribute clue; see the [revised design](docs/v0.3-design.md).
 
 ## Install
 

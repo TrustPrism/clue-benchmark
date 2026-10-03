@@ -66,6 +66,11 @@ def checked_usage(input_tokens, output_tokens, thinking_tokens=None, total=None)
     )
 
 
+def http_status(exc):
+    code = getattr(exc, "code", getattr(exc, "status_code", None))
+    return code if type(code) is int and 100 <= code <= 599 else None
+
+
 def error_label(exc):
     # Provider exceptions can contain request URLs, headers, or credentials.
     # Never serialize their text, traceback, or HTTP bodies.
@@ -73,7 +78,9 @@ def error_label(exc):
         return "missing_usage"
     if isinstance(exc, TimeoutError) or "Timeout" in type(exc).__name__:
         return "timeout"
-    code = getattr(exc, "code", None)
+    code = http_status(exc)
+    if code == 503:
+        return "service_unavailable"
     if code == 429:
         return "quota_error"
     if code in (400, 404, 422) or isinstance(exc, ProtocolError):
@@ -310,6 +317,13 @@ class GoogleProvider:
             if self.last_usage
             else 0
         )
+        # Billable thinking history can exceed countTokens and the prior usage
+        # estimate. Keep an explicit, frozen headroom instead of estimating the
+        # encrypted thought signatures from their serialized byte length.
+        if self.settings.get("input_safety_margin"):
+            usage_bound += self.last_usage["output_tokens"] if self.last_usage else 0
+            bound = max(counted_bound, usage_bound)
+            return (bound * 9 + 7) // 8 + self.settings["input_safety_margin"]
         return max(counted_bound, usage_bound)
 
     def generate(self, messages, tools, max_output, timeout):

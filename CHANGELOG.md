@@ -1,5 +1,11 @@
 # Changelog
 
+## Development pilot continuation
+
+- User-authorized $25 cumulative Gemini ceiling, retained 503 maximum charges, independent Qwen execution, and deterministic paired development expansion.
+- Explicit token-bound headroom and request limits recorded for debugging; original episodes and the stopped pilot remain preserved.
+- Separate diagnostic and expansion cohorts, shared-case model contrasts, and dispatch/completion coverage.
+
 ## Development pilot runner (0.3.1)
 
 - Deterministic 12-world/24-case development pilot with three pinned provider roles, nine conditions, and 648 declared scored episodes.

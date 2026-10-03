@@ -4,6 +4,7 @@ import itertools
 import json
 import os
 import time
+from contextlib import ExitStack
 from datetime import date
 from pathlib import Path
 
@@ -20,7 +21,13 @@ from .ledger import (
     charge_microdollars,
     execution_lock,
 )
-from .providers import ProtocolError, UsageError, error_label, make_provider
+from .providers import (
+    ProtocolError,
+    UsageError,
+    error_label,
+    http_status,
+    make_provider,
+)
 from .study import strategy_gaps, verify_study
 
 
@@ -36,14 +43,70 @@ def execution_cases(plan, root):
     if plan.get("study_kind") == "exploratory-development-pilot":
         if split != "dev" or any(lookup[c].get("split") != "dev" for c in selected):
             raise ValueError("pilot cannot execute test cases")
+    per_model = plan.get("model_case_ids", {})
+    if set(per_model) - set(plan["models"]):
+        raise ValueError("case selection names an undeclared model")
+    for ids in per_model.values():
+        if not ids or len(set(ids)) != len(ids) or set(ids) - set(selected):
+            raise ValueError(
+                "per-model cases must be a nonempty subset of selected cases"
+            )
+    if plan.get("continuation_policy") and split != "dev":
+        raise ValueError("continuation is authorized only for development cases")
     return [lookup[c] for c in selected]
 
 
 def declared_episodes(plan, cases):
-    # The world/case schedule is identical across models; each call starts fresh.
-    for model, repeat, condition, case in itertools.product(
-        plan["models"], range(plan["repeats"]), plan["conditions"], cases
-    ):
+    # Legacy plans keep their original schedule. Continuations finish the pilot
+    # first and rotate sizes, worlds, conditions, and Google models deterministically.
+    if plan.get("execution_schedule") == "paired-world-round-robin-v1":
+        import random
+        from collections import defaultdict
+
+        priority = set(plan["initial_pilot_case_ids"])
+        worlds = defaultdict(list)
+        for case in cases:
+            worlds[case["world_group"]].append(case)
+        rng = random.Random(0)
+        ordered = []
+        for initial in (True, False):
+            buckets = []
+            for size in (4, 8, 12):
+                groups = [
+                    pair
+                    for _, pair in sorted(worlds.items())
+                    if len(pair[0]["suspects"]) == size
+                    and (pair[0]["case_id"] in priority) == initial
+                ]
+                rng.shuffle(groups)
+                buckets.append(groups)
+            for groups in itertools.zip_longest(*buckets):
+                for pair in groups:
+                    if pair:
+                        ordered.extend(sorted(pair, key=lambda c: c["case_id"]))
+        conditions = sorted(
+            plan["conditions"],
+            key=lambda c: (
+                c["track"] != "deduction",
+                c["budget_fraction"],
+                c["selection_policy"] != "agent",
+            ),
+        )
+        schedule = (
+            (m, r, c, case)
+            for r, case, c, m in itertools.product(
+                range(plan["repeats"]), ordered, conditions, plan["models"]
+            )
+        )
+    else:
+        schedule = itertools.product(
+            plan["models"], range(plan["repeats"]), plan["conditions"], cases
+        )
+    for model, repeat, condition, case in schedule:
+        if case["case_id"] not in plan.get("model_case_ids", {}).get(
+            model, plan["selected_case_ids"]
+        ):
+            continue
         yield (
             digest(
                 [
@@ -114,7 +177,12 @@ def request(
         if provider.paid
         else 0
     )
-    request_id = ledger.reserve(episode, provider.name, phase, reserve)
+    config = {
+        "input_tokens_bound": input_bound,
+        "output_cap": output_cap,
+        "remaining_episode_tokens": allowance,
+    }
+    request_id = ledger.reserve(episode, provider.name, phase, reserve, config)
     try:
         reply = provider.generate(messages, tools, output_cap, remaining_time)
         usage = reply.usage
@@ -136,6 +204,15 @@ def request(
         return reply, actual / 1000000
     except BaseException as exc:
         ledger.uncertain(request_id, error_label(exc))
+        status = http_status(exc)
+        if status in plan.get("continuation_policy", {}).get(
+            "hold_service_error_codes", []
+        ):
+            ledger.hold(
+                request_id,
+                status,
+                "User-authorized continuation; maximum charge retained; no retry",
+            )
         raise
 
 
@@ -327,14 +404,19 @@ def play_episode(provider, plan, ledger, episode, row, case, output):
         fatal = exc
     except Exception as exc:
         error = error_label(exc)
-        if isinstance(exc, UsageError) or provider.paid:
+        held_service_error = http_status(exc) in plan.get(
+            "continuation_policy", {}
+        ).get("hold_service_error_codes", [])
+        if not held_service_error and (isinstance(exc, UsageError) or provider.paid):
             fatal = AccountingStop("request accounting unavailable; execution stopped")
     result = {
         **row,
         "correct": int(error is None and env.answer == case["solution"]["murderer"]),
         "answer": env.answer,
         "source_plan_id": plan["plan_id"],
-        "token_accounting_version": "usage-bound-v2",
+        "token_accounting_version": plan.get(
+            "token_accounting_version", "usage-bound-v2"
+        ),
         "missing_answer": env.answer is None,
         "missing_submission": not env.done,
         "invalid_submission": env.done and env.answer is None,
@@ -407,7 +489,9 @@ def paired_model_gaps(rows):
                     "prompt_style",
                 )
             }
-            other = lookup[b, row["case_id"], row["repeat"], digest(cond)]
+            other = lookup.get((b, row["case_id"], row["repeat"], digest(cond)))
+            if other is None:
+                continue
             key = (row["suspects"], digest(cond))
             entry = groups.setdefault(key, {"condition": cond, "worlds": {}})
             entry["worlds"].setdefault(row["world_group"], []).append(
@@ -480,6 +564,12 @@ def export_run(plan, cases, ledger):
                     else None
                 )
             row["usage_complete"] = len(accounted) == len(calls)
+    if plan.get("initial_pilot_case_ids"):
+        initial = set(plan["initial_pilot_case_ids"])
+        for row in rows:
+            row["analysis_cohort"] = (
+                "initial_pilot" if row["case_id"] in initial else "expanded_development"
+            )
     summary = summarize(rows)
     for entry in summary:
         group = [
@@ -506,6 +596,16 @@ def export_run(plan, cases, ledger):
             invalid_submissions=sum(r["invalid_submission"] for r in group),
             errors=sum(r["error"] is not None for r in group),
             cost_usd=sum(r["cost_usd"] for r in group),
+            unresolved_cost_reservation_usd=sum(
+                r.get("unresolved_cost_reservation_usd", 0) for r in group
+            ),
+            dispatched_episodes=sum(r["episode_id"] in observed for r in group),
+            answer_accuracy_among_completed=(
+                sum(r["correct"] for r in group if r["completion"])
+                / sum(r["completion"] for r in group)
+            )
+            if any(r["completion"] for r in group)
+            else None,
         )
         available = [r for r in group if r["tokens"] is not None]
         entry["tokens"] = (
@@ -526,6 +626,7 @@ def export_run(plan, cases, ledger):
             if r["model"] == model
             and r["tokens"] is not None
             and r["error"] != "budget_stopped"
+            and r.get("usage_complete", True)
         ]
         worlds = {}
         for row in measured:
@@ -568,12 +669,138 @@ def export_run(plan, cases, ledger):
         "larger_study_cost_estimate": costs,
         "episodes": rows,
         "ledger": ledger.export(),
+        "cohorts": {
+            cohort: {
+                "summary": summarize(part),
+                "paired_strategy_gaps": strategy_gaps(part),
+                "paired_model_gaps": paired_model_gaps(part),
+                "expected_episodes": len(part),
+                "dispatched_episodes": sum(r["episode_id"] in observed for r in part),
+            }
+            for cohort in ("initial_pilot", "expanded_development")
+            if (part := [r for r in rows if r.get("analysis_cohort") == cohort])
+        },
     }
 
 
-def run_study(plan, root, dry_run=False, provider_factory=make_provider, progress=None):
+def _run_continuation(
+    plan, cases, ledger, output, provider_factory, active_models, progress
+):
+    providers = {}
+    stopped = None
+    for model in active_models:
+        prior = ledger.model(model)
+        if prior and prior["status"] in (
+            "incompatible",
+            "probe_started",
+            "budget_stopped",
+            "accounting_stopped",
+        ):
+            continue
+        if (
+            provider_factory is make_provider
+            and model.startswith("google/")
+            and not os.environ.get("GOOGLE_API_KEY")
+        ):
+            ledger.model_status(
+                model,
+                "credential_unavailable",
+                {"error": "GOOGLE_API_KEY unavailable; no calls made"},
+            )
+            continue
+        try:
+            provider = provider_factory(
+                model,
+                model_settings(plan, model),
+                plan["model_runtime_identities"][model],
+            )
+            if hasattr(provider, "input_tokens_bound"):
+                bound = provider.input_tokens_bound(
+                    provider.start("Non-generation context accounting check."),
+                    ["request_clue", "submit_answer"],
+                )
+                if not 0 < bound < plan["token_limit"]:
+                    raise ProtocolError("input accounting probe failed")
+            if not prior or prior["status"] != "compatible":
+                ledger.model_status(
+                    model,
+                    "probe_started",
+                    {"error": "interrupted probes are not automatically repeated"},
+                )
+                compatibility = probe(provider, plan, ledger, output)
+                atomic_json(
+                    output / "logs" / (digest(model) + "-compatibility.json"),
+                    compatibility,
+                )
+                ledger.model_status(model, "compatible", compatibility)
+                if progress:
+                    progress({"model": model, "compatibility": "passed"})
+            providers[model] = provider
+        except (BudgetStop, AccountingStop) as exc:
+            stopped = (
+                "budget_stopped"
+                if isinstance(exc, BudgetStop)
+                else "accounting_stopped"
+            )
+            ledger.model_status(model, stopped, {"error": stopped})
+        except Exception as exc:
+            ledger.model_status(model, "incompatible", {"error": error_label(exc)})
+            if progress:
+                progress(
+                    {
+                        "model": model,
+                        "compatibility": "failed",
+                        "error": error_label(exc),
+                    }
+                )
+    for episode, row, case in declared_episodes(plan, cases):
+        model = row["model"]
+        if model not in providers:
+            continue
+        try:
+            ledger.guard([model])
+            if not ledger.begin_episode(episode):
+                continue
+            result = play_episode(
+                providers[model], plan, ledger, episode, row, case, output
+            )
+            if progress:
+                progress(
+                    {
+                        "model": model,
+                        "episode_id": episode,
+                        "correct": result["correct"],
+                        "error": result["error"],
+                    }
+                )
+        except (BudgetStop, AccountingStop) as exc:
+            stopped = (
+                "budget_stopped"
+                if isinstance(exc, BudgetStop)
+                else "accounting_stopped"
+            )
+            ledger.model_status(model, stopped, {"error": stopped})
+            providers.pop(model)
+    return stopped
+
+
+def run_study(
+    plan,
+    root,
+    dry_run=False,
+    provider_factory=make_provider,
+    progress=None,
+    models=None,
+):
     verify_study(plan, root, require_models=True)
     cases = execution_cases(plan, root)
+    active_models = plan["models"] if models is None else list(models)
+    if (
+        not active_models
+        or len(set(active_models)) != len(active_models)
+        or set(active_models) - set(plan["models"])
+    ):
+        raise ValueError("execution filter must name distinct frozen models")
     if dry_run:
         return {
             "plan_id": plan["plan_id"],
@@ -586,10 +813,14 @@ def run_study(plan, root, dry_run=False, provider_factory=make_provider, progres
             "episodes_per_model": len(cases)
             * len(plan["conditions"])
             * plan["repeats"],
-            "expected_episodes": len(plan["models"])
-            * len(cases)
-            * len(plan["conditions"])
-            * plan["repeats"],
+            "expected_episodes": sum(1 for _ in declared_episodes(plan, cases)),
+            "active_models": active_models,
+            "episodes_by_model": {
+                m: len(plan.get("model_case_ids", {}).get(m, plan["selected_case_ids"]))
+                * len(plan["conditions"])
+                * plan["repeats"]
+                for m in plan["models"]
+            },
             "local_runtime_pinned": plan.get("local_runtime_pinned"),
             "spending": plan.get("spending"),
         }
@@ -606,95 +837,89 @@ def run_study(plan, root, dry_run=False, provider_factory=make_provider, progres
     if any(not plan["model_runtime_identities"].get(m) for m in plan["models"]):
         raise ValueError("pin all runtime identities before execution")
     output = Path(root) / plan["execution_directory"]
-    with execution_lock(output / "runner.lock"):
+    if plan.get("continuation_policy") and not (output / "ledger.sqlite3").exists():
+        raise ValueError(
+            "continuation requires its audited prior ledger; never initialize a fresh budget"
+        )
+    with ExitStack() as locks:
+        # One paid runner and one independent free local runner may coexist.
+        families = sorted({m.split("/", 1)[0] for m in active_models})
+        if plan.get("continuation_policy", {}).get("local_accounting_independent"):
+            for family in families:
+                locks.enter_context(
+                    execution_lock(output / ("runner-" + family + ".lock"))
+                )
+        else:
+            locks.enter_context(execution_lock(output / "runner.lock"))
         ledger = Ledger(output / "ledger.sqlite3", plan)
         stopped = None
         try:
-            ledger.guard()
-            for model in plan["models"]:
-                prior = ledger.model(model)
-                if prior and prior["status"] in (
-                    "incompatible",
-                    "probe_started",
-                    "budget_stopped",
-                    "accounting_stopped",
-                ):
-                    continue
-                if (
-                    provider_factory is make_provider
-                    and model.startswith("google/")
-                    and not os.environ.get("GOOGLE_API_KEY")
-                ):
-                    ledger.model_status(
-                        model,
-                        "credential_unavailable",
-                        {"error": "GOOGLE_API_KEY unavailable; no calls made"},
-                    )
-                    continue
-                try:
-                    provider = provider_factory(
-                        model,
-                        model_settings(plan, model),
-                        plan["model_runtime_identities"][model],
-                    )
-                    if hasattr(provider, "input_tokens_bound"):
-                        counter_bound = provider.input_tokens_bound(
-                            provider.start("Non-generation context accounting check."),
-                            ["request_clue", "submit_answer"],
-                        )
-                        if not 0 < counter_bound < plan["token_limit"]:
-                            raise ProtocolError("input accounting probe failed")
-                    if not prior or prior["status"] != "compatible":
+            if plan.get("continuation_policy"):
+                ledger.guard(active_models)
+                stopped = _run_continuation(
+                    plan,
+                    cases,
+                    ledger,
+                    output,
+                    provider_factory,
+                    active_models,
+                    progress,
+                )
+            else:
+                ledger.guard(active_models)
+                for model in active_models:
+                    prior = ledger.model(model)
+                    if prior and prior["status"] in (
+                        "incompatible",
+                        "probe_started",
+                        "budget_stopped",
+                        "accounting_stopped",
+                    ):
+                        continue
+                    if (
+                        provider_factory is make_provider
+                        and model.startswith("google/")
+                        and not os.environ.get("GOOGLE_API_KEY")
+                    ):
                         ledger.model_status(
                             model,
-                            "probe_started",
-                            {
-                                "error": "interrupted probes are not automatically repeated"
-                            },
+                            "credential_unavailable",
+                            {"error": "GOOGLE_API_KEY unavailable; no calls made"},
                         )
-                        compatibility = probe(provider, plan, ledger, output)
-                        atomic_json(
-                            output / "logs" / (digest(model) + "-compatibility.json"),
-                            compatibility,
-                        )
-                        ledger.model_status(model, "compatible", compatibility)
-                        if progress:
-                            progress({"model": model, "compatibility": "passed"})
-                except (BudgetStop, AccountingStop) as exc:
-                    stopped = (
-                        "budget_stopped"
-                        if isinstance(exc, BudgetStop)
-                        else "accounting_stopped"
-                    )
-                    ledger.model_status(model, stopped, {"error": stopped})
-                    break
-                except Exception as exc:
-                    ledger.model_status(
-                        model, "incompatible", {"error": error_label(exc)}
-                    )
-                    try:
-                        ledger.guard()
-                    except AccountingStop:
-                        stopped = "accounting_stopped"
-                        break
-                    if progress:
-                        progress(
-                            {
-                                "model": model,
-                                "compatibility": "failed",
-                                "error": error_label(exc),
-                            }
-                        )
-                    continue
-                for episode, row, case in declared_episodes(
-                    {**plan, "models": [model]}, cases
-                ):
-                    if not ledger.begin_episode(episode):
                         continue
                     try:
-                        result = play_episode(
-                            provider, plan, ledger, episode, row, case, output
+                        provider = provider_factory(
+                            model,
+                            model_settings(plan, model),
+                            plan["model_runtime_identities"][model],
                         )
+                        if hasattr(provider, "input_tokens_bound"):
+                            counter_bound = provider.input_tokens_bound(
+                                provider.start(
+                                    "Non-generation context accounting check."
+                                ),
+                                ["request_clue", "submit_answer"],
+                            )
+                            if not 0 < counter_bound < plan["token_limit"]:
+                                raise ProtocolError("input accounting probe failed")
+                        if not prior or prior["status"] != "compatible":
+                            ledger.model_status(
+                                model,
+                                "probe_started",
+                                {
+                                    "error": "interrupted probes are not automatically repeated"
+                                },
+                            )
+                            compatibility = probe(provider, plan, ledger, output)
+                            atomic_json(
+                                output
+                                / "logs"
+                                / (digest(model) + "-compatibility.json"),
+                                compatibility,
+                            )
+                            ledger.model_status(model, "compatible", compatibility)
+                            if progress:
+                                progress({"model": model, "compatibility": "passed"})
                     except (BudgetStop, AccountingStop) as exc:
                         stopped = (
                             "budget_stopped"
@@ -703,17 +928,52 @@ def run_study(plan, root, dry_run=False, provider_factory=make_provider, progres
                         )
                         ledger.model_status(model, stopped, {"error": stopped})
                         break
-                    if progress:
-                        progress(
-                            {
-                                "model": model,
-                                "episode_id": episode,
-                                "correct": result["correct"],
-                                "error": result["error"],
-                            }
+                    except Exception as exc:
+                        ledger.model_status(
+                            model, "incompatible", {"error": error_label(exc)}
                         )
-                if stopped:
-                    break
+                        try:
+                            ledger.guard([model])
+                        except AccountingStop:
+                            stopped = "accounting_stopped"
+                            break
+                        if progress:
+                            progress(
+                                {
+                                    "model": model,
+                                    "compatibility": "failed",
+                                    "error": error_label(exc),
+                                }
+                            )
+                        continue
+                    for episode, row, case in declared_episodes(
+                        {**plan, "models": [model]}, cases
+                    ):
+                        if not ledger.begin_episode(episode):
+                            continue
+                        try:
+                            result = play_episode(
+                                provider, plan, ledger, episode, row, case, output
+                            )
+                        except (BudgetStop, AccountingStop) as exc:
+                            stopped = (
+                                "budget_stopped"
+                                if isinstance(exc, BudgetStop)
+                                else "accounting_stopped"
+                            )
+                            ledger.model_status(model, stopped, {"error": stopped})
+                            break
+                        if progress:
+                            progress(
+                                {
+                                    "model": model,
+                                    "episode_id": episode,
+                                    "correct": result["correct"],
+                                    "error": result["error"],
+                                }
+                            )
+                    if stopped:
+                        break
         except AccountingStop:
             stopped = "accounting_stopped"
         finally:
@@ -721,7 +981,8 @@ def run_study(plan, root, dry_run=False, provider_factory=make_provider, progres
             if stopped:
                 result["manifest"]["status"] = "incomplete"
                 result["manifest"]["stop_reason"] = stopped
-            atomic_json(output / "results.json", result)
-            atomic_json(output / "cost-ledger.json", ledger.export())
+            suffix = "-" + "-".join(families) if models is not None else ""
+            atomic_json(output / ("results" + suffix + ".json"), result)
+            atomic_json(output / ("cost-ledger" + suffix + ".json"), ledger.export())
             ledger.close()
         return result

@@ -102,6 +102,11 @@ def main():
     run.add_argument("plan")
     run.add_argument("--root", default=".")
     run.add_argument("--dry-run", action="store_true")
+    run.add_argument(
+        "--models",
+        nargs="+",
+        help="Execute only these frozen models; retain all declared results",
+    )
     review_preparation = sub.add_parser("prepare-review")
     review_preparation.add_argument("input", nargs="+")
     review_preparation.add_argument("--output", required=True)
@@ -158,6 +163,7 @@ def main():
                     plan,
                     args.root,
                     args.dry_run,
+                    models=args.models,
                     progress=lambda event: print(json.dumps(event), flush=True),
                 )
                 print(json.dumps(result if args.dry_run else result["manifest"]))

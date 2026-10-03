@@ -1,0 +1,96 @@
+# Development continuation: first $25
+
+This phase is authorized for a **$25 cumulative Gemini ceiling**, including the
+original pilot, compatibility probes, and maximum held charges for failed
+requests. The other $25 is reserved for a later, separately frozen study after
+review. No test execution or automatic second allocation is authorized.
+
+The original stopped pilot remains intact in `results/pilot-v0.3` and Git commit
+`b8b2ecf`. Its manifest and source hashes refer to that historical implementation.
+The continuation has a new manifest, source identity, output directory, and an
+audited copy of its durable ledger. All 82 dispatched episodes and 213 requests
+are preserved. Completed and failed episodes are never replayed.
+
+## Changes supported by the initial pilot
+
+- The user identified request 213 as HTTP 503. Its missing usage is still unknown:
+  the full $0.324813 reservation remains committed. It is explicitly marked held
+  under the user's continuation authorization. Future native 503 errors receive
+  the same treatment and remain failed scored episodes; automatic retries stay
+  zero. Successful responses without usage, unclassified failures, and unresolved
+  in-flight requests still stop paid execution. Raw exception text stays out of logs.
+- Google's preflight estimate understated billable conversation history. The
+  revised guard uses native count plus schema overhead and prior input plus twice
+  prior output plus new tool-result bytes, then adds 12.5% and 1,024 tokens of
+  headroom. A regression test covers the observed 58-token overrun. Per-request
+  input bounds, output caps, and remaining allowances are now saved. This is a
+  conservative estimate; an actual provider limit violation still stops that model.
+- The schedule first completes missing original pilot episodes, then rotates
+  suspect sizes, paired worlds, evidence budgets, random controls, and Gemini
+  models. This reduces the condition-coverage bias of a budget stop.
+- The original four worlds per size are too few for useful uncertainty estimates.
+  Remaining funds can cover more independent development worlds. Google's
+  expanded primary comparison excludes the original 12 diagnostic worlds.
+- Free Qwen execution has its own runner lock and accounting scope. A paid
+  accounting or funding stop cannot prevent the local baseline from completing.
+
+Thinking, temperature, output maximum, cumulative episode tokens, timeout, tools,
+prompts, dataset, and local digest otherwise retain their original values. All
+latencies are descriptive; hosted/local latency is not a capability ranking.
+
+## Frozen selection and interpretation
+
+Both Gemini models are scheduled for the 216 development cases: 108 paired worlds,
+36 per suspect size, nine conditions, one repeat, or 1,944 episodes each. Qwen
+completes the original 24 cases / 12 worlds / 216 episodes. There are 4,104 declared
+rows, including the 82 historical episodes. The ceiling can stop paid execution
+before this maximum is dispatched. Qwen/Gemini contrasts use only shared cases.
+
+The original-pilot cohort has 648 rows across all three models. The expansion
+cohort has 3,456 Gemini rows from 96 additional worlds (32 per size). Failures and
+missing rows remain incorrect in primary declared denominators, with dispatch,
+completion, and infrastructure error counts separately reported. Completed-answer
+accuracy is a descriptive conditional measure, subject to completion selection.
+World-clustered intervals retain both density variants and all related conditions.
+
+Random controls still provide their selected clues before generation, whereas
+investigation requires successive native tool calls. Thus their difference also
+includes interaction/thinking overhead. It cannot isolate topic-choice quality.
+A later study should match this overhead or explicitly target resource-bounded
+agent performance. Evaluator-only evidence feasibility diagnostics help distinguish
+ambiguity from answers that contradict revealed clues. They are never given to models.
+
+## Reproduce execution
+
+Preparation and dry runs make no generation calls. The committed frozen plan is
+`studies/pilot-v0.3-continued.json`; the authoritative local resume state is
+`results/pilot-v0.3-continued/ledger.sqlite3`. `continuation-audit.json` proves the
+copied prior commitment and lower ceiling. The original ledger stays stopped.
+Deleting the continuation ledger causes execution to refuse a fresh budget.
+Keep it and its WAL files while running; JSON exports are review artifacts.
+
+From the private repository, with `GOOGLE_API_KEY` supplied securely to the paid
+runner, these two invocations can run concurrently. Paid requests remain sequential.
+
+```sh
+uv run --locked clue-benchmark study-check studies/pilot-v0.3-continued.json
+uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json --dry-run
+uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json \
+  --models google/gemini-3.8-flash google/gemini-3.5-flash-lite
+uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json \
+  --models ollama/qwen3.5:9b
+uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-continued.json
+```
+
+Filtered runners write provider-family snapshots. The export command takes one
+consistent database read snapshot and produces aggregate `results.json` and
+`cost-ledger.json`, without constructing a model client or making generation calls.
+An incomplete global run returns status 2 even if a filtered local schedule has
+finished. Inspect the model states and dispatch counts to distinguish this.
+
+The preparation helpers `prepare_continuation` and `initialize_continuation` are
+in `clue_benchmark.continuation`; initialization is a one-time audited migration,
+not a resume operation. It cannot overwrite an existing continuation ledger.
+
+All 744 test cases, original generator files, dataset hashes, repository privacy,
+and pending licensing/publication are preserved.

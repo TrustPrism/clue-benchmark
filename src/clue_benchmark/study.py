@@ -201,7 +201,9 @@ def study_tasks(plan, root):
                 generation_config=plan.get("per_model_settings", {}).get(
                     model, plan["generation_config"]
                 ),
-                case_ids=plan.get("selected_case_ids"),
+                case_ids=plan.get("model_case_ids", {}).get(
+                    model, plan.get("selected_case_ids")
+                ),
                 token_limit=plan["token_limit"],
                 time_limit=plan["time_limit_seconds"],
                 run_metadata=metadata,

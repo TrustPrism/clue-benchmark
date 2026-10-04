@@ -43,11 +43,12 @@ the project into a reporting/dashboard effort while the study remains unfinished
 - This checkout is outside the current chat's writable roots. Use approved
   escalated execution for writes/network and SQLite WAL-related access as needed.
   Read/check repository and ancestor instructions in a new session.
-- This chat's GitHub privacy check was rejected by automatic approval review
-  because it would retrieve a saved Git credential and send it to GitHub without
-  explicit approval for credential use. The attempt did not execute. Complete
-  local work, but obtain approval before repeating that network action or pushing
-  this chat's checkpoint; do not route it through another process to bypass review.
+- Documentation checkpoint `b95d0d5` records the budget and cleanup. An initial
+  GitHub privacy check was rejected before execution for lack of explicit saved
+  credential approval. The user subsequently answered **“Verify and push”** for
+  this private repository and checkpoint. The authorized GitHub API check on
+  4 October confirmed `TrustPrism/clue-benchmark` is private. That approval covers
+  verification and pushing this documentation checkpoint; do not request it again.
   The pre-existing completion watcher has not been modified.
 - Google credentials were supplied to a hidden prompt and exist only in the paid
   process's memory/environment. Never print, persist, commit, or include them in

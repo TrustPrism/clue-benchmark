@@ -145,3 +145,10 @@ uv run --locked python -m build
 `main` began as an exact imported working-tree snapshot; the verified v0.3 preview is on `codex/benchmark-v1`, with readiness work on `codex/research-readiness`. `PROVENANCE.json` records original file hashes, source commit, and original uncommitted status. `legacy/` retains that baseline for comparisons, including its known limitations. It is not installed with the package and must not be used to score this benchmark. The new batch API starts with the requested seed, resolving the legacy skipped-seed behavior.
 
 The original `TrustPrism/clue-generator` repository and local directory are untouched. [LICENSING.md](LICENSING.md) describes why this preview is not a public open-source release yet.
+
+
+The first-$25 development continuation has a [saved report](docs/pilot-continuation-results.md),
+[execution and timeout-recovery notes](docs/pilot-continuation.md), and an
+[unexecuted proposal for the reserved second $25](docs/next-study-proposal.md).
+The durable ledger carries forward all original charges and held failures; the
+744 test cases remain unexecuted by models.

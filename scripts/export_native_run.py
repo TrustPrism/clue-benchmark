@@ -25,6 +25,9 @@ def main():
     try:
         ledger.db.execute("BEGIN")
         result = export_run(plan, execution_cases(plan, root), ledger)
+        result["manifest"]["exploratory"] = str(plan.get("study_kind", "")).startswith(
+            "exploratory-"
+        )
         costs = result["ledger"]
         ledger.db.rollback()
         atomic_json(output / "results.json", result)

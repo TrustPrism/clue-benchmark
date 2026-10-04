@@ -1,0 +1,350 @@
+{
+  "continuation_examples": [
+    {
+      "answer": "S03",
+      "case_id": "1097fb4c3df1838752d6d09d",
+      "decisive_revealed_clue": {
+        "clue_id": "c008",
+        "text": "The murderer has a different \"time\" value as suspect \"S03\"."
+      },
+      "episode_id": "d5db046474be428522b5f301be4c78b37dead2b9a0e06c1ac3780d09b207b4c7",
+      "evidence_diagnostic": {
+        "analysis_cohort": "initial_pilot",
+        "answer": "S03",
+        "budget_fraction": 1.0,
+        "case_id": "1097fb4c3df1838752d6d09d",
+        "completion": true,
+        "correct": 0,
+        "diagnostic_error": null,
+        "episode_id": "d5db046474be428522b5f301be4c78b37dead2b9a0e06c1ac3780d09b207b4c7",
+        "error": null,
+        "feasible_candidates": 1,
+        "identifying_evidence": true,
+        "model": "ollama/qwen3.5:9b",
+        "revealed_clue_ids": [
+          "c001",
+          "c002",
+          "c003",
+          "c004",
+          "c005",
+          "c006",
+          "c007",
+          "c008"
+        ],
+        "revealed_clues": 8,
+        "selection_policy": "agent",
+        "submitted_answer_consistent": false,
+        "suspects": 4,
+        "track": "deduction",
+        "world_group": "9f0218312596d0e56725e1b52fff6f4ad31280e3dcf5e71a139355eeedd33433"
+      },
+      "finding": "The submitted suspect is explicitly excluded: the murderer cannot have an attribute value different from that same suspect, because the rules equate the crime and murderer attributes. This is an output contradiction; no internal rationale was observed.",
+      "model": "ollama/qwen3.5:9b"
+    },
+    {
+      "answer": "S01",
+      "case_id": "3eaab611015cfe180bb05dd7",
+      "decisive_revealed_clue": {
+        "clue_id": "c012",
+        "text": "The murderer has a different \"time\" value as suspect \"S01\"."
+      },
+      "episode_id": "1a0db9a94cabca4ff2030d69e71de9c30187853e2ccd1d7aebd72e980d47c854",
+      "evidence_diagnostic": {
+        "analysis_cohort": "initial_pilot",
+        "answer": "S01",
+        "budget_fraction": 1.0,
+        "case_id": "3eaab611015cfe180bb05dd7",
+        "completion": true,
+        "correct": 0,
+        "diagnostic_error": null,
+        "episode_id": "1a0db9a94cabca4ff2030d69e71de9c30187853e2ccd1d7aebd72e980d47c854",
+        "error": null,
+        "feasible_candidates": 1,
+        "identifying_evidence": true,
+        "model": "ollama/qwen3.5:9b",
+        "revealed_clue_ids": [
+          "c001",
+          "c002",
+          "c003",
+          "c004",
+          "c005",
+          "c006",
+          "c007",
+          "c008",
+          "c009",
+          "c010",
+          "c011",
+          "c012"
+        ],
+        "revealed_clues": 12,
+        "selection_policy": "agent",
+        "submitted_answer_consistent": false,
+        "suspects": 8,
+        "track": "deduction",
+        "world_group": "820986d5172ee41d0832aba01b413abe5e71f0284792f81273f9ffc34396ff26"
+      },
+      "finding": "The submitted suspect is explicitly excluded: the murderer cannot have an attribute value different from that same suspect, because the rules equate the crime and murderer attributes. This is an output contradiction; no internal rationale was observed.",
+      "model": "ollama/qwen3.5:9b"
+    },
+    {
+      "answer": "S04",
+      "case_id": "3eaab611015cfe180bb05dd7",
+      "decisive_revealed_clue": {
+        "clue_id": "c005",
+        "text": "The murderer has a different \"weapon\" value as suspect \"S04\"."
+      },
+      "episode_id": "df0519d319b3885aa420d00631261f0f03e19388791ce6a9c7eecff4b8d66eb5",
+      "evidence_diagnostic": {
+        "analysis_cohort": "initial_pilot",
+        "answer": "S04",
+        "budget_fraction": 0.25,
+        "case_id": "3eaab611015cfe180bb05dd7",
+        "completion": true,
+        "correct": 0,
+        "diagnostic_error": null,
+        "episode_id": "df0519d319b3885aa420d00631261f0f03e19388791ce6a9c7eecff4b8d66eb5",
+        "error": null,
+        "feasible_candidates": 6,
+        "identifying_evidence": false,
+        "model": "ollama/qwen3.5:9b",
+        "revealed_clue_ids": [
+          "c005",
+          "c007",
+          "c012"
+        ],
+        "revealed_clues": 3,
+        "selection_policy": "random",
+        "submitted_answer_consistent": false,
+        "suspects": 8,
+        "track": "investigation",
+        "world_group": "820986d5172ee41d0832aba01b413abe5e71f0284792f81273f9ffc34396ff26"
+      },
+      "finding": "The submitted suspect is explicitly excluded: the murderer cannot have an attribute value different from that same suspect, because the rules equate the crime and murderer attributes. This is an output contradiction; no internal rationale was observed.",
+      "model": "ollama/qwen3.5:9b"
+    },
+    {
+      "case_id": "8ebf8567619ceeba4028d111",
+      "episode_id": "670abedd4db2dbae88d2ef24783555924b4bbd6cb185a67437b1a1e144fd3f3c",
+      "evidence_diagnostic": {
+        "analysis_cohort": "initial_pilot",
+        "answer": null,
+        "budget_fraction": 1.0,
+        "case_id": "8ebf8567619ceeba4028d111",
+        "completion": false,
+        "correct": 0,
+        "diagnostic_error": null,
+        "episode_id": "670abedd4db2dbae88d2ef24783555924b4bbd6cb185a67437b1a1e144fd3f3c",
+        "error": null,
+        "feasible_candidates": 1,
+        "identifying_evidence": true,
+        "model": "ollama/qwen3.5:9b",
+        "revealed_clue_ids": [
+          "c001",
+          "c002",
+          "c003",
+          "c004",
+          "c005",
+          "c006",
+          "c007",
+          "c008",
+          "c009",
+          "c010",
+          "c011",
+          "c012",
+          "c013",
+          "c014",
+          "c015",
+          "c016",
+          "c017",
+          "c018",
+          "c019",
+          "c020"
+        ],
+        "revealed_clues": 20,
+        "selection_policy": "agent",
+        "submitted_answer_consistent": null,
+        "suspects": 12,
+        "track": "deduction",
+        "world_group": "68150573539550c2b3111c3e972d73ac1ff7f74dad07a030838f564a944fad47"
+      },
+      "finding": "Complete evidence was supplied, but the native response ended with 4,096 generated tokens, empty content and no tool call. It reached the per-call output maximum and made no final submission. Thinking is included in the output count but not separately measured; the internal rationale is unavailable.",
+      "last_assistant": {
+        "calls": [],
+        "returned_model_version": "qwen3.5:9b",
+        "role": "assistant",
+        "text": "",
+        "usage": {
+          "input_tokens": 1269,
+          "output_tokens": 4096,
+          "thinking_accounting": "included in eval_count; component unavailable",
+          "thinking_tokens": null,
+          "total_tokens": 5365
+        }
+      },
+      "model": "ollama/qwen3.5:9b"
+    }
+  ],
+  "exploratory": true,
+  "method": "Codex inspected public clue texts and native calls, cross-checked evaluator-only feasibility. These are selected examples, not independent human annotations or a prevalence estimate. Internal thinking was not recorded.",
+  "prior_pilot_examples": [
+    {
+      "answer": "S04",
+      "budget_fraction": 0.25,
+      "case_id": "e5456c3eb83eecd9796f2cee",
+      "correct": 0,
+      "episode_id": "35b542b42d170cb2660fd2197c6887e75d91708a316551c0cf9867fd6b37bd60",
+      "feasible_candidates": [
+        "S01",
+        "S03",
+        "S04"
+      ],
+      "manual_assessment": "Wrong exact answer, but consistent with revealed clues. Remaining evidence supports multiple candidates. The logged final answer provides no rationale, so guessing and an unsupported uniqueness assumption cannot be distinguished.",
+      "model": "google/gemini-3.8-flash",
+      "revealed_clues": [
+        {
+          "clue_id": "c010",
+          "text": "The murderer has \"weapon\" = \"Poison\"."
+        },
+        {
+          "clue_id": "c011",
+          "text": "The murderer has a different \"weapon\" value as suspect \"S02\"."
+        },
+        {
+          "clue_id": "c001",
+          "text": "Suspect \"S04\" has \"weapon\" = \"Poison\"."
+        }
+      ],
+      "suspects": 4
+    },
+    {
+      "answer": "S01",
+      "budget_fraction": 0.25,
+      "case_id": "ea8330538bf0cf1271a0a0d4",
+      "correct": 0,
+      "episode_id": "4d42014a33d22408fb1943e7ec7db9733e172b844816e6c088d340ff03120187",
+      "feasible_candidates": [
+        "S01",
+        "S02",
+        "S04",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "manual_assessment": "Wrong exact answer, but consistent with revealed clues. Remaining evidence supports multiple candidates. The logged final answer provides no rationale, so guessing and an unsupported uniqueness assumption cannot be distinguished.",
+      "model": "google/gemini-3.8-flash",
+      "revealed_clues": [
+        {
+          "clue_id": "c001",
+          "text": "The murderer has \"motive\" = \"Blackmail\"."
+        },
+        {
+          "clue_id": "c010",
+          "text": "Suspect \"S08\" has \"motive\" = \"Revenge\"."
+        },
+        {
+          "clue_id": "c005",
+          "text": "The murderer has a different \"motive\" value as suspect \"S03\"."
+        }
+      ],
+      "suspects": 8
+    },
+    {
+      "answer": "S01",
+      "budget_fraction": 0.25,
+      "case_id": "fab8d8158c41296e95e4103c",
+      "correct": 0,
+      "episode_id": "f496047b0f20cdba1218aeb5a544209535bc3100b36e50ab45914d0b7c1959dc",
+      "feasible_candidates": [
+        "S01",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12"
+      ],
+      "manual_assessment": "Wrong exact answer, but consistent with revealed clues. Remaining evidence supports multiple candidates. The logged final answer provides no rationale, so guessing and an unsupported uniqueness assumption cannot be distinguished.",
+      "model": "google/gemini-3.8-flash",
+      "revealed_clues": [
+        {
+          "clue_id": "c015",
+          "text": "The murderer has \"location\" = \"Study\"."
+        },
+        {
+          "clue_id": "c003",
+          "text": "Suspect \"S02\" has \"location\" != \"Study\"."
+        },
+        {
+          "clue_id": "c016",
+          "text": "No suspect has both \"time\" = \"21:00\" and \"location\" = \"Study\"."
+        },
+        {
+          "clue_id": "c013",
+          "text": "The murderer has a different \"time\" value as suspect \"S03\"."
+        }
+      ],
+      "suspects": 12
+    },
+    {
+      "answer": "S01",
+      "case_id": "3eaab611015cfe180bb05dd7",
+      "contradicting_clue": {
+        "attribute": "time",
+        "clue_id": "c012",
+        "suspect": "S01",
+        "type": "crime_different_from"
+      },
+      "correct": 0,
+      "episode_id": "81c384671d6de0488df2f24759c293b0eacf2f2a59b75d02fab94f639cb55df3",
+      "feasible_candidates": [
+        "S08"
+      ],
+      "manual_assessment": "The submitted suspect is explicitly excluded by a crime_different_from clue about that same suspect. Under the supplied rule equating crime attributes with the murderer attributes, that suspect cannot differ from itself. The final transcript supplies no rationale; the output contradiction is observable, but the internal reasoning error cannot be inferred.",
+      "model": "google/gemini-3.5-flash-lite",
+      "suspects": 8,
+      "track": "deduction"
+    },
+    {
+      "answer": "S01",
+      "case_id": "ab8ac9ebb54c809f0f9c677e",
+      "contradicting_clue": {
+        "attribute": "time",
+        "clue_id": "c001",
+        "suspect": "S01",
+        "type": "crime_different_from"
+      },
+      "correct": 0,
+      "episode_id": "01ebf7da5af3448fe94a066feab93dc84adf856e5d08dc1f4904b9457c64a1f2",
+      "feasible_candidates": [
+        "S08"
+      ],
+      "manual_assessment": "The submitted suspect is explicitly excluded by a crime_different_from clue about that same suspect. Under the supplied rule equating crime attributes with the murderer attributes, that suspect cannot differ from itself. The final transcript supplies no rationale; the output contradiction is observable, but the internal reasoning error cannot be inferred.",
+      "model": "google/gemini-3.5-flash-lite",
+      "suspects": 8,
+      "track": "deduction"
+    },
+    {
+      "answer": "S02",
+      "case_id": "b7dfea6f630c18c80f1ed034",
+      "contradicting_clue": {
+        "attribute": "motive",
+        "clue_id": "c004",
+        "suspect": "S02",
+        "type": "crime_different_from"
+      },
+      "correct": 0,
+      "episode_id": "82653e6c694ee75481720f542916e78fc0c3d81a95d0958599e890874d3e8660",
+      "feasible_candidates": [
+        "S08"
+      ],
+      "manual_assessment": "The submitted suspect is explicitly excluded by a crime_different_from clue about that same suspect. Under the supplied rule equating crime attributes with the murderer attributes, that suspect cannot differ from itself. The final transcript supplies no rationale; the output contradiction is observable, but the internal reasoning error cannot be inferred.",
+      "model": "google/gemini-3.5-flash-lite",
+      "suspects": 8,
+      "track": "deduction"
+    }
+  ],
+  "prior_pilot_review": "../pilot-v0.3/manual-review.json"
+}

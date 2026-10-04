@@ -18,3 +18,6 @@ results/pilot-*/ledger*.sqlite3*
 results/pilot-*/runner.lock
 
 results/pilot-*/runner-*.lock
+
+# Live completion watcher status is mutable, not a frozen scientific artifact.
+results/**/completion-state.json

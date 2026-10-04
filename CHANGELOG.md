@@ -2,6 +2,11 @@
 
 ## Development pilot continuation
 
+- Explicit user override permits unverifiable usage to retain full maximum charges while failing that episode and continuing fresh cases; unknown usage is never treated as free.
+
+- User-authorized failed-timeout recovery retains full maximum charges and failed scores, with no episode/request retries.
+- Evaluator-only evidence feasibility, reviewed Qwen failures, scientific figures, and an unexecuted second-allocation proposal.
+
 - User-authorized $25 cumulative Gemini ceiling, retained 503 maximum charges, independent Qwen execution, and deterministic paired development expansion.
 - Explicit token-bound headroom and request limits recorded for debugging; original episodes and the stopped pilot remain preserved.
 - Separate diagnostic and expansion cohorts, shared-case model contrasts, and dispatch/completion coverage.

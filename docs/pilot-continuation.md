@@ -94,3 +94,64 @@ not a resume operation. It cannot overwrite an existing continuation ledger.
 
 All 744 test cases, original generator files, dataset hashes, repository privacy,
 and pending licensing/publication are preserved.
+
+## Failed-timeout recovery amendment
+
+After a new Flash-Lite generation timeout returned no usage, the user explicitly
+authorized trying again below the cap. The current executable plan is
+`studies/pilot-v0.3-timeout-recovery.json`, with a separately hashed controller in
+`scripts/continue_saved_study.py`. It retains each failed timeout's full maximum
+reservation and score, then restores only compatible, accounted timeout pauses
+and dispatches fresh episode IDs. It never retries a closed episode or request,
+changes the native implementation, or resets costs. Unknown successful usage,
+other unresolved errors, and protocol incompatibilities still stop execution.
+
+The original continuation and pre-controller manifests remain immutable. Qwen
+was already running with the preceding continuation manifest and identical native
+source/settings; its original row/source identities remain preserved. The final
+aggregate export uses the latest manifest and ledger binding. Family snapshots
+are historical execution artifacts, not the final aggregate analysis.
+
+```sh
+uv run --locked python scripts/continue_saved_study.py studies/pilot-v0.3-timeout-recovery.json
+uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-timeout-recovery.json
+uv run --locked python scripts/evidence_diagnostics.py studies/pilot-v0.3-timeout-recovery.json
+uv run --locked python scripts/report_continuation.py studies/pilot-v0.3-timeout-recovery.json --final
+```
+
+A one-time local watcher, `scripts/finalize_continuation.py`, waits for the two
+specific running worker processes to finish. It then exports, diagnoses, renders
+scientific figures, reruns checks, verifies original costs/privacy/credential
+patterns, and commits/pushes only this phase's deliverables. It makes no model
+requests and cannot allocate or execute the reserved second $25. Its status is in
+`results/pilot-v0.3-continued/completion-state.json`; the final publication receipt
+is `/private/tmp/clue-continuation-completion.json`. No recurring job is created.
+
+See [the saved results](pilot-continuation-results.md) and the
+[unexecuted next-study proposal](next-study-proposal.md).
+
+## Explicit incomplete-usage override
+
+The resumed Flash run then returned unverifiable usage on request 1711, with a
+197-token remaining output cap. The user explicitly approved **“Apply
+maximum-charge holds and continue.”** The current manifest is
+`studies/pilot-v0.3-reserved-recovery.json`, with separately hashed controller
+`scripts/continue_reserved_study.py`. The prior proposal remains non-executable
+and preserved as the pre-authorization record.
+
+The controller holds full maximum charges for failed timeouts and unverifiable
+usage, preserves the failed episode and every request/score, and proceeds only
+to fresh episode IDs under the cumulative $25. Actual usage and actual charges
+remain unknown in the ledger; neither zeros nor invented token counts are used.
+These failures are excluded from usage-complete cost extrapolation. Native
+incompatibilities and other unclassified unresolved errors still stop execution.
+The override is a recorded policy change, not a claim that accounting succeeded.
+`usage-recovery-amendment-audit.json` and `accounting-recovery.json` retain the
+migration and every subsequent recovery. The other $25 is unspent.
+
+```sh
+uv run --locked python scripts/continue_reserved_study.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked python scripts/evidence_diagnostics.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked python scripts/report_continuation.py studies/pilot-v0.3-reserved-recovery.json --final
+```

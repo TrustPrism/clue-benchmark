@@ -2,8 +2,12 @@
 
 This phase is authorized for a **$25 cumulative Gemini ceiling**, including the
 original pilot, compatibility probes, and maximum held charges for failed
-requests. The other $25 is reserved for a later, separately frozen study after
-review. No test execution or automatic second allocation is authorized.
+requests. The project total is **$50**, reconfirmed by the user on 4 October 2026.
+Both Gemini models have since stopped on output-cap violations, at $10.138003
+committed including maximum holds. Local Qwen continues. The unused funds are
+reallocated to $3 calibration, $34 revised study and $2.861997 contingency in the
+[budget and study plan](next-study-proposal.md). The current controller cannot
+allocate later stages or execute held-out test cases.
 
 The original stopped pilot remains intact in `results/pilot-v0.3` and Git commit
 `b8b2ecf`. Its manifest and source hashes refer to that historical implementation.
@@ -62,25 +66,42 @@ ambiguity from answers that contradict revealed clues. They are never given to m
 
 ## Reproduce execution
 
-Preparation and dry runs make no generation calls. The committed frozen plan is
-`studies/pilot-v0.3-continued.json`; the authoritative local resume state is
-`results/pilot-v0.3-continued/ledger.sqlite3`. `continuation-audit.json` proves the
-copied prior commitment and lower ceiling. The original ledger stays stopped.
-Deleting the continuation ledger causes execution to refuse a fresh budget.
-Keep it and its WAL files while running; JSON exports are review artifacts.
+The authoritative frozen plan is `studies/pilot-v0.3-reserved-recovery.json`;
+the authoritative resume/accounting state is
+`results/pilot-v0.3-continued/ledger.sqlite3`. Verify worker identities and the
+[handoff](HANDOFF.md) before starting a process; do not duplicate a live worker.
+The historical plans listed below are audit records, not current resume commands.
+Deleting the ledger causes continuation execution to refuse a fresh budget.
+Keep it and its WAL files while running; JSON exports can lag the live ledger.
 
-From the private repository, with `GOOGLE_API_KEY` supplied securely to the paid
-runner, these two invocations can run concurrently. Paid requests remain sequential.
+Validation and dry runs make no generation calls:
 
 ```sh
-uv run --locked clue-benchmark study-check studies/pilot-v0.3-continued.json
-uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json --dry-run
-uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json \
-  --models google/gemini-3.8-flash google/gemini-3.5-flash-lite
-uv run --locked clue-benchmark run-study studies/pilot-v0.3-continued.json \
-  --models ollama/qwen3.5:9b
-uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-continued.json
+uv run --locked clue-benchmark study-check studies/pilot-v0.3-reserved-recovery.json
+uv run --locked clue-benchmark run-study studies/pilot-v0.3-reserved-recovery.json --dry-run
 ```
+
+Only after verifying the corresponding worker has ended and its stop is eligible
+under the frozen policy, resume fresh episodes with the existing ledger. Supply
+`GOOGLE_API_KEY` securely to the paid runner (or its hidden prompt); never save it
+in project files. Google requests stay sequential; local Qwen uses a separate lock.
+These commands do not clear an incompatible-model state:
+
+```sh
+uv run --locked python scripts/continue_reserved_study.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked clue-benchmark run-study studies/pilot-v0.3-reserved-recovery.json --models ollama/qwen3.5:9b
+```
+
+Read-only analysis of execution makes no model calls, but writes derived exports:
+
+```sh
+uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked python scripts/evidence_diagnostics.py studies/pilot-v0.3-reserved-recovery.json
+uv run --locked python scripts/report_continuation.py studies/pilot-v0.3-reserved-recovery.json
+```
+
+Add `--final` to reporting only after both workers have ended and their locks are
+clear. A funding or compatibility stop can leave declared episodes unexecuted.
 
 Filtered runners write provider-family snapshots. The export command takes one
 consistent database read snapshot and produces aggregate `results.json` and
@@ -98,8 +119,8 @@ and pending licensing/publication are preserved.
 ## Failed-timeout recovery amendment
 
 After a new Flash-Lite generation timeout returned no usage, the user explicitly
-authorized trying again below the cap. The current executable plan is
-`studies/pilot-v0.3-timeout-recovery.json`, with a separately hashed controller in
+authorized proceeding to fresh episodes below the cap. The historical amendment
+`studies/pilot-v0.3-timeout-recovery.json` used a separately hashed controller in
 `scripts/continue_saved_study.py`. It retains each failed timeout's full maximum
 reservation and score, then restores only compatible, accounted timeout pauses
 and dispatches fresh episode IDs. It never retries a closed episode or request,
@@ -112,18 +133,11 @@ source/settings; its original row/source identities remain preserved. The final
 aggregate export uses the latest manifest and ledger binding. Family snapshots
 are historical execution artifacts, not the final aggregate analysis.
 
-```sh
-uv run --locked python scripts/continue_saved_study.py studies/pilot-v0.3-timeout-recovery.json
-uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-timeout-recovery.json
-uv run --locked python scripts/evidence_diagnostics.py studies/pilot-v0.3-timeout-recovery.json
-uv run --locked python scripts/report_continuation.py studies/pilot-v0.3-timeout-recovery.json --final
-```
-
 A one-time local watcher, `scripts/finalize_continuation.py`, waits for the two
 specific running worker processes to finish. It then exports, diagnoses, renders
 scientific figures, reruns checks, verifies original costs/privacy/credential
 patterns, and commits/pushes only this phase's deliverables. It makes no model
-requests and cannot allocate or execute the reserved second $25. Its status is in
+requests and cannot allocate or execute later study stages. Its status is in
 `results/pilot-v0.3-continued/completion-state.json`; the final publication receipt
 is `/private/tmp/clue-continuation-completion.json`. No recurring job is created.
 
@@ -147,11 +161,4 @@ These failures are excluded from usage-complete cost extrapolation. Native
 incompatibilities and other unclassified unresolved errors still stop execution.
 The override is a recorded policy change, not a claim that accounting succeeded.
 `usage-recovery-amendment-audit.json` and `accounting-recovery.json` retain the
-migration and every subsequent recovery. The other $25 is unspent.
-
-```sh
-uv run --locked python scripts/continue_reserved_study.py studies/pilot-v0.3-reserved-recovery.json
-uv run --locked python scripts/export_native_run.py studies/pilot-v0.3-reserved-recovery.json
-uv run --locked python scripts/evidence_diagnostics.py studies/pilot-v0.3-reserved-recovery.json
-uv run --locked python scripts/report_continuation.py studies/pilot-v0.3-reserved-recovery.json --final
-```
+migration and every subsequent recovery. Later study allocations remain unspent.

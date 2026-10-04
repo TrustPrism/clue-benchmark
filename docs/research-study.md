@@ -1,8 +1,10 @@
 # Model study protocol
 
 This document describes the prepared full study. Model measurements are confined
-to the separate [development pilot](pilot-protocol.md), whose
-[results](pilot-results.md) record execution status. The v0.3 cases remain unchanged. Software 0.3.1 adds study preparation,
+to the [development continuation](pilot-continuation.md), whose
+[generated report](pilot-continuation-results.md) records current results. The
+[original pilot](pilot-protocol.md) and its [results](pilot-results.md) are historical.
+The v0.3 cases remain unchanged. Software 0.3.1 adds study preparation,
 explicit menu conditions, and failure-inclusive result export.
 
 ## Questions and comparisons
@@ -94,8 +96,10 @@ for model, task in tasks:
 ~~~
 
 The full study remains preparation-only. The separate development pilot adds
-`prepare-pilot` and `run-study`, with native provider checks and a frozen $50 ceiling.
-A full study needs its own approved spending budget before real execution.
+`prepare-pilot` and `run-study`, with native provider checks. The original pilot
+froze a $50 ceiling; the current continuation reduces it to $25 cumulative within
+the [project's $50 total allocation](next-study-proposal.md). A revised study needs
+a separately frozen scope and manifest before real execution.
 Provider retries default to zero and are frozen as a generation setting; changing
 that policy requires a new plan and its cost estimate.
 Inspect records native logs, model identifiers, settings, messages, usage, and

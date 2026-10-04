@@ -1,5 +1,9 @@
 # Research readiness implementation plan
 
+Historical plan, completed 2 October 2026. Statements below describe that stage,
+not current execution or spending authority. Use the [handoff](../HANDOFF.md) and
+[current study plan](../next-study-proposal.md) for active work.
+
 Baseline: `96f42d20814fcd35a6fa491c1fc97ef2ec1edfd0`, verified and pushed on
 `codex/benchmark-v1`. Work proceeds on `codex/research-readiness`.
 The repository remains private and licensing remains pending. The owner has
@@ -84,7 +88,7 @@ compatibility and declared comparison.
 
 The model-study plan and independent-review workflow are prepared. The local
 Croissant validator and loader accept the corrected draft and read every public
-record. See [measured outcomes](readiness-results.md) for methods and limitations.
+record. See [measured outcomes](../readiness-results.md) for methods and limitations.
 
 External gates remain pending: selected models and an approved execution budget,
 independent human signoff, ownership/license decisions, public hosting, and

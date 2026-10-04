@@ -2,7 +2,25 @@
 
 A reproducible benchmark of **deduction** and **evidence gathering** in generated mystery puzzles. Each complete puzzle has truthful clues and exactly one feasible murderer. Attribute assignments need not be unique.
 
-**Status:** private v0.3 preview. Licensing and public publication are pending the owner's decision. A three-model exploratory development pilot is now supported; see [pilot protocol](docs/pilot-protocol.md) and [pilot results](docs/pilot-results.md) for execution status. The [first-$25 continuation](docs/pilot-continuation.md) preserves prior costs and runs additional development diagnostics. The included baselines are symbolic programs, not evidence about LLM performance. V0.3 measures structural properties rather than requiring every case to contain an essential cross-attribute clue; see the [revised design](docs/v0.3-design.md).
+**Status:** private v0.3 preview; licensing and public publication are pending.
+The Gemini development run stopped on native output-limit violations with about
+$10.14 committed within the project's $50 total API budget. Local Qwen is still
+running. Current results are exploratory and incomplete; the 744 test cases remain
+unexecuted by models.
+
+## Active reading order
+
+1. [Handoff](docs/HANDOFF.md): verified worker state, stop reasons, and next steps.
+2. [Execution and accounting](docs/pilot-continuation.md): the current frozen plan,
+   safe resume commands, recovery policy, and durable ledger.
+3. [Generated results](docs/pilot-continuation-results.md): the single current
+   report; its timestamp and completion status determine what can be concluded.
+4. [Revised study and $50 allocation](docs/next-study-proposal.md): calibration,
+   main study, contingency, and protocol changes still to freeze.
+
+The included symbolic baselines are not LLM measurements. V0.3 measures structural
+properties rather than requiring every case to contain an essential cross-attribute
+clue; see the [design rationale](docs/v0.3-design.md).
 
 ## Install
 
@@ -113,10 +131,13 @@ is still the API compatibility default. Prepared studies default to an experimen
 menu grouping suspect facts by attribute (protocol 2.1-experimental), because
 named-topic counts in the legacy menu predict answers above chance without clues.
 Grouping removes that particular hint; other shortcuts still need study. See the
-[implementation plan](docs/research-readiness-plan.md),
-[model study protocol](docs/research-study.md), and
+[model study protocol](docs/research-study.md),
 [independent human review workflow](docs/human-review.md), and
-[measured readiness results](docs/readiness-results.md).
+[measured readiness results](docs/readiness-results.md). The completed
+[readiness implementation plan](docs/archive/research-readiness-plan.md) is
+historical. The [original pilot protocol](docs/pilot-protocol.md) and
+[original incomplete pilot results](docs/pilot-results.md) preserve that earlier
+experiment; use the active reading order above for the ongoing continuation.
 
 ~~~sh
 clue-benchmark compare-investigation data/v0.3/private/dev.jsonl --repeats 3 --summary-only --output results/investigation-readiness-dev.json
@@ -145,10 +166,3 @@ uv run --locked python -m build
 `main` began as an exact imported working-tree snapshot; the verified v0.3 preview is on `codex/benchmark-v1`, with readiness work on `codex/research-readiness`. `PROVENANCE.json` records original file hashes, source commit, and original uncommitted status. `legacy/` retains that baseline for comparisons, including its known limitations. It is not installed with the package and must not be used to score this benchmark. The new batch API starts with the requested seed, resolving the legacy skipped-seed behavior.
 
 The original `TrustPrism/clue-generator` repository and local directory are untouched. [LICENSING.md](LICENSING.md) describes why this preview is not a public open-source release yet.
-
-
-The first-$25 development continuation has a [saved report](docs/pilot-continuation-results.md),
-[execution and timeout-recovery notes](docs/pilot-continuation.md), and an
-[unexecuted proposal for the reserved second $25](docs/next-study-proposal.md).
-The durable ledger carries forward all original charges and held failures; the
-744 test cases remain unexecuted by models.

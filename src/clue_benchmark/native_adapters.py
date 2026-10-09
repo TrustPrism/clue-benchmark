@@ -117,6 +117,7 @@ def normalize_response(vendor, raw):
     model = raw.get("model")
     finish = None
     prompt = output = thought = total = None
+    derived_counters = {}
     if vendor == "google":
         usage = raw.get("usageMetadata", {})
         candidates = raw.get("candidates", [])
@@ -137,6 +138,17 @@ def normalize_response(vendor, raw):
         output = usage.get("candidatesTokenCount")
         thought = usage.get("thoughtsTokenCount")
         total = usage.get("totalTokenCount")
+        # Google's total includes prompt + thoughts + response candidates.
+        # Only an exact zero residual establishes an omitted thinking counter.
+        # Keep the raw receipt unchanged and mark the value as derived.
+        if (
+            "thoughtsTokenCount" not in usage
+            and all(type(v) is int and v >= 0 for v in (prompt, output, total))
+            and total == prompt + output
+            and usage.get("toolUsePromptTokenCount", 0) == 0
+        ):
+            thought = 0
+            derived_counters["thoughts_token_count"] = "zero_residual_in_reported_total"
     elif vendor == "openai":
         for item in raw.get("output", []):
             if item.get("type") == "function_call":
@@ -207,6 +219,8 @@ def normalize_response(vendor, raw):
         "total_token_count": total,
         "tool_use_prompt_token_count": None,
     }
+    if vendor == "google":
+        counters["tool_use_prompt_token_count"] = usage.get("toolUsePromptTokenCount")
     if raw.get("error"):
         text = json.dumps(raw["error"], sort_keys=True)
     error = raw.get("error")
@@ -229,12 +243,18 @@ def normalize_response(vendor, raw):
             "raw_usage": usage,
             "usage_present": bool(usage),
             "counters": counters,
+            "derived_counters": derived_counters,
             "invalid_counters": [
                 k
                 for k, v in counters.items()
                 if v is not None and (type(v) is not int or v < 0)
             ],
-            "thinking_separately_observed": vendor in ("google", "openai"),
+            "thinking_separately_observed": (
+                "thoughtsTokenCount" in usage
+                if vendor == "google"
+                else vendor == "openai"
+                and "reasoning_tokens" in usage.get("output_tokens_details", {})
+            ),
             "finish_reason": finish,
         },
     }

@@ -86,15 +86,53 @@ documents the separate JSON Schema field. A mock HTTP transport verifies what
 the actual SDK serializes and a native abstention response. This is a proposed
 compatibility fix, not a confirmed explanation of the original HTTP 400.
 
-A corrected one-request live check is offline-prepared under ignored
+A corrected one-request live check was prepared under ignored
 `runs/gemini-schema-diagnostic/`. It uses a third, previously undispatched world,
 the same model settings and a $0.02 ceiling, with a conservative maximum of
 $0.012124 and input bound of 6,278 tokens. Its plan ID is
 `46351ce9a7d657464239562b07ffdd8a7e71d605f67a2beecd6f6d68528421a0`.
-It has no authorization and has made no model calls. New explicit approval is
-required because unknown usage stops further spending and a new plan cannot reuse
-the earlier authorization. Both held amounts remain counted against the user's
-$20 total; $19.975734 remains after these reservations.
+The user approved it. Gemini successfully returned a response identifying
+`gemini-3.5-flash-lite`, with 1,369 prompt tokens, 16 candidate tokens and 1,385
+total tokens. The prior parser stopped because `thoughtsTokenCount` was omitted.
+The [UsageMetadata reference](https://ai.google.dev/api/generate-content.md#UsageMetadata)
+defines total as prompt + thoughts + candidates, so these counters establish
+zero thinking tokens. The updated parser derives zero only when that residual
+is exactly zero, all three reported counters are nonnegative integers, and no
+tool-use tokens are reported. Missing totals, positive residuals, invalid values
+and contradictions still stop accounting. The original receipt stays unchanged
+and the derived value is explicitly marked.
+
+At the frozen rates, this response's receipt implies **$0.000451**. Its original
+reservation is nevertheless retained; all three holds total **$0.036390**.
+The earlier pre-accounting stop did not retain the native answer call, so this
+check establishes successful transport, not answer accuracy. Future episodes
+retain native calls before accounting checks. No dispatched request was repeated
+and none of the frozen ledgers was altered.
+
+## Prepared full recovery pilot
+
+Ignored `runs/pilot-recovery/` now contains a new frozen pilot and review file.
+It re-exports and independently validates the original certified cases after
+excluding **every previously dispatched world from all models and variants**.
+This leaves **71 case variants across 21 worlds**, with five matched worlds in
+each four-clue burden arm and eight in the other arms. Selection uses dispatch
+status, not model correctness. Original seed receipts, rejection records and
+exclusion provenance are preserved.
+
+The same two models, settings and fourteen jobs yield **270 requests**, with
+zero context preflight failures. The conservative maximum is **$10.811723**;
+the remaining ceiling is **$19.963610**, which together with the three earlier
+holds preserves the user's original $20 cap. Pacing alone takes at least
+45 minutes; inference adds time. No recovery requests have been made.
+
+Recovery pilot ID:
+`a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b`.
+Suite ID:
+`cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15`.
+New explicit approval is required because the corrected software and selected
+cohort have new frozen identities. Earlier approvals do not authorize this pilot.
+Current software verification: **156 passing tests**, with lint and format checks
+passing. Dry preparation performs no credential reads or network calls.
 
 Independent English review, reproduction and licensing remain release
 requirements that this checkpoint does not complete.

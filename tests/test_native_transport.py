@@ -54,6 +54,51 @@ def test_invalid_error_status_never_becomes_receipt(code):
     assert response["receipt"]["provider_status_code"] is None
 
 
+def test_omitted_google_thinking_is_derived_only_from_exact_zero_residual():
+    usage = {
+        "promptTokenCount": 1369,
+        "candidatesTokenCount": 16,
+        "totalTokenCount": 1385,
+    }
+    receipt = normalize_response("google", {"usageMetadata": usage})["receipt"]
+    assert receipt["counters"]["thoughts_token_count"] == 0
+    assert receipt["raw_usage"] == usage and "thoughtsTokenCount" not in usage
+    assert receipt["derived_counters"] == {
+        "thoughts_token_count": "zero_residual_in_reported_total"
+    }
+    assert not receipt["thinking_separately_observed"]
+
+
+@pytest.mark.parametrize(
+    "usage",
+    [
+        {},
+        {"promptTokenCount": 10, "candidatesTokenCount": 2},
+        {"promptTokenCount": 10, "candidatesTokenCount": 2, "totalTokenCount": 13},
+        {"promptTokenCount": 10, "candidatesTokenCount": 2, "totalTokenCount": 11},
+        {"promptTokenCount": True, "candidatesTokenCount": 2, "totalTokenCount": 3},
+        {"promptTokenCount": "10", "candidatesTokenCount": 2, "totalTokenCount": 12},
+        {"promptTokenCount": 10, "candidatesTokenCount": -2, "totalTokenCount": 8},
+        {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 2,
+            "totalTokenCount": 12,
+            "thoughtsTokenCount": None,
+        },
+        {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 2,
+            "totalTokenCount": 12,
+            "toolUsePromptTokenCount": 1,
+        },
+    ],
+)
+def test_unknown_google_thinking_never_defaults_to_zero(usage):
+    receipt = normalize_response("google", {"usageMetadata": usage})["receipt"]
+    assert receipt["counters"]["thoughts_token_count"] is None
+    assert receipt["derived_counters"] == {}
+
+
 def test_google_sdk_rejection_retains_status_without_message(monkeypatch):
     from google.genai import errors
 

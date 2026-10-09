@@ -705,6 +705,8 @@ def run_evaluation(
                                         for v in (inp, candidate, thinking, total)
                                     )
                                     and total == inp + candidate + thinking
+                                    and counters["tool_use_prompt_token_count"]
+                                    in (None, 0)
                                 )
                                 common = {
                                     **base,
@@ -719,6 +721,8 @@ def run_evaluation(
                                     else candidate + thinking,
                                     "thinking_tokens": thinking,
                                     "receipt": response["receipt"],
+                                    "native_calls": response["calls"],
+                                    "usage_known": usage_known,
                                     "correct": False,
                                     "supported": False,
                                     "protocol_valid": False,
@@ -797,6 +801,7 @@ def run_evaluation(
                                     "wall_seconds": time.monotonic() - started,
                                     "dispatched": True,
                                     "calls": 1,
+                                    "usage_known": False,
                                     "correct": False,
                                     "supported": False,
                                     "protocol_valid": False,
@@ -906,7 +911,12 @@ def summarize(episodes):
                 "input_tokens": sum(e.get("input_tokens") or 0 for e in all_episodes),
                 "output_tokens": sum(e.get("output_tokens") or 0 for e in all_episodes),
                 "unknown_usage_episodes": sum(
-                    e.get("dispatched", False) and e.get("input_tokens") is None
+                    e.get("dispatched", False)
+                    and not e.get(
+                        "usage_known",
+                        e.get("input_tokens") is not None
+                        and e.get("output_tokens") is not None,
+                    )
                     for e in all_episodes
                 ),
                 "interval_scope": "descriptive world bootstrap; single-world intervals are uninformative",

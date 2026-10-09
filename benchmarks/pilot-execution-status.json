@@ -23,7 +23,7 @@
     "operation": "read-only model metadata; no inference requests"
   },
   "model_performance": "not measured; administrative failures are not evidence of model reasoning weakness",
-  "next_action": "Google tool schema declarations corrected offline. A separate one-request live check on a different world is prepared and requires new approval. Both old reservations remain held.",
+  "next_action": "Await explicit approval of the frozen 270-request recovery pilot; no dispatched world is reused and all earlier holds remain counted against the original $20 ceiling.",
   "original_provider_error_detail": "not retained by the original harness",
   "original_provider_status_code": null,
   "pilot_id": "15fcc4c9eb51fa5dd48116fff385c0dcf6ed1fca02fcb25795501133e8b3788f",
@@ -33,7 +33,7 @@
   "status": "stopped_before_usable_model_results",
   "stop_reason": "unknown usage retains full reservation",
   "suite_id": "31ecd2c348237221921ac5ccc3277b2e8a3927ecc03926d15a7206d0dac8506b",
-  "total_held_microdollars": 24266,
+  "total_held_microdollars": 36390,
   "transport": "provider_error",
   "unattempted_requests": 287,
   "updated_key_diagnostic": {
@@ -62,5 +62,59 @@
       ],
       "operation": "read-only model metadata; no inference requests"
     }
+  },
+  "schema_diagnostic": {
+    "status": "transport_succeeded_original_usage_parser_stopped",
+    "plan_id": "46351ce9a7d657464239562b07ffdd8a7e71d605f67a2beecd6f6d68528421a0",
+    "returned_model": "gemini-3.5-flash-lite",
+    "original_held_microdollars": 12124,
+    "receipt_cost_at_frozen_rates_microdollars": 451,
+    "performance": "No answer score can be recovered: original pre-accounting stop did not save the native call. Future receipts retain native calls before accounting checks.",
+    "total_accounting_source": "https://ai.google.dev/api/generate-content.md#UsageMetadata",
+    "audited_counters": {
+      "prompt_token_count": 1369,
+      "candidates_token_count": 16,
+      "thoughts_token_count": 0,
+      "total_token_count": 1385,
+      "tool_use_prompt_token_count": null
+    },
+    "derived_thinking_counter": "zero_residual_in_reported_total; not separately observed"
+  },
+  "prepared_recovery": {
+    "case_variants": 71,
+    "conservative_maximum_microdollars": 10811723,
+    "counts_by_arm": {
+      "burden-4-noise-0": 5,
+      "burden-4-noise-100": 5,
+      "burden-4-noise-1000": 5,
+      "burden-8-noise-0": 8,
+      "burden-8-noise-100": 8,
+      "burden-8-noise-1000": 8,
+      "distributed": 8,
+      "false-0": 8,
+      "false-1": 8,
+      "false-2": 8
+    },
+    "distinct_worlds": 21,
+    "excluded_dispatched_worlds": [
+      "c6864bfacd718767e0f8952972855a0107d7fc4bb353120e86e678160f9973c3",
+      "d35b7edf0fd8cc86b51c6323408cd4b903da858260b1e923ef1041e411a56489",
+      "eee954723f9d8e30cb644128a2558ac373a0ba5741fccb1630491071ac6a0949"
+    ],
+    "interpretation": "Same exploratory questions and remaining matched cases. Burden-4 contrasts have five worlds after excluding three previously dispatched worlds; other arms have eight. No model-performance claim yet.",
+    "max_requests": 270,
+    "minimum_request_interval_seconds": 10,
+    "models": [
+      "gemini-3.5-flash-lite",
+      "gemini-3.8-flash"
+    ],
+    "pilot_id": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
+    "previous_held_microdollars": 36390,
+    "spending_ceiling_microdollars": 19963610,
+    "status": "prepared_unapproved",
+    "suite_id": "cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15",
+    "largest_input_token_upper_bound": 427702,
+    "context_preflight_failures": 0,
+    "software_verification": "156 passing tests; lint and format checks pass"
   }
 }

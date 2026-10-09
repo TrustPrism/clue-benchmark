@@ -521,6 +521,67 @@ def test_mock_live_and_no_retry_resume(bundle, tmp_path):
     assert len(calls) == 4
 
 
+@pytest.mark.parametrize("tool_tokens", [None, 1])
+def test_google_omitted_zero_thinking_settles_once_and_tool_usage_stops(
+    bundle, tmp_path, tool_tokens
+):
+    m = {**model(), "vendor": "google"}
+    plan = prepare_evaluation(bundle, [m], spending_ceiling_microdollars=1000000)
+    calls = []
+
+    def transport(payload):
+        calls.append(payload)
+        usage = {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 2,
+            "totalTokenCount": 12,
+        }
+        if tool_tokens is not None:
+            usage["toolUsePromptTokenCount"] = tool_tokens
+        return {
+            "modelVersion": "explicit-fixture",
+            "usageMetadata": usage,
+            "candidates": [
+                {
+                    "content": {
+                        "parts": [{"functionCall": {"name": "abstain", "args": {}}}]
+                    }
+                }
+            ],
+        }
+
+    output = tmp_path / "google"
+    report = run_evaluation(
+        plan,
+        bundle,
+        output,
+        dry_run=False,
+        authorization=auth(plan),
+        transports={"fixture": transport},
+    )
+    assert report["complete"] == (tool_tokens is None)
+    assert len(calls) == (4 if tool_tokens is None else 1)
+    assert report["episodes"][0]["native_calls"] == [
+        {"name": "abstain", "arguments": {}}
+    ]
+    if tool_tokens is None:
+        assert report["accounting"]["settled_microdollars"] == 56
+        assert report["accounting"]["held_microdollars"] == 0
+        assert all(e["abstained"] for e in report["episodes"])
+    else:
+        assert report["summary"][0]["unknown_usage_episodes"] == 1
+        assert report["accounting"]["held_microdollars"] > 0
+    run_evaluation(
+        plan,
+        bundle,
+        output,
+        dry_run=False,
+        authorization=auth(plan),
+        transports={"fixture": transport},
+    )
+    assert len(calls) == (4 if tool_tokens is None else 1)
+
+
 @pytest.mark.parametrize(
     "failure",
     ["unknown", "provider_error", "timeout", "budget", "interruption", "overflow"],

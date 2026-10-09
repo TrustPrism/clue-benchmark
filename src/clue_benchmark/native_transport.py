@@ -95,6 +95,7 @@ class NativeTransport:
                     }
                 }
             if response.status_code != 200:
+                raw["http_status_code"] = response.status_code
                 raw["transport_status"] = (
                     "service_unavailable"
                     if response.status_code in (429, 502, 503, 504)

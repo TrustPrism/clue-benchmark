@@ -30,7 +30,61 @@ def test_http_native_payload_one_attempt_and_error_receipt(monkeypatch):
     response = normalize_response("openai", raw)
     assert response["transport"] == "service_unavailable"
     assert not response["receipt"]["usage_present"]
+    assert response["receipt"]["provider_status_code"] == 503
     assert "fixture-only" not in str(response)
+
+
+@pytest.mark.parametrize("code", [400, 401, 403, 404, 429, 503])
+def test_google_error_receipt_retains_only_safe_status(code):
+    response = normalize_response(
+        "google",
+        {
+            "transport_status": "provider_error",
+            "error": {"status_code": code, "message": "credential-fixture"},
+        },
+    )
+    assert response["receipt"]["provider_status_code"] == code
+    assert not response["receipt"]["usage_present"]
+    assert "credential-fixture" not in str(response["receipt"])
+
+
+@pytest.mark.parametrize("code", [True, "401", 999, -1, None])
+def test_invalid_error_status_never_becomes_receipt(code):
+    response = normalize_response("google", {"error": {"status_code": code}})
+    assert response["receipt"]["provider_status_code"] is None
+
+
+def test_google_sdk_rejection_retains_status_without_message(monkeypatch):
+    from google.genai import errors
+
+    monkeypatch.setattr("clue_benchmark.native_transport.require_funding", lambda: None)
+
+    class Models:
+        calls = 0
+
+        def generate_content(self, **payload):
+            self.calls += 1
+            raise errors.ClientError(
+                400,
+                {
+                    "error": {
+                        "status": "INVALID_ARGUMENT",
+                        "message": "credential-fixture",
+                    }
+                },
+            )
+
+    class Client:
+        models = Models()
+
+    client = Client()
+    response = normalize_response(
+        "google", NativeTransport("google", google_client=client)({"model": "fixture"})
+    )
+    assert client.models.calls == 1
+    assert response["receipt"]["provider_status_code"] == 400
+    assert response["transport"] == "provider_error"
+    assert "credential-fixture" not in str(response)
 
 
 def test_google_sdk_payload_and_response_translation(monkeypatch):

@@ -1,8 +1,18 @@
 # Prepared pilot checkpoint — 2026-10-09
 
-**Status: offline prepared; model results pending.** No credentials were read and
-no Gemini requests were sent. The selected models and prices were checked against
-provider documentation; API access and account-specific quotas remain unchecked.
+**Status: live pilot stopped before usable model results.** The human approved
+the frozen pilot and supplied a local key. Its first Gemini request returned a
+provider error without usage; the runner stopped and retained its $0.01213
+reservation. Actual spending is unknown. The other 287 requests were not sent.
+The [execution checkpoint](../benchmarks/pilot-execution-status.json) records this
+failure separately from the offline controls. Administrative failure scores do
+not measure model reasoning performance.
+
+Subsequent read-only model metadata checks succeeded for both chosen IDs and
+confirmed the declared context limits. The original harness did not retain the
+provider's numeric error status, so the exact rejection cause is unknown. The
+harness now saves safe numeric status codes in durable receipts; raw error
+messages and credentials are excluded. No inference request has been retried.
 
 - Experiments: matched archive volume, false reports, and distributed evidence.
 - Full local pilot: ten arms, eight worlds per arm, **80 case variants across
@@ -19,7 +29,7 @@ provider documentation; API access and account-specific quotas remain unchecked.
 - Cost: conservative full-pilot maximum **$12.568273** at frozen paid rates;
   **$20 total ceiling**, divided across jobs. This is a bound, not a charge or
   expected expenditure. Other activity on the provider project is excluded.
-- Software verification: **130 passing tests**, including matched controls,
+- Original pilot software verification: **130 passing tests**, including matched controls,
   budget/context failure, mock dispatch and no-repeat resume.
 
 ## Useful findings from offline controls
@@ -51,7 +61,19 @@ The prepared model pilot ID is
 Reproduction elsewhere generates its own hashes and requires its own approval;
 do not reuse these identifiers for newly generated inputs.
 
-To collect model results, the authorizing human must approve this concrete
-pilot and provide a local credential source. A key by itself does not authorize
-dispatch. Independent English review, reproduction and licensing remain release
-requirements that this software checkpoint does not complete.
+The original pilot remains stopped with its reservation intact. Its source is
+preserved at commit `b1075ef3f59d0766fcffd3fe647f2fa7a8042187`; the diagnostics fix
+changes source hashes and does not alter or reauthorize that plan.
+
+A separate offline-prepared diagnostic under ignored `runs/gemini-diagnostic/`
+uses one previously undispatched world, Gemini 3.5 Flash-Lite, the same settings,
+zero retries and a $0.02 ceiling. Its conservative maximum is $0.012136;
+the input bound is 6,320 tokens and passes context preflight. Its plan ID is
+`e83e5d73816edfa69bafeb4bfea5d17c142fafe717a0c5f4598c810874b2917f`.
+This diagnostic has no authorization and has made no model calls. New explicit
+approval is required because unknown usage stops further spending in the approved
+pilot and a new plan cannot reuse its authorization. The original held amount
+must remain counted against the user's $20 total when preparing any recovery.
+
+Independent English review, reproduction and licensing remain release
+requirements that this checkpoint does not complete.

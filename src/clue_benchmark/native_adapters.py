@@ -200,6 +200,14 @@ def normalize_response(vendor, raw):
     }
     if raw.get("error"):
         text = json.dumps(raw["error"], sort_keys=True)
+    error = raw.get("error")
+    status_code = raw.get("http_status_code")
+    if status_code is None and isinstance(error, dict):
+        status_code = error.get("status_code")
+    # Retain only numeric diagnostics. Provider messages can echo credentials,
+    # request contents or account identifiers and must not enter durable receipts.
+    if type(status_code) is not int or not 100 <= status_code <= 599:
+        status_code = None
     return {
         "transport": raw.get("transport_status", "ok"),
         "calls": calls,
@@ -208,6 +216,7 @@ def normalize_response(vendor, raw):
         "finish_reason": finish,
         "receipt": {
             "vendor": vendor,
+            "provider_status_code": status_code,
             "raw_usage": usage,
             "usage_present": bool(usage),
             "counters": counters,

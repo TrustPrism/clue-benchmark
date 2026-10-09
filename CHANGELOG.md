@@ -15,5 +15,8 @@
 - Freeze a two-Gemini pilot with context preflight, one aggregate spending
   ceiling, durable per-job accounting and explicit request pacing.
 - Document a dated primary-source comparison and the limits of the pilot claims.
+- Retain safe numeric provider-error status in durable receipts; preserve unknown
+  usage reservations and block retries after a provider rejection.
 
-No new real-model evaluation or public release is claimed.
+One authorized Gemini request failed before usable model results; no measured
+model-performance result or public release is claimed.

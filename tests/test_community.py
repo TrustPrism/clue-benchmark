@@ -522,7 +522,8 @@ def test_mock_live_and_no_retry_resume(bundle, tmp_path):
 
 
 @pytest.mark.parametrize(
-    "failure", ["unknown", "timeout", "budget", "interruption", "overflow"]
+    "failure",
+    ["unknown", "provider_error", "timeout", "budget", "interruption", "overflow"],
 )
 def test_failures_count_and_stop_without_retries(bundle, tmp_path, failure):
     m = model()
@@ -538,6 +539,11 @@ def test_failures_count_and_stop_without_retries(bundle, tmp_path, failure):
         calls.append(payload)
         if failure == "timeout":
             raise TimeoutError()
+        if failure == "provider_error":
+            return {
+                "transport_status": "provider_error",
+                "error": {"status_code": 400, "message": "credential-fixture"},
+            }
         return reply("S01", usage=False)
 
     if failure == "interruption":
@@ -555,7 +561,13 @@ def test_failures_count_and_stop_without_retries(bundle, tmp_path, failure):
     )
     assert len(result["episodes"]) == 4
     assert not any(e["supported"] for e in result["episodes"])
-    assert len(calls) == (1 if failure in ("unknown", "timeout") else 0)
+    assert len(calls) == (
+        1 if failure in ("unknown", "provider_error", "timeout") else 0
+    )
+    if failure == "provider_error":
+        assert result["episodes"][0]["receipt"]["provider_status_code"] == 400
+        assert "credential-fixture" not in json.dumps(result)
+        assert result["accounting"]["held_microdollars"] > 0
     run_evaluation(
         plan,
         bundle,
@@ -564,7 +576,9 @@ def test_failures_count_and_stop_without_retries(bundle, tmp_path, failure):
         authorization=auth(plan),
         transports={"fixture": transport},
     )
-    assert len(calls) == (1 if failure in ("unknown", "timeout") else 0)
+    assert len(calls) == (
+        1 if failure in ("unknown", "provider_error", "timeout") else 0
+    )
 
 
 def test_forwarding_rounds_and_discussion():

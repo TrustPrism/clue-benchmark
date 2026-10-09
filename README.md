@@ -70,6 +70,13 @@ Four one-case bundles in `examples/datasets/` demonstrate truthful, branching,
 ambiguous and corrupted evidence. The [large-corpus profile](benchmarks/large-corpus.json)
 records a local scaling check, with no model calls.
 
+For focused usefulness demonstrations, the [small pilot](docs/pilot.md) prepares
+matched archive-volume and false-report datasets plus a four-agent information
+bottleneck experiment. `examples/pilot_suite.py` generates and validates these
+offline, freezes a context-checked model plan under one total spending ceiling,
+and computes paired world-level contrasts after separately authorized execution.
+See the dated [resource comparison](docs/resource-comparison.md) for its rationale.
+
 The original `generate`, `validate` and `export` commands and flat `Config` API
 remain available for puzzle-generation compatibility. Retired experiment runners
 are not part of the current interface.

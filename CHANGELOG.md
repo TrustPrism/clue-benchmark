@@ -10,5 +10,10 @@
   old experiment proposals, generated ledgers and unused dependencies.
 - Provide current schemas, presets, small example bundles and a reproducible
   development workflow.
+- Add matched archive-volume, false-report and four-agent information-bottleneck
+  demonstrations, solver controls and paired world-level analysis.
+- Freeze a two-Gemini pilot with context preflight, one aggregate spending
+  ceiling, durable per-job accounting and explicit request pacing.
+- Document a dated primary-source comparison and the limits of the pilot claims.
 
 No new real-model evaluation or public release is claimed.

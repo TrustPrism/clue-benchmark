@@ -25,6 +25,8 @@ it does not need credentials. CI runs the same checks and builds a wheel/sdist.
   provider accounting; `fixtures/` holds a solver-crash regression input.
 - `examples/`: presets, demonstration preparation, policy adapter and small
   generated bundles under `datasets/`.
+- `examples/pilot_suite.py`: matched usefulness demonstrations, offline controls,
+  frozen model plans and a separately authorized Gemini reference pilot.
 - `schemas/`: current configuration, public/evaluator records and evaluation plans.
 - `benchmarks/large-corpus.json`: a local scaling profile, separate from model results.
 - `scripts/export_schemas.py`: regenerate structural schemas from current contracts.

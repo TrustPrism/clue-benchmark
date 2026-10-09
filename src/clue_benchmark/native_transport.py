@@ -6,8 +6,6 @@ No fallback provider, response repair, SDK retry, or automatic tool execution.
 
 import os
 
-import httpx
-
 from .provider_events import require_funding
 
 ENDPOINTS = {
@@ -55,6 +53,8 @@ class NativeTransport:
     def _request(self, payload):
         if self.vendor == "google":
             return self._google(payload)
+        import httpx
+
         headers = {"content-type": "application/json"}
         if self.vendor == "openai":
             headers["authorization"] = "Bearer " + os.environ["OPENAI_API_KEY"]
@@ -110,6 +110,7 @@ class NativeTransport:
                 client.close()
 
     def _google(self, payload):
+        import httpx
         from google import genai
         from google.genai import errors, types
 

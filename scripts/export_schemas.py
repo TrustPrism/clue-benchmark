@@ -237,6 +237,11 @@ def main():
                     "schema_version": {"const": "clue-community-evaluation-1"},
                     "retries": {"const": 0},
                     "models": {"type": "array", "minItems": 1},
+                    "minimum_request_interval_seconds": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 60,
+                    },
                 },
             },
         }

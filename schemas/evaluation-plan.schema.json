@@ -2,6 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Structural contract; Python configuration/semantic validation additionally enforces cross-field guarantees.",
   "properties": {
+    "minimum_request_interval_seconds": {
+      "maximum": 60,
+      "minimum": 0,
+      "type": "number"
+    },
     "models": {
       "minItems": 1,
       "type": "array"

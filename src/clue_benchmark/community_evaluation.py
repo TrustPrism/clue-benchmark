@@ -131,6 +131,7 @@ def prepare_evaluation(
     spending_ceiling_microdollars=0,
     max_requests=10000,
     forwarding_policy_identity="builtin-report-forwarding-1",
+    minimum_request_interval_seconds=0,
 ):
     manifest = verify_manifest(root)
     if (
@@ -154,6 +155,12 @@ def prepare_evaluation(
         raise ValueError("nonnegative integer spending ceiling required")
     if type(max_requests) is not int or max_requests < 1:
         raise ValueError("positive request limit required")
+    if (
+        type(minimum_request_interval_seconds) not in (int, float)
+        or not math.isfinite(minimum_request_interval_seconds)
+        or not 0 <= minimum_request_interval_seconds <= 60
+    ):
+        raise ValueError("request interval must be finite and in 0..60 seconds")
     checked = []
     for model in models:
         allowed = {
@@ -250,6 +257,7 @@ def prepare_evaluation(
         "prompt": "Identify the responsible suspect from the supplied rules and reports. Submit answer(target) or abstain().",
         "tool_access": ["answer", "abstain"],
         "retries": 0,
+        "minimum_request_interval_seconds": minimum_request_interval_seconds,
         "external_inference": False,
         "tokenizer_identity": "per model if supplied; otherwise conservative serialized UTF-8 byte bound",
         "dataset_config": manifest["config"],
@@ -634,6 +642,13 @@ def run_evaluation(
                             if existing:
                                 if existing["result"]:
                                     results.append(json.loads(existing["result"]))
+                                    if existing["status"] not in (
+                                        "settled",
+                                        "preflight_failed",
+                                    ):
+                                        raise PermissionError(
+                                            "unresolved dispatch/usage or resource breach blocks resumed evaluation"
+                                        )
                                     continue
                                 stopped = (
                                     "interrupted_dispatch_retains_full_reservation"
@@ -661,6 +676,9 @@ def run_evaluation(
                                 ledger, plan, model, ident, payload, authorization
                             )
                             transport = (transports or {}).get(model["id"])
+                            # Reservation precedes pacing as well as transport;
+                            # interrupted work is never dispatched again on resume.
+                            time.sleep(plan.get("minimum_request_interval_seconds", 0))
                             started = time.monotonic()
                             try:
                                 if transport is None:

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "gemini-3.5-flash-lite-low",
+    "vendor": "google",
+    "model": "gemini-3.5-flash-lite",
+    "settings": {"max_output_tokens": 4096, "temperature": 0, "thinking_level": "low"},
+    "context_tokens": 1048576,
+    "input_microdollars_per_million_tokens": 300000,
+    "output_microdollars_per_million_tokens": 2500000
+  },
+  {
+    "id": "gemini-3.8-flash-low",
+    "vendor": "google",
+    "model": "gemini-3.8-flash",
+    "settings": {"max_output_tokens": 4096, "temperature": 0, "thinking_level": "low"},
+    "context_tokens": 1048576,
+    "input_microdollars_per_million_tokens": 750000,
+    "output_microdollars_per_million_tokens": 3750000
+  }
+]

@@ -1,51 +1,90 @@
 {
-  "accounting_action": "Keep the original reservation. Do not repeat its dispatched request or resume this pilot.",
-  "actual_charge": "unknown; settled amount is not evidence of zero spending",
-  "assigned_requests": 288,
   "date": "2026-10-09",
-  "dispatched_requests": 1,
-  "held_microdollars": 12130,
-  "model_access_diagnostics": {
+  "status": "partial_model_results_provider_error_stop",
+  "pilot_id": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
+  "suite_id": "cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15",
+  "assigned_requests": 270,
+  "dispatched_requests": 77,
+  "settled_requests": 76,
+  "unattempted_requests": 193,
+  "settled_microdollars": 3392829,
+  "recovery_held_microdollars": 138501,
+  "previous_held_microdollars": 36390,
+  "total_held_microdollars": 174891,
+  "remaining_ceiling_microdollars": 16432280,
+  "total_user_ceiling_microdollars": 20000000,
+  "stop_reason": "HTTP 500 without usage; unknown usage retains full reservation",
+  "failed_request_id": "0682cf978fa5ce6a57560ff34a524f105ad993433c3cc01b6bd5c9f1289d89e4",
+  "provider_status_code": 500,
+  "model_performance": "76 settled archive-volume results; no distributed or false-report model results yet. See pilot-results-partial.json. Provider failure is distinct from an incorrect answer.",
+  "next_action": "Fresh approval of the frozen 193-request continuation; no dispatched request can be repeated.",
+  "prepared_continuation": {
+    "conservative_maximum_microdollars": 3554188,
+    "context_preflight_failures": 0,
+    "continuation_of": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
+    "failed_request_will_be_retried": false,
+    "job_count": 9,
+    "max_requests": 193,
+    "order": "Previously untouched distributed and false-report jobs first; sole untouched archive assignment last. Failed request is retained, never retried.",
+    "pilot_id": "8e4d41c7c4f144e8b3834897019ff3081129d515f4aa0772bfedf350bcc9517f",
+    "previous_held_microdollars": 174891,
+    "previous_settled_microdollars": 3392829,
+    "same_original_assignments": 193,
+    "spending_ceiling_microdollars": 16432280,
+    "status": "prepared_unapproved",
+    "suite_id": "006af15babb794db93ef8aa7b15704bcfbd20a0db568f1740960d9d122518338",
+    "date": "2026-10-09",
     "models": [
       {
-        "input_token_limit": 1048576,
-        "metadata_access": "ok",
+        "context_tokens": 1048576,
+        "id": "gemini-3.5-flash-lite-low",
+        "input_microdollars_per_million_tokens": 300000,
         "model": "gemini-3.5-flash-lite",
-        "output_token_limit": 65536
+        "output_microdollars_per_million_tokens": 2500000,
+        "settings": {
+          "max_output_tokens": 4096,
+          "temperature": 0,
+          "thinking_level": "low"
+        },
+        "vendor": "google"
       },
       {
-        "input_token_limit": 1048576,
-        "metadata_access": "ok",
+        "context_tokens": 1048576,
+        "id": "gemini-3.8-flash-low",
+        "input_microdollars_per_million_tokens": 750000,
         "model": "gemini-3.8-flash",
-        "output_token_limit": 65536
+        "output_microdollars_per_million_tokens": 3750000,
+        "settings": {
+          "max_output_tokens": 4096,
+          "temperature": 0,
+          "thinking_level": "low"
+        },
+        "vendor": "google"
       }
     ],
-    "operation": "read-only model metadata; no inference requests"
+    "original_total_ceiling_microdollars": 20000000,
+    "largest_input_token_upper_bound": 427530,
+    "output_token_cap": 4096,
+    "context_tokens": 1048576,
+    "mapped_assignments_hash": "51f8a233677ae1dbf2cf281cd90fe03baf2a95c11db1a70b98f3d07436fe893b",
+    "total_settled_plus_holds_plus_conservative_continuation_microdollars": 7121908,
+    "scope": [
+      "distributed-reference: complete and independent private agents",
+      "star/ring/chain one-round forwarding and chain three-round forwarding",
+      "zero, one and two false reports under the same at-most-two assumption",
+      "one untouched Flash archive assignment"
+    ],
+    "merge_rule": "Preserve all 77 dispatched original assignments, including HTTP 500; map only the 193 untouched assignments. Replace administrative placeholders only. Keep every original ledger and frozen receipt unchanged.",
+    "validation": "Every mapped original assignment is unique and undispatched; per-request identity, model, condition, input bound and reservation match. Sole re-exported archive request has byte-identical provider payload. Offline collector validates all 270 original assignments."
   },
-  "model_performance": "not measured; administrative failures are not evidence of model reasoning weakness",
-  "next_action": "Await explicit approval of the frozen 270-request recovery pilot; no dispatched world is reused and all earlier holds remain counted against the original $20 ceiling.",
-  "original_provider_error_detail": "not retained by the original harness",
-  "original_provider_status_code": null,
-  "pilot_id": "15fcc4c9eb51fa5dd48116fff385c0dcf6ed1fca02fcb25795501133e8b3788f",
-  "pilot_source_commit": "b1075ef3f59d0766fcffd3fe647f2fa7a8042187",
-  "settled_microdollars": 0,
-  "settled_requests": 0,
-  "status": "stopped_before_usable_model_results",
-  "stop_reason": "unknown usage retains full reservation",
-  "suite_id": "31ecd2c348237221921ac5ccc3277b2e8a3927ecc03926d15a7206d0dac8506b",
-  "total_held_microdollars": 36390,
-  "transport": "provider_error",
-  "unattempted_requests": 287,
-  "updated_key_diagnostic": {
+  "earlier_attempts": {
+    "accounting_action": "Keep the original reservation. Do not repeat its dispatched request or resume this pilot.",
+    "actual_charge": "unknown; settled amount is not evidence of zero spending",
+    "assigned_requests": 288,
+    "date": "2026-10-09",
     "dispatched_requests": 1,
-    "held_microdollars": 12136,
-    "model_performance": "not measured",
-    "plan_id": "e83e5d73816edfa69bafeb4bfea5d17c142fafe717a0c5f4598c810874b2917f",
-    "provider_status_code": 400,
-    "settled_microdollars": 0,
-    "status": "stopped",
-    "transport": "provider_error",
-    "updated_key_metadata_access": {
+    "held_microdollars": 12130,
+    "model_access_diagnostics": {
       "models": [
         {
           "input_token_limit": 1048576,
@@ -61,60 +100,63 @@
         }
       ],
       "operation": "read-only model metadata; no inference requests"
+    },
+    "model_performance": "not measured; administrative failures are not evidence of model reasoning weakness",
+    "original_provider_error_detail": "not retained by the original harness",
+    "original_provider_status_code": null,
+    "pilot_id": "15fcc4c9eb51fa5dd48116fff385c0dcf6ed1fca02fcb25795501133e8b3788f",
+    "pilot_source_commit": "b1075ef3f59d0766fcffd3fe647f2fa7a8042187",
+    "settled_microdollars": 0,
+    "settled_requests": 0,
+    "status": "stopped_before_usable_model_results",
+    "stop_reason": "unknown usage retains full reservation",
+    "suite_id": "31ecd2c348237221921ac5ccc3277b2e8a3927ecc03926d15a7206d0dac8506b",
+    "total_held_microdollars": 36390,
+    "transport": "provider_error",
+    "unattempted_requests": 287,
+    "updated_key_diagnostic": {
+      "dispatched_requests": 1,
+      "held_microdollars": 12136,
+      "model_performance": "not measured",
+      "plan_id": "e83e5d73816edfa69bafeb4bfea5d17c142fafe717a0c5f4598c810874b2917f",
+      "provider_status_code": 400,
+      "settled_microdollars": 0,
+      "status": "stopped",
+      "transport": "provider_error",
+      "updated_key_metadata_access": {
+        "models": [
+          {
+            "input_token_limit": 1048576,
+            "metadata_access": "ok",
+            "model": "gemini-3.5-flash-lite",
+            "output_token_limit": 65536
+          },
+          {
+            "input_token_limit": 1048576,
+            "metadata_access": "ok",
+            "model": "gemini-3.8-flash",
+            "output_token_limit": 65536
+          }
+        ],
+        "operation": "read-only model metadata; no inference requests"
+      }
+    },
+    "schema_diagnostic": {
+      "status": "transport_succeeded_original_usage_parser_stopped",
+      "plan_id": "46351ce9a7d657464239562b07ffdd8a7e71d605f67a2beecd6f6d68528421a0",
+      "returned_model": "gemini-3.5-flash-lite",
+      "original_held_microdollars": 12124,
+      "receipt_cost_at_frozen_rates_microdollars": 451,
+      "performance": "No answer score can be recovered: original pre-accounting stop did not save the native call. Future receipts retain native calls before accounting checks.",
+      "total_accounting_source": "https://ai.google.dev/api/generate-content.md#UsageMetadata",
+      "audited_counters": {
+        "prompt_token_count": 1369,
+        "candidates_token_count": 16,
+        "thoughts_token_count": 0,
+        "total_token_count": 1385,
+        "tool_use_prompt_token_count": null
+      },
+      "derived_thinking_counter": "zero_residual_in_reported_total; not separately observed"
     }
-  },
-  "schema_diagnostic": {
-    "status": "transport_succeeded_original_usage_parser_stopped",
-    "plan_id": "46351ce9a7d657464239562b07ffdd8a7e71d605f67a2beecd6f6d68528421a0",
-    "returned_model": "gemini-3.5-flash-lite",
-    "original_held_microdollars": 12124,
-    "receipt_cost_at_frozen_rates_microdollars": 451,
-    "performance": "No answer score can be recovered: original pre-accounting stop did not save the native call. Future receipts retain native calls before accounting checks.",
-    "total_accounting_source": "https://ai.google.dev/api/generate-content.md#UsageMetadata",
-    "audited_counters": {
-      "prompt_token_count": 1369,
-      "candidates_token_count": 16,
-      "thoughts_token_count": 0,
-      "total_token_count": 1385,
-      "tool_use_prompt_token_count": null
-    },
-    "derived_thinking_counter": "zero_residual_in_reported_total; not separately observed"
-  },
-  "prepared_recovery": {
-    "case_variants": 71,
-    "conservative_maximum_microdollars": 10811723,
-    "counts_by_arm": {
-      "burden-4-noise-0": 5,
-      "burden-4-noise-100": 5,
-      "burden-4-noise-1000": 5,
-      "burden-8-noise-0": 8,
-      "burden-8-noise-100": 8,
-      "burden-8-noise-1000": 8,
-      "distributed": 8,
-      "false-0": 8,
-      "false-1": 8,
-      "false-2": 8
-    },
-    "distinct_worlds": 21,
-    "excluded_dispatched_worlds": [
-      "c6864bfacd718767e0f8952972855a0107d7fc4bb353120e86e678160f9973c3",
-      "d35b7edf0fd8cc86b51c6323408cd4b903da858260b1e923ef1041e411a56489",
-      "eee954723f9d8e30cb644128a2558ac373a0ba5741fccb1630491071ac6a0949"
-    ],
-    "interpretation": "Same exploratory questions and remaining matched cases. Burden-4 contrasts have five worlds after excluding three previously dispatched worlds; other arms have eight. No model-performance claim yet.",
-    "max_requests": 270,
-    "minimum_request_interval_seconds": 10,
-    "models": [
-      "gemini-3.5-flash-lite",
-      "gemini-3.8-flash"
-    ],
-    "pilot_id": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
-    "previous_held_microdollars": 36390,
-    "spending_ceiling_microdollars": 19963610,
-    "status": "prepared_unapproved",
-    "suite_id": "cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15",
-    "largest_input_token_upper_bound": 427702,
-    "context_preflight_failures": 0,
-    "software_verification": "156 passing tests; lint and format checks pass"
   }
 }

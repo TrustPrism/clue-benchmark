@@ -1,0 +1,59 @@
+{
+  "conservative_maximum_microdollars": 3554188,
+  "context_preflight_failures": 0,
+  "continuation_of": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
+  "failed_request_will_be_retried": false,
+  "job_count": 9,
+  "max_requests": 193,
+  "order": "Previously untouched distributed and false-report jobs first; sole untouched archive assignment last. Failed request is retained, never retried.",
+  "pilot_id": "8e4d41c7c4f144e8b3834897019ff3081129d515f4aa0772bfedf350bcc9517f",
+  "previous_held_microdollars": 174891,
+  "previous_settled_microdollars": 3392829,
+  "same_original_assignments": 193,
+  "spending_ceiling_microdollars": 16432280,
+  "status": "prepared_unapproved",
+  "suite_id": "006af15babb794db93ef8aa7b15704bcfbd20a0db568f1740960d9d122518338",
+  "date": "2026-10-09",
+  "models": [
+    {
+      "context_tokens": 1048576,
+      "id": "gemini-3.5-flash-lite-low",
+      "input_microdollars_per_million_tokens": 300000,
+      "model": "gemini-3.5-flash-lite",
+      "output_microdollars_per_million_tokens": 2500000,
+      "settings": {
+        "max_output_tokens": 4096,
+        "temperature": 0,
+        "thinking_level": "low"
+      },
+      "vendor": "google"
+    },
+    {
+      "context_tokens": 1048576,
+      "id": "gemini-3.8-flash-low",
+      "input_microdollars_per_million_tokens": 750000,
+      "model": "gemini-3.8-flash",
+      "output_microdollars_per_million_tokens": 3750000,
+      "settings": {
+        "max_output_tokens": 4096,
+        "temperature": 0,
+        "thinking_level": "low"
+      },
+      "vendor": "google"
+    }
+  ],
+  "original_total_ceiling_microdollars": 20000000,
+  "largest_input_token_upper_bound": 427530,
+  "output_token_cap": 4096,
+  "context_tokens": 1048576,
+  "mapped_assignments_hash": "51f8a233677ae1dbf2cf281cd90fe03baf2a95c11db1a70b98f3d07436fe893b",
+  "total_settled_plus_holds_plus_conservative_continuation_microdollars": 7121908,
+  "scope": [
+    "distributed-reference: complete and independent private agents",
+    "star/ring/chain one-round forwarding and chain three-round forwarding",
+    "zero, one and two false reports under the same at-most-two assumption",
+    "one untouched Flash archive assignment"
+  ],
+  "merge_rule": "Preserve all 77 dispatched original assignments, including HTTP 500; map only the 193 untouched assignments. Replace administrative placeholders only. Keep every original ledger and frozen receipt unchanged.",
+  "validation": "Every mapped original assignment is unique and undispatched; per-request identity, model, condition, input bound and reservation match. Sole re-exported archive request has byte-identical provider payload. Offline collector validates all 270 original assignments."
+}

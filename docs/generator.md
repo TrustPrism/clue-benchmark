@@ -30,16 +30,23 @@ still require a new authorization; package installation does not enable them.
 from clue_benchmark import CommunityConfig
 from clue_benchmark.community_generation import generate_case, partition, score
 from clue_benchmark.community_bundle import (
-    generate_dataset, validate_dataset, iter_cases, export_dataset,
+    generate_dataset,
+    validate_dataset,
+    iter_cases,
+    export_dataset,
 )
 
-config = CommunityConfig.from_dict({
-    "puzzle": {"family": "branching", "config": {
-        "suspect_count": 8, "clue_count": 12}},
-    "evidence": {"minimum_sufficient_clues": 8, "maximum_sufficient_clues": 8},
-    "distribution": {"agent_count": 4, "minimum_coalition_size": 4},
-    "dataset": {"count": 10, "output_directory": "/path/to/bank"},
-})
+config = CommunityConfig.from_dict(
+    {
+        "puzzle": {
+            "family": "branching",
+            "config": {"suspect_count": 8, "clue_count": 12},
+        },
+        "evidence": {"minimum_sufficient_clues": 8, "maximum_sufficient_clues": 8},
+        "distribution": {"agent_count": 4, "minimum_coalition_size": 4},
+        "dataset": {"count": 10, "output_directory": "/path/to/bank"},
+    }
+)
 manifest = generate_dataset(config)
 for row in iter_cases("/path/to/bank", agent_id=0):
     consume_public_record(row)  # Your agent/framework; no evaluator data supplied.

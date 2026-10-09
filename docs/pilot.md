@@ -81,6 +81,8 @@ coalition sizes and solver controls. `pilot-plan.json` identifies the entire
 evaluation. `pilot-results.json` says results are pending until real runs exist;
 it does not substitute solver controls or fabricated responses for model data.
 Small example bundles and a compact offline profile accompany the repository.
+The [current partial measurements](pilot-results.md) and [execution checkpoint](pilot-checkpoint.md)
+record the local run; they are separate from the reusable preparation defaults.
 
 Dry runs make no credential reads or network calls. Preflight checks every
 serialized provider request, including rules, structured constraints and tool
@@ -118,6 +120,8 @@ Sources: [pricing](https://ai.google.dev/gemini-api/docs/pricing) and
 [project limits](https://ai.google.dev/gemini-api/docs/rate-limits).
 API access to the selected models is not verified until execution; missing access
 is a retained failure and never triggers automatic model substitution.
+Both IDs returned responses in the dated local pilot; access elsewhere still
+depends on the supplied project and credentials.
 
 Actual execution still requires fresh approval of the concrete pilot ID. Supply
 an authorization JSON with exactly these fields, filling values from the plan:

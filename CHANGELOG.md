@@ -17,6 +17,10 @@
 - Document a dated primary-source comparison and the limits of the pilot claims.
 - Retain safe numeric provider-error status in durable receipts; preserve unknown
   usage reservations and block retries after a provider rejection.
+- Translate Google answer tools through its JSON Schema field and omit parameter
+  declarations for native no-argument abstention; verify actual SDK wire output
+  using a mock HTTP transport.
 
-One authorized Gemini request failed before usable model results; no measured
-model-performance result or public release is claimed.
+The original Gemini request and one separately authorized diagnostic failed before
+usable model results; no measured model-performance result or public release is
+claimed. The schema compatibility fix awaits a separately approved live check.

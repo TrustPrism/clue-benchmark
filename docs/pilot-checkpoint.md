@@ -14,6 +14,11 @@ provider's numeric error status, so the exact rejection cause is unknown. The
 harness now saves safe numeric status codes in durable receipts; raw error
 messages and credentials are excluded. No inference request has been retried.
 
+The user subsequently updated the key and authorized the one-request diagnostic.
+It returned **HTTP 400 without usage** and stopped. Read-only metadata access also
+succeeded with the updated key. The two reservations total **$0.024266**; actual
+spending remains unknown and no usable model results exist.
+
 - Experiments: matched archive volume, false reports, and distributed evidence.
 - Full local pilot: ten arms, eight worlds per arm, **80 case variants across
   24 distinct underlying worlds**. Variants are not independent observations.
@@ -70,10 +75,26 @@ uses one previously undispatched world, Gemini 3.5 Flash-Lite, the same settings
 zero retries and a $0.02 ceiling. Its conservative maximum is $0.012136;
 the input bound is 6,320 tokens and passes context preflight. Its plan ID is
 `e83e5d73816edfa69bafeb4bfea5d17c142fafe717a0c5f4598c810874b2917f`.
-This diagnostic has no authorization and has made no model calls. New explicit
-approval is required because unknown usage stops further spending in the approved
-pilot and a new plan cannot reuse its authorization. The original held amount
-must remain counted against the user's $20 total when preparing any recovery.
+That diagnostic is now stopped and its authorization cannot fund another run.
+
+Offline inspection found a likely Google schema compatibility issue: JSON Schema
+was passed through the OpenAPI `parameters` field, including a closed-object
+keyword, and abstention had an empty object schema. The adapter now uses Google's
+`parameters_json_schema` field for the answer and omits parameter declarations
+for the no-argument abstention. The [Google API reference](https://ai.google.dev/api/generate-content.md)
+documents the separate JSON Schema field. A mock HTTP transport verifies what
+the actual SDK serializes and a native abstention response. This is a proposed
+compatibility fix, not a confirmed explanation of the original HTTP 400.
+
+A corrected one-request live check is offline-prepared under ignored
+`runs/gemini-schema-diagnostic/`. It uses a third, previously undispatched world,
+the same model settings and a $0.02 ceiling, with a conservative maximum of
+$0.012124 and input bound of 6,278 tokens. Its plan ID is
+`46351ce9a7d657464239562b07ffdd8a7e71d605f67a2beecd6f6d68528421a0`.
+It has no authorization and has made no model calls. New explicit approval is
+required because unknown usage stops further spending and a new plan cannot reuse
+the earlier authorization. Both held amounts remain counted against the user's
+$20 total; $19.975734 remains after these reservations.
 
 Independent English review, reproduction and licensing remain release
 requirements that this checkpoint does not complete.

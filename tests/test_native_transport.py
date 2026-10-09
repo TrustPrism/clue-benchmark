@@ -143,3 +143,66 @@ def test_google_sdk_payload_and_response_translation(monkeypatch):
         response["returned_model"] == "fixture"
         and response["receipt"]["counters"]["total_token_count"] == 12
     )
+
+
+def test_google_actual_wire_schema_and_no_argument_abstention(monkeypatch):
+    import json
+
+    from google import genai
+    from google.genai import types
+
+    monkeypatch.setattr("clue_benchmark.native_transport.require_funding", lambda: None)
+    seen = []
+
+    def handle(request):
+        seen.append(json.loads(request.content))
+        return httpx.Response(
+            200,
+            json={
+                "modelVersion": "fixture",
+                "usageMetadata": {
+                    "promptTokenCount": 10,
+                    "candidatesTokenCount": 2,
+                    "thoughtsTokenCount": 0,
+                    "totalTokenCount": 12,
+                },
+                "candidates": [
+                    {
+                        "content": {
+                            "parts": [{"functionCall": {"name": "abstain", "args": {}}}]
+                        }
+                    }
+                ],
+            },
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handle)) as http_client:
+        client = genai.Client(
+            api_key="fixture-only",
+            http_options=types.HttpOptions(httpx_client=http_client),
+        )
+        try:
+            payload = request_payload(
+                "google",
+                "fixture",
+                {"suspects": ["A", "B"]},
+                "answer",
+                {"max_output_tokens": 100},
+            )
+            response = normalize_response(
+                "google", NativeTransport("google", google_client=client)(payload)
+            )
+        finally:
+            client.close()
+    assert len(seen) == 1
+    answer, abstain = seen[0]["tools"][0]["functionDeclarations"]
+    assert "parameters" not in answer
+    # The pinned SDK serializes the protobuf field's snake_case name.
+    assert answer["parameters_json_schema"] == {
+        "type": "object",
+        "properties": {"target": {"type": "string", "enum": ["A", "B"]}},
+        "required": ["target"],
+        "additionalProperties": False,
+    }
+    assert abstain == {"name": "abstain", "description": "Execute one abstain action."}
+    assert response["calls"] == [{"name": "abstain", "arguments": {}}]

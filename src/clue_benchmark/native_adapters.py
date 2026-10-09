@@ -38,6 +38,15 @@ def request_payload(vendor, model, observation, stage, settings):
     tools = tool_schemas(observation, stage)
     prompt = json.dumps(observation, sort_keys=True)
     if vendor == "google":
+        # Google distinguishes its OpenAPI Schema field from JSON Schema.
+        # Closed objects belong in parameters_json_schema. A no-argument
+        # declaration omits parameters rather than sending an empty OBJECT.
+        google_tools = []
+        for tool in tools:
+            declaration = {k: tool[k] for k in ("name", "description")}
+            if tool["parameters"]["properties"]:
+                declaration["parameters_json_schema"] = tool["parameters"]
+            google_tools.append(declaration)
         return {
             "model": model,
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
@@ -48,7 +57,7 @@ def request_payload(vendor, model, observation, stage, settings):
                     "thinking_level": settings.get("thinking_level", "low")
                 },
                 "candidate_count": 1,
-                "tools": [{"function_declarations": tools}],
+                "tools": [{"function_declarations": google_tools}],
                 "tool_config": {
                     "function_calling_config": {
                         "mode": "ANY",

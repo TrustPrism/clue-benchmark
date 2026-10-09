@@ -1,0 +1,10 @@
+{
+  "agent_count": 4,
+  "description": "Undirected graph examples; synchronous rounds and original report IDs.",
+  "policies": [
+    {"graph": "star", "rounds": 2, "max_reports_per_message": 16},
+    {"graph": "ring", "rounds": 2, "max_reports_per_message": 16},
+    {"graph": "chain", "rounds": 3, "max_reports_per_message": 16},
+    {"graph": "complete", "rounds": 1, "max_reports_per_message": 16}
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "puzzle": {"config": {"mutation_steps": 0}},
+  "evidence": {"irrelevant_records": 49992},
+  "dataset": {"count": 1, "seed": 7, "large_corpus": true, "output_directory": "community-results/large-corpus"}
+}

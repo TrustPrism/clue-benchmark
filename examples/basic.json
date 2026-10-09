@@ -1,0 +1,5 @@
+{
+  "schema_version": "clue-community-1",
+  "puzzle": {"config": {"mutation_steps": 0}},
+  "dataset": {"count": 3, "seed": 7, "output_directory": "community-results/basic"}
+}

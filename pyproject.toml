@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trustprism-clue-benchmark"
+version = "0.5.0.dev1"
+description = "Configurable clue datasets with certified distributed evidence"
+readme = "README.md"
+license-files = ["LICENSING.md"]
+requires-python = ">=3.12"
+dependencies = ["ortools==9.15.6755", "numpy==2.5.3"]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "build==1.6.1", "ruff==0.16.9", "jsonschema==4.26.0"]
+providers = ["google-genai==1.75.0", "httpx==0.28.1"]
+
+[project.scripts]
+clue-benchmark = "clue_benchmark.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

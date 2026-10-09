@@ -1,0 +1,22 @@
+# Local environments and build products.
+.venv*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Generated datasets, profiling exports and live request ledgers.
+runs/
+community-results/
+*.sqlite*
+*.tmp
+.community-checkpoints/
+
+# Credentials and local operating-system files.
+.env
+.env.*
+!.env.example
+.DS_Store

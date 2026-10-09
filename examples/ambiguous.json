@@ -1,0 +1,6 @@
+{
+  "puzzle": {"config": {"mutation_steps": 0}},
+  "evidence": {"false_reports": 1, "answerability": "ambiguous"},
+  "distribution": {"minimum_coalition_size": null},
+  "dataset": {"count": 1, "seed": 7, "output_directory": "community-results/ambiguous"}
+}

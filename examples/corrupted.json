@@ -1,0 +1,14 @@
+{
+  "puzzle": {
+    "config": {
+      "suspect_count": 2,
+      "domains": {"a0": ["0", "1"], "a1": ["0", "1"], "a2": ["0", "1"], "a3": ["0", "1"], "a4": ["0", "1"], "a5": ["0", "1"]},
+      "clue_count": 18,
+      "enabled_types": ["unary_positive", "crime_positive"],
+      "mutation_steps": 0
+    }
+  },
+  "evidence": {"false_reports": 2},
+  "distribution": {"agent_count": 1, "minimum_coalition_size": 1},
+  "dataset": {"count": 1, "seed": 7, "output_directory": "community-results/corrupted"}
+}

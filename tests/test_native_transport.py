@@ -1,0 +1,91 @@
+import httpx
+import pytest
+
+from clue_benchmark.native_adapters import normalize_response, request_payload
+from clue_benchmark.native_transport import NativeTransport
+
+
+def test_funding_guard_precedes_credentials_and_network(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    for vendor in ("google", "openai", "anthropic", "ollama"):
+        with pytest.raises(PermissionError):
+            NativeTransport(vendor)({"model": "fixture"})
+
+
+def test_http_native_payload_one_attempt_and_error_receipt(monkeypatch):
+    # Explicit offline mock transport; no network or authorized live inference.
+    monkeypatch.setattr("clue_benchmark.native_transport.require_funding", lambda: None)
+    monkeypatch.setenv("OPENAI_API_KEY", "fixture-only")
+    seen = []
+
+    def handle(request):
+        seen.append(request)
+        return httpx.Response(503, json={"error": {"type": "service_unavailable"}})
+
+    with httpx.Client(transport=httpx.MockTransport(handle)) as client:
+        raw = NativeTransport("openai", client=client)(
+            {"model": "fixture", "tools": []}
+        )
+    assert len(seen) == 1 and str(seen[0].url) == "https://api.openai.com/v1/responses"
+    response = normalize_response("openai", raw)
+    assert response["transport"] == "service_unavailable"
+    assert not response["receipt"]["usage_present"]
+    assert "fixture-only" not in str(response)
+
+
+def test_google_sdk_payload_and_response_translation(monkeypatch):
+    from google.genai import types
+
+    monkeypatch.setattr("clue_benchmark.native_transport.require_funding", lambda: None)
+
+    class Models:
+        calls = 0
+
+        def generate_content(self, **payload):
+            self.calls += 1
+            types.GenerateContentConfig(**payload["config"])
+            return types.GenerateContentResponse(
+                model_version="fixture",
+                usage_metadata=types.GenerateContentResponseUsageMetadata(
+                    prompt_token_count=10,
+                    candidates_token_count=2,
+                    thoughts_token_count=0,
+                    total_token_count=12,
+                ),
+                candidates=[
+                    types.Candidate(
+                        content=types.Content(
+                            parts=[
+                                types.Part(
+                                    function_call=types.FunctionCall(
+                                        name="answer", args={"target": "A"}
+                                    )
+                                )
+                            ]
+                        ),
+                        finish_reason="STOP",
+                    )
+                ],
+            )
+
+    class Client:
+        models = Models()
+
+    client = Client()
+    payload = request_payload(
+        "google",
+        "fixture",
+        {"suspects": ["A", "B"], "queries": [], "evidence": []},
+        "answer",
+        {"max_output_tokens": 100},
+    )
+    response = normalize_response(
+        "google", NativeTransport("google", google_client=client)(payload)
+    )
+    assert client.models.calls == 1 and response["calls"] == [
+        {"name": "answer", "arguments": {"target": "A"}}
+    ]
+    assert (
+        response["returned_model"] == "fixture"
+        and response["receipt"]["counters"]["total_token_count"] == 12
+    )

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural contract; Python configuration/semantic validation additionally enforces cross-field guarantees.",
+  "properties": {
+    "approved_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "approved_by": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "max_requests": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "plan_id": {
+      "maxLength": 64,
+      "minLength": 64,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "clue-community-authorization-1"
+    },
+    "spending_ceiling_microdollars": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "plan_id",
+    "approved_by",
+    "approved_at",
+    "spending_ceiling_microdollars",
+    "max_requests"
+  ],
+  "type": "object"
+}

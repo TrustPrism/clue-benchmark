@@ -1,0 +1,6 @@
+{
+  "puzzle": {"family": "branching", "config": {"suspect_count": 8, "clue_count": 12}},
+  "evidence": {"minimum_sufficient_clues": 8, "maximum_sufficient_clues": 8},
+  "distribution": {"agent_count": 4, "minimum_coalition_size": 4},
+  "dataset": {"count": 3, "seed": 7, "holdout_families": ["branching"], "output_directory": "community-results/branching"}
+}

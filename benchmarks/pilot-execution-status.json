@@ -1,82 +1,20 @@
 {
   "date": "2026-10-09",
-  "status": "partial_model_results_provider_error_stop",
+  "status": "all_assignments_dispatched_with_retained_provider_failure",
   "pilot_id": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
   "suite_id": "cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15",
   "assigned_requests": 270,
-  "dispatched_requests": 77,
-  "settled_requests": 76,
-  "unattempted_requests": 193,
-  "settled_microdollars": 3392829,
+  "dispatched_requests": 270,
+  "settled_requests": 269,
+  "unattempted_requests": 0,
+  "settled_microdollars": 4006113,
   "recovery_held_microdollars": 138501,
   "previous_held_microdollars": 36390,
   "total_held_microdollars": 174891,
-  "remaining_ceiling_microdollars": 16432280,
+  "remaining_ceiling_microdollars": 15818996,
   "total_user_ceiling_microdollars": 20000000,
-  "stop_reason": "HTTP 500 without usage; unknown usage retains full reservation",
-  "failed_request_id": "0682cf978fa5ce6a57560ff34a524f105ad993433c3cc01b6bd5c9f1289d89e4",
-  "provider_status_code": 500,
-  "model_performance": "76 settled archive-volume results; no distributed or false-report model results yet. See pilot-results-partial.json. Provider failure is distinct from an incorrect answer.",
-  "next_action": "Fresh approval of the frozen 193-request continuation; no dispatched request can be repeated.",
-  "prepared_continuation": {
-    "conservative_maximum_microdollars": 3554188,
-    "context_preflight_failures": 0,
-    "continuation_of": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
-    "failed_request_will_be_retried": false,
-    "job_count": 9,
-    "max_requests": 193,
-    "order": "Previously untouched distributed and false-report jobs first; sole untouched archive assignment last. Failed request is retained, never retried.",
-    "pilot_id": "8e4d41c7c4f144e8b3834897019ff3081129d515f4aa0772bfedf350bcc9517f",
-    "previous_held_microdollars": 174891,
-    "previous_settled_microdollars": 3392829,
-    "same_original_assignments": 193,
-    "spending_ceiling_microdollars": 16432280,
-    "status": "prepared_unapproved",
-    "suite_id": "006af15babb794db93ef8aa7b15704bcfbd20a0db568f1740960d9d122518338",
-    "date": "2026-10-09",
-    "models": [
-      {
-        "context_tokens": 1048576,
-        "id": "gemini-3.5-flash-lite-low",
-        "input_microdollars_per_million_tokens": 300000,
-        "model": "gemini-3.5-flash-lite",
-        "output_microdollars_per_million_tokens": 2500000,
-        "settings": {
-          "max_output_tokens": 4096,
-          "temperature": 0,
-          "thinking_level": "low"
-        },
-        "vendor": "google"
-      },
-      {
-        "context_tokens": 1048576,
-        "id": "gemini-3.8-flash-low",
-        "input_microdollars_per_million_tokens": 750000,
-        "model": "gemini-3.8-flash",
-        "output_microdollars_per_million_tokens": 3750000,
-        "settings": {
-          "max_output_tokens": 4096,
-          "temperature": 0,
-          "thinking_level": "low"
-        },
-        "vendor": "google"
-      }
-    ],
-    "original_total_ceiling_microdollars": 20000000,
-    "largest_input_token_upper_bound": 427530,
-    "output_token_cap": 4096,
-    "context_tokens": 1048576,
-    "mapped_assignments_hash": "51f8a233677ae1dbf2cf281cd90fe03baf2a95c11db1a70b98f3d07436fe893b",
-    "total_settled_plus_holds_plus_conservative_continuation_microdollars": 7121908,
-    "scope": [
-      "distributed-reference: complete and independent private agents",
-      "star/ring/chain one-round forwarding and chain three-round forwarding",
-      "zero, one and two false reports under the same at-most-two assumption",
-      "one untouched Flash archive assignment"
-    ],
-    "merge_rule": "Preserve all 77 dispatched original assignments, including HTTP 500; map only the 193 untouched assignments. Replace administrative placeholders only. Keep every original ledger and frozen receipt unchanged.",
-    "validation": "Every mapped original assignment is unique and undispatched; per-request identity, model, condition, input bound and reservation match. Sole re-exported archive request has byte-identical provider payload. Offline collector validates all 270 original assignments."
-  },
+  "model_performance": "Three measured demonstrations; see pilot-results.json and docs/pilot-results.md. Evidence-supported correctness, abstention and provider failure are separate outcomes.",
+  "next_action": "No further model calls scheduled. Independent language review, reproduction and licensing remain public-release gates.",
   "earlier_attempts": {
     "accounting_action": "Keep the original reservation. Do not repeat its dispatched request or resume this pilot.",
     "actual_charge": "unknown; settled amount is not evidence of zero spending",
@@ -158,5 +96,27 @@
       },
       "derived_thinking_counter": "zero_residual_in_reported_total; not separately observed"
     }
+  },
+  "completed_at_utc": "2026-10-10T00:58:22.218162+00:00",
+  "recovery_phase": {
+    "pilot_id": "a17b1002cb710aebce1d8516e09653e391db45710b0b70bbff6e11421219728b",
+    "suite_id": "cb0d2e5645919558d40ed64b86812480417184610639506bab96821743ee4d15",
+    "dispatched_requests": 77,
+    "settled_requests": 76,
+    "settled_microdollars": 3392829,
+    "recovery_held_microdollars": 138501,
+    "stop_reason": "HTTP 500 without usage; unknown usage retains full reservation",
+    "failed_request_id": "0682cf978fa5ce6a57560ff34a524f105ad993433c3cc01b6bd5c9f1289d89e4",
+    "provider_status_code": 500
+  },
+  "continuation_phase": {
+    "pilot_id": "8e4d41c7c4f144e8b3834897019ff3081129d515f4aa0772bfedf350bcc9517f",
+    "suite_id": "006af15babb794db93ef8aa7b15704bcfbd20a0db568f1740960d9d122518338",
+    "status": "complete",
+    "dispatched_requests": 193,
+    "settled_requests": 193,
+    "settled_microdollars": 613284,
+    "held_microdollars": 0,
+    "approved_at_utc": "2026-10-10T00:09:08.762418+00:00"
   }
 }

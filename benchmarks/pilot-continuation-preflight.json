@@ -11,7 +11,7 @@
   "previous_settled_microdollars": 3392829,
   "same_original_assignments": 193,
   "spending_ceiling_microdollars": 16432280,
-  "status": "prepared_unapproved",
+  "status": "executed_successfully",
   "suite_id": "006af15babb794db93ef8aa7b15704bcfbd20a0db568f1740960d9d122518338",
   "date": "2026-10-09",
   "models": [
@@ -55,5 +55,9 @@
     "one untouched Flash archive assignment"
   ],
   "merge_rule": "Preserve all 77 dispatched original assignments, including HTTP 500; map only the 193 untouched assignments. Replace administrative placeholders only. Keep every original ledger and frozen receipt unchanged.",
-  "validation": "Every mapped original assignment is unique and undispatched; per-request identity, model, condition, input bound and reservation match. Sole re-exported archive request has byte-identical provider payload. Offline collector validates all 270 original assignments."
+  "validation": "Every mapped original assignment is unique and undispatched; per-request identity, model, condition, input bound and reservation match. Sole re-exported archive request has byte-identical provider payload. Offline collector validates all 270 original assignments.",
+  "approved_at_utc": "2026-10-10T00:09:08.762418+00:00",
+  "settled_requests": 193,
+  "settled_microdollars": 613284,
+  "held_microdollars": 0
 }

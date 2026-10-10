@@ -81,7 +81,7 @@ coalition sizes and solver controls. `pilot-plan.json` identifies the entire
 evaluation. `pilot-results.json` says results are pending until real runs exist;
 it does not substitute solver controls or fabricated responses for model data.
 Small example bundles and a compact offline profile accompany the repository.
-The [current partial measurements](pilot-results.md) and [execution checkpoint](pilot-checkpoint.md)
+The [measured demonstrations](pilot-results.md) and [execution checkpoint](pilot-checkpoint.md)
 record the local run; they are separate from the reusable preparation defaults.
 
 Dry runs make no credential reads or network calls. Preflight checks every

@@ -78,10 +78,10 @@ bottleneck experiment. `examples/pilot_suite.py` generates and validates these
 offline, freezes a context-checked model plan under one total spending ceiling,
 and computes paired world-level contrasts after separately authorized execution.
 See the dated [resource comparison](docs/resource-comparison.md) for its rationale.
-The [partial Gemini results](docs/pilot-results.md) contain 76 settled responses:
-Flash solved 38/38 and Flash-Lite 24/38 settled archive cases. A provider error
-stopped execution before the false-report and distributed model comparisons;
-the [checkpoint](docs/pilot-checkpoint.md) records the continuation and costs.
+The [measured Gemini demonstrations](docs/pilot-results.md) contain 269 settled
+responses and one preserved provider failure across all three experiments.
+Results distinguish unsupported guesses, appropriate abstention and errors with
+sufficient evidence. The [checkpoint](docs/pilot-checkpoint.md) records costs.
 
 The original `generate`, `validate` and `export` commands and flat `Config` API
 remain available for puzzle-generation compatibility. Retired experiment runners
@@ -90,6 +90,6 @@ are not part of the current interface.
 ## Release status
 
 The software is locally tested. Public release still requires independent language
-review, independent reproduction, resolved licensing and completed model demonstrations.
+review, independent reproduction and resolved licensing.
 No frontier-model weakness or research novelty is established by software tests.
 See [licensing status](LICENSING.md).

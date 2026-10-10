@@ -38,6 +38,11 @@ def main(argv=None):
     )
     p.add_argument("--repeats", type=int, default=1)
     p.add_argument(
+        "--input-view",
+        choices=["structured_text", "text_only"],
+        default="structured_text",
+    )
+    p.add_argument(
         "--graph", choices=["star", "ring", "chain", "complete"], default="complete"
     )
     p.add_argument("--rounds", type=int, default=3)
@@ -104,6 +109,7 @@ def main(argv=None):
                 max_reports_per_message=args.message_reports,
                 spending_ceiling_microdollars=args.ceiling_microdollars,
                 max_requests=args.max_requests,
+                input_view=args.input_view,
             )
             atomic_json(args.output, plan)
             print(

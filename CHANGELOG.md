@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0.dev2 — certified advanced datasets
+
+- Add redundant relational paths, bounded targeted corruption search and exact
+  reliability distances with alternative-world witnesses from both encodings.
+- Add entailed connected decoys and explicit non-target extra-clue scope.
+- Certify large necessary subsets through deletion witnesses; ship 8/16/32-report
+  matched structural examples without relaxing requested cost.
+- Stream core evidence at front, middle, end or interleaved archive positions;
+  preserve report identities and ownership, and validate the published order.
+- Add text-only evaluation views, advanced presets, matched cohort preparation,
+  conservative frozen experiment plans and world-clustered analysis.
+- Prepare higher-thinking Gemini reference settings without dispatching calls;
+  preserve the completed pilot and its receipts separately.
+
 ## 0.5.0.dev1 — current generator
 
 - Make configurable, certified dataset generation the primary CLI and Python API.

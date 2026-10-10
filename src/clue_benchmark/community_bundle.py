@@ -18,6 +18,8 @@ from .community_generation import (
     generate_case,
     iter_allocations,
     iter_nuisance,
+    iter_reports,
+    merge_evidence,
     public_case,
     render_report,
 )
@@ -27,6 +29,7 @@ from .community_semantics import (
     coalition_certificate,
     core_reports,
     evaluate,
+    reliability_profile,
     witness_valid,
 )
 from .config import VERSION, canonical, digest
@@ -215,11 +218,7 @@ def export_dataset(config, accepted_paths, root):
             case["split"] = _split(config, case)
             cid = case["case_id"]
             _write(handles["cases.jsonl"], {"kind": "case", **public_case(case)})
-            reports = (
-                r
-                for collection in (case["reports"], iter_nuisance(case))
-                for r in collection
-            )
+            reports = iter_reports(case)
             counts = Counter()
             overlaps = [[0] * case["agent_count"] for _ in range(case["agent_count"])]
             for r, (rid, owners) in zip(
@@ -384,6 +383,8 @@ def load_evaluator_cases(root):
             or overlap != part["realized_overlap"]
         ):
             raise ValueError("actual report ownership violates certified quotas")
+        if next(expected_ids, None) is not None:
+            raise ValueError("missing reports in presentation sequence")
 
     for row in iter_cases(root):
         if row["kind"] == "case":
@@ -401,6 +402,16 @@ def load_evaluator_cases(root):
                 "config": manifest["config"],
                 "actual_nuisance": 0,
             }
+            if presentation.evidence_placement != "front":
+                current["evidence_placement"] = presentation.evidence_placement
+            expected_ids = iter(
+                merge_evidence(
+                    answer["core_report_ids"],
+                    (r["report_id"] for r in iter_nuisance(current)),
+                    current["nuisance_count"],
+                    presentation.evidence_placement,
+                )
+            )
             part = current["saved_certificate"]["partition"]
             if (
                 digest({k: v for k, v in part.items() if k != "partition_id"})
@@ -421,6 +432,8 @@ def load_evaluator_cases(root):
             records_left = recipe["count"] - recipe["shared_prefix"]
             continue
         allocation = next(allocations)
+        if row["report_id"] != next(expected_ids, None):
+            raise ValueError("report ordering differs from published presentation")
         if row["text"] != render_report(row, current, presentation)["text"]:
             raise ValueError("rendered report does not match structured constraint")
         if row["constraint"]["type"] == "record_positive":
@@ -489,11 +502,99 @@ def validate_dataset(root):
         fresh = certify(case, budget)
         saved = case["saved_certificate"]
         if (
+            case["false_report_count"] != cfg.evidence.false_reports
+            or case["corruption_allowance"] != cfg.evidence.corruption_allowance
+            or fresh["status"] != "verified_" + cfg.evidence.answerability
+            or len(case["reports"])
+            != cfg.puzzle.config["clue_count"]
+            + cfg.evidence.entailed_clues
+            + cfg.evidence.connected_decoys
+        ):
+            raise ValueError("evidence does not satisfy resolved configuration")
+        if (
+            cfg.puzzle.family == "redundant_paths"
+            or cfg.evidence.maximum_alternative_margin is not None
+            or (
+                cfg.evidence.corruption_strategy == "targeted"
+                and cfg.evidence.false_reports
+            )
+        ) and "reliability_profile" not in saved["certificate"]:
+            raise ValueError("required reliability profile missing")
+        decoys = saved["certificate"].get("connected_decoys")
+        if cfg.evidence.connected_decoys:
+            if not decoys or len(decoys["reports"]) != cfg.evidence.connected_decoys:
+                raise ValueError("connected decoy count mismatch")
+            truthful = {
+                **case,
+                "reports": decoys["truthful_basis"],
+                "corruption_allowance": 0,
+            }
+            if any(
+                r["report_id"] != digest(r["constraint"]) for r in truthful["reports"]
+            ) or not witness_valid(
+                truthful, case["solution"]["world"], case["solution"]["murderer"]
+            ):
+                raise ValueError(
+                    "connected decoy basis incompatible with sampled world"
+                )
+            if evaluate(truthful, budget=budget)["candidates"] != [
+                case["solution"]["murderer"]
+            ]:
+                raise ValueError("connected decoy basis is not a truthful unique core")
+            restored = {r["report_id"] for r in case["reports"]}
+            for change in saved["certificate"]["corruptions"]:
+                restored.remove(change["false_report_id"])
+                restored.add(change["original_report_id"])
+            if restored != {
+                r["report_id"] for r in decoys["truthful_basis"] + decoys["reports"]
+            }:
+                raise ValueError("connected decoys do not match the original evidence")
+            for report in decoys["reports"]:
+                c = report["constraint"]
+                if c["type"] not in (
+                    "suspect_same_as",
+                    "suspect_different_from",
+                ) or report["report_id"] != digest(c):
+                    raise ValueError("invalid connected relational decoy")
+                negation = {
+                    **c,
+                    "type": "suspect_different_from"
+                    if c["type"] == "suspect_same_as"
+                    else "suspect_same_as",
+                }
+                if evaluate(
+                    truthful,
+                    truthful["reports"]
+                    + [{"report_id": digest(negation), "constraint": negation}],
+                    budget,
+                )["candidates"]:
+                    raise ValueError("connected decoy not entailed by truthful basis")
+        if (
             fresh["candidates"] != saved["certificate"]["candidates"]
             or fresh["false_report_ids"] != saved["certificate"]["false_report_ids"]
         ):
             raise ValueError("saved answer certificate mismatch")
         part = saved["partition"]
+        if "reliability_profile" in saved["certificate"]:
+            profile = reliability_profile(case, budget)
+            stored = saved["certificate"]["reliability_profile"]
+            for r in stored["candidates"]:
+                if not witness_valid(
+                    {**case, "corruption_allowance": r["minimum_violations"]},
+                    r["world"],
+                    r["culprit"],
+                ):
+                    raise ValueError("saved reliability witness invalid")
+            if profile["alternative_margin"] != stored["alternative_margin"] or [
+                (r["culprit"], r["minimum_violations"]) for r in profile["candidates"]
+            ] != [
+                (r["culprit"], r["minimum_violations"]) for r in stored["candidates"]
+            ]:
+                raise ValueError("saved reliability distance mismatch")
+            if cfg.evidence.maximum_alternative_margin is not None and (
+                profile["alternative_margin"] > cfg.evidence.maximum_alternative_margin
+            ):
+                raise ValueError("alternative margin exceeds requested bound")
         coalition = coalition_certificate(case, part["core_allocation"], budget)
         if coalition != saved["certificate"]["coalition"]:
             # Witnesses can change without changing semantic answers.

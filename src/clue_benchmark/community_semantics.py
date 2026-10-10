@@ -79,7 +79,7 @@ def check_nuisance(reports):
         seen.add(c["component"])
 
 
-def _production(suspects, domains, reports, candidate, mode, allowance):
+def _production(suspects, domains, reports, candidate, mode, allowance, optimize=False):
     model = cp_model.CpModel()
     xs = {
         (s, a): model.new_int_var(0, len(vs) - 1, f"{s}:{a}")
@@ -135,10 +135,14 @@ def _production(suspects, domains, reports, candidate, mode, allowance):
             model.add(sum(pairs) == 0).only_enforce_if(exists.Not())
             truth_bits.append(exists if t == "indirect_positive" else exists.Not())
     model.add(sum(1 - bit for bit in truth_bits) <= allowance)
+    if optimize:
+        model.minimize(sum(1 - bit for bit in truth_bits))
     return model, xs
 
 
-def _independent(suspects, domains, reports, candidate, mode, allowance):
+def _independent(
+    suspects, domains, reports, candidate, mode, allowance, optimize=False
+):
     model = cp_model.CpModel()
     cells = {
         (s, a, v): model.new_bool_var(f"cell:{s}:{a}:{v}")
@@ -190,6 +194,8 @@ def _independent(suspects, domains, reports, candidate, mode, allowance):
             model.add(sum(matches) == 0).only_enforce_if(present.Not())
             violations.append(present.Not() if t == "indirect_positive" else present)
     model.add(sum(violations) <= allowance)
+    if optimize:
+        model.minimize(sum(violations))
     return model, cells
 
 
@@ -240,6 +246,96 @@ def witness_valid(case, world, culprit, reports=None):
         sum(not holds(r["constraint"], world, culprit) for r in reports)
         <= case["corruption_allowance"]
     )
+
+
+def reliability_profile(case, budget=None):
+    """Exact minimum report violations for each culprit, checked twice.
+
+    These are distances to compatible explanations, not LLM difficulty scores.
+    Witnesses and labels belong only in evaluator files. Optimality is required;
+    a feasible solution after a timeout cannot certify an exact distance.
+    """
+    budget = budget or Budget()
+    check_nuisance(case["reports"])
+    reports = core_reports(case["reports"])
+    separable = all("attribute" in r["constraint"] for r in reports)
+    components = (
+        [
+            ({a: vs}, [r for r in reports if r["constraint"]["attribute"] == a])
+            for a, vs in case["domains"].items()
+        ]
+        if separable
+        else [(case["domains"], reports)]
+    )
+    candidates = []
+    for candidate in case["suspects"]:
+        distances = []
+        for engine, builder in (
+            ("production", _production),
+            ("independent", _independent),
+        ):
+            world = {s: {} for s in case["suspects"]}
+            objective = 0
+            for domains, component in components:
+                model, cells = builder(
+                    case["suspects"],
+                    domains,
+                    component,
+                    candidate,
+                    case["assignment_mode"],
+                    len(component),
+                    optimize=True,
+                )
+                status, solver = budget.solve(model)
+                if status != cp_model.OPTIMAL:
+                    raise Unresolved("minimum violation distance unproved")
+                objective += round(solver.objective_value)
+                for s in case["suspects"]:
+                    world[s].update(
+                        {
+                            a: (
+                                vs[solver.value(cells[s, a])]
+                                if engine == "production"
+                                else next(v for v in vs if solver.value(cells[s, a, v]))
+                            )
+                            for a, vs in domains.items()
+                        }
+                    )
+            violated = [
+                r["report_id"]
+                for r in reports
+                if not holds(r["constraint"], world, candidate)
+            ]
+            if not witness_valid(
+                {**case, "corruption_allowance": len(reports)}, world, candidate
+            ):
+                raise AssertionError("minimum violation witness invalid")
+            if len(violated) != objective:
+                raise AssertionError("minimum violation objective mismatch")
+            distances.append(len(violated))
+        if distances[0] != distances[1]:
+            raise AssertionError("minimum violation encodings disagree")
+        candidates.append(
+            {
+                "culprit": candidate,
+                "minimum_violations": distances[0],
+                "violated_report_ids": violated,
+                "world": world,
+            }
+        )
+    wrong = [
+        r["minimum_violations"]
+        for r in candidates
+        if r["culprit"] != case["solution"]["murderer"]
+    ]
+    return {
+        "status": "exact",
+        "production_agrees": True,
+        "optimization_components": "attributes" if separable else "joint",
+        "candidates": candidates,
+        "nearest_alternative_violations": min(wrong),
+        "alternative_margin": min(wrong) - case["corruption_allowance"],
+    }
 
 
 def certify(case, budget=None):
@@ -293,6 +389,48 @@ def exhaustive(case, reports=None, maximum_worlds=1000000):
             ):
                 witnesses[culprit] = world
     return [s for s in case["suspects"] if s in witnesses]
+
+
+def essential_subset(case, budget=None, selected_reports=None):
+    """Prove all reports necessary through independently checked deletion worlds.
+
+    Useful for large minimal constructive cores; no combinatorial subset search
+    is needed when every deletion already admits an alternative culprit.
+    """
+    budget = budget or Budget()
+    reports = core_reports(case["reports"])
+    selected_reports = reports if selected_reports is None else selected_reports
+    chosen = {r["report_id"] for r in selected_reports}
+    if evaluate(case, selected_reports, budget)["candidates"] != [
+        case["solution"]["murderer"]
+    ]:
+        raise ValueError("proposed essential subset is insufficient")
+    cuts = []
+    target = case["solution"]["murderer"]
+    for index in range(len(reports)):
+        if reports[index]["report_id"] not in chosen:
+            continue
+        state = evaluate(case, reports[:index] + reports[index + 1 :], budget)
+        alternatives = [(c, w) for c, w in state["witnesses"].items() if c != target]
+        if not alternatives:
+            raise ValueError("all-report essentialness requirement unproved")
+        culprit, world = alternatives[0]
+        violated = [
+            i
+            for i, r in enumerate(reports)
+            if not holds(r["constraint"], world, culprit)
+        ]
+        if index not in violated or len(violated) != case["corruption_allowance"] + 1:
+            raise AssertionError("deletion witness not a tight countermodel")
+        cuts.append({"culprit": culprit, "world": world, "violated": violated})
+    return {
+        "status": "exact",
+        "lower_bound": len(selected_reports),
+        "upper_bound": len(selected_reports),
+        "report_ids": [r["report_id"] for r in selected_reports],
+        "cuts": cuts,
+        "method": "single_report_deletion_witnesses",
+    }
 
 
 def minimum_subset(case, budget=None):

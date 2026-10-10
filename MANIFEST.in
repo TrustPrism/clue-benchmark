@@ -1,7 +1,9 @@
 include LICENSING.md PROVENANCE.md PROVENANCE.json CITATION.cff CHANGELOG.md
 recursive-include docs *.md
-recursive-include examples *.py *.json *.jsonl
+recursive-include examples *.py *.json *.jsonl *.md
 recursive-include benchmarks *.json
 recursive-include schemas *.json
 recursive-include tests *.py *.json
 include scripts/export_schemas.py
+prune examples/**/.community-checkpoints
+global-exclude *.py[cod] .DS_Store *.sqlite* *.tmp

@@ -6,7 +6,7 @@ whether the evidence identifies the answer and which agent coalitions have
 enough information to solve it.
 
 This is the standalone dataset-generator project. Its current software version
-is **0.5.0.dev1** and its dataset schema is **clue-community-1**.
+is **0.5.0.dev2** and its dataset schema is **clue-community-1**.
 
 ## Install and generate
 
@@ -40,11 +40,13 @@ for record in iter_cases("runs/my-dataset", agent_id=0):
 
 - Puzzle size, domains, clue families and repeated or distinct attribute values.
 - Necessary-evidence bounds, entailed additions, independent records, zero to two
-  false reports, and unique-answer or explicitly ambiguous cases.
+  false reports, targeted corruption, connected relational decoys, and unique-answer
+  or explicitly ambiguous cases.
 - One to eight agents, shared/private replication, exact report quotas, and the
   required size of the smallest sufficient coalition.
 - Deterministic names, themes, wording, order and length bounds; token bounds
-  require a supplied tokenizer.
+  require a supplied tokenizer. Evidence can appear early, late or scattered
+  throughout an archive; evaluations support text-only inputs.
 - Seeds, workers, splits, structural holdouts and certification budgets.
 
 Requested settings are hard constraints. A rejected or unresolved instance does
@@ -82,6 +84,13 @@ The [measured Gemini demonstrations](docs/pilot-results.md) contain 269 settled
 responses and one preserved provider failure across all three experiments.
 Results distinguish unsupported guesses, appropriate abstention and errors with
 sufficient evidence. The [checkpoint](docs/pilot-checkpoint.md) records costs.
+
+The [advanced dataset demonstrations](docs/hardness.md) add certified 8/16/32-report
+burdens, relational false reports, near-solutions, connected decoys, evidence
+placement and an eight-agent bottleneck. `examples/hardness_suite.py` prepares
+matched cohorts and frozen experiment plans offline. Small certified examples
+and an offline verification report are included; new model measurements are
+pending. Existing pilot results and authorizations remain separate.
 
 The original `generate`, `validate` and `export` commands and flat `Config` API
 remain available for puzzle-generation compatibility. Retired experiment runners

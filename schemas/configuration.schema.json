@@ -89,6 +89,9 @@
         "answerability": {
           "type": "string"
         },
+        "connected_decoys": {
+          "type": "integer"
+        },
         "corruption_allowance": {
           "anyOf": [
             {
@@ -99,6 +102,12 @@
             }
           ]
         },
+        "corruption_search_attempts": {
+          "type": "integer"
+        },
+        "corruption_strategy": {
+          "type": "string"
+        },
         "entailed_clues": {
           "type": "integer"
         },
@@ -107,6 +116,16 @@
         },
         "irrelevant_records": {
           "type": "integer"
+        },
+        "maximum_alternative_margin": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "maximum_sufficient_clues": {
           "anyOf": [
@@ -135,6 +154,9 @@
       "additionalProperties": false,
       "properties": {
         "clue_order": {
+          "type": "string"
+        },
+        "evidence_placement": {
           "type": "string"
         },
         "maximum_tokens": {
@@ -194,6 +216,16 @@
       "properties": {
         "assignment_mode": {
           "type": "string"
+        },
+        "attribute_mismatches": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "config": {
           "additionalProperties": false,
@@ -284,6 +316,9 @@
             }
           },
           "type": "object"
+        },
+        "extra_clue_scope": {
+          "type": "string"
         },
         "family": {
           "type": "string"

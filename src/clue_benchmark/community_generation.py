@@ -11,8 +11,10 @@ from .community_semantics import (
     Budget,
     certify,
     coalition_certificate,
+    essential_subset,
     evaluate,
     minimum_subset,
+    reliability_profile,
 )
 from .config import Config, digest
 from .generation import generate
@@ -49,7 +51,62 @@ def build_core(config, seed):
     cfg = Config(**config.puzzle.config)
     family = config.puzzle.family
     rng = random.Random(seed)
-    if family in ("equality_tree", "branching"):
+    if family == "redundant_paths":
+        suspects = [f"S{i + 1:02d}" for i in range(cfg.suspect_count)]
+        culprit = rng.choice(suspects)
+        world = {s: {} for s in suspects}
+        clues = []
+        attributes = list(cfg.domains)
+        available = {
+            a: rng.sample(vs, cfg.active_values_per_attribute or len(vs))
+            for a, vs in cfg.domains.items()
+        }
+        for attr in attributes:
+            world[culprit][attr] = rng.choice(available[attr])
+        for s in suspects:
+            if s == culprit:
+                continue
+            different = set(
+                rng.sample(
+                    attributes, config.puzzle.attribute_mismatches or len(attributes)
+                )
+            )
+            for attr in attributes:
+                world[s][attr] = (
+                    rng.choice(
+                        [v for v in available[attr] if v != world[culprit][attr]]
+                    )
+                    if attr in different
+                    else world[culprit][attr]
+                )
+        for attr in attributes:
+            culprit_value = world[culprit][attr]
+            groups = {}
+            for s in suspects:
+                groups.setdefault(world[s][attr], []).append(s)
+            clues.append(
+                dict(type="crime_positive", attribute=attr, value=culprit_value)
+            )
+            for value, members in groups.items():
+                rng.shuffle(members)
+                clues.append(
+                    dict(
+                        type="unary_positive",
+                        suspect=members[0],
+                        attribute=attr,
+                        value=value,
+                    )
+                )
+                clues += [
+                    dict(
+                        type="suspect_same_as",
+                        suspect=right,
+                        other_suspect=left,
+                        attribute=attr,
+                    )
+                    for left, right in zip(members, members[1:])
+                ]
+    elif family in ("equality_tree", "branching"):
         suspects, world, culprit, clues, innocents, attr = _constructed(cfg, seed)
         for i, s in enumerate(innocents[1:], 1):
             parent = (
@@ -71,6 +128,13 @@ def build_core(config, seed):
             for c in builder.clue_pool
             if c["type"] in cfg.enabled_types and fact_key(c) not in existing
         ]
+        if config.puzzle.extra_clue_scope == "non_target_attributes":
+            pool = [
+                c
+                for c in pool
+                if not c["type"].startswith("crime_")
+                and attr not in (c.get("attribute"), c.get("attr1"), c.get("attr2"))
+            ]
         if len(pool) < cfg.clue_count - len(clues):
             raise ValueError("insufficient pool for exact constructed clue count")
         clues += rng.sample(pool, cfg.clue_count - len(clues))
@@ -127,7 +191,7 @@ def build_core(config, seed):
     }
 
 
-def _entailed(case, count, config, rng, budget):
+def _entailed(case, count, config, rng, budget, relational_only=False):
     if not count:
         return []
     builder = ClueGenerator(
@@ -135,10 +199,18 @@ def _entailed(case, count, config, rng, budget):
     )
     builder.build_clue_pool(rng)
     existing = {r["report_id"] for r in case["reports"]}
+    seen_facts = {fact_key(r["constraint"]) for r in case["reports"]}
     extras = []
     for c in builder.clue_pool:
         budget.check()
         if c["type"] not in config.puzzle.config["enabled_types"]:
+            continue
+        if relational_only and c["type"] not in (
+            "suspect_same_as",
+            "suspect_different_from",
+        ):
+            continue
+        if relational_only and fact_key(c) in seen_facts:
             continue
         r = _report(c)
         if r["report_id"] in existing:
@@ -158,9 +230,52 @@ def _entailed(case, count, config, rng, budget):
         if evaluate(case, trial, budget)["candidates"] == []:
             extras.append(r)
             existing.add(r["report_id"])
+            seen_facts.add(fact_key(c))
             if len(extras) == count:
                 return extras
     raise ValueError("insufficient distinct core-entailed clues")
+
+
+def _targeted_corruption(case, config, rng, budget):
+    """Bounded search minimizes distance to a wrong explanation, not model score."""
+    best = None
+    for attempt in range(config.evidence.corruption_search_attempts):
+        budget.check()
+        trial = deepcopy(case)
+        changes = _corrupt(
+            trial,
+            config.evidence.false_reports,
+            rng,
+            config.puzzle.config["enabled_types"],
+        )
+        trial["false_report_count"] = config.evidence.false_reports
+        trial["corruption_allowance"] = config.evidence.corruption_allowance
+        profile = reliability_profile(trial, budget)
+        allowed = [
+            r["culprit"]
+            for r in profile["candidates"]
+            if r["minimum_violations"] <= trial["corruption_allowance"]
+        ]
+        if allowed != [case["solution"]["murderer"]]:
+            continue
+        key = (
+            profile["nearest_alternative_violations"],
+            digest(sorted(trial["reports"], key=lambda r: r["report_id"])),
+        )
+        if best is None or key < best[0]:
+            best = (key, trial["reports"], changes, profile, attempt)
+    if best is None:
+        raise ValueError("targeted corruption search found no unique instance")
+    case["reports"] = best[1]
+    return (
+        best[2],
+        best[3],
+        {
+            "attempts": config.evidence.corruption_search_attempts,
+            "selected_attempt": best[4],
+            "objective": "minimum_wrong_culprit_violations",
+        },
+    )
 
 
 def _corrupt(case, count, rng, enabled):
@@ -330,9 +445,35 @@ def iter_nuisance(case):
         yield {"report_id": digest(c), "constraint": c}
 
 
-def iter_allocations(case, partition_data):
-    for r in case["reports"]:
-        yield r["report_id"], partition_data["core_allocation"][r["report_id"]]
+def merge_evidence(core, nuisance, count, placement="front"):
+    """Place a bounded core inside an arbitrarily long, ordered nuisance stream."""
+    core = list(core)
+    nuisance = iter(nuisance)
+    consumed = 0
+    for index, report in enumerate(core):
+        stop = {
+            "front": 0,
+            "middle": count // 2,
+            "end": count,
+            "interleaved": (index + 1) * count // (len(core) + 1),
+        }[placement]
+        while consumed < stop:
+            yield next(nuisance)
+            consumed += 1
+        yield report
+    yield from nuisance
+
+
+def iter_reports(case):
+    yield from merge_evidence(
+        case["reports"],
+        iter_nuisance(case),
+        case["nuisance_count"],
+        case.get("evidence_placement", "front"),
+    )
+
+
+def iter_nuisance_allocations(case, partition_data):
     recipe = partition_data["nuisance_recipe"]
     remaining = list(recipe["remaining_quotas"])
     records_left = recipe["count"] - recipe["shared_prefix"]
@@ -347,6 +488,19 @@ def iter_allocations(case, partition_data):
         yield r["report_id"], owners
     if any(remaining):
         raise ValueError("nuisance quota recipe did not settle")
+
+
+def iter_allocations(case, partition_data):
+    core = [
+        (r["report_id"], partition_data["core_allocation"][r["report_id"]])
+        for r in case["reports"]
+    ]
+    yield from merge_evidence(
+        core,
+        iter_nuisance_allocations(case, partition_data),
+        case["nuisance_count"],
+        case.get("evidence_placement", "front"),
+    )
 
 
 def render_report(report, case, presentation):
@@ -370,6 +524,8 @@ def render_report(report, case, presentation):
 
 def render_case(case, config, tokenizer=None):
     p = config.presentation
+    if p.evidence_placement != "front":
+        case["evidence_placement"] = p.evidence_placement
     labels = list(range(1, len(case["suspects"]) + 1))
     random.Random(p.naming_seed).shuffle(labels)
     case["display_names"] = {
@@ -411,8 +567,7 @@ def render_case(case, config, tokenizer=None):
         # Count the actual serialized presentation as one string, including BPE
         # boundary effects. This is optional and explicitly not a chat-token count.
         text = "\n".join(
-            texts
-            + [render_report(r, case, p)["text"] for r in iter_nuisance(case)]
+            [render_report(r, case, p)["text"] for r in iter_reports(case)]
             + [case["padding"]]
         )
         token_count = len(tokenizer(text))
@@ -469,7 +624,26 @@ def generate_case(config, seed, tokenizer=None):
         case["reports"] += _entailed(
             case, config.evidence.entailed_clues, config, rng, budget
         )
-        changes = _corrupt(case, config.evidence.false_reports, rng, cfg.enabled_types)
+        decoy_basis = list(case["reports"])
+        decoys = _entailed(
+            case,
+            config.evidence.connected_decoys,
+            config,
+            rng,
+            budget,
+            relational_only=True,
+        )
+        case["reports"] += decoys
+        profile, search = None, None
+        if (
+            config.evidence.corruption_strategy == "targeted"
+            and config.evidence.false_reports
+        ):
+            changes, profile, search = _targeted_corruption(case, config, rng, budget)
+        else:
+            changes = _corrupt(
+                case, config.evidence.false_reports, rng, cfg.enabled_types
+            )
         case["false_report_count"] = config.evidence.false_reports
         case["corruption_allowance"] = config.evidence.corruption_allowance
         case["nuisance_count"] = config.evidence.irrelevant_records
@@ -489,12 +663,37 @@ def generate_case(config, seed, tokenizer=None):
         desired = "verified_" + config.evidence.answerability
         if final["status"] != desired:
             raise ValueError("final_answerability_mismatch")
+        if (
+            config.puzzle.family == "redundant_paths"
+            or config.evidence.maximum_alternative_margin is not None
+        ):
+            profile = profile or reliability_profile(case, budget)
+        if config.evidence.maximum_alternative_margin is not None and (
+            profile["alternative_margin"] > config.evidence.maximum_alternative_margin
+        ):
+            raise ValueError("alternative_margin_requirement_unmet")
         subset_budget = Budget(
             max(0.001, (budget.deadline - time.monotonic()) * 0.4),
             max(1, budget.max_calls - budget.calls),
         )
         try:
-            cost = minimum_subset(case, subset_budget)
+            if (
+                config.puzzle.family in ("equality_tree", "branching")
+                and (
+                    len(case["reports"]) == cfg.suspect_count
+                    or config.evidence.minimum_sufficient_clues == cfg.suspect_count
+                )
+                and not case["corruption_allowance"]
+            ) or config.evidence.minimum_sufficient_clues == len(case["reports"]):
+                selected = (
+                    case["reports"][: cfg.suspect_count]
+                    if config.puzzle.family in ("equality_tree", "branching")
+                    and not case["corruption_allowance"]
+                    else case["reports"]
+                )
+                cost = essential_subset(case, subset_budget, selected)
+            else:
+                cost = minimum_subset(case, subset_budget)
         finally:
             budget.calls += subset_budget.calls
             budget.solve_seconds += subset_budget.solve_seconds
@@ -526,6 +725,18 @@ def generate_case(config, seed, tokenizer=None):
                 "coalition": part["certificate"],
                 "core_certificate": core_cert,
                 "corruptions": changes,
+                **({"reliability_profile": profile} if profile else {}),
+                **({"corruption_search": search} if search else {}),
+                **(
+                    {
+                        "connected_decoys": {
+                            "truthful_basis": decoy_basis,
+                            "reports": decoys,
+                        }
+                    }
+                    if decoys
+                    else {}
+                ),
             },
             "diagnostics": {
                 "solver_calls": budget.calls,

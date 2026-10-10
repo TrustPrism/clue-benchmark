@@ -1,0 +1,116 @@
+{
+  "puzzle": {
+    "config": {
+      "suspect_count": 8,
+      "domains": {
+        "attribute0": [
+          "0",
+          "1",
+          "2"
+        ],
+        "attribute1": [
+          "0",
+          "1",
+          "2"
+        ],
+        "attribute2": [
+          "0",
+          "1",
+          "2"
+        ],
+        "attribute3": [
+          "0",
+          "1",
+          "2"
+        ],
+        "attribute4": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      "clue_count": 45,
+      "enabled_types": [
+        "crime_different_from",
+        "crime_negative",
+        "crime_positive",
+        "crime_same_as",
+        "indirect_negative",
+        "indirect_positive",
+        "suspect_different_from",
+        "suspect_same_as",
+        "unary_negative",
+        "unary_positive"
+      ],
+      "alpha": 0.7,
+      "beta": 0.75,
+      "min_murderer_links": 1,
+      "max_murderer_links": null,
+      "max_positive_murderer_links": null,
+      "min_indirect_clues": 0,
+      "min_unique_subset_size": 1,
+      "require_indirect_essential": false,
+      "min_pairwise_clues": 0,
+      "active_values_per_attribute": null,
+      "reasoning_route": "standard",
+      "max_attempts": 64,
+      "mutation_steps": 12,
+      "max_solver_calls": 10000,
+      "solver_seconds": 2.0,
+      "solver_work": 0.2,
+      "generation_seconds": 30.0
+    },
+    "family": "redundant_paths",
+    "assignment_mode": "repeated",
+    "extra_clue_scope": "all",
+    "attribute_mismatches": 3
+  },
+  "evidence": {
+    "minimum_sufficient_clues": null,
+    "maximum_sufficient_clues": null,
+    "entailed_clues": 0,
+    "connected_decoys": 12,
+    "irrelevant_records": 0,
+    "false_reports": 0,
+    "corruption_allowance": 2,
+    "answerability": "unique",
+    "corruption_strategy": "random",
+    "corruption_search_attempts": 12,
+    "maximum_alternative_margin": 1
+  },
+  "distribution": {
+    "agent_count": 1,
+    "shared_reports": 0,
+    "private_replication": 1,
+    "per_agent_quotas": null,
+    "minimum_coalition_size": 1,
+    "max_attempts": 128
+  },
+  "presentation": {
+    "theme": "mystery",
+    "naming_seed": 0,
+    "template": "compact",
+    "clue_order": "shuffle",
+    "evidence_placement": "interleaved",
+    "minimum_words": null,
+    "maximum_words": null,
+    "minimum_tokens": null,
+    "maximum_tokens": null
+  },
+  "dataset": {
+    "count": 10,
+    "seed": 107,
+    "workers": 1,
+    "splits": {
+      "development": 0.8,
+      "test": 0.2
+    },
+    "holdout_families": [],
+    "output_directory": "runs/advanced/near-decoys-12-noise-0",
+    "certification_seconds": 5,
+    "max_solver_calls": 20000,
+    "max_candidates_per_case": 20,
+    "large_corpus": false
+  },
+  "schema_version": "clue-community-1"
+}

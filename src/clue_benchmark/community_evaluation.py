@@ -21,7 +21,15 @@ from .community_bundle import (
     verify_manifest,
 )
 from .community_config import CommunityConfig
-from .community_generation import iter_allocations, iter_nuisance, render_report, score
+from .community_generation import (
+    iter_allocations,
+    iter_nuisance,
+    iter_nuisance_allocations,
+    iter_reports,
+    merge_evidence,
+    render_report,
+    score,
+)
 from .config import canonical, digest
 from .dataset import atomic_json
 from .native_adapters import normalize_response, request_payload
@@ -75,9 +83,7 @@ def forward_evidence(
     # ordering; the policy cannot consult privileged relevance labels.
     capacity = max(1, max_reports_per_message * rounds)
     heaps = [[] for _ in range(n)]
-    ownership = iter(iter_allocations(case, part))
-    for _ in case["reports"]:
-        next(ownership)
+    ownership = iter(iter_nuisance_allocations(case, part))
     for report in iter_nuisance(case):
         rid, owners = next(ownership)
         item = (-int(rid, 16), rid, report)
@@ -132,7 +138,10 @@ def prepare_evaluation(
     max_requests=10000,
     forwarding_policy_identity="builtin-report-forwarding-1",
     minimum_request_interval_seconds=0,
+    input_view="structured_text",
 ):
+    if input_view not in ("structured_text", "text_only"):
+        raise ValueError("unsupported input view")
     manifest = verify_manifest(root)
     if (
         not isinstance(forwarding_policy_identity, str)
@@ -263,6 +272,8 @@ def prepare_evaluation(
         "dataset_config": manifest["config"],
         "worlds": manifest["worlds"],
     }
+    if input_view != "structured_text":
+        plan["input_view"] = input_view
     plan["plan_id"] = digest(plan)
     return plan
 
@@ -415,11 +426,7 @@ def _custom_forwarding(case, part, plan, policy, presentation):
             "agent_count",
         )
     }
-    records = (
-        render_report(r, case, presentation)
-        for group in (case["reports"], iter_nuisance(case))
-        for r in group
-    )
+    records = (render_report(r, case, presentation) for r in iter_reports(case))
     result = policy(
         headers,
         records,
@@ -509,12 +516,12 @@ def _observations(case, plan, condition, forwarding_policy=None):
     max_bytes = max(m["context_tokens"] for m in plan["models"])
     noise_views = [[] for _ in groups]
     bytes_used = [0 for _ in groups]
-    allocations = iter(iter_allocations(case, part))
-    for _ in case["reports"]:
-        next(allocations)
+    allocations = iter(iter_nuisance_allocations(case, part))
     for report in iter_nuisance(case):
         _, owners = next(allocations)
         public = render_report(report, case, cfg.presentation)
+        if plan.get("input_view", "structured_text") == "text_only":
+            public = {k: public[k] for k in ("report_id", "text")}
         # Large corpora fail preflight, never silently truncate to fit.
         for a in range(len(groups)):
             accessible = condition == "complete" or (
@@ -528,6 +535,11 @@ def _observations(case, plan, condition, forwarding_policy=None):
                     noise_views[a].append(public)
     for agent, ids in enumerate(groups):
         overflow = bytes_used[agent] > max_bytes
+        public_core = [rendered[rid] for rid in ids]
+        if plan.get("input_view", "structured_text") == "text_only":
+            public_core = [
+                {k: r[k] for k in ("report_id", "text")} for r in public_core
+            ]
         observation = {
             "instruction": plan["prompt"],
             "suspects": case["suspects"],
@@ -537,7 +549,14 @@ def _observations(case, plan, condition, forwarding_policy=None):
             "assignment_mode": case["assignment_mode"],
             "corruption_allowance": case["corruption_allowance"],
             "padding": case["padding"],
-            "reports": [rendered[rid] for rid in ids] + noise_views[agent],
+            "reports": list(
+                merge_evidence(
+                    public_core,
+                    noise_views[agent],
+                    len(noise_views[agent]),
+                    cfg.presentation.evidence_placement,
+                )
+            ),
             "discussion": [
                 m.get("discussion", "")
                 for m in messages

@@ -66,6 +66,10 @@ array. Never hand private generator results directly to an evaluated agent.
 
 ## Configuration
 
+Advanced controls and matched experiments are described in [hardness.md](hardness.md):
+`redundant_paths`, non-target extra clues, connected decoys, targeted corruption,
+alternative margins, archive placement, and text-only model inputs.
+
 Five sections are supported; unknown keys fail. Every manifest records resolved
 defaults. `puzzle.config` nests the existing flat `Config` contract, preserving
 retained flat puzzle commands and configuration files without migration.

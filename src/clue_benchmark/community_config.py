@@ -12,6 +12,7 @@ FAMILIES = {
     "cross_attribute": {"crime_positive", "unary_positive", "indirect_negative"},
     "equality_tree": {"crime_positive", "unary_positive", "suspect_same_as"},
     "branching": {"crime_positive", "unary_positive", "suspect_same_as"},
+    "redundant_paths": {"crime_positive", "unary_positive", "suspect_same_as"},
 }
 
 
@@ -28,11 +29,27 @@ class PuzzleConfig:
     config: dict = field(default_factory=dict)
     family: str = "standard"
     assignment_mode: str = "repeated"
+    extra_clue_scope: str = "all"
+    attribute_mismatches: int | None = None
 
     def __post_init__(self):
         cfg = Config(**self.config)
         if self.family not in FAMILIES:
             raise ValueError("unsupported family")
+        if self.attribute_mismatches is not None:
+            integer(
+                self.attribute_mismatches, "attribute_mismatches", 1, len(cfg.domains)
+            )
+            if self.family != "redundant_paths":
+                raise ValueError("attribute_mismatches requires redundant_paths")
+        if self.extra_clue_scope not in ("all", "non_target_attributes"):
+            raise ValueError("unsupported extra clue scope")
+        if self.extra_clue_scope == "non_target_attributes" and (
+            self.family not in ("equality_tree", "branching") or len(cfg.domains) < 2
+        ):
+            raise ValueError(
+                "non_target_attributes requires an equality family and two attributes"
+            )
         if self.assignment_mode not in ("repeated", "distinct"):
             raise ValueError("unsupported assignment mode")
         if FAMILIES[self.family] and not FAMILIES[self.family] <= set(
@@ -44,17 +61,21 @@ class PuzzleConfig:
         if self.assignment_mode == "distinct":
             if any(len(v) < cfg.suspect_count for v in cfg.domains.values()):
                 raise ValueError("distinct assignment requires enough values")
-            if self.family in ("equality_tree", "branching"):
+            if self.family in ("equality_tree", "branching", "redundant_paths"):
                 raise ValueError("equality constructions require repeated values")
             if cfg.active_values_per_attribute is not None and (
                 cfg.active_values_per_attribute < cfg.suspect_count
             ):
                 raise ValueError("active values cannot satisfy distinct assignments")
-        if self.family in ("equality_tree", "branching"):
+        if self.family in ("equality_tree", "branching", "redundant_paths"):
             if cfg.reasoning_route != "standard":
                 raise ValueError("constructed family conflicts with reasoning_route")
             if cfg.clue_count < cfg.suspect_count:
                 raise ValueError("equality construction needs at least n clues")
+            if self.family == "redundant_paths" and cfg.clue_count != (
+                (cfg.suspect_count + 1) * len(cfg.domains)
+            ):
+                raise ValueError("redundant_paths requires n+1 reports per attribute")
         elif self.family != "standard" and cfg.reasoning_route not in (
             "standard",
             self.family,
@@ -68,14 +89,36 @@ class EvidenceConfig:
     minimum_sufficient_clues: int | None = None
     maximum_sufficient_clues: int | None = None
     entailed_clues: int = 0
+    connected_decoys: int = 0
     irrelevant_records: int = 0
     false_reports: int = 0
     corruption_allowance: int | None = None
     answerability: str = "unique"
+    corruption_strategy: str = "random"
+    corruption_search_attempts: int = 12
+    maximum_alternative_margin: int | None = None
 
     def __post_init__(self):
-        for name in ("entailed_clues", "irrelevant_records", "false_reports"):
+        for name in (
+            "entailed_clues",
+            "connected_decoys",
+            "irrelevant_records",
+            "false_reports",
+        ):
             integer(getattr(self, name), name)
+        if self.corruption_strategy not in ("random", "targeted"):
+            raise ValueError("unsupported corruption strategy")
+        if (
+            self.corruption_strategy == "targeted"
+            and self.false_reports
+            and self.answerability != "unique"
+        ):
+            raise ValueError("targeted corruption supports unique cases only")
+        integer(self.corruption_search_attempts, "corruption_search_attempts", 1)
+        if self.maximum_alternative_margin is not None:
+            integer(self.maximum_alternative_margin, "maximum_alternative_margin", 1)
+            if self.answerability != "unique":
+                raise ValueError("alternative margin requires a unique answer")
         integer(self.false_reports, "false_reports", upper=2)
         allowance = (
             self.false_reports
@@ -143,6 +186,7 @@ class PresentationConfig:
     naming_seed: int = 0
     template: str = "compact"
     clue_order: str = "shuffle"
+    evidence_placement: str = "front"
     minimum_words: int | None = None
     maximum_words: int | None = None
     minimum_tokens: int | None = None
@@ -155,6 +199,8 @@ class PresentationConfig:
             raise ValueError("unsupported deterministic template")
         if self.clue_order not in ("shuffle", "canonical", "reverse"):
             raise ValueError("unsupported clue order")
+        if self.evidence_placement not in ("front", "middle", "end", "interleaved"):
+            raise ValueError("unsupported evidence placement")
         integer(self.naming_seed, "naming_seed")
         for name in (
             "minimum_words",
@@ -236,6 +282,7 @@ class CommunityConfig:
         if self.distribution.shared_reports > (
             self.puzzle.config["clue_count"]
             + self.evidence.entailed_clues
+            + self.evidence.connected_decoys
             + self.evidence.irrelevant_records
         ):
             raise ValueError("shared reports exceed total reports")

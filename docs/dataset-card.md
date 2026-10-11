@@ -44,10 +44,13 @@ The predicates are narrow finite constraints. Certified clue cost is not reasoni
 depth or general intelligence. Two solver encodings share CP-SAT, and deterministic
 English templates await independent review. Large-corpus mode adds total evidence
 volume; it does not establish 50,000 necessary clues. Model difficulty and practical
-usefulness require measured model results.
+usefulness require measured model results. The [initial pilot](pilot-results.md)
+and [hardness study](hardness-results.md) provide small, dated reference panels;
+they do not establish general model rankings.
 
 ## Release gates
 
-Language review, independent reproduction, ownership/licenses and model-panel
-evaluation are pending. Research novelty needs a dated comparison with relevant
-resources near submission time. No public redistribution license is granted yet.
+Language review, independent reproduction and ownership/licenses are pending.
+Measured reference panels are available; research novelty still needs a dated
+comparison with relevant resources near submission time. No public redistribution
+license is granted yet.

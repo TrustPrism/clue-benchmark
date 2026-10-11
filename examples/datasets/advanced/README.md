@@ -2,8 +2,9 @@
 
 The nineteen matched arms each contain two cases. `relational-32/` contains a
 separate one-case stress point. These are small inspection examples; the larger
-offline preparation used ten cases per matched arm. Model measurements for these
-new datasets are pending.
+offline preparation used ten cases per matched arm. The
+[measured study](../../../docs/hardness-results.md) evaluates six of those larger
+cohorts. The other arms and the 231-report stress point remain unmeasured.
 
 Give agents only public records from `cases.jsonl`, filtered through ownership in
 `partitions.jsonl` when testing private views. `answers.jsonl`,

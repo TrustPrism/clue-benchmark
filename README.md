@@ -89,8 +89,10 @@ The [advanced dataset demonstrations](docs/hardness.md) add certified 8/16/32-re
 burdens, relational false reports, near-solutions, connected decoys, evidence
 placement and an eight-agent bottleneck. `examples/hardness_suite.py` prepares
 matched cohorts and frozen experiment plans offline. Small certified examples
-and an offline verification report are included; new model measurements are
-pending. Existing pilot results and authorizations remain separate.
+and an offline verification report are included. The [high-thinking Gemini study](docs/hardness-results.md)
+records 359 settled responses and one retained timeout, with paired
+comparisons and [actual development failure examples](examples/datasets/measured-failures/README.md).
+Existing pilot results and authorizations remain separate.
 
 The original `generate`, `validate` and `export` commands and flat `Config` API
 remain available for puzzle-generation compatibility. Retired experiment runners

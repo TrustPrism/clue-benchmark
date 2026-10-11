@@ -1,5 +1,13 @@
 # Changelog
 
+## Measured hardness demonstrations — 2026-10-11
+
+- Record six paired high-thinking, text-only Gemini conditions, all original
+  assignments and the retained provider timeout without replaying a dispatched call.
+- Add immutable input/plan/receipt snapshots, offline continuation-aware reanalysis,
+  figures and clearly labelled development failure examples.
+- Preserve the earlier pilot separately and report finite-budget and sampling limits.
+
 ## 0.5.0.dev2 — certified advanced datasets
 
 - Add redundant relational paths, bounded targeted corruption search and exact
@@ -38,8 +46,7 @@
   valid reported totals; preserve raw counters and label the derivation. Retain
   native calls before accounting checks and count unknown output usage correctly.
 
-The original Gemini request and one separately authorized diagnostic failed before
-usable model results; no measured model-performance result or public release is
-claimed. The corrected schema check reached Gemini successfully but the original
-usage parser stopped on an omitted zero-thinking counter. A new full pilot on
-previously undispatched worlds is prepared and awaits explicit approval.
+Initial Gemini diagnostics failed before usable model results. The subsequent
+separately authorized pilot produced 269 settled responses and one preserved
+provider failure; see `docs/pilot-results.md`. Historical results, reservations
+and authorizations remain separate from later experiments.

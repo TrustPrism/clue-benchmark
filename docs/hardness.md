@@ -5,7 +5,8 @@ evidence is available**. They certify puzzle properties, not frontier-model
 failure. The earlier [measured pilot](pilot-results.md) found the stronger Gemini
 model solved all its settled complete-information archive cases and all false-report
 cases. Independent archive volume alone did not consistently lower accuracy.
-These new datasets address those limitations; model results are pending.
+These new datasets address those limitations. The [measured hardness study](hardness-results.md)
+now reports paired high-thinking, text-only model results and their limits.
 
 ## What is implemented
 
@@ -154,8 +155,8 @@ The new example model file uses the previously measured Gemini model IDs with
 **high thinking and an 8,192-token output cap**, rather than the pilot's low
 thinking/4,096 cap. Google documents high thinking for both models in its
 [thinking reference](https://ai.google.dev/gemini-api/docs/thinking).
-Context capacities and full-token prices are the dated pilot values; verify them
-before approving execution. These two models are reference points, not an
+Context capacities and full-token prices were verified against Google documentation
+on 2026-10-10 for the measured study; verify them again before another execution. These two models are reference points, not an
 exhaustive panel of today's strongest models. Researchers can supply others.
 
 ```sh

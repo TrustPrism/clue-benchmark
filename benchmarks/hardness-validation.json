@@ -1,0 +1,17 @@
+{
+  "archive_file_count": 154,
+  "archive_hash": "66dfeecafc8c6660ff647a979021ea78bf5e41a2b01b2d9f4fa0c90211f9c27a",
+  "assignment_identity_coverage": 360,
+  "continuation_assignments_mapped": 88,
+  "credential_authorization_ledger_files_excluded": true,
+  "distinct_worlds": 30,
+  "independent_external_reproduction": "pending",
+  "local_reanalysis_from_archive_identical": true,
+  "offline_network_calls": 0,
+  "original_timeout_preserved": true,
+  "production_source_changes": false,
+  "report_id": "c2b7705e57845da79ea3951ed4a1a4836d569763cb6e93d86def622473030d50",
+  "schema_version": "clue-hardness-local-verification-1",
+  "settled_receipts": 359,
+  "software_tests_passed": 183
+}

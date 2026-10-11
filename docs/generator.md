@@ -276,11 +276,14 @@ has no live-execution option. Basic, branching, ambiguous, corrupted and large
 presets are also included.
 `communication-policies.json` gives explicit star/ring/chain/complete schedules
 for four-agent cases; use `--graph`, `--rounds`, and `--message-reports` during
-evaluation preparation. Model identifiers and prices must come from the user;
-the examples contain no chosen model panel or fabricated results.
+evaluation preparation. Researchers supply model identifiers and prices; the
+Gemini example manifests record dated, explicitly approved reference panels.
+Verify context limits and prices before preparing another live experiment.
 
 The package can be built and installed for offline use now. Public release still
 requires resolved ownership/licenses, independent language review, another
-person reproducing the workflow, and a frozen model-panel evaluation. Export
-manifests keep these gates pending and never claim frontier-model performance.
-Novelty claims require a dated comparison with current resources.
+person reproducing the workflow. The [initial pilot](pilot-results.md) and
+[hardness study](hardness-results.md) provide frozen reference measurements.
+Generation manifests retain the release-gate state at preparation time; model
+receipts and release review are separate artifacts. Novelty claims require a
+dated comparison with current resources.

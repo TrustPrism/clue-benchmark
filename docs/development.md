@@ -27,6 +27,10 @@ it does not need credentials. CI runs the same checks and builds a wheel/sdist.
   generated bundles under `datasets/`.
 - `examples/pilot_suite.py`: matched usefulness demonstrations, offline controls,
   frozen model plans and a separately authorized Gemini reference pilot.
+- `examples/hardness_suite.py`: advanced matched cohorts and offline planning;
+  `collect_hardness_results.py` reanalyses saved receipts and mapped continuations.
+- `examples/package_hardness_results.py` and `plot_hardness_results.py`: reproducible
+  input/receipt archives and scientific figures (install `.[figures]` for plotting).
 - `schemas/`: current configuration, public/evaluator records and evaluation plans.
 - `benchmarks/large-corpus.json`: a local scaling profile, separate from model results.
 - `scripts/export_schemas.py`: regenerate structural schemas from current contracts.
@@ -35,7 +39,9 @@ it does not need credentials. CI runs the same checks and builds a wheel/sdist.
 Use `runs/` for generated datasets, profiling output and execution ledgers. The
 directory is ignored by Git. Build outputs, local environments and credentials
 are also ignored. Do not add disposable copies of datasets or generated test logs
-to the source repository.
+to the source repository. Deliberately frozen measured snapshots under
+`benchmarks/data/` are reproducibility artifacts; their index inventories every
+file. They exclude credentials, authorizations, ledgers and checkpoints.
 
 ## Updating contracts and examples
 

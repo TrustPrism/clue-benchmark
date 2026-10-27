@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural contract; Python configuration/semantic validation additionally enforces cross-field guarantees.",
+  "properties": {
+    "dataset": {
+      "additionalProperties": false,
+      "properties": {
+        "certification_seconds": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "holdout_families": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "large_corpus": {
+          "type": "boolean"
+        },
+        "max_candidates_per_case": {
+          "type": "integer"
+        },
+        "max_solver_calls": {
+          "type": "integer"
+        },
+        "output_directory": {
+          "type": "string"
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "splits": {
+          "type": "object"
+        },
+        "workers": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "distribution": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_count": {
+          "type": "integer"
+        },
+        "max_attempts": {
+          "type": "integer"
+        },
+        "minimum_coalition_size": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "per_agent_quotas": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "private_replication": {
+          "type": "integer"
+        },
+        "shared_reports": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "answerability": {
+          "type": "string"
+        },
+        "connected_decoys": {
+          "type": "integer"
+        },
+        "corruption_allowance": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "corruption_search_attempts": {
+          "type": "integer"
+        },
+        "corruption_strategy": {
+          "type": "string"
+        },
+        "entailed_clues": {
+          "type": "integer"
+        },
+        "false_reports": {
+          "type": "integer"
+        },
+        "irrelevant_records": {
+          "type": "integer"
+        },
+        "maximum_alternative_margin": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "maximum_sufficient_clues": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum_sufficient_clues": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "presentation": {
+      "additionalProperties": false,
+      "properties": {
+        "clue_order": {
+          "type": "string"
+        },
+        "evidence_placement": {
+          "type": "string"
+        },
+        "maximum_tokens": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "maximum_words": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum_tokens": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum_words": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "naming_seed": {
+          "type": "integer"
+        },
+        "template": {
+          "type": "string"
+        },
+        "theme": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "puzzle": {
+      "additionalProperties": false,
+      "properties": {
+        "assignment_mode": {
+          "type": "string"
+        },
+        "attribute_mismatches": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config": {
+          "additionalProperties": false,
+          "properties": {
+            "active_values_per_attribute": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "alpha": {
+              "type": "number"
+            },
+            "beta": {
+              "type": "number"
+            },
+            "clue_count": {
+              "type": "integer"
+            },
+            "domains": {
+              "type": "object"
+            },
+            "enabled_types": {
+              "type": "array"
+            },
+            "generation_seconds": {
+              "type": "number"
+            },
+            "max_attempts": {
+              "type": "integer"
+            },
+            "max_murderer_links": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "max_positive_murderer_links": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "max_solver_calls": {
+              "type": "integer"
+            },
+            "min_indirect_clues": {
+              "type": "integer"
+            },
+            "min_murderer_links": {
+              "type": "integer"
+            },
+            "min_pairwise_clues": {
+              "type": "integer"
+            },
+            "min_unique_subset_size": {
+              "type": "integer"
+            },
+            "mutation_steps": {
+              "type": "integer"
+            },
+            "reasoning_route": {
+              "type": "string"
+            },
+            "require_indirect_essential": {
+              "type": "boolean"
+            },
+            "solver_seconds": {
+              "type": "number"
+            },
+            "solver_work": {
+              "type": "number"
+            },
+            "suspect_count": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "extra_clue_scope": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "clue-community-1"
+    }
+  },
+  "type": "object"
+}

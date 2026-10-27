@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Structural contract; Python configuration/semantic validation additionally enforces cross-field guarantees.",
+  "properties": {
+    "owners": {
+      "items": {
+        "maximum": 7,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "case_id",
+    "report_id",
+    "partition_id",
+    "owners"
+  ],
+  "type": "object"
+}

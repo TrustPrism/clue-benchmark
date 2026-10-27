@@ -1,0 +1,25 @@
+{
+  "purpose": "Four private views; every agent is required to recover the complete answer.",
+  "config": {
+    "puzzle": {
+      "family": "branching",
+      "config": {
+        "suspect_count": 8,
+        "clue_count": 12
+      }
+    },
+    "evidence": {
+      "minimum_sufficient_clues": 8,
+      "maximum_sufficient_clues": 8
+    },
+    "distribution": {
+      "agent_count": 4,
+      "minimum_coalition_size": 4
+    },
+    "dataset": {
+      "count": 1,
+      "seed": 7,
+      "output_directory": "runs/distributed"
+    }
+  }
+}

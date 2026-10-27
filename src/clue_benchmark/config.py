@@ -5,7 +5,7 @@ import json
 import math
 from dataclasses import asdict, dataclass, field
 
-VERSION = "0.5.0.dev2"
+VERSION = "0.5.0rc1"
 DATA_VERSION = "0.3.0"
 TYPES = (
     "unary_positive",

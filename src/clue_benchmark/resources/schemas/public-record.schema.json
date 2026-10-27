@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Structural contract; Python configuration/semantic validation additionally enforces cross-field guarantees.",
+  "oneOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "agent_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "assignment_mode": {
+          "type": "string"
+        },
+        "case_id": {
+          "type": "string"
+        },
+        "corruption_allowance": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "display_names": {
+          "type": "object"
+        },
+        "domains": {
+          "type": "object"
+        },
+        "kind": {
+          "const": "case"
+        },
+        "padding": {
+          "type": "string"
+        },
+        "presentation_id": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "string"
+        },
+        "split": {
+          "type": "string"
+        },
+        "suspects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "total_reports": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "world_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "case_id",
+        "world_id",
+        "presentation_id",
+        "split",
+        "assignment_mode",
+        "padding",
+        "rules",
+        "suspects",
+        "domains",
+        "display_names",
+        "agent_count",
+        "corruption_allowance",
+        "total_reports"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "type": "string"
+        },
+        "constraint": {
+          "type": "object"
+        },
+        "kind": {
+          "const": "report"
+        },
+        "report_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "case_id",
+        "report_id",
+        "text",
+        "constraint"
+      ],
+      "type": "object"
+    }
+  ]
+}

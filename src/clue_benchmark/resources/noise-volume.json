@@ -1,0 +1,26 @@
+{
+  "purpose": "Four necessary reports followed by 100 independent nuisance records.",
+  "config": {
+    "puzzle": {
+      "family": "branching",
+      "config": {
+        "suspect_count": 4,
+        "clue_count": 4
+      }
+    },
+    "evidence": {
+      "minimum_sufficient_clues": 4,
+      "maximum_sufficient_clues": 4,
+      "irrelevant_records": 100
+    },
+    "distribution": {
+      "agent_count": 1,
+      "minimum_coalition_size": 1
+    },
+    "dataset": {
+      "count": 1,
+      "seed": 7,
+      "output_directory": "runs/noise-volume"
+    }
+  }
+}

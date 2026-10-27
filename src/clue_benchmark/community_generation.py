@@ -508,9 +508,13 @@ def render_report(report, case, presentation):
     if c["type"] == "record_positive":
         text = f'Record {c["component"]}: its independent value equals "{c["value"]}".'
     else:
-        text = ClueFormatter.format(c)
-        for ident, label in case["display_names"].items():
-            text = text.replace('"' + ident + '"', '"' + label + '"')
+        # Translate suspect fields before formatting. Literal domain/attribute
+        # strings may themselves equal an internal ID and must remain untouched.
+        displayed = dict(c)
+        for key in ("suspect", "other_suspect"):
+            if key in displayed:
+                displayed[key] = case["display_names"][displayed[key]]
+        text = ClueFormatter.format(displayed)
         if presentation.theme == "investigation":
             text = (
                 text.replace("The murderer", "The responsible entity")

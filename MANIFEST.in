@@ -1,9 +1,10 @@
 include LICENSING.md PROVENANCE.md PROVENANCE.json CITATION.cff CHANGELOG.md
-recursive-include docs *.md
-recursive-include examples *.py *.json *.jsonl *.md
-recursive-include benchmarks *.json *.jsonl *.png *.svg *.tar.gz
-recursive-include schemas *.json
-recursive-include tests *.py *.json
-include scripts/export_schemas.py
-prune examples/**/.community-checkpoints
+include README.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md
+recursive-include src/clue_benchmark/resources *.json *.jsonl
+prune benchmarks
+prune runs
+prune release
+prune examples
+prune docs
+prune tests
 global-exclude *.py[cod] .DS_Store *.sqlite* *.tmp

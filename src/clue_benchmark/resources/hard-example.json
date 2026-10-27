@@ -1,0 +1,25 @@
+{
+  "purpose": "Small eight-suspect burden example; this is not the 64-suspect measured hard study.",
+  "config": {
+    "puzzle": {
+      "family": "branching",
+      "config": {
+        "suspect_count": 8,
+        "clue_count": 8
+      }
+    },
+    "evidence": {
+      "minimum_sufficient_clues": 8,
+      "maximum_sufficient_clues": 8
+    },
+    "distribution": {
+      "agent_count": 1,
+      "minimum_coalition_size": 1
+    },
+    "dataset": {
+      "count": 1,
+      "seed": 7,
+      "output_directory": "runs/hard-example"
+    }
+  }
+}

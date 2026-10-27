@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trustprism-clue-benchmark"
-version = "0.5.0.dev2"
+version = "0.5.0rc1"
 description = "Configurable clue datasets with certified distributed evidence"
 readme = "README.md"
 license-files = ["LICENSING.md"]
@@ -15,6 +15,11 @@ dependencies = ["ortools==9.15.6755", "numpy==2.5.3"]
 test = ["pytest==9.1.1", "build==1.6.1", "ruff==0.16.9", "jsonschema==4.26.0"]
 providers = ["google-genai==1.75.0", "httpx==0.28.1"]
 figures = ["matplotlib==3.10.8"]
+
+docs = ["mkdocs==1.6.1"]
+
+[tool.setuptools.package-data]
+clue_benchmark = ["resources/*.json", "resources/schemas/*.json", "resources/distributed-evidence/*.json", "resources/distributed-evidence/*.jsonl", "resources/measured-results/*.json"]
 
 [project.scripts]
 clue-benchmark = "clue_benchmark.cli:main"

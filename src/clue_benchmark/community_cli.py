@@ -5,9 +5,9 @@ import json
 from pathlib import Path
 
 from .community_bundle import generate_dataset, profile_dataset, validate_dataset
-from .community_config import CommunityConfig
 from .config import VERSION
 from .dataset import atomic_json
+from .presets import NAMES, preset, resolve_config
 
 
 def main(argv=None):
@@ -20,9 +20,72 @@ def main(argv=None):
     sub = parser.add_subparsers(dest="command", required=True)
     for name in ("generate-dataset", "profile-dataset"):
         p = sub.add_parser(name)
-        p.add_argument("--config", required=True)
+        source = p.add_mutually_exclusive_group(required=True)
+        source.add_argument("--config")
+        source.add_argument("--preset", choices=NAMES)
         p.add_argument("--output")
         p.add_argument("--workers", type=int)
+    p = sub.add_parser(
+        "analyze-nuisance-followup",
+        help="Offline assigned-slot and paired-world reanalysis",
+    )
+    p.add_argument("directory")
+    p.add_argument("--output", required=True)
+    p = sub.add_parser(
+        "run-nuisance-followup",
+        help="Dry-run by default; one combined allowance and human manifest authorization",
+    )
+    p.add_argument("directory")
+    p.add_argument("--execute", action="store_true")
+    p.add_argument("--authorization")
+    p = sub.add_parser(
+        "prepare-nuisance-followup",
+        help="Offline only; does not authorize or dispatch inference",
+    )
+    p.add_argument("--output", required=True)
+    p.add_argument("--models", required=True)
+    p.add_argument("--prior-bank", nargs="+", required=True)
+    p = sub.add_parser("presets", help="Packaged, offline named configurations")
+    modes = p.add_subparsers(dest="preset_command", required=True)
+    modes.add_parser("list")
+    modes.add_parser("show").add_argument("name", choices=NAMES)
+    p = sub.add_parser("explain-config")
+    source = p.add_mutually_exclusive_group(required=True)
+    source.add_argument("--preset", choices=NAMES)
+    source.add_argument("--config")
+    p.add_argument("--output")
+    p.add_argument("--workers", type=int)
+    p = sub.add_parser(
+        "export-public", help="Only permitted evidence; no evaluator files"
+    )
+    p.add_argument("directory")
+    p.add_argument("--agent", type=int, default=0)
+    p.add_argument("--output", required=True)
+    p = sub.add_parser("inspect-case", help="Inspect public evidence only")
+    p.add_argument("directory")
+    p.add_argument("--case-id")
+    p.add_argument("--agent", type=int, default=0)
+    p = sub.add_parser("examples")
+    modes = p.add_subparsers(dest="example_command", required=True)
+    p = modes.add_parser("replay")
+    p.add_argument("name", choices=["distributed-evidence", "measured-results"])
+    p.add_argument(
+        "--figures",
+        action="store_true",
+        help="Optional matplotlib figures for measured-results",
+    )
+    p.add_argument("--output", required=True)
+    p = sub.add_parser(
+        "unpack-archive",
+        help="Explicit local checksummed reproduction archive; refuses links/traversal",
+    )
+    p.add_argument("archive")
+    p.add_argument("--sha256", required=True)
+    p.add_argument("--output", required=True)
+    p.add_argument("--maximum-bytes", type=int, default=1_000_000_000)
+    p = sub.add_parser("report", help="Offline JSON and escaped local HTML")
+    p.add_argument("source")
+    p.add_argument("--output", required=True)
     p = sub.add_parser("validate-dataset")
     p.add_argument("directory")
     p = sub.add_parser("prepare-community-evaluation")
@@ -62,13 +125,130 @@ def main(argv=None):
     )
     args = parser.parse_args(argv)
     try:
-        if args.command in ("generate-dataset", "profile-dataset"):
-            value = json.loads(Path(args.config).read_text())
-            if args.output is not None:
-                value.setdefault("dataset", {})["output_directory"] = args.output
-            if args.workers is not None:
-                value.setdefault("dataset", {})["workers"] = args.workers
-            config = CommunityConfig.from_dict(value)
+        if args.command == "analyze-nuisance-followup":
+            from .followup_analysis import analyze_followup
+
+            result = analyze_followup(args.directory, args.output)
+            print(
+                json.dumps(
+                    {k: v for k, v in result.items() if k not in {"episodes", "panels"}}
+                )
+            )
+        elif args.command == "run-nuisance-followup":
+            from .followup_runner import run_followup
+
+            auth = (
+                json.loads(Path(args.authorization).read_text())
+                if args.authorization
+                else None
+            )
+            result = run_followup(
+                args.directory, authorization=auth, dry_run=not args.execute
+            )
+            print(json.dumps({k: v for k, v in result.items() if k != "reports"}))
+            if result["status"] == "stopped":
+                return 2
+        elif args.command == "prepare-nuisance-followup":
+            from .nuisance_followup import prepare_followup
+
+            result = prepare_followup(
+                args.output, json.loads(Path(args.models).read_text()), args.prior_bank
+            )
+            print(
+                json.dumps(
+                    {
+                        k: v
+                        for k, v in result.items()
+                        if k
+                        not in {
+                            "candidate_blocks",
+                            "selected_blocks",
+                            "sources",
+                            "rejections",
+                            "prior_banks",
+                        }
+                    }
+                )
+            )
+            if result["status"] == "unaffordable_or_incomplete":
+                return 2
+        elif args.command == "presets":
+            result = (
+                {name: preset(name)["purpose"] for name in NAMES}
+                if args.preset_command == "list"
+                else {
+                    **preset(args.name),
+                    "resolved": resolve_config(name=args.name).to_dict(),
+                }
+            )
+            print(json.dumps(result))
+        elif args.command == "explain-config":
+            from .parameter_reference import explain_config
+
+            config = resolve_config(
+                name=args.preset,
+                path=args.config,
+                output=args.output,
+                workers=args.workers,
+            )
+            print(
+                json.dumps(
+                    {
+                        "software_version": VERSION,
+                        "config": config.to_dict(),
+                        "parameters": explain_config(config),
+                    }
+                )
+            )
+        elif args.command == "export-public":
+            from .public_api import export_public
+
+            print(json.dumps(export_public(args.directory, args.output, args.agent)))
+        elif args.command == "inspect-case":
+            from .public_api import inspect_case
+
+            print(json.dumps(inspect_case(args.directory, args.case_id, args.agent)))
+        elif args.command == "examples":
+            from .replay import replay_example
+
+            if args.name == "measured-results":
+                from .results import replay_results
+
+                result = replay_results(args.output, figures=args.figures)
+            else:
+                if args.figures:
+                    raise ValueError("--figures is supported for measured-results only")
+                result = replay_example(args.name, args.output)
+            print(
+                json.dumps(
+                    {
+                        k: v
+                        for k, v in result.items()
+                        if k not in {"episodes", "studies"}
+                    }
+                )
+            )
+        elif args.command == "unpack-archive":
+            from .archives import unpack_archive
+
+            print(
+                json.dumps(
+                    unpack_archive(
+                        args.archive, args.sha256, args.output, args.maximum_bytes
+                    )
+                )
+            )
+        elif args.command == "report":
+            from .replay import write_report
+
+            print(json.dumps(write_report(args.source, args.output)))
+        elif args.command in ("generate-dataset", "profile-dataset"):
+            config = resolve_config(
+                name=args.preset,
+                path=args.config,
+                output=args.output,
+                workers=args.workers,
+            )
             result = (
                 generate_dataset(config)
                 if args.command == "generate-dataset"
@@ -152,7 +332,7 @@ def main(argv=None):
             if args.execute and not result["complete"]:
                 return 2
         return 0
-    except (ValueError, TypeError, PermissionError, RuntimeError) as exc:
+    except (ValueError, TypeError, OSError, RuntimeError, KeyError, EOFError) as exc:
         parser.exit(2, f"error: {exc}\n")
 
 

@@ -15,6 +15,7 @@ from clue_benchmark import (
     validate_dataset,
 )
 from clue_benchmark.replay import replay_example
+from clue_benchmark.research_results import replay_nuisance
 from clue_benchmark.results import replay_results
 
 
@@ -36,6 +37,7 @@ assert (
     replay_example("distributed-evidence", root / "replayed")["independent_worlds"] == 8
 )
 assert replay_results(root / "measured")["model_calls"] == 0
+assert replay_nuisance(root / "nuisance")["combined"]["assigned"] == 144
 subprocess.run(
     [sys.executable, "-m", "clue_benchmark", "--help"],
     check=True,

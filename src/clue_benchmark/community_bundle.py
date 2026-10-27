@@ -83,6 +83,36 @@ def _screen(case):
 
 
 def generate_dataset(config, tokenizer=None):
+    """Serialize writers per output; resume only matching certified checkpoints."""
+    if not isinstance(config, CommunityConfig):
+        config = CommunityConfig.from_dict(config)
+    root = Path(config.dataset.output_directory)
+    root.mkdir(parents=True, exist_ok=True)
+    try:
+        import fcntl
+    except ImportError:
+        raise RuntimeError(
+            "generation output locking currently requires Linux or macOS"
+        ) from None
+    with (root / ".generation.lock").open("a") as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise ValueError(
+                "another generation is using this output directory"
+            ) from None
+        checkpoint = root / ".community-checkpoints" / "identity.json"
+        if (
+            any((root / name).exists() for name in (*FILES, "manifest.json"))
+            and not checkpoint.exists()
+        ):
+            raise ValueError(
+                "existing dataset has no matching generation checkpoint; use a new output directory"
+            )
+        return _generate_dataset(config, tokenizer)
+
+
+def _generate_dataset(config, tokenizer=None):
     if not isinstance(config, CommunityConfig):
         config = CommunityConfig.from_dict(config)
     if (
@@ -119,6 +149,15 @@ def generate_dataset(config, tokenizer=None):
         raise ValueError(
             "checkpoint source/configuration identity changed; use a new output directory"
         )
+    if (root / "manifest.json").exists():
+        saved_manifest = verify_manifest(root)
+        if saved_manifest.get("complete"):
+            # A completed, matching dataset is immutable: do not rerun or rewrite.
+            if saved_manifest.get("checkpoint_identity") != identity:
+                raise ValueError(
+                    "completed dataset source/configuration identity changed"
+                )
+            return saved_manifest
     atomic_json(identity_path, identity)
     accepted = []
     seen_world, seen_puzzle = set(), set()

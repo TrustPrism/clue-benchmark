@@ -111,6 +111,8 @@ def evaluate_agent(dataset, agent, output=None, agent_id=None):
     The evaluator alone loads answers. For untrusted code, use a separate process
     with only an export_public file mounted, then score its responses offline.
     """
+    if output is not None and Path(output).exists():
+        raise ValueError("output exists; choose a new evaluator output path")
     cases = {c["case_id"]: c for c in load_evaluator_cases(dataset)}
     episodes, current, reports = [], None, []
 
@@ -145,5 +147,5 @@ def evaluate_agent(dataset, agent, output=None, agent_id=None):
     if output is not None:
         if Path(output).exists():
             raise ValueError("output exists; choose a new evaluator output path")
-        atomic_json(output, result)
+        atomic_json(output, result, overwrite=False)
     return result

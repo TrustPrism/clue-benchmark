@@ -333,10 +333,11 @@ class Ledger:
             "CREATE TABLE IF NOT EXISTS identity (id TEXT PRIMARY KEY);"
             "CREATE TABLE IF NOT EXISTS requests (id TEXT PRIMARY KEY,status TEXT,maximum INTEGER,actual INTEGER,result TEXT);"
         )
-        ids = self.db.execute("SELECT id FROM identity").fetchall()
-        if ids and ids[0]["id"] != plan["plan_id"]:
-            raise ValueError("ledger belongs to another frozen plan")
+        self.db.execute("BEGIN IMMEDIATE")
         with self.db:
+            ids = self.db.execute("SELECT id FROM identity").fetchall()
+            if len(ids) > 1 or (ids and ids[0]["id"] != plan["plan_id"]):
+                raise ValueError("ledger belongs to another frozen plan")
             self.db.execute(
                 "INSERT OR IGNORE INTO identity VALUES (?)", (plan["plan_id"],)
             )
@@ -586,6 +587,54 @@ def run_evaluation(
     transports=None,
     forwarding_policy=None,
 ):
+    """One writer per durable evaluation directory; dry runs are side-effect free."""
+    if dry_run:
+        return _run_evaluation(
+            plan,
+            root,
+            output_directory,
+            dry_run=True,
+            authorization=authorization,
+            transports=transports,
+            forwarding_policy=forwarding_policy,
+        )
+    _authorization(plan, authorization)
+    try:
+        import fcntl
+    except ImportError:
+        raise RuntimeError(
+            "native evaluation locking currently requires Linux or macOS"
+        ) from None
+    output = Path(output_directory)
+    output.mkdir(parents=True, exist_ok=True)
+    with (output / ".evaluation.lock").open("a") as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise PermissionError(
+                "another evaluation is using this ledger; no request dispatched"
+            ) from None
+        return _run_evaluation(
+            plan,
+            root,
+            output_directory,
+            dry_run=False,
+            authorization=authorization,
+            transports=transports,
+            forwarding_policy=forwarding_policy,
+        )
+
+
+def _run_evaluation(
+    plan,
+    root,
+    output_directory,
+    *,
+    dry_run=True,
+    authorization=None,
+    transports=None,
+    forwarding_policy=None,
+):
     check_plan(plan, root)
     identity = getattr(
         forwarding_policy,
@@ -690,7 +739,10 @@ def run_evaluation(
                                     )
                                 results.append(failure)
                                 continue
-                            ledger.reserve(ident, maximum)
+                            if not ledger.reserve(ident, maximum):
+                                raise PermissionError(
+                                    "request was reserved by another launch; no duplicate dispatch"
+                                )
                             permit = DispatchPermit(
                                 ledger, plan, model, ident, payload, authorization
                             )

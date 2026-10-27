@@ -65,13 +65,86 @@ def replay_example(name, output):
     return result
 
 
+def _panel_table(title, panels):
+    columns = [
+        "burden",
+        "model",
+        "dose",
+        "worlds",
+        "assigned",
+        "supported_correct",
+        "assigned_accuracy",
+        "abstentions",
+        "settled_estimate_microdollars",
+    ]
+    table = (
+        "<h2>"
+        + html.escape(title)
+        + "</h2><div role='region' aria-label='Scrollable results table' tabindex='0' style='overflow:auto'><table><caption>Every assigned slot retained; worlds are independent units</caption><thead><tr>"
+    )
+    table += (
+        "".join(
+            "<th scope='col'>" + html.escape(c.replace("_", " ")) + "</th>"
+            for c in columns
+        )
+        + "</tr></thead><tbody>"
+    )
+    for panel in panels:
+        table += (
+            "<tr>"
+            + "".join(
+                "<td>" + html.escape(str(panel.get(c, "unavailable"))) + "</td>"
+                for c in columns
+            )
+            + "</tr>"
+        )
+    return table + "</tbody></table></div>"
+
+
 def write_report(source, output):
     """Render arbitrary saved JSON safely; never interprets HTML from a model."""
     source = Path(source)
     value = json.loads(source.read_text())
+    if not isinstance(value, dict):
+        raise ValueError("report source must be a JSON object")
+    records = value.get("episodes", [])
+    if not isinstance(records, list) or any(
+        not isinstance(row, dict) for row in records
+    ):
+        raise ValueError("report episodes must be a list of JSON objects")
+    studies = value.get("studies", {})
+    if not isinstance(studies, dict) or any(
+        not isinstance(study, dict)
+        or not isinstance(study.get("panels"), list)
+        or not isinstance(study.get("provenance"), dict)
+        or not isinstance(study.get("provenance", {}).get("limitations"), str)
+        or any(not isinstance(panel, dict) for panel in study["panels"])
+        for study in studies.values()
+    ):
+        raise ValueError(
+            "report studies must contain panel objects and provenance limitations"
+        )
+    if "panels" in value and (
+        not isinstance(value["panels"], list)
+        or any(not isinstance(panel, dict) for panel in value["panels"])
+    ):
+        raise ValueError("report panels must be a list of JSON objects")
+    if any(
+        ("world_id" in row and not isinstance(row["world_id"], str))
+        or ("condition" in row and not isinstance(row["condition"], str))
+        for row in records
+    ):
+        raise ValueError("report world_id and condition values must be strings")
+    phases = value.get("phases", {})
+    if not isinstance(phases, dict) or any(
+        not isinstance(phase, dict)
+        or not isinstance(phase.get("panels"), list)
+        or any(not isinstance(panel, dict) for panel in phase["panels"])
+        for phase in phases.values()
+    ):
+        raise ValueError("report phases must contain panel objects")
     destination = Path(output)
     destination.mkdir(parents=True, exist_ok=False)
-    records = value.get("episodes", [])
     counts = Counter(r.get("condition", "unspecified") for r in records)
     summary = {
         "software_version": VERSION,
@@ -82,6 +155,17 @@ def write_report(source, output):
         "conditions": dict(counts),
         "external_inference": False,
     }
+    if (
+        not records
+        and isinstance(value.get("assigned_slots"), int)
+        and isinstance(value.get("independent_worlds"), int)
+    ):
+        summary["assigned_records"] = value["assigned_slots"]
+        summary["independent_worlds"] = value["independent_worlds"]
+    if "limitations" in value:
+        summary["limitations"] = str(value["limitations"])
+    if isinstance(value.get("accounting"), dict):
+        summary["accounting"] = value["accounting"]
     panels_html = ""
     if "studies" in value:
         summary.pop("independent_worlds")
@@ -125,6 +209,14 @@ def write_report(source, output):
                     + "</tr>"
                 )
             panels_html += "</tbody></table></div>"
+    for phase, saved in phases.items():
+        if saved["panels"]:
+            panels_html += _panel_table(str(phase).title() + " phase", saved["panels"])
+    if value.get("panels"):
+        panels_html += _panel_table(
+            "Combined exploratory estimate" if phases else "Per-condition results",
+            value["panels"],
+        )
     atomic_json(destination / "report.json", {"summary": summary, "source": value})
     shutil.copyfile(source, destination / "source.json")
     rows = "".join(
@@ -136,9 +228,9 @@ def write_report(source, output):
         + rows
         + "</table><p><a href='source.json'>Download exact source JSON</a></p>"
         + panels_html
-        + "<h2>Saved observations and outcomes</h2><pre>"
+        + "<details><summary>Inspect all saved observations and outcomes</summary><pre>"
         + html.escape(json.dumps(value, indent=2, ensure_ascii=False))
-        + "</pre></main></html>"
+        + "</pre></details></main></html>"
     )
     (destination / "index.html").write_text(text)
     return summary

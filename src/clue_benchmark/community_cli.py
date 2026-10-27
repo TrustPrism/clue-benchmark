@@ -68,7 +68,10 @@ def main(argv=None):
     p = sub.add_parser("examples")
     modes = p.add_subparsers(dest="example_command", required=True)
     p = modes.add_parser("replay")
-    p.add_argument("name", choices=["distributed-evidence", "measured-results"])
+    p.add_argument(
+        "name",
+        choices=["distributed-evidence", "measured-results", "nuisance-followup"],
+    )
     p.add_argument(
         "--figures",
         action="store_true",
@@ -211,7 +214,11 @@ def main(argv=None):
         elif args.command == "examples":
             from .replay import replay_example
 
-            if args.name == "measured-results":
+            if args.name == "nuisance-followup":
+                from .research_results import replay_nuisance
+
+                result = replay_nuisance(args.output, figures=args.figures)
+            elif args.name == "measured-results":
                 from .results import replay_results
 
                 result = replay_results(args.output, figures=args.figures)
@@ -224,7 +231,8 @@ def main(argv=None):
                     {
                         k: v
                         for k, v in result.items()
-                        if k not in {"episodes", "studies"}
+                        if k
+                        not in {"episodes", "studies", "phases", "combined", "panels"}
                     }
                 )
             )

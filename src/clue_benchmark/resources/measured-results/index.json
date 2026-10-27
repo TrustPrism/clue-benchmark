@@ -43,5 +43,14 @@
     "independent_worlds": 36,
     "limitations": "72 assigned slots, three reused pilot responses. Completion is separate from supported correctness.",
     "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  },
+  "nuisance-followup": {
+    "original_source": "benchmarks/nuisance-extended-measurements.json",
+    "original_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+    "sanitized_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+    "assigned_records": 144,
+    "independent_worlds": 12,
+    "limitations": "One final post-result expansion. Same protocol/settings; report initial and extension separately. Combined estimates are exploratory; six underlying worlds per stratum, two attempts per model/dose/world. Equal observed accuracy does not demonstrate equivalence. No mechanism or general robustness claim. All failures retained; no further paid calls.",
+    "sanitization": "Positive outcome/usage field allowlist. No approvals, credentials, ledgers, raw receipts or provider prose. Evaluator data; never agent inputs."
   }
 }

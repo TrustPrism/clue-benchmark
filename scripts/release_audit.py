@@ -6,6 +6,7 @@ import json
 import re
 import subprocess
 import tarfile
+import tomllib
 import zipfile
 from pathlib import Path
 
@@ -115,8 +116,9 @@ def scan_archives():
 
 
 def audit(output, history=False):
+    version = tomllib.loads(Path("pyproject.toml").read_text())["project"]["version"]
     artifacts, findings = {}, []
-    for path in sorted(Path("dist").glob("*0.5.0rc1*")):
+    for path in sorted(Path("dist").glob(f"*{version}*")):
         artifacts[str(path)] = {"sha256": sha(path), "bytes": path.stat().st_size}
         limit = 5_000_000 if path.suffix == ".whl" else 10_000_000
         if path.stat().st_size >= limit:
@@ -147,9 +149,17 @@ def audit(output, history=False):
                                 archive.extractfile(member).read(),
                             )
                         )
+    if (
+        len(artifacts) != 2
+        or not any(name.endswith(".whl") for name in artifacts)
+        or not any(name.endswith(".tar.gz") for name in artifacts)
+    ):
+        raise ValueError(
+            "build exactly one wheel and one sdist for the current version before auditing"
+        )
     manifest = {
         "schema_version": "clue-private-release-manifest-1",
-        "software_version": "0.5.0rc1",
+        "software_version": version,
         "source_revision": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], text=True
         ).strip(),
@@ -168,10 +178,14 @@ def audit(output, history=False):
         "archive_inventory": scan_archives(),
         "artifact_scan_findings": findings,
         "history_scan": history_scan() if history else {"status": "not_requested"},
+        "paid_study_completion": json.loads(
+            Path("release/nuisance-extension-completion.json").read_text()
+        )
+        if Path("release/nuisance-extension-completion.json").exists()
+        else None,
         "license_state": "ownership clearance pending; no new license grant",
         "public_release_ready": False,
         "external_gates": [
-            "manifest-bound follow-up execution approval and native access/identity probes",
             "two independent rules/template readers",
             "outside installed-wheel reproduction",
             "ownership/contributor/provider-output redistribution clearance",

@@ -57,3 +57,87 @@ def plot_results(result, output):
     fig.savefig(root / "paired-accuracy-and-cost.svg")
     plt.close(fig)
     return str(root / "paired-accuracy-and-cost.svg")
+
+
+def plot_nuisance(result, output):
+    """Display phases separately and a clearly labeled exploratory aggregate."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    root = Path(output)
+    for metric, title, ylabel, name in [
+        (
+            "assigned_accuracy",
+            "Supported accuracy",
+            "Supported correct / assigned (%)",
+            "nuisance-accuracy",
+        ),
+        (
+            "settled_estimate_microdollars",
+            "Cost of added context",
+            "Estimated USD / assigned call",
+            "nuisance-cost",
+        ),
+    ]:
+        fig, axes = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
+        for column, (phase, label) in enumerate(
+            [
+                ("initial", "Initial: four worlds/stratum"),
+                ("extension", "Extension: two worlds/stratum"),
+                ("combined", "Combined: six worlds/stratum"),
+            ]
+        ):
+            panels = (
+                result["combined"]["panels"]
+                if phase == "combined"
+                else result["phases"][phase]["panels"]
+            )
+            for row, burden in enumerate((4, 8)):
+                ax = axes[row, column]
+                for model, model_label in [
+                    ("gemini-3.5-flash-lite-low", "Flash-Lite"),
+                    ("gemini-3.8-flash-low", "Flash"),
+                ]:
+                    records = [
+                        next(
+                            p
+                            for p in panels
+                            if (p["burden"], p["model"], p["dose"])
+                            == (burden, model, d)
+                        )
+                        for d in (0, 100, 1000)
+                    ]
+                    ys = [
+                        p[metric] * 100
+                        if metric == "assigned_accuracy"
+                        else p[metric] / p["assigned"] / 1e6
+                        for p in records
+                    ]
+                    ax.plot(range(3), ys, marker="o", label=model_label)
+                    if metric == "assigned_accuracy":
+                        for x, y, p in zip(range(3), ys, records, strict=True):
+                            ax.annotate(
+                                f"{p['supported_correct']}/{p['assigned']}",
+                                (x, y),
+                                xytext=(0, -14 if model_label == "Flash-Lite" else 6),
+                                textcoords="offset points",
+                                ha="center",
+                                fontsize=9,
+                            )
+                ax.set_xticks(range(3), ["0", "100", "1,000"])
+                ax.set_xlabel("Independent nuisance records")
+                ax.set_ylabel(ylabel)
+                ax.set_title(f"{label}\n{burden} necessary reports", fontsize=10)
+                ax.spines[["top", "right"]].set_visible(False)
+                if metric == "assigned_accuracy":
+                    ax.set_ylim(-5, 115)
+        axes[1, 2].legend(loc="lower left")
+        fig.suptitle(
+            title + " · two attempts per world · combined estimate is exploratory",
+            fontsize=13,
+        )
+        for extension in ("png", "svg"):
+            fig.savefig(root / (name + "." + extension), dpi=160)
+        plt.close(fig)

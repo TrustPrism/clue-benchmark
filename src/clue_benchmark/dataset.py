@@ -2,6 +2,7 @@
 
 import json
 import os
+import tempfile
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from importlib.metadata import version
@@ -11,16 +12,36 @@ from .config import DATA_VERSION, Config, digest
 from .generation import generate
 
 
-def atomic_json(path, value):
+def atomic_json(path, value, *, overwrite=True):
+    """Durable complete JSON publication, with unique temporary files.
+
+    overwrite=False uses an atomic no-clobber link, so concurrent writers cannot
+    replace an output between an existence check and publication.
+    """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with tmp.open("w") as f:
-        json.dump(value, f, sort_keys=True, separators=(",", ":"))
-        f.write("\n")
-        f.flush()
-        os.fsync(f.fileno())
-    tmp.replace(path)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=path.name + ".",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            json.dump(value, stream, sort_keys=True, separators=(",", ":"))
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        if overwrite:
+            os.replace(temporary, path)
+        else:
+            os.link(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def _graph_data(case, world=False):

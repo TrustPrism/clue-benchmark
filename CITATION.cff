@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Citation metadata is provisional until public release."
 title: "Clue Benchmark: Configurable Datasets with Certified Distributed Evidence"
 type: software
-version: 0.5.0rc1
+version: 0.5.0rc2
 authors:
   - name: "TrustPrism contributors"
 abstract: "A dataset generator for evaluating reasoning with controlled evidence, corruption, and information-sharing conditions."

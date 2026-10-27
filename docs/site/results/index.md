@@ -8,6 +8,25 @@ clue-benchmark examples replay measured-results --output runs/measured
 
 With the optional figures extra installed, add `--figures` to reproduce the paired accuracy/cost SVG. The command writes `results.json` and an accessible local HTML report with study-specific tables, source hashes and assigned counts.
 
+## What is interesting about the follow-up?
+
+The pilot's apparent benefit from irrelevant evidence **did not repeat consistently**. Lite's four-report endpoint accuracy was unchanged on average, but that average hid one improving world and one worsening world, with four unchanged. The eight-report dip at 100 extra records and partial recovery at 1,000 is a possible distraction signal, not an established dose-response pattern. Flash stayed at the ceiling in this narrow setting. The most consistent tradeoff was cost: roughly 56× for Lite and 77× for Flash at 1,000 extra records, without higher aggregate endpoint accuracy.
+
+These results make a useful replication and robustness example. They do not prove that irrelevant evidence never helps or hurts. The small sample and post-result expansion require exploratory interpretation; the [full phase results below](#follow-up-and-final-expansion) retain uncertainty and all conditions.
+
+## Where to find the original results
+
+The earlier studies have not been replaced by the new follow-up. Their sanitized outcomes are included in both the installed offline gallery and this documentation:
+
+- [Original nuisance pilot](#original-pilot) and [information availability](#information-availability): [pilot assignments](../assets/pilot.json).
+- [Certified evidence burden](#certified-burden): [hardness assignments](../assets/hardness.json).
+- [Fresh hard cases](#hard-cases-and-resources): [48-world assignments](../assets/flash-hard-scale.json); the [adaptive output-budget assignments](../assets/flash-limits.json) are a separate study.
+- [Qwen completion and correctness](#completion-versus-supported-correctness): [screening outcomes](../assets/qwen-sampled-screening.json).
+- [Initial October 27 follow-up](#follow-up-and-final-expansion): [original 96-call analysis](../assets/nuisance-followup-results.json) and [original reproduction index](../assets/nuisance-followup-reproduction.json).
+- [Final expansion and exploratory combined result](#follow-up-and-final-expansion): [separate phase summaries](../assets/nuisance-extended-results.json), [144 assignments with phase identities](../assets/nuisance-extended-measurements.json) and [combined reproduction index](../assets/nuisance-extended-reproduction.json).
+
+The [historical source/checksum index](../assets/index.json) records original source locations and hashes. The original documents, frozen study sources and operational archives remain preserved in the private checkout; distribution copies omit credentials and operational records. Full raw archives are not publicly deployed. Saved evaluator outcomes must never enter agent prompts.
+
 ![Historical four-report paired accuracy and cost](../assets/paired-accuracy-and-cost.svg)
 
 The same five worlds appear at all doses, with one attempt each. Additional context cost more. This small positive Lite observation is a hypothesis, not a general claim that weaker agents benefit from noise.
@@ -18,7 +37,11 @@ Eight worlds: Flash 8/8 complete answers, 32/32 appropriate abstentions on ambig
 
 ## Nuisance records
 
+### Original pilot
+
 Four necessary reports: Lite 2/5, 3/5, 5/5 at 0/100/1000 records; Flash 5/5 at every dose. Eight necessary reports: Lite 5/8, 5/8, 4/8, with a provider error included at the last dose. That last count is not four observed reasoning errors. One repetition; 8/32 preplanned identical-payload pairs elsewhere changed answers, all Lite. [Sanitized assignment records](../assets/pilot.json).
+
+### Follow-up and final expansion
 
 The initial follow-up and one final, outcome-independent expansion are both
 completed. The expansion used all four remaining worlds from the original

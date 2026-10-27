@@ -8,6 +8,12 @@ Start with [your first dataset](tutorials/first-dataset.md), then try [distribut
 
 No model service, account, key or repository clone is needed for the installed offline workflow. Paid model evaluation is separately authorized and never runs in the tutorials.
 
+## Measured findings and original studies
+
+The [latest follow-up](results/index.md#what-is-interesting-about-the-follow-up) found no consistent accuracy benefit from extra irrelevant evidence: Lite's primary endpoint stayed at 10/12, with changes on individual worlds, while Flash remained at 12/12. Costs rose roughly 56× and 77× respectively in the four-report setting. These small, exploratory results include both phases and uncertainty; they do not establish equivalence.
+
+The [original-results index](results/index.md#where-to-find-the-original-results) links the pilot, distributed-evidence controls, certified-burden study, hard cases, output-budget comparison and Qwen screening, alongside the initial follow-up and final expansion. Replay all included counts offline with `clue-benchmark examples replay measured-results --output runs/results`.
+
 ## A miniature public puzzle
 
 Ada, Ben and Cy each have one badge value: red or blue. Repeated values are allowed. The responsible person's badge is red. Ada's badge is blue. Ben's badge equals Ada's. These three truthful reports identify Cy; they do not determine every other attribute of the world. If Ben's report is missing, Ben and Cy are both possible, so abstaining is supported and a lucky Cy guess is not supported correctness.

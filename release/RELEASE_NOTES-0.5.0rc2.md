@@ -19,6 +19,14 @@ Lite counts: 10/12, 9/12, 10/12 at 0/100/1000 nuisance records; eight-report Lit
 The primary difference is zero with limited precision; no equivalence, mechanism
 or general robustness claim is made. No more paid tests are included.
 
+The README and documentation home now explain the replication finding, changes
+hidden by the unchanged average, the tentative harder-setting distraction signal
+and the cost increase. A dedicated original-results index links every included
+historical study and its sanitized assignments, keeping the original pilot,
+initial follow-up and final expansion separately discoverable. The private wheel
+and source distribution have been rebuilt to include this README update; the
+release manifest records their current hashes. No measured artifact is changed.
+
 Production fixes:
 
 - Serialize generation/evaluation writers and ledger identity claims.

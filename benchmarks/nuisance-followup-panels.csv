@@ -1,0 +1,13 @@
+burden,model,dose,assigned,worlds,observed,supported_correct,assigned_accuracy,returned_only_accuracy,returned_denominator,attempt_disagreement_worlds,input_tokens,output_tokens_including_thinking,thinking_tokens,latency_seconds,settled_estimate_microdollars,correct,abstentions,protocol_failures
+4,gemini-3.5-flash-lite-low,0,8,4,8,7,0.875,0.875,8,1,10732,3488,3360,15.45556304231286,11943,7,0,0
+4,gemini-3.5-flash-lite-low,100,8,4,8,5,0.625,0.625,8,1,193882,2752,2624,14.779754878021777,65047,5,0,0
+4,gemini-3.5-flash-lite-low,1000,8,4,8,7,0.875,0.875,8,1,1839542,5849,5721,45.34099616878666,566489,7,0,0
+4,gemini-3.8-flash-low,0,8,4,8,8,1.0,1.0,8,0,10732,2723,2595,34.28006387432106,18263,8,0,0
+4,gemini-3.8-flash-low,100,8,4,8,8,1.0,1.0,8,0,193882,3254,3126,39.95443333289586,157618,8,0,0
+4,gemini-3.8-flash-low,1000,8,4,8,8,1.0,1.0,8,0,1839542,5322,5194,69.6568984570913,1399617,8,0,0
+8,gemini-3.5-flash-lite-low,0,8,4,8,6,0.75,0.75,8,1,15608,8822,8701,31.114462959812954,26743,6,1,0
+8,gemini-3.5-flash-lite-low,100,8,4,8,3,0.375,0.375,8,2,198636,5997,5890,20.088543872814626,74587,3,3,0
+8,gemini-3.5-flash-lite-low,1000,8,4,8,4,0.5,0.5,8,3,1844612,3620,3492,30.512047581374645,562437,4,0,0
+8,gemini-3.8-flash-low,0,8,4,8,8,1.0,1.0,8,0,15608,3199,3071,37.384365206351504,23704,8,0,0
+8,gemini-3.8-flash-low,100,8,4,8,8,1.0,1.0,8,0,198636,4937,4809,63.63097887369804,167494,8,0,0
+8,gemini-3.8-flash-low,1000,8,4,8,8,1.0,1.0,8,0,1844612,7902,7774,93.51742454012856,1413095,8,0,0

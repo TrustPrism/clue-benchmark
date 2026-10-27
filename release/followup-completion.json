@@ -1,0 +1,72 @@
+{
+  "study_id": "nuisance-followup-20261027",
+  "manifest_id": "1fd16445c52a4bed3d55b100d86c285c74b036340da65c1d505060621055ce42",
+  "status": "completed",
+  "completion_time_utc": "2026-10-27T18:10:26.072304+00:00",
+  "underlying_worlds": 8,
+  "worlds_per_stratum": 4,
+  "attempts_per_world_model_dose": 2,
+  "scored_calls": 96,
+  "probe_calls": 2,
+  "total_paid_dispatches": 98,
+  "settled_estimate_microdollars": 4731671,
+  "probe_estimate_microdollars": 244634,
+  "held_microdollars": 0,
+  "planned_combined_ceiling_microdollars": 9838478,
+  "study_cap_microdollars": 10000000,
+  "returned_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.8-flash"
+  ],
+  "outcomes": {
+    "never_dispatched_slots": 0,
+    "observed_scored_slots": 96,
+    "protocol_failures": 0,
+    "transport_failures": 0,
+    "unnecessary_abstentions": 4,
+    "wrong_valid_answers": 12
+  },
+  "primary": {
+    "burden": 4,
+    "dose_minus_zero": 1000,
+    "exact_two_sided_p": 1.0,
+    "gained_worlds": 1,
+    "interpretation": "Descriptive small-world analysis, not a powered confirmatory test or mechanism identification.",
+    "lost_worlds": 1,
+    "mean_change": 0.0,
+    "model": "gemini-3.5-flash-lite-low",
+    "per_world_changes": {
+      "2f286d4c76c6e3087f78a0568f86ef27e6e5f98f725fab6263a21fd367fbf3f5": -0.5,
+      "3fa54c5a21706e149042b22ecd49fe4c10b0e846efa7d3d4323bc4aef3b257d2": 0.0,
+      "da21b2ef3b71566ee43d3d102ff4e9724de1aa5cc9192da1adc0b185cffdc451": 0.5,
+      "ff242e4d1718ef93b05c90a1e1546cc73e5c18e574adea4170c9d7c376362f21": 0.0
+    },
+    "primary": true,
+    "randomization_resolution": 0.0625,
+    "world_cluster_bootstrap_95_interval": [
+      -0.375,
+      0.375
+    ],
+    "worlds": 4
+  },
+  "replication_interpretation": "The earlier aggregate Lite improvement did not reproduce in this small cohort; primary estimate zero with wide descriptive interval.",
+  "reproduction_archive": {
+    "bytes": 4925514,
+    "path": "benchmarks/data/nuisance-followup-measured-2026-10-27.tar.gz",
+    "sha256": "f67e2cba24de71bd61fd61479b3075e4bfa76ae1d27196a341f00839b2a4ee03"
+  },
+  "offline_archive_replay": "passed with networking blocked; all panels, paired contrasts, costs and outcomes match",
+  "distribution_copy_scan": "no matching credential/private-key/local-home-path patterns; no approval or ledger files",
+  "artifacts": {
+    "benchmarks/nuisance-followup-results.json": "bc34ec40c0492b6c6b1b31a10f9fb0d3c96a2362c3398ea30665f8c5f15668ea",
+    "benchmarks/nuisance-followup-episodes.jsonl": "18dde0a09baa1b383bdb93ba4c26447e423c2899199121af961ad6ad8ea3059e",
+    "benchmarks/nuisance-followup-changed-worlds.json": "32ba1eea82c1fec8f3a6bdaf0dde054035c22d548c18f37d357693193b4d730d",
+    "benchmarks/nuisance-followup-reproduction.json": "26434ecd19d49af9ae5548ab6aa43648ab95ae7e06b5fcd24a723d54dce6c8bf",
+    "benchmarks/figures/nuisance-followup-paired-accuracy.png": "887a60aa370276147bca73812ebe893c17c844d45a620fc2a406567237e94f52",
+    "benchmarks/figures/nuisance-followup-cost.png": "210fbf5308a294b5f55804e2bfbe018d2ccec224351f59312f478e27cde391d3",
+    "examples/analyse_nuisance_followup.py": "b5edf0da4793ed36cea9b4c1d39680b2e2b2d9d3bbb75546bb6d0a6b852a6068",
+    "examples/package_nuisance_followup.py": "f5ba6f4e51fd58c80e5acf01a2d3920d261c997c280ea353e9de4e2b0566f3a3"
+  },
+  "public_distribution": "pending rights/privacy and owner gates; no publication authorized or performed",
+  "further_paid_experiments": "none authorized by this completed allowance"
+}

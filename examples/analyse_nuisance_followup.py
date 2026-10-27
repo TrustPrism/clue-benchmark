@@ -168,6 +168,7 @@ def analyse(root, output, figures=False):
 
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        from matplotlib.ticker import StrMethodFormatter
 
         models = [
             ("gemini-3.5-flash-lite-low", "Flash-Lite"),
@@ -220,6 +221,8 @@ def analyse(root, output, figures=False):
                 ax.set_xticks(range(3), ["0", "100", "1,000"])
                 ax.set_xlabel("Independent nuisance records")
                 ax.set_ylabel(ylabel)
+                if metric != "assigned_accuracy":
+                    ax.yaxis.set_major_formatter(StrMethodFormatter("${x:.2f}"))
                 ax.set_title(f"{burden} necessary reports · four independent worlds")
                 ax.spines[["top", "right"]].set_visible(False)
             axes[1].legend()

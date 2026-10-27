@@ -21,7 +21,7 @@ Lite counts were **10/12, 9/12, 10/12** in the primary stratum and **9/12, 5/12,
 stratum give limited precision. The primary estimate is zero with a descriptive
 95% world-bootstrap interval [-25, +25] points; unchanged scores are not proof of
 equivalence. The combined estimate is explicitly exploratory because expansion
-followed the initial result. Estimated total **$6.961763**, no holds, below $10.
+followed the initial result. Estimated total **$6.96**, no holds, below $10.
 See [separate phases and replay](../results/index.md#nuisance-records).
 
 To prepare a new exact study offline, supply explicit reviewed model prices and every prior measured bank:

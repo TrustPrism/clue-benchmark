@@ -1,6 +1,11 @@
 # Clue Benchmark 0.5.0rc2
 
-**Private release candidate. Ownership clearance and independent review are pending.**
+**Initial research preview. Ownership clearance, licensing and independent review are pending.**
+
+An initial public research preview is being prepared. The [open questions](results/open-questions.md)
+state what the experiments leave unresolved and what must be answered before
+the full software/data release. Public preview availability does not establish
+redistribution rights or grant a license.
 
 Clue Benchmark is a configurable Python generator and evaluation tool for certified information availability, reliability, and evidence distribution. It creates deterministic synthetic mysteries with explicit logical rules, certifies which answers the evidence supports, and separates public agent inputs from evaluator answers.
 

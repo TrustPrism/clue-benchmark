@@ -8,6 +8,7 @@ def plot_results(result, output):
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib.ticker import StrMethodFormatter
 
     root = Path(output)
     panels = result["studies"]["pilot"]["panels"]
@@ -51,6 +52,7 @@ def plot_results(result, output):
     axes[0].set_ylim(-0.05, 1.15)
     axes[0].set_title("Same five worlds; one attempt per dose")
     axes[1].set_ylabel("Estimated USD per assigned call")
+    axes[1].yaxis.set_major_formatter(StrMethodFormatter("${x:.2f}"))
     axes[1].set_title("Receipt estimates; not provider invoices")
     axes[1].legend()
     fig.suptitle("Historical four-report stratum · low thinking · 4,096 output tokens")
@@ -65,6 +67,7 @@ def plot_nuisance(result, output):
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib.ticker import StrMethodFormatter
 
     root = Path(output)
     for metric, title, ylabel, name in [
@@ -133,6 +136,8 @@ def plot_nuisance(result, output):
                 ax.spines[["top", "right"]].set_visible(False)
                 if metric == "assigned_accuracy":
                     ax.set_ylim(-5, 115)
+                else:
+                    ax.yaxis.set_major_formatter(StrMethodFormatter("${x:.2f}"))
         axes[1, 2].legend(loc="lower left")
         fig.suptitle(
             title + " · two attempts per world · combined estimate is exploratory",

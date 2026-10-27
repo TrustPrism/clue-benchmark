@@ -1,6 +1,6 @@
 # First dataset in five minutes
 
-Use Python 3.12 or newer. The release candidate is private: install the reviewed local wheel supplied by the maintainer. Do not upload it or infer redistribution rights from an installation example.
+Use Python 3.12 or newer. Install a built candidate wheel supplied by the maintainer, or use `python -m pip install .` from the checked-out preview source. Licensing remains pending; installation instructions do not grant redistribution rights. No PyPI release is claimed.
 
 ```sh
 python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
@@ -60,5 +60,5 @@ clue-benchmark examples replay nuisance-followup --output runs/followup
 ```
 
 The report separates the original eight-world phase, four-world expansion and
-exploratory combined result; all 144 scored assignments and the combined $10
+exploratory combined result; all 144 scored assignments and the combined $10.00
 accounting are bundled as sanitized data.

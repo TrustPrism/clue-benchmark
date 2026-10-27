@@ -2,6 +2,9 @@
 
 These are separate historical studies with different thinking budgets, input shapes, adaptive/fresh status and denominators. No pooled leaderboard is supported. Recompute from sanitized per-assignment records without credentials:
 
+The [initial-preview open questions](open-questions.md) separate unanswered
+research questions from pending full-release decisions.
+
 ```sh
 clue-benchmark examples replay measured-results --output runs/measured
 ```
@@ -66,8 +69,8 @@ bootstrap interval **[-25, +25] points**, exact sign-flip p=1.0. Equal observed
 accuracy does not establish equivalence or prove no effect. Necessary evidence,
 context length and composition do not isolate a general reasoning mechanism.
 The earlier aggregate improvement did not reproduce here. In the four-report
-stratum, mean estimated cost per scored call rose from $0.001269 to $0.070781
-for Lite (about 56×), and $0.002258 to $0.174906 for Flash (about 77×), while
+stratum, mean estimated cost per scored call rose from less than $0.01 to $0.07
+for Lite (about 56×), and less than $0.01 to $0.17 for Flash (about 77×), while
 zero- and 1000-record aggregate scores stayed unchanged. This is a useful bounded
 cost/robustness example, not a general law about reasoning.
 
@@ -75,11 +78,11 @@ cost/robustness example, not a general law about reasoning.
 
 ![Scored-call cost across phases](../assets/extended-nuisance-cost.svg)
 
-The combined receipt-based estimate is **$6.961763**, including **$4.731671**
-initially and **$2.230092** for the final expansion. The initial total includes
-**$0.244634** for the two probes. No unresolved holds; no transport or protocol
+The combined receipt-based estimate is **$6.96**, including **$4.73**
+initially and **$2.23** for the final expansion. The initial total includes
+**$0.24** for the two probes. No unresolved holds; no transport or protocol
 failures. This is not a provider invoice. The total commitment preflight was
-**$9.400427** against the single **$10** allowance; no further paid calls are planned.
+**$9.40** against the single **$10.00** allowance; no further paid calls are planned.
 
 Replay from an installed wheel, without a repository, key or provider:
 
@@ -106,7 +109,7 @@ Flash 30/30 in each 32-report path/tree arm; Lite 9/30 and 7/30. These are three
 
 ## Hard cases and resources
 
-Fresh confirmation: 9/48 correct, 28 wrong, 11 abstentions, no provider/protocol errors, 48 independent worlds, 64 suspects, 455 interacting reports, 32768 output tokens including thinking. The 455 reports were not individually necessary. Estimated $7.231002 belongs to a closed historical allowance. [Fresh records](../assets/flash-hard-scale.json).
+Fresh confirmation: 9/48 correct, 28 wrong, 11 abstentions, no provider/protocol errors, 48 independent worlds, 64 suspects, 455 interacting reports, 32768 output tokens including thinking. The 455 reports were not individually necessary. Estimated $7.23 belongs to a closed historical allowance. [Fresh records](../assets/flash-hard-scale.json).
 
 An earlier adaptive same-six-world comparison rose from 2/6 to 5/6 with more output allowance. Preserve adaptive status and resource differences. [Adaptive records](../assets/flash-limits.json).
 
@@ -118,4 +121,4 @@ Sampled Qwen: 67/72 valid final actions, 22 supported correct, 15 wrong with suf
 
 [Source/checksum/sanitization index](../assets/index.json) records original source paths and SHA-256 values plus hashes of the distribution copies. Only selected evaluator outcome fields are retained; no raw receipt, approval, checkpoint or model prose is shipped. These summaries are evaluator data and must not be placed in agent prompts. Hashes are integrity evidence, not ownership clearance.
 
-The original documents and immutable source/data archives remain preserved in the private repository. Licensing, outside reproduction and human template review remain pending. No inference occurs when reading or replaying these records.
+The original documents and frozen sources remain preserved. The owner authorized public visibility of the existing repository and its history; ignored operational archives remain local and are not uploaded. Licensing, outside reproduction and human template review remain pending. No inference occurs when reading or replaying these records.

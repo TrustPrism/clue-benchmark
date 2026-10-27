@@ -12,8 +12,8 @@ and label the six-world-per-stratum combined estimate exploratory. Optional
 --figures produces paired accuracy and cost plots. The general measured-results
 gallery also includes all 144 scored slots. The dataset schema is unchanged.
 
-The single $10 experiment allowance closes at a receipt-based estimate of
-$6.961763 for 146 settled requests, including two initial probes. Four-report
+The single $10.00 experiment allowance closes at a receipt-based estimate of
+$6.96 for 146 settled requests, including two initial probes. Four-report
 Lite counts: 10/12, 9/12, 10/12 at 0/100/1000 nuisance records; eight-report Lite:
 9/12, 5/12, 7/12; Flash 12/12 throughout. Nulls and the lower Lite scores remain.
 The primary difference is zero with limited precision; no equivalence, mechanism

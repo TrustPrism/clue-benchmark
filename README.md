@@ -1,10 +1,10 @@
-# Clue Benchmark — 0.5.0rc2 private candidate
+# Clue Benchmark — 0.5.0rc2 research preview
 
 A configurable Python generator and evaluation tool for **certified information availability, reliability, and evidence distribution**. Generate synthetic clue puzzles, certify what each agent can infer, export only public evidence, and score correctness separately from evidential support and abstention.
 
 A tiny public puzzle: Ada, Ben and Cy have red/blue badges; the responsible person has red, Ada has blue, and Ben has Ada's badge value. Cy is responsible. Remove Ben's report and both Ben and Cy remain possible: a lucky Cy answer is no longer supported. Repeated values are allowed; one culprit need not imply one complete world.
 
-Ownership clearance and independent review are pending. Install the reviewed private wheel with `python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl` (Python >=3.12). No public package upload is claimed.
+Ownership clearance, licensing and independent review are pending. This initial research preview does not grant an open-source or dataset license. With Python >=3.12, install a built candidate wheel using `python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl`, or install the checked-out source using `python -m pip install .`. No PyPI upload is claimed. The [open questions](docs/site/results/open-questions.md) describe the unanswered research and full-release decisions.
 
 ```sh
 clue-benchmark generate-dataset --preset quickstart --output runs/demo
@@ -20,7 +20,7 @@ No clone, API key or inference is needed. Discover configurations with `clue-ben
 
 In the eight-report setting, Lite scored **9/12, 5/12 and 7/12**. The dip and partial recovery suggest a possible distraction effect, but this small, irregular pattern does not establish one. Flash scored **12/12 at every dose in both settings**. At 1,000 extra records, average call cost in the four-report setting rose about **56× for Lite and 77× for Flash**, without improving aggregate endpoint accuracy.
 
-The combined primary change was zero, with a descriptive 95% world-bootstrap interval of **[-25, +25] percentage points**. This does not establish equivalence or prove no effect. The final expansion followed the initial result, so the combined findings are exploratory. All **144 scored calls plus two compatibility probes** completed without provider/protocol failures; the receipt-based estimate was **$6.961763 of the single $10 cap**, with no unresolved holds. The allowance is closed.
+The combined primary change was zero, with a descriptive 95% world-bootstrap interval of **[-25, +25] percentage points**. This does not establish equivalence or prove no effect. The final expansion followed the initial result, so the combined findings are exploratory. All **144 scored calls plus two compatibility probes** completed without provider/protocol failures; the receipt-based estimate was **$6.96 of the single $10.00 cap**, with no unresolved holds. The allowance is closed.
 
 [Full results, separate phases and costs](docs/site/results/index.md#nuisance-records) remain available. Replay these saved measurements without a key or paid calls:
 

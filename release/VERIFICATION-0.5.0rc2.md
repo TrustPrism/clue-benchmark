@@ -1,6 +1,6 @@
 # 0.5.0rc2 production verification — October 27, 2026
 
-The private candidate has **282 passing local tests** (86.98 seconds), plus Ruff
+The private candidate has **282 passing local tests** (87.20 seconds), plus Ruff
 lint/format checks for all 68 tracked Python files. One upstream Google SDK
 deprecation warning is unrelated to inference; CI uses provider mocks only.
 
@@ -9,13 +9,13 @@ macOS arm64 with Python **3.12.13, 3.13.12 and 3.14.6**. Networking was blocked;
 provider/figure/docs extras were absent. Checks covered generation, validation,
 public export, callback scoring, distributed-evidence replay, historical gallery
 and the final 144-slot nuisance replay. Every shipped source/resource byte
-matches the reviewed working tree. Wheel: 317,586 bytes; source archive: 290,723
+matches the reviewed working tree. Wheel: 318,032 bytes; source archive: 291,309
 bytes. Twine checks both metadata/readmes successfully. Strict MkDocs passes.
 
 The final nuisance archive replay passed with networking blocked: all initial,
 extension and combined panels, paired contrasts and accounting matched. All 146
-paid requests are uniquely settled, with an estimate of **$6.961763**, no holds,
-and a combined $10 cap. No further paid calls are authorized by this allowance.
+paid requests are uniquely settled, with an estimate of **$6.96**, no holds,
+and a combined $10.00 cap. No further paid calls are authorized by this allowance.
 The combined primary estimate is zero, with a descriptive interval [-25,+25]
 percentage points on six underlying worlds; it is not an equivalence claim.
 
@@ -38,7 +38,9 @@ offline installed-wheel smoke tests were repeated on Python 3.12–3.14. Package
 code and saved measurements are unchanged; previous full-suite results apply to
 that unchanged code. This documentation update makes no additional paid calls.
 
-Code is prepared for production review, not publicly published. Remaining owner
+The owner authorized an initial public research/source preview, including the existing repository history, while full licensing and human-review gates remain pending. Remaining owner
 gates are rights/license clearance, independent template/rule readers, outside-
 user installation review, manual privacy review and organization publishing
 approval. No license grant, human signoff, public upload or merge is fabricated.
+
+The cost-formatting update passed the full 282-test suite, focused report assertions, Ruff, strict MkDocs and Twine. Rebuilt-wheel offline smoke tests passed again on macOS Python 3.12–3.14. Displayed dollar costs use two decimal places; exact integer-microdollar accounting and saved measurements remain unchanged.

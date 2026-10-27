@@ -39,6 +39,11 @@ def test_combined_and_separate_phases_have_fixed_denominators(tmp_path, monkeypa
     assert result["accounting"]["combined_settled_microdollars"] == 6961763
     assert result["accounting"]["held_microdollars"] == 0
     rendered = (tmp_path / "replay/report/index.html").read_text()
+    assert "combined settled (USD): $6.96" in rendered
+    assert "settled estimate (USD)" in rendered
+    assert "$6.961763" not in rendered
+    saved = json.loads((tmp_path / "replay/report/source.json").read_text())
+    assert saved["accounting"]["combined_settled_microdollars"] == 6961763
     assert all(
         label in rendered
         for label in [

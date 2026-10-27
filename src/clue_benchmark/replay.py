@@ -4,6 +4,7 @@ import html
 import json
 import shutil
 from collections import Counter
+from decimal import Decimal
 from importlib.resources import as_file, files
 from pathlib import Path
 
@@ -65,6 +66,21 @@ def replay_example(name, output):
     return result
 
 
+def _display_label(key):
+    return key.replace("_microdollars", " (USD)").replace("_", " ")
+
+
+def _display_value(key, value):
+    if key.endswith("_microdollars") and type(value) is int:
+        return f"${Decimal(value) / 1_000_000:.2f}"
+    if isinstance(value, dict):
+        return "; ".join(
+            f"{_display_label(str(k))}: {_display_value(str(k), v)}"
+            for k, v in value.items()
+        )
+    return str(value)
+
+
 def _panel_table(title, panels):
     columns = [
         "burden",
@@ -84,7 +100,7 @@ def _panel_table(title, panels):
     )
     table += (
         "".join(
-            "<th scope='col'>" + html.escape(c.replace("_", " ")) + "</th>"
+            "<th scope='col'>" + html.escape(_display_label(c)) + "</th>"
             for c in columns
         )
         + "</tr></thead><tbody>"
@@ -93,7 +109,9 @@ def _panel_table(title, panels):
         table += (
             "<tr>"
             + "".join(
-                "<td>" + html.escape(str(panel.get(c, "unavailable"))) + "</td>"
+                "<td>"
+                + html.escape(_display_value(c, panel.get(c, "unavailable")))
+                + "</td>"
                 for c in columns
             )
             + "</tr>"
@@ -194,7 +212,7 @@ def write_report(source, output):
             )
             panels_html += (
                 "".join(
-                    "<th scope='col'>" + html.escape(c.replace("_", " ")) + "</th>"
+                    "<th scope='col'>" + html.escape(_display_label(c)) + "</th>"
                     for c in columns
                 )
                 + "</tr></thead><tbody>"
@@ -203,7 +221,9 @@ def write_report(source, output):
                 panels_html += (
                     "<tr>"
                     + "".join(
-                        "<td>" + html.escape(str(panel.get(c, "unavailable"))) + "</td>"
+                        "<td>"
+                        + html.escape(_display_value(c, panel.get(c, "unavailable")))
+                        + "</td>"
                         for c in columns
                     )
                     + "</tr>"
@@ -220,7 +240,7 @@ def write_report(source, output):
     atomic_json(destination / "report.json", {"summary": summary, "source": value})
     shutil.copyfile(source, destination / "source.json")
     rows = "".join(
-        f"<tr><th scope='row'>{html.escape(k)}</th><td>{html.escape(str(v))}</td></tr>"
+        f"<tr><th scope='row'>{html.escape(_display_label(k))}</th><td>{html.escape(_display_value(k, v))}</td></tr>"
         for k, v in summary.items()
     )
     text = (

@@ -25,7 +25,7 @@ sufficiency labels are evaluator outcomes. `input_tokens`, `output_tokens`
 (including thinking), `thinking_tokens`, latency seconds and integer microdollar
 estimates preserve resource costs. Request IDs remain unique per dispatched
 attempt. The accounting header includes the two initial probes and the combined
-$10 cap; scored panel costs exclude probes and are not provider invoices.
+$10.00 cap; scored panel costs exclude probes and are not provider invoices.
 
 Current software is 0.5.0rc2; measured generation/evaluation sources were
 0.5.0rc1 and remain frozen separately. The post-result expansion is labeled;

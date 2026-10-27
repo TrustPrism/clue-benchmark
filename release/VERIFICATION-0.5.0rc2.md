@@ -26,7 +26,7 @@ review, not erased. Authorizations, keys and dispatch ledgers are never included
 in the new distribution copies. Original measured sources remain frozen at
 0.5.0rc1; production source is 0.5.0rc2, schema remains clue-community-1.
 
-Hosted Linux/macOS 3.12–3.14 CI and docs are being verified in private draft PR #2.
+Offline installation from the source archive also passed with the pinned build backend and runtime wheels only (no network access). Hosted Linux 3.12–3.14, macOS 3.12 and docs checks have passed in private draft PR #2; hosted macOS 3.13/3.14 were queued at recording time. The current PR is authoritative for subsequent status.
 Current action references use verified immutable v7 checkout/setup-python SHAs
 with Node 24; feature branches run the matrix through PRs with superseded PR runs
 cancelled. Hosted outcomes must be read from the actual check run before claiming

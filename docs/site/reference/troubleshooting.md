@@ -14,4 +14,4 @@
 - **Held funds/interruption:** resume with the same plan, sources and durable ledger. An unresolved dispatch must not replay automatically; zero retries is intentional.
 - **Stale schema/source/config:** use the frozen historical source for historical plans, or prepare a new plan/output explicitly. Do not rewrite hashes to make a plan pass.
 - **Existing export/report/replay output:** choose a new path. Generation alone supports identity-checked checkpoint resume.
-- **Platform limitations:** native provider paths/locking are separate from offline generation. Local candidate verification is macOS/Python 3.12–3.14; Linux and Python 3.12/3.13 CI jobs are configured, not claimed as completed. Windows is not advertised as verified.
+- **Platform limitations:** native provider paths/locking are separate from offline generation. Local candidate verification is macOS/Python 3.12–3.14; Hosted Linux 3.12–3.14 and macOS 3.12 checks have passed; the remaining hosted macOS checks must be confirmed in the current PR. Windows is not advertised as verified.

@@ -11,7 +11,7 @@ Outside user: receive the exact wheel hash, use a fresh Python environment outsi
 ## Maintainer checklist
 
 1. Review the source baseline, preserved local files and private study snapshot. Never mix the historical checkout or budgets.
-2. Verify exact new study status and holds. The current follow-up is prepared, not measured; source-bound authorization and access checks remain. Do not launch child plans independently.
+2. Verify the closed study accounting: the initial follow-up plus its one final expansion completed 146 paid requests (144 scored and two probes), estimated $6.961763 total with $0 holds under the single $10 cap. No further paid calls are planned. Original measured sources remain frozen for reproduction; do not launch child plans independently.
 3. Run offline tests, field coverage, strict docs build, wheel/sdist build, metadata check and installed-wheel smoke tests outside the checkout. Retain logs and hashes.
 4. Review provenance for imported generator code, dependencies, generated assets and saved provider outputs. Confirm TrustPrism redistribution rights and real maintainer identity. Only then apply proposed Apache-2.0 code and CC BY 4.0 data/prose licenses and notices.
 5. Scan intended source **and history**, and all downloadable archives, for credentials, approvals, ledgers, checkpoints, paths and personal data. Preserve originals privately; redact distribution copies and index the transformations. A scanner is not ownership clearance.
@@ -23,4 +23,4 @@ The prepared workflow requires an explicit `rights_cleared` approval input and p
 
 ## Supported versions
 
-Python >=3.12 is required. The CI matrix requests Linux/macOS 3.12–3.14; advertise only combinations with retained passing evidence. No Windows support claim. No promise of indefinite support or availability. Security reports use private GitHub reporting when configured; do not invent a contact address.
+Python >=3.12 is required. Clean offline wheel installations have passed locally on macOS Python 3.12.13, 3.13.12 and 3.14.6; offline installation from the source archive also passes. Hosted Linux checks passed on 3.12–3.14 and hosted macOS 3.12 passed; check the current PR for the remaining hosted macOS jobs before claiming the complete matrix. No Windows support claim. No promise of indefinite support or availability. Security reports use private GitHub reporting when configured; do not invent a contact address.

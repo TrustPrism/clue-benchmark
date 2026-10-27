@@ -1,0 +1,56 @@
+{
+  "study_id": "nuisance-followup-20261027-extended",
+  "status": "completed_allowance_closed",
+  "extension_id": "dbc23ed8f4308eb395fb2ffa44bdbc089f62eed4b18036b3907e906375533149",
+  "completed_at_utc": "2026-10-27T18:58:28.223761+00:00",
+  "initial_calls": 98,
+  "new_calls": 48,
+  "combined_calls": 146,
+  "scored_assignments": 144,
+  "underlying_worlds": 12,
+  "worlds_per_stratum": 6,
+  "initial_estimate_microdollars": 4731671,
+  "extension_estimate_microdollars": 2230092,
+  "combined_estimate_microdollars": 6961763,
+  "held_microdollars": 0,
+  "combined_cap_microdollars": 10000000,
+  "preflight_maximum_microdollars": 9400427,
+  "no_further_paid_calls": true,
+  "primary_combined_exploratory": {
+    "burden": 4,
+    "dose_minus_zero": 1000,
+    "exact_two_sided_p": 1.0,
+    "gained_worlds": 1,
+    "interpretation": "Descriptive small-world analysis, not a powered confirmatory test or mechanism identification.",
+    "lost_worlds": 1,
+    "mean_change": 0.0,
+    "model": "gemini-3.5-flash-lite-low",
+    "per_world_changes": {
+      "2f286d4c76c6e3087f78a0568f86ef27e6e5f98f725fab6263a21fd367fbf3f5": -0.5,
+      "3fa54c5a21706e149042b22ecd49fe4c10b0e846efa7d3d4323bc4aef3b257d2": 0.0,
+      "575949deff52702bc6be372e95c26566fa1e9a33e3cd35562006b3389b256229": 0.0,
+      "74a49411c878e24dddc3351562f7b64576d7928660b4f7c57773624fe5243007": 0.0,
+      "da21b2ef3b71566ee43d3d102ff4e9724de1aa5cc9192da1adc0b185cffdc451": 0.5,
+      "ff242e4d1718ef93b05c90a1e1546cc73e5c18e574adea4170c9d7c376362f21": 0.0
+    },
+    "primary": true,
+    "randomization_resolution": 0.015625,
+    "unchanged_worlds": 4,
+    "world_cluster_bootstrap_95_interval": [
+      -0.25,
+      0.25
+    ],
+    "worlds": 6
+  },
+  "measurement_software_version": "0.5.0rc1",
+  "production_software_version": "0.5.0rc2",
+  "accounting_label": "Receipt-based full-price estimate, not provider invoice",
+  "artifact": {
+    "bytes": 7384577,
+    "path": "benchmarks/data/nuisance-extended-measured-2026-10-27.tar.gz",
+    "sha256": "6dea1836c094215bd29ed7fa3072b1e69844f0304344a51ab802973dc19b34dc"
+  },
+  "measurement_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+  "limitations": "One final post-result expansion. Same protocol/settings; report initial and extension separately. Combined estimates are exploratory; six underlying worlds per stratum, two attempts per model/dose/world. Equal observed accuracy does not demonstrate equivalence. No mechanism or general robustness claim. All failures retained; no further paid calls.",
+  "publication": "pending ownership/privacy/human-review clearance; private candidate only"
+}

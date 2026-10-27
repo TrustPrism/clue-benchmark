@@ -1,0 +1,174 @@
+{
+  "authorization": "actual user explicitly requested one more expansion under the combined $10 cap",
+  "cap_microdollars": 10000000,
+  "combined_maximum_microdollars": 9400427,
+  "extension_id": "dbc23ed8f4308eb395fb2ffa44bdbc089f62eed4b18036b3907e906375533149",
+  "extension_maximum_microdollars": 4668756,
+  "initial_root": "runs/nuisance-followup-20261027-rc1",
+  "interpretation": "One final post-result expansion using every remaining pre-generated world. Report initial/extension phases separately and combined descriptive estimates; no equivalence or powered-confirmation claim.",
+  "new_probe_calls": 0,
+  "primary_endpoint": "four-report Lite: mean within-world two-attempt accuracy at 1000 minus 0 nuisance records",
+  "prior": {
+    "closed_requests": 98,
+    "held_microdollars": 0,
+    "ledgers": [
+      {
+        "plan_id": "5b43ec713b0d790c061cc6d37b001331d8e7db6be020da80948af7c4f484210a",
+        "requests": 2,
+        "rows_sha256": "5b990784e17510dff9ae42eef729b56fb4a76b88d25447d7d937782c57bffe47"
+      },
+      {
+        "plan_id": "a632876d1303abbd14e0683c7b88d2206295a55db43a8d940edfa245132ddeeb",
+        "requests": 4,
+        "rows_sha256": "7643b6feb2bdcf19c5045e70f490e06679c5a47c686291066f36ab5decd50131"
+      },
+      {
+        "plan_id": "6ed753c4997363727924828a78a2e14012e5ccc3e884867d169761489fbcfba8",
+        "requests": 4,
+        "rows_sha256": "1ddfb868ad339b86d8c86addf40a0370d07d8c08e72b6b889cdc1c221a1ec2c5"
+      },
+      {
+        "plan_id": "e1640f6e4a72c4e254a39b2e080f40b554136a2b930630c8513b72051558a0c7",
+        "requests": 4,
+        "rows_sha256": "95455fb0f6d1d3ca6b4e4906a3cb4d613c133dca6da0ec1cc51ea580ca6d6368"
+      },
+      {
+        "plan_id": "e53f4832e9d422646c05d7042148e914f77adb2ff49463f0e6543c985d3d8f0c",
+        "requests": 4,
+        "rows_sha256": "3cb17e9806f07bd80fa61f8b99e713af08d3aec385c54d8bfecbb63b97423a02"
+      },
+      {
+        "plan_id": "2608f8f1ffd6ac63ea01cadbc7dcaec702b2b2053e05ae7338cb81a7f0d1b44c",
+        "requests": 4,
+        "rows_sha256": "eef903d823dea6fd7d5b01f8d1a4fce3848b7f4b88031508eb9abee4f918295d"
+      },
+      {
+        "plan_id": "b4d14b812f9f4ff94e05eab794a1c2978f582e7adbb2829577854c19c2f74857",
+        "requests": 4,
+        "rows_sha256": "5d05e19004317a9efef73a897306b059072edcad5371a8679f0f584a662b6118"
+      },
+      {
+        "plan_id": "7b505cfca3bc585a66ebff0b2bda854fb227b6c41501df9cc84a7b46d450e2a3",
+        "requests": 4,
+        "rows_sha256": "075968036e6815575fa2509b923d1df9fa1a54ce8f79be12fcd1e72ca20cda2a"
+      },
+      {
+        "plan_id": "072010288ff0346d17b02a72c766e8b404fe98eb5b73c75271a30c131fad8884",
+        "requests": 4,
+        "rows_sha256": "62251f1e066a238db56b6bf3da192c09df073066aedab7d048d914565548c80f"
+      },
+      {
+        "plan_id": "f0396b455a0549a852c383be86205ef7e2ba0a147b737ef404fad1112b08b34f",
+        "requests": 4,
+        "rows_sha256": "7096f8cf43f28ac8cbc1bb96bfe72b647dd6b1dddb087fac6e26a7d60c08173d"
+      },
+      {
+        "plan_id": "39022debaaa41ef2a712d64991b3b655fd2180ccd1013ad8bed90d532ecafe95",
+        "requests": 4,
+        "rows_sha256": "95269e44a06f4f8c9cd99469ea7698c8b8e5de78bd5d3fe0be896e2f5045c9e0"
+      },
+      {
+        "plan_id": "89bc865903dd3907f57e3c5af6700feb43f3557f94036efa9a6b09ac2e15dee6",
+        "requests": 4,
+        "rows_sha256": "7a58a318b8b5a93e583b3d4d7b80f35af4becd81ae2acea057545a85616fd2f9"
+      },
+      {
+        "plan_id": "96e2de986b08dde3cb458b0b52c6227e7a86270b9e35097fca56da29ce98585b",
+        "requests": 4,
+        "rows_sha256": "ac4d90d136a3b5139ec61c6e88e7760b4ff9f3a6e305e662c8104bc6009c3abf"
+      },
+      {
+        "plan_id": "afd25541d913124699a5b59f2fa42b6feacaa8f0de4c7b8cf4f35f4651dcc97a",
+        "requests": 4,
+        "rows_sha256": "6e5a47dc4126c88c8043dbb32aae99043575f98366e014c7bdaa45b21d540522"
+      },
+      {
+        "plan_id": "5013a6c04fb604c08f9e43359e06326326fc8c6c5516fb91f15e92daaf5a883c",
+        "requests": 4,
+        "rows_sha256": "b5e0bf79354a59d5c26382f08586e6b54653a5a39718f737f520fa41617d1052"
+      },
+      {
+        "plan_id": "d8d8609284eeab1426dba86705e5313238c2ab5960a06f438a2203a95796f884",
+        "requests": 4,
+        "rows_sha256": "f0a3fc0200737dfbe3b97f48cb8e610c29ba3ba4257e834af0c1ec4386407f15"
+      },
+      {
+        "plan_id": "bd904f321b1c790a2a81b2a7ed7c46e1539f405e79685f7aa1bd99e544f1f883",
+        "requests": 4,
+        "rows_sha256": "3f98868d96b13f486ed1da2b64546b697c1dc28f55e2db8a047d95d836bc2732"
+      },
+      {
+        "plan_id": "f64560bda82f60c9dec6fccdac67e971ea5f01b12276180447cf089d4bcf0fae",
+        "requests": 4,
+        "rows_sha256": "8ae17594032f823f428358c99f25aea1e172498efda2dc4c423625346c8cc76b"
+      },
+      {
+        "plan_id": "e3defb1fb272c517033284d57e7642a8af32c20303d7d688fb668d56f4947098",
+        "requests": 4,
+        "rows_sha256": "05ab2d62900224e526391c94cf9fd8341baf6de0d061881dee0989c4bcf6afd7"
+      },
+      {
+        "plan_id": "f671e24cc3ca382ff267ae0ea24629e4c2d5d71a241456ddd09503efaf34528b",
+        "requests": 4,
+        "rows_sha256": "c0400d22a526f8e36a54647319b5054742eabfaca28bab5e080bf0524d5096b1"
+      },
+      {
+        "plan_id": "18f412a04cce93b174bb73213a2fef21c83e047b4a956d7465a232c9476c6230",
+        "requests": 4,
+        "rows_sha256": "84e9c042c209b9c1270e5518190d7d8b4e3c82f7b085a60decf04f3ab197b1ec"
+      },
+      {
+        "plan_id": "5092f3e8b3437075b06d31db4ed69622a6610f4ebe11a188a2bc9829414f8997",
+        "requests": 4,
+        "rows_sha256": "c298819437e035dc3f67a0a232a61789bd62782f16be2025926af0b882dd361c"
+      },
+      {
+        "plan_id": "5530703229f8f3427f36f014ef1b6b460278181428f9e0f9434a9c3fe87ab5be",
+        "requests": 4,
+        "rows_sha256": "12d8bd6416316b040eea2371218786f82fed79ee6f989faaf047cfe7b3acdf07"
+      },
+      {
+        "plan_id": "d5949487fdc4549b7fccc09e2c1422210da0a170ac9bb40c2cbe996e58b147de",
+        "requests": 4,
+        "rows_sha256": "dfcc2d9e140f9b14282ab4d370a02ed4e75b998cd4874879fa01329331dc18ea"
+      },
+      {
+        "plan_id": "b4a15a9d3ae511a17e931b68c539093ed21aae87d1e7dceed940fbec258ffb9e",
+        "requests": 4,
+        "rows_sha256": "0a5e8de54fad4f340d036ead88d610285624395ffbf7cb857bdc3a42700a5baa"
+      }
+    ],
+    "manifest_id": "1fd16445c52a4bed3d55b100d86c285c74b036340da65c1d505060621055ce42",
+    "settled_microdollars": 4731671
+  },
+  "runner_sha256": "7c007efd8cea862026966b698482fc5dd49747d792e870d91819c8aec0b5f0d6",
+  "schema_version": "clue-nuisance-extension-1",
+  "scored_calls": 48,
+  "selection": "All four unmeasured original seed-prefix candidates, irrespective of prior model outcomes. No further paid expansion.",
+  "worlds": [
+    {
+      "world_id": "74a49411c878e24dddc3351562f7b64576d7928660b4f7c57773624fe5243007",
+      "seed": 20261033,
+      "burden": 4,
+      "maximum_microdollars": 1162692
+    },
+    {
+      "world_id": "575949deff52702bc6be372e95c26566fa1e9a33e3cd35562006b3389b256229",
+      "seed": 20261032,
+      "burden": 4,
+      "maximum_microdollars": 1162608
+    },
+    {
+      "world_id": "02d164183b1918e1940650ff82fb8aa073a67a2b1e978772f009fd8f566beb63",
+      "seed": 20261033,
+      "burden": 8,
+      "maximum_microdollars": 1172058
+    },
+    {
+      "world_id": "ac9a0be01e89b21dc194ecf74faa597c596d634f227d996778c2b1034814ee91",
+      "seed": 20261034,
+      "burden": 8,
+      "maximum_microdollars": 1171398
+    }
+  ]
+}

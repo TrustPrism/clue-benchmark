@@ -39,3 +39,25 @@ the existing repository; include no operational archive, raw receipt, credential
 approval or dispatch ledger in that site. Keep
 the exact public export inventory with this record. Verify the public URL without
 authentication after deployment. Record actual URLs/outcomes only after success.
+
+## Current handoff state
+
+The source and `gh-pages` deployment branch are pushed to the existing
+repository. The static deployment commit is
+`857aab7` and `preview-site-manifest.json` records the 61 exported files and
+their hashes (plus the self-contained manifest in the deployment branch).
+The initial prerelease draft is saved at:
+https://github.com/TrustPrism/clue-benchmark/releases/edit/untagged-6dbb2416e32e718a4dee
+
+GitHub requires the owner's interactive “Confirm access” authentication before
+the requested private-to-public visibility change. That is an account-security
+step, not missing publication authorization. No second repository was created.
+The repository was still private at verification; Pages was not enabled and
+anonymous deployment verification is pending. No public URL is claimed live.
+
+After authentication, finish the authorized visibility change, configure Pages
+from `gh-pages` at the repository root, publish the saved prerelease, and verify
+anonymous access to the repository, results, open questions and downloads.
+Keep licenses and human reviews marked pending. The full 282-test suite, strict
+MkDocs/Twine checks and offline wheel installs on Python 3.12–3.14 passed for the
+cost-formatting update; no additional paid calls were made.

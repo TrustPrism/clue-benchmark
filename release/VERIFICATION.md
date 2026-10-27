@@ -32,8 +32,9 @@ never-dispatched and leaves effects unmeasured.
 
 Linux/macOS Python 3.12–3.14 CI is configured; no completed matrix run is claimed.
 Licensing, two independent rules readers, outside-user installation, final privacy
-review and public distribution remain pending. Remote push requires approval
-following automatic review rejection; no successful push is claimed.
+review and public distribution remain pending. The user explicitly approved pushing task commits to the existing private
+TrustPrism release branch after automatic review requested that approval.
+No public distribution is authorized by that push.
 
 Only README.md, PROJECT_STATUS.md and examples/evaluate_public_agent.py differ
 from pre-task dirty-file hashes. Their originals are preserved in the README

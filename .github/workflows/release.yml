@@ -1,0 +1,52 @@
+name: Reviewed release publication
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing reviewed v0.5.0 release tag
+        type: string
+        required: true
+      rights_cleared:
+        description: Owner has cleared rights, reviews, artifacts and publication
+        type: boolean
+        default: false
+        required: true
+permissions:
+  contents: read
+jobs:
+  build:
+    if: inputs.rights_cleared && startsWith(inputs.tag, 'v0.5.0')
+    environment: reviewed-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Require recorded license clearance
+        run: |
+          test -f LICENSE
+          test -f release/PUBLICATION_APPROVED
+          test -f release/release-manifest.json
+      - run: python -m pip install '.[test]' twine
+      - run: pytest -q
+      - run: python -m build
+      - run: twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-distributions
+          path: dist/*
+  publish:
+    needs: build
+    environment: pypi
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: reviewed-distributions
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

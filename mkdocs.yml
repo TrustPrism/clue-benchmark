@@ -22,6 +22,7 @@ nav:
       - Research recipes: guides/research-recipes.md
   - Explanations:
       - Pipeline and guarantees: explanations/pipeline.md
+      - Related implementations: explanations/related-work.md
   - Reference:
       - Parameters: reference/parameters.md
       - Predicates: reference/predicates.md

@@ -4,14 +4,37 @@ permissions:
   contents: read
 jobs:
   offline-core:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.12", "3.13", "3.14"]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: ${{ matrix.python }}
       - run: python -m pip install '.[test,providers]'
       - run: ruff check src tests scripts examples
       - run: ruff format --check src tests scripts examples
       - run: pytest -q
       - run: python -m build
+      - name: Install outside checkout with runtime dependencies only
+        shell: bash
+        run: |
+          python -m venv "$RUNNER_TEMP/clue-installed"
+          "$RUNNER_TEMP/clue-installed/bin/python" -m pip install dist/*.whl
+          mkdir "$RUNNER_TEMP/clue-smoke"
+          cd "$RUNNER_TEMP/clue-smoke"
+          "$RUNNER_TEMP/clue-installed/bin/python" "$GITHUB_WORKSPACE/scripts/installed_smoke.py"
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install '.[docs]'
+      - run: mkdocs build --strict

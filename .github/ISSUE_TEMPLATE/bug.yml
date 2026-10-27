@@ -1,0 +1,14 @@
+name: Bug report
+description: Report a reproducible offline issue without secrets
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include software/schema versions, OS/Python, safe resolved config, seed, command and expected/actual result. Remove secrets, approvals, receipts and local personal paths.
+    validations:
+      required: true
+  - type: textarea
+    id: certification
+    attributes:
+      label: Certification or evidence boundary impact

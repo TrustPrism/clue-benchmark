@@ -1,7 +1,7 @@
 {
   "schema_version": "clue-private-release-manifest-1",
   "software_version": "0.5.0rc2",
-  "source_revision": "beae78ee989ba2c5828c1fdcb3e2aeda81e5a06c",
+  "source_revision": "caa58dc6ac32a710fd0cf4c44baafe27f9983cab",
   "source_tree": {
     "src/clue_benchmark/__init__.py": "5d02372c66f338a0fcb635c532cc6404a8d4eff23b96618c82a78a9e800442dd",
     "src/clue_benchmark/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
@@ -106,21 +106,21 @@
     "site/guides/research-recipes/index.html": "6221e8a95e24f2a7e9a344d015a6aa9d2655fb42d5999c0407dcc9a9ad5a5424",
     "site/img/favicon.ico": "f16b45bd53fbacaa2cd8f22e8482db5c59e0cef9bd21394474a429a18a98ffd0",
     "site/img/grid.png": "6e2a58503494a708105ac646d3af5c08c8c890325bb781a257d10f91ff968a9c",
-    "site/index.html": "d484e66f85c9b551b5355c0901e02e828d33db62229a7c584e0bb1f9039f8913",
+    "site/index.html": "7b6577147c69b71f66a64cdfebfbaa9fe28f9ab92939e429b36f864bf4dd1847",
     "site/js/base.js": "ea13d8449c21e5a4e5235722e67bfbf45009e8c61cbe8e98e453cc39f46419ed",
     "site/js/bootstrap.bundle.min.js": "82f64f62bb03c1bc1824b0f9c9e05f70dba33e146818e63cdf5c306c8cf3dedd",
     "site/js/bootstrap.bundle.min.js.map": "19a5b0b88d24d6b154c4462896c9631c0b317d71f22eebbf0b9e405db4351fd1",
     "site/js/darkmode.js": "6660ca90a0b34be68edd0503102d013e6d4ea2d4ed8ffdca1ef17e2b69226d90",
-    "site/maintainers/release/index.html": "48e0bd8ee5de154f552ff9d4b2aa3ee56908b40300caf6abfcef9ac41fd2153f",
+    "site/maintainers/release/index.html": "8d7cb2acb8cc1a38ffe3d582b8432d849b4d5289d26d501112e2cfc63c511590",
     "site/reference/data-dictionary/index.html": "917e923acb8653eeadab284861c2cde2dc9ff6cc7002948caa136aa27279b3a0",
     "site/reference/interfaces/index.html": "3d206bd04ca01b4c5bfc436d9bcfdc3ddd8163b922d368f0be959dd2f27612b8",
     "site/reference/parameters/index.html": "a72a7d90da6a6b1d3e6639378311e47c56f2621a50d3679361a6f226a4b98124",
     "site/reference/predicates/index.html": "fba9b0f9f0b85da5e529beaffe2f0ed7d7374c305158407555f648c2c3446010",
-    "site/reference/troubleshooting/index.html": "19843aea78b9293dc4675e55da3608dffd345384674edc33ba9621cdee3dbbc0",
+    "site/reference/troubleshooting/index.html": "9dad44b848427bb730be3a92137eb040da531bdf7505aa4f2bc03950cab1e3f9",
     "site/results/index.html": "8cb9c10f46b422381336c4667cf9095ec68a6eaf45763f3b790a47c512eee68e",
     "site/search/lunr.js": "c1a28d9e95163292fbcc07ff794f1f0e1ade8741c513afe96d5b1046a18110bc",
     "site/search/main.js": "22961b345ceba9b3a9146577190672a7b1c6881bb84c05bec1e2d0f3a3312389",
-    "site/search/search_index.json": "493d59d395e9aff49fbeb6167c9e101d7248d2d163caa475e33dc8d1cffc2e55",
+    "site/search/search_index.json": "c644dedba11a9aa53baaf3578b9a8df2cdc9aee3413b9078262d3a86beeaf65a",
     "site/search/worker.js": "b486eab6682d02b7c6ec7bdc965bb051661ee2c6a42bb3442b559cb2c6e2c73c",
     "site/sitemap.xml": "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
     "site/sitemap.xml.gz": "0bd8729aff67512637e2c5c7616a955bb2ddef0bc0d2898e677449b2f35c1859",
@@ -1238,5 +1238,20 @@
     "organization channel access, hosted dataset/Croissant validation and final publication approval"
   ],
   "verification_packet": "release/VERIFICATION-0.5.0rc2.md",
-  "review_pr": "https://github.com/TrustPrism/clue-benchmark/pull/2"
+  "review_pr": "https://github.com/TrustPrism/clue-benchmark/pull/2",
+  "verification_packet_sha256": "42be1713557781af2f4ad421f5134613e6b07e75a13fa3998c6cfae4b8e6a56f",
+  "local_validation": {
+    "tests_passed": 282,
+    "macos_python_wheel_installs": [
+      "3.12.13",
+      "3.13.12",
+      "3.14.6"
+    ],
+    "sdist_offline_install": "passed",
+    "twine": "passed",
+    "mkdocs_strict": "passed",
+    "offline_extended_archive_replay": "passed",
+    "network_blocked_in_smoke": true
+  },
+  "ci_review_url": "https://github.com/TrustPrism/clue-benchmark/pull/2"
 }

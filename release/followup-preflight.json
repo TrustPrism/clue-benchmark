@@ -1,0 +1,269 @@
+{
+  "assigned_calls": 96,
+  "execution_gate": "Account access, exact identity and compatibility probes; human manifest-bound authorization. Preparation is not a permit. Child plans must not be launched independently.",
+  "independent_worlds": 8,
+  "paid_calls": 0,
+  "primary_endpoint": "four-report Lite: mean within-world two-attempt accuracy at 1000 minus 0 nuisance records",
+  "probe_reserve_microdollars": 500000,
+  "rejections": [
+    {
+      "burden": 4,
+      "reasons": [
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved"
+      ],
+      "seed": 20261030
+    },
+    {
+      "burden": 8,
+      "reasons": [
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved"
+      ],
+      "seed": 20261027
+    },
+    {
+      "burden": 8,
+      "reasons": [
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved",
+        "all-report essentialness requirement unproved"
+      ],
+      "seed": 20261028
+    }
+  ],
+  "scored_maximum_microdollars": 9338478,
+  "secondary_endpoints": [
+    "100 minus 0",
+    "eight-report stratum",
+    "Flash dose contrasts",
+    "paired between-model difference"
+  ],
+  "selected_blocks": [
+    {
+      "burden": 4,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 64182,
+          "directory": "burden-4-seed-20261029-dose-0",
+          "payloads_sha256": "15ff8637e6b9de54f312ae986f6408dbe2ced318fb56f53c4c37e1cd9efe57c6",
+          "plan_id": "de6a000390c1b91899cc74fedec670b1394a5758c756ec7765e2832cc98d26ed"
+        },
+        {
+          "ceiling_microdollars": 946182,
+          "directory": "burden-4-seed-20261029-dose-1000",
+          "payloads_sha256": "41de38f480fda2c31b802db05b3c3236fe294b0f3661f24c00c6549fc029aee2",
+          "plan_id": "44cbbd3a674da7fbe4c56be28bbc7dbcb043cd72cefef11c9106c245876aa5ac"
+        },
+        {
+          "ceiling_microdollars": 152382,
+          "directory": "burden-4-seed-20261029-dose-100",
+          "payloads_sha256": "6c9a25cef4675b3ce5d8b98af57515a52dc1167e5fea0ae4fbc063fe31a52487",
+          "plan_id": "c72b273635ab0a422b920aa2992dcdd150ca85f3baeb1bfd516049093a3cbf3b"
+        }
+      ],
+      "maximum_microdollars": 1162746,
+      "seed": 20261029,
+      "world_id": "3fa54c5a21706e149042b22ecd49fe4c10b0e846efa7d3d4323bc4aef3b257d2"
+    },
+    {
+      "burden": 8,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 67238,
+          "directory": "burden-8-seed-20261029-dose-0",
+          "payloads_sha256": "700d74796c08d1863cee5042629efe78b014fffb3a4169e4626c05f3a0da3df6",
+          "plan_id": "09b09026c47e08be71a840846449d4f84a2ef5cb93070216be8c41f7967794a5"
+        },
+        {
+          "ceiling_microdollars": 949238,
+          "directory": "burden-8-seed-20261029-dose-1000",
+          "payloads_sha256": "2f21b9e44b6787e7ce194bab70cf8c4bd78c7e815ad5f98ca946c9b48da27ef4",
+          "plan_id": "95622792882eb3e7f7d549034b774e840b05dde092dfb1ad744c3a5d37ce1434"
+        },
+        {
+          "ceiling_microdollars": 155438,
+          "directory": "burden-8-seed-20261029-dose-100",
+          "payloads_sha256": "9b62e2a74afa8a7701c05e3b7bb3d5b1bc8880911d3ab353078befb1aa042b35",
+          "plan_id": "dfc3567a9d759e4b64e1d36afc2d420866ed4e04c18c383ed496e0df6ffd24eb"
+        }
+      ],
+      "maximum_microdollars": 1171914,
+      "seed": 20261029,
+      "world_id": "e44f5f9292190ad0b2588ba9e88cf2458308d7930474151d83c85246e04233fe"
+    },
+    {
+      "burden": 8,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 155276,
+          "directory": "burden-8-seed-20261031-dose-100",
+          "payloads_sha256": "cea959f2e2782888e3c3562dc812fd45de9d95c80479edb7144711696a360e61",
+          "plan_id": "e000fb5cb63a635a12e62eed57fcfe42171586a4935a676489b7e001094a6dcc"
+        },
+        {
+          "ceiling_microdollars": 67076,
+          "directory": "burden-8-seed-20261031-dose-0",
+          "payloads_sha256": "8d054dba41a7804b37535a18903ab6456f8396214bffa2f5acb471fd60725f74",
+          "plan_id": "0eb5d04192a938457017a843721ef5afec2663091e78eec438766b66a4785998"
+        },
+        {
+          "ceiling_microdollars": 949076,
+          "directory": "burden-8-seed-20261031-dose-1000",
+          "payloads_sha256": "de4f6a147437cdda67c34a0b9e89675bd5cf5be261f70ee33c182af49d9a62ca",
+          "plan_id": "9e87db69991cc958d63b6299903c82713bb39e192afb876889b301d9e70a8868"
+        }
+      ],
+      "maximum_microdollars": 1171428,
+      "seed": 20261031,
+      "world_id": "e5993447062cbda309a8f539d9e964afe66cea7338adbc02368d72d04239c3ae"
+    },
+    {
+      "burden": 4,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 152446,
+          "directory": "burden-4-seed-20261028-dose-100",
+          "payloads_sha256": "de84c44cc2714a4cb47f3ce64a5093220394182e65693b763135828d531d9ee3",
+          "plan_id": "b89db2ace7a3deb202e755a00aef04584a531e837262feb82f4b70c409788a85"
+        },
+        {
+          "ceiling_microdollars": 64246,
+          "directory": "burden-4-seed-20261028-dose-0",
+          "payloads_sha256": "e05b103a4f803d902552ef18b47ce21d33a578ffae6cffe2ff4f822954577ac4",
+          "plan_id": "bb3bb200318afea6c3c3660621188c8d2a216cc8a3847f49c383c1a6e3f4b403"
+        },
+        {
+          "ceiling_microdollars": 946246,
+          "directory": "burden-4-seed-20261028-dose-1000",
+          "payloads_sha256": "64fcb824f0f16cbf8c1c1d65d6b1fb3bcd11b1c64181d36ed5015e18727020a6",
+          "plan_id": "5e92cbc84cba113f655986209983df49f07ec5a23c8e180cd784f44b608d2763"
+        }
+      ],
+      "maximum_microdollars": 1162938,
+      "seed": 20261028,
+      "world_id": "2f286d4c76c6e3087f78a0568f86ef27e6e5f98f725fab6263a21fd367fbf3f5"
+    },
+    {
+      "burden": 4,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 946174,
+          "directory": "burden-4-seed-20261027-dose-1000",
+          "payloads_sha256": "eeaa835f3ff046432bd6cfc8fcef56ef39dba05a1a42c5870acc105ed4bdf863",
+          "plan_id": "581fbd138d7638e5680cef191a3ecd90b244f10724d5da6293cbb4acb41da444"
+        },
+        {
+          "ceiling_microdollars": 64174,
+          "directory": "burden-4-seed-20261027-dose-0",
+          "payloads_sha256": "63a645d38c68e6d7790e172dea66150fdc99d5e9101be0bcd8ca53afd3475c7e",
+          "plan_id": "6cd915512340c3c2ab1b256d92aaaf62f84ca0d42b861a6ff582f7066e284226"
+        },
+        {
+          "ceiling_microdollars": 152374,
+          "directory": "burden-4-seed-20261027-dose-100",
+          "payloads_sha256": "b9d55b2c3a27f69b0df1b3127bea22c77e8c8d81ebe120b7c96af6314042c8c6",
+          "plan_id": "866e47d568fcf677b034b190c06171f4ac404226d796b860a7bbbca4f5bb9566"
+        }
+      ],
+      "maximum_microdollars": 1162722,
+      "seed": 20261027,
+      "world_id": "ff242e4d1718ef93b05c90a1e1546cc73e5c18e574adea4170c9d7c376362f21"
+    },
+    {
+      "burden": 8,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 949190,
+          "directory": "burden-8-seed-20261030-dose-1000",
+          "payloads_sha256": "ba4cfbf1cbd29ddcd3602c67d80e554918e79213576b343ca3c3243382cdae60",
+          "plan_id": "f6b8257db012fde27c6e4eed61786db190ce3bc07d3e1e0b8d6d2d14502ade2e"
+        },
+        {
+          "ceiling_microdollars": 155390,
+          "directory": "burden-8-seed-20261030-dose-100",
+          "payloads_sha256": "9d8c4a5153184768eaeae266524c88e8d35ba4570651260bf484891a435be72c",
+          "plan_id": "c1f33ce6be208cf62728b8c9c8b852cac48fe2a04205f2cba7b940e6877be865"
+        },
+        {
+          "ceiling_microdollars": 67190,
+          "directory": "burden-8-seed-20261030-dose-0",
+          "payloads_sha256": "e6067060192160c04555f663dc17b3e1142df04a349671db96144f0665d25dea",
+          "plan_id": "941d3c294eb32e84a48f71c11fcaef66c2ebb0392e6c5ef750baa63b2a0d69bc"
+        }
+      ],
+      "maximum_microdollars": 1171770,
+      "seed": 20261030,
+      "world_id": "745d07a7f06d0cc123bbd9643f6318d9393a22d18852c5992dc1afa7dd8e72d9"
+    },
+    {
+      "burden": 8,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 155538,
+          "directory": "burden-8-seed-20261032-dose-100",
+          "payloads_sha256": "d15bcf096dc1e2acaae21de2ab1538438658d06b0025cd65dc96ef29d5ee3d80",
+          "plan_id": "73f5c68bef234f382f07d5418502e65e23e9effd1bc984e26fcb07cca0af4865"
+        },
+        {
+          "ceiling_microdollars": 67338,
+          "directory": "burden-8-seed-20261032-dose-0",
+          "payloads_sha256": "860e289a7354f3d2bacd473408332495c6dd2410b9e776a43b24a5a62724bdb7",
+          "plan_id": "c5d491c76bec26ac525bcc9c8a738e98eacb3b9d2bc82b73a4757073c187504f"
+        },
+        {
+          "ceiling_microdollars": 949338,
+          "directory": "burden-8-seed-20261032-dose-1000",
+          "payloads_sha256": "933c0b7fd3e068c00ac3583889d0ae1e4ac43895b145282c80f3de03b807cd3e",
+          "plan_id": "ee8075e8326078b4653c0a9f4aa722dd5cae899e88c5190c9759f475033132ce"
+        }
+      ],
+      "maximum_microdollars": 1172214,
+      "seed": 20261032,
+      "world_id": "c0168f1052cb936bbe7b5d20ba8ce5b5b3e162fc3debed865595b6fdff3dfea4"
+    },
+    {
+      "burden": 4,
+      "context_fits": true,
+      "jobs": [
+        {
+          "ceiling_microdollars": 946182,
+          "directory": "burden-4-seed-20261031-dose-1000",
+          "payloads_sha256": "a33b63122db3735b3280919da96318aa9d98d823fdcd65518be0fd833046a80d",
+          "plan_id": "f6fb37d49ed47eb817dc45d653b61b76a1fbd5049e9e09515cb0b8b8899c3e5b"
+        },
+        {
+          "ceiling_microdollars": 64182,
+          "directory": "burden-4-seed-20261031-dose-0",
+          "payloads_sha256": "5b194e2c838daa62a7b2049a2bcae26509f347257704e7d5ccdd092fd17d03b0",
+          "plan_id": "43cba2e22090dd0b916b0cf9b31a17bbc6d70a40520ea827eebdd294f2c5f71e"
+        },
+        {
+          "ceiling_microdollars": 152382,
+          "directory": "burden-4-seed-20261031-dose-100",
+          "payloads_sha256": "7c9cb3bd50daa544d76874920ee5c9fa430e7900bf0e360b168fee4f57724964",
+          "plan_id": "d40c2151a902d00fab6f1afd2a6ddc3021619fb237a30ac9193fc3950cdd697a"
+        }
+      ],
+      "maximum_microdollars": 1162746,
+      "seed": 20261031,
+      "world_id": "da21b2ef3b71566ee43d3d102ff4e9724de1aa5cc9192da1adc0b185cffdc451"
+    }
+  ],
+  "settled_microdollars": 0,
+  "status": "prepared_pending_access_and_authorization",
+  "study_cap_microdollars": 10000000,
+  "study_id": "nuisance-followup-20261027",
+  "unresolved_holds_microdollars": 0,
+  "frozen_snapshot_sha256": "7c82f54f0d5c466c787120fcffc8480d91031255ee1cac5e1f4b029442bf80ef",
+  "source_note": "Snapshot contains the exact preparation-time source plus the formatted preparer. Never run original plans against refactored package sources."
+}

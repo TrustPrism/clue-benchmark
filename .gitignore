@@ -20,3 +20,7 @@ community-results/
 .env.*
 !.env.example
 .DS_Store
+
+# Immutable private operational preservation; never distribute.
+release/private-baseline/
+site/

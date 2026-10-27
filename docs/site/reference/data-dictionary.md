@@ -13,3 +13,23 @@ Synthetic worlds, deterministic templates and configured domains; no human cases
 Appropriate uses include evidence sufficiency controls, reliability reasoning, abstention, communication delivery and bounded reproducible demonstrations. Do not infer real-world investigative skill, universal frontier-model weakness, human validation, or learned collaboration from these scores.
 
 Code license proposal: Apache-2.0. Dataset/prose proposal: CC BY 4.0. **Neither is granted by this candidate; ownership clearance is pending.** No hosted dataset URLs, Croissant distribution URLs, DOI or public upload is claimed. Large measured archives remain separate private artifacts until screened and cleared. The wheel contains only tiny example data and sanitized assignment outcomes for offline reanalysis.
+
+
+## Packaged nuisance measurement dictionary
+
+The measured-results resource `nuisance-followup.json` uses
+`clue-nuisance-measurements-1`. `episodes` contains all 144 scored slots; `phase`
+is initial or extension, and `burden`, `dose`, `world_id`, `model`, `repeat` identify
+the matched design. `answer`, supported/correct/abstained/protocol flags and
+sufficiency labels are evaluator outcomes. `input_tokens`, `output_tokens`
+(including thinking), `thinking_tokens`, latency seconds and integer microdollar
+estimates preserve resource costs. Request IDs remain unique per dispatched
+attempt. The accounting header includes the two initial probes and the combined
+$10 cap; scored panel costs exclude probes and are not provider invoices.
+
+Current software is 0.5.0rc2; measured generation/evaluation sources were
+0.5.0rc1 and remain frozen separately. The post-result expansion is labeled;
+combined summaries are exploratory. Resource and source indexes verify hashes.
+No credentials, human authorization evidence, SQLite ledgers, raw receipt bodies
+or provider prose are part of these distribution copies. Public agent exports
+never read this evaluator measurement resource.

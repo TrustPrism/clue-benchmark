@@ -13,14 +13,16 @@ clue-benchmark examples replay measured-results --output runs/counts
 
 The motivating low-thinking Lite counts were 2/5, 3/5, 5/5 at 0/100/1000 records on the same five worlds. Flash was 5/5 throughout. In the eight-report stratum Lite was 5/8, 5/8, 4/8, including one provider failure at the largest dose. This is not established noise-assisted reasoning: one attempt per condition, some identical payloads elsewhere changed answers, and input costs rose sharply.
 
-The preregistered follow-up used the fixed primary endpoint of Lite's
-1000-minus-zero change in the four-report stratum, with two attempts averaged per
-world. It completed eight worlds/96 scored calls plus two compatibility probes.
-Lite scored **7/8, 5/8, 7/8** in the primary stratum: no aggregate primary
-improvement. The eight-report counts were **6/8, 3/8, 4/8**; Flash scored 8/8 in
-every panel. Four worlds per stratum give limited resolution. Receipt-based
-estimated total was **$4.731671**, no holds, below the $10 cap. See the
-[complete results and replay index](../results/index.md#nuisance-records).
+The fixed endpoint was Lite's 1000-minus-zero change in the four-report stratum,
+with two attempts averaged per world. The initial study plus one final expansion
+completed twelve worlds and 144 scored calls plus two initial probes. Combined
+Lite counts were **10/12, 9/12, 10/12** in the primary stratum and **9/12, 5/12,
+7/12** in the eight-report stratum; Flash scored 12/12 throughout. Six worlds per
+stratum give limited precision. The primary estimate is zero with a descriptive
+95% world-bootstrap interval [-25, +25] points; unchanged scores are not proof of
+equivalence. The combined estimate is explicitly exploratory because expansion
+followed the initial result. Estimated total **$6.961763**, no holds, below $10.
+See [separate phases and replay](../results/index.md#nuisance-records).
 
 To prepare a new exact study offline, supply explicit reviewed model prices and every prior measured bank:
 

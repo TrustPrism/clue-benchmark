@@ -1,3 +1,21 @@
+# Final expansion and production candidate — October 27, 2026
+
+The single $10 allowance is now closed after **146 paid calls**: 144 scored
+assignments on twelve underlying worlds plus two initial probes. Receipt-based
+combined estimate **$6.961763**, holds **$0**, no provider/protocol failures.
+Four-report Lite scores at 0/100/1000 records: **10/12, 9/12, 10/12**. Eight-report
+Lite: **9/12, 5/12, 7/12**; Flash **12/12 throughout**. Two attempts on six worlds
+per stratum; the exploratory combined primary estimate is zero, with a descriptive
+interval [-25, +25] points. No additional paid calls are planned.
+
+**0.5.0rc2** packages the measured assignments for keyless replay, separate phase
+tables and plots, and hardens atomic outputs, generation/evaluation locking,
+concurrent dispatch guards, immutable completed generation and report validation.
+Publication and ownership/human-review gates remain pending. Original study
+sources and earlier snapshots below remain preserved as history.
+
+---
+
 # Follow-up execution update — October 27, 2026
 
 The explicitly authorized nuisance follow-up completed **98 calls** (96 scored

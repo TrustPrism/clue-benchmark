@@ -11,6 +11,7 @@
 - `export-public DIRECTORY --agent 0 --output FILE` writes allowlisted public case/report JSONL only.
 - `inspect-case DIRECTORY [--case-id ID] [--agent 0]` returns public evidence for one case.
 - `examples replay distributed-evidence --output DIRECTORY` recomputes solver information controls.
+- `examples replay nuisance-followup --output DIRECTORY` recomputes the initial, final expansion and exploratory combined study; optional `--figures` writes plots.
 - `examples replay measured-results --output DIRECTORY` recomputes all packaged historical panels, preserving study/model/arm/condition denominators.
 - `report SOURCE.json --output DIRECTORY` writes local HTML, exact source JSON and a machine-readable report. It never runs inference.
 - `prepare-nuisance-followup` prepares offline matched inputs and full-study costs; it grants no execution permit.
@@ -67,3 +68,18 @@ explicit local reproduction downloads. It verifies the checksum before extractio
 rejects links/traversal/duplicate paths, and enforces a declared uncompressed byte
 limit (`--maximum-bytes`, default one billion). No hosted URLs or download service
 are claimed until the owner clears and publishes the artifacts.
+
+
+## Output safety in 0.5.0rc2
+
+Completed matching datasets are returned without solver work or file rewrites.
+Generation and native evaluation take an exclusive per-directory lock on Linux
+and macOS; simultaneous writers receive a short error. A request whose atomic
+reservation was lost to another launcher is never dispatched. Ledger identity
+creation is serialized. Unknown usage still stops and holds the maximum.
+
+JSON files use unique temporary files and atomic publication. Public exports and
+new evaluator outputs use atomic no-clobber publication. An occupied evaluator
+output is rejected before invoking an agent callback. Reports validate source
+shape before creating output, escape arbitrary text and retain exact source JSON;
+phase-separated result tables are keyboard-scrollable.

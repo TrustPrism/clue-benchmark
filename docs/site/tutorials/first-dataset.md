@@ -3,7 +3,7 @@
 Use Python 3.12 or newer. The release candidate is private: install the reviewed local wheel supplied by the maintainer. Do not upload it or infer redistribution rights from an installation example.
 
 ```sh
-python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc1-py3-none-any.whl
+python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
 clue-benchmark generate-dataset --preset quickstart --output runs/demo
 clue-benchmark validate-dataset runs/demo
 clue-benchmark export-public runs/demo --agent 0 --output runs/agent.jsonl
@@ -51,3 +51,14 @@ Open `runs/sample-report/index.html`. It links the exact saved JSON and displays
 The [data dictionary](../reference/data-dictionary.md) describes the five bundle files. Matching generation checkpoints resume with the same sources/config. A changed source or config is rejected; use a new directory. Exports, reports and replays refuse an existing destination. Never edit a frozen measured run or a ledger to bypass an error.
 
 After rights clearance and actual publication, the installation command may become `python -m pip install trustprism-clue-benchmark`. It is not a claim that this candidate is already publicly available.
+
+
+Replay the final measured nuisance study without credentials:
+
+```sh
+clue-benchmark examples replay nuisance-followup --output runs/followup
+```
+
+The report separates the original eight-world phase, four-world expansion and
+exploratory combined result; all 144 scored assignments and the combined $10
+accounting are bundled as sanitized data.

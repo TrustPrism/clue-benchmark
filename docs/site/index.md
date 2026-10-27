@@ -1,4 +1,4 @@
-# Clue Benchmark 0.5.0rc1
+# Clue Benchmark 0.5.0rc2
 
 **Private release candidate. Ownership clearance and independent review are pending.**
 
@@ -16,7 +16,7 @@ This is a teaching example, not a model measurement. See [predicate semantics](r
 
 ## Version identities
 
-Software: **0.5.0rc1**. Dataset schema: **clue-community-1**. Legacy flat data: **0.3.0**. Presentation IDs, study IDs, returned model identities and source hashes describe different things; never substitute one for another.
+Software: **0.5.0rc2**. Dataset schema: **clue-community-1**. Legacy flat data: **0.3.0**. Presentation IDs, study IDs, returned model identities and source hashes describe different things; never substitute one for another.
 
 [Download a real public-only quickstart case](assets/quickstart-public.jsonl).
 The [bundle dictionary](reference/data-dictionary.md) explains how to keep evaluator labels separate.

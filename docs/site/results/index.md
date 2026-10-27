@@ -20,36 +20,62 @@ Eight worlds: Flash 8/8 complete answers, 32/32 appropriate abstentions on ambig
 
 Four necessary reports: Lite 2/5, 3/5, 5/5 at 0/100/1000 records; Flash 5/5 at every dose. Eight necessary reports: Lite 5/8, 5/8, 4/8, with a provider error included at the last dose. That last count is not four observed reasoning errors. One repetition; 8/32 preplanned identical-payload pairs elsewhere changed answers, all Lite. [Sanitized assignment records](../assets/pilot.json).
 
-The preregistered follow-up is now **completed**: 96 scored calls plus two
-compatibility probes on eight underlying worlds. At 0/100/1000 records, Lite
-scored **7/8, 5/8, 7/8** in the four-report primary stratum and **6/8, 3/8, 4/8**
-in the eight-report stratum; Flash scored **8/8 throughout**. Each denominator
-eight means two attempts on four worlds, not eight independent worlds.
+The initial follow-up and one final, outcome-independent expansion are both
+completed. The expansion used all four remaining worlds from the original
+screened seed prefix, with no model outcomes used in selection. Combined:
+**12 underlying worlds, six per stratum, 144 scored calls plus two initial probes**.
+The expansion decision followed the initial result, so report phases separately
+and treat combined estimates as exploratory.
 
-The primary 1000-minus-zero effect was **0 percentage points**, with a descriptive
-world-bootstrap interval [-37.5, +37.5] points and exact paired sign-flip p=1.0.
-One primary-stratum world improved by 0.5 and another worsened by 0.5. The earlier
-aggregate improvement did not reproduce; the small cohort does not establish a
-general zero effect. Context length and composition change together.
+At 0/100/1000 independent records:
 
-All actions were valid, with no transport/protocol failures: 80 supported correct,
-12 wrong and four unnecessary abstentions across scored slots. Lite's two attempts
-disagreed in 9/24 world-dose pairs; Flash's in 0/24. Estimated total cost from
-recorded usage/prices was **$4.731671**, including **$0.244634** for the probes;
-no holds remain. This is not a provider invoice. Maximum planned commitment
-remained $9.838478 under the single $10 cap. No more paid conditions were added.
+- Initial four-report Lite: **7/8, 5/8, 7/8**; extension: **3/4, 4/4, 3/4**;
+  combined: **10/12, 9/12, 10/12**.
+- Initial eight-report Lite: **6/8, 3/8, 4/8**; extension: **3/4, 2/4, 3/4**;
+  combined: **9/12, 5/12, 7/12**.
+- Flash: every scored response correct in both phases and every dose; **12/12
+  per combined panel**. This ceiling score is specific to these cases/settings.
 
-![Follow-up paired accuracy](../assets/nuisance-followup-paired-accuracy.svg)
+Each combined denominator twelve means two attempts on six worlds, not twelve
+independent worlds. The primary 1000-minus-zero Lite estimate remains **0 points**:
+four worlds unchanged, one gains 0.5 and one loses 0.5. Descriptive 95% world
+bootstrap interval **[-25, +25] points**, exact sign-flip p=1.0. Equal observed
+accuracy does not establish equivalence or prove no effect. Necessary evidence,
+context length and composition do not isolate a general reasoning mechanism.
+The earlier aggregate improvement did not reproduce here. In the four-report
+stratum, mean estimated cost per scored call rose from $0.001269 to $0.070781
+for Lite (about 56×), and $0.002258 to $0.174906 for Flash (about 77×), while
+zero- and 1000-record aggregate scores stayed unchanged. This is a useful bounded
+cost/robustness example, not a general law about reasoning.
 
-![Follow-up cost](../assets/nuisance-followup-cost.svg)
+![Initial, extension and exploratory combined accuracy](../assets/extended-nuisance-accuracy.svg)
 
-[Completed machine-readable analysis](../assets/nuisance-followup-results.json)
-and [source/checksum/sanitization index](../assets/nuisance-followup-reproduction.json)
-are downloadable. The indexed reproduction archive is prepared locally, pending
-rights/privacy clearance before external hosting. Extracted frozen sources and
-the saved reports reproduce every panel, paired contrast and cost without a
-provider or credentials; a fresh archive replay with networking blocked matched
-all counts, contrasts, costs and outcomes.
+![Scored-call cost across phases](../assets/extended-nuisance-cost.svg)
+
+The combined receipt-based estimate is **$6.961763**, including **$4.731671**
+initially and **$2.230092** for the final expansion. The initial total includes
+**$0.244634** for the two probes. No unresolved holds; no transport or protocol
+failures. This is not a provider invoice. The total commitment preflight was
+**$9.400427** against the single **$10** allowance; no further paid calls are planned.
+
+Replay from an installed wheel, without a repository, key or provider:
+
+```sh
+clue-benchmark examples replay nuisance-followup --output runs/nuisance
+```
+
+Add `--figures` with the figures extra. The output contains initial.json,
+extension.json, analysis.json and an accessible local HTML report with separate
+phase tables. The general `examples replay measured-results` gallery also includes
+these 144 saved assignments, preserving study/settings identities.
+
+[Combined analysis](../assets/nuisance-extended-results.json) and
+[all sanitized assignments](../assets/nuisance-extended-measurements.json), and
+[source/archive checksum index](../assets/nuisance-extended-reproduction.json) retain
+nulls, wrong answers and abstentions. Approvals, credentials, dispatch ledgers,
+provider prose and raw receipts are excluded. These are evaluator outcomes and
+must not be added to agent prompts. Initial study source archives remain immutable;
+the expansion and production code have distinct version/source identities.
 
 ## Certified burden
 

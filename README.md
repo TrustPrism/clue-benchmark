@@ -2,6 +2,8 @@
 
 A configurable Python generator and evaluation tool for **certified information availability, reliability, and evidence distribution**. Generate synthetic clue puzzles, certify what each agent can infer, export only public evidence, and score correctness separately from evidential support and abstention.
 
+[Public documentation and results](https://trustprism.github.io/clue-benchmark/) · [Open questions](https://trustprism.github.io/clue-benchmark/results/open-questions/) · [Initial prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2)
+
 A tiny public puzzle: Ada, Ben and Cy have red/blue badges; the responsible person has red, Ada has blue, and Ben has Ada's badge value. Cy is responsible. Remove Ben's report and both Ben and Cy remain possible: a lucky Cy answer is no longer supported. Repeated values are allowed; one culprit need not imply one complete world.
 
 Ownership clearance, licensing and independent review are pending. This initial research preview does not grant an open-source or dataset license. With Python >=3.12, install a built candidate wheel using `python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl`, or install the checked-out source using `python -m pip install .`. No PyPI upload is claimed. The [open questions](docs/site/results/open-questions.md) describe the unanswered research and full-release decisions.

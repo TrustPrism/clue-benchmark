@@ -2,7 +2,9 @@
 
 **Initial research preview. Ownership clearance, licensing and independent review are pending.**
 
-An initial public research preview is being prepared. The [open questions](results/open-questions.md)
+The [initial public research preview](https://trustprism.github.io/clue-benchmark/) and
+[0.5.0rc2 prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2)
+are available. The [open questions](results/open-questions.md)
 state what the experiments leave unresolved and what must be answered before
 the full software/data release. Public preview availability does not establish
 redistribution rights or grant a license.

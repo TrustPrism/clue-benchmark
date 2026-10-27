@@ -40,7 +40,7 @@ approval or dispatch ledger in that site. Keep
 the exact public export inventory with this record. Verify the public URL without
 authentication after deployment. Record actual URLs/outcomes only after success.
 
-## Current handoff state
+## Earlier handoff state (resolved)
 
 The source and `gh-pages` deployment branch are pushed to the existing
 repository. The static deployment commit is
@@ -61,3 +61,30 @@ anonymous access to the repository, results, open questions and downloads.
 Keep licenses and human reviews marked pending. The full 282-test suite, strict
 MkDocs/Twine checks and offline wheel installs on Python 3.12–3.14 passed for the
 cost-formatting update; no additional paid calls were made.
+
+## Publication completed
+
+On October 27, 2026, after the owner completed GitHub account verification:
+
+- The existing `TrustPrism/clue-benchmark` repository and history are public;
+  no second repository was created.
+- The initial `v0.5.0rc2` release is published and explicitly marked prerelease:
+  https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2
+- GitHub Pages serves the `gh-pages` branch at:
+  https://trustprism.github.io/clue-benchmark/
+- Original results: https://trustprism.github.io/clue-benchmark/results/
+- Open questions: https://trustprism.github.io/clue-benchmark/results/open-questions/
+- Anonymous HTTP checks passed for the home/results/questions pages, sanitized
+  assignments and site manifest. All 61 files in the first deployed export
+  matched their reviewed hashes without authentication.
+- Hosted Linux/macOS Python 3.12–3.14 and documentation checks all passed on
+  source revision `72b437a1a9d34464374db0bbb1ef3173b58284f9`.
+- The default branch remains `main`. Automatic approval review rejected a
+  proposed default-branch change because it would also affect PR bases and
+  repository behavior; the published release and website provide the preview
+  entry points instead. No unreviewed PR was merged.
+
+Licenses, rights clearance, independent rule reviews, outside installation
+review, PyPI release and full data/archive hosting remain pending. Public
+visibility does not imply those reviews are completed. The paid allowance stays
+closed at the estimated $6.96 total; exact accounting is unchanged.

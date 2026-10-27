@@ -82,15 +82,6 @@ def scan_archives():
                             }
                         )
                     continue
-                if member.size > 200_000_000:
-                    skipped.append(
-                        {
-                            "file": member.name,
-                            "bytes": member.size,
-                            "reason": "manual review required; exceeds bounded scan member size",
-                        }
-                    )
-                    continue
                 scanned += 1
                 tail, detected = b"", set()
                 with archive.extractfile(member) as stream:

@@ -1,0 +1,1242 @@
+{
+  "schema_version": "clue-private-release-manifest-1",
+  "software_version": "0.5.0rc2",
+  "source_revision": "beae78ee989ba2c5828c1fdcb3e2aeda81e5a06c",
+  "source_tree": {
+    "src/clue_benchmark/__init__.py": "5d02372c66f338a0fcb635c532cc6404a8d4eff23b96618c82a78a9e800442dd",
+    "src/clue_benchmark/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/clue_benchmark/archives.py": "bd49183b9c75968629c958442e64126a20f43d15873911710c1d095e337c0d86",
+    "src/clue_benchmark/cli.py": "abff5d8a13438543b91b76d69357c25ac646721508ac801055197b2d72fb7963",
+    "src/clue_benchmark/clue_formatter.py": "1a564daa38e802fb8e36291c3f82a8f0d129fabca387fabf09b094b64a5e3158",
+    "src/clue_benchmark/clue_generator.py": "56500dfda35d2afeb2a39191d01b56291435f2efb883de73a973bddcdc43f274",
+    "src/clue_benchmark/clue_metadata.py": "1fd45bd06698a836d3a6331c4913bbf9749095709fb392f0d54e7a166899fcab",
+    "src/clue_benchmark/community_bundle.py": "6ed12c78b199e95d512c312cd05acd2ca20fd39ad0f769dbaf339bef5a56ed9f",
+    "src/clue_benchmark/community_cli.py": "79845b7cea739d509da8b541af1e84c37fa16b54579a72cb1f2ff086c506802b",
+    "src/clue_benchmark/community_config.py": "281b8eb750485c0f5e349584732c63c12b92fddd7d957f851024dac3c4fe4d44",
+    "src/clue_benchmark/community_evaluation.py": "9c2e449e6c4e432a0d800e976ce15a65264750d92808dcf709a0e869b092385f",
+    "src/clue_benchmark/community_generation.py": "21c3f3ef0528483595d96049b00649081ff1a5e8c0addd48a2632848a9fb81b4",
+    "src/clue_benchmark/community_semantics.py": "d2f45b5b97f922e24f5230266de984c4c621ff1b75ceec02fecf8935703c1080",
+    "src/clue_benchmark/config.py": "f77d2d4c708623d77bfbcd4e3a3f6d63684d99b82042732c0fefd3bc1c26179d",
+    "src/clue_benchmark/dataset.py": "9eb1b7ec719355eec35e4fea92728c6be0ba01dbd536f0296cfbc8246e922a11",
+    "src/clue_benchmark/followup_analysis.py": "70a14072b9c1060d987509722bb9ae62f16f7d2e505995c5a1c3cc7d2be7c9e3",
+    "src/clue_benchmark/followup_runner.py": "6bcef58311e3dfd5e4614be1e45b2655cc8434dd4f6267a2dff50132f3c3a42f",
+    "src/clue_benchmark/generation.py": "0986a37a458c7cbe7290d3aa7503a7cf7ab22b72f0901c8fc30bceaf1a59005a",
+    "src/clue_benchmark/independent_oracle.py": "d30a14a7dea7cc00f5eab8e4478877c0038e515cd03222d9b530069fb8cb00ac",
+    "src/clue_benchmark/legacy_cli.py": "2221bddec13819a6e1b7aa5e5bcaad4bd2231d4c9bcbf100064eb8ee295ecf97",
+    "src/clue_benchmark/logic.py": "1f4ed3e54c808674fba634f56ce728555bd976942583abc95c1a955c35b0d84f",
+    "src/clue_benchmark/native_adapters.py": "dd76ea6aeff0f43ae8885ac608ca76e1bcf1b8ac7288124ada8bb6d721d5ab8f",
+    "src/clue_benchmark/native_transport.py": "5c4070b5d7f783a1777b57a6e29114979fd14c35341a826c81e634f881db5714",
+    "src/clue_benchmark/nuisance_followup.py": "04efab9c3c28543993082e408e145da63c3980ce7b56ab9d427581d7d9a4d030",
+    "src/clue_benchmark/parameter_reference.py": "2ea36bbba92d8053810852196fbda1285dabf79d9d036d06762309970b38d96c",
+    "src/clue_benchmark/presets.py": "7aaf33b95088641f8d7d16a8699c1d14c63c4f8853dc5b04ca2cdea8698bc479",
+    "src/clue_benchmark/provider_events.py": "20b8d19fa10ee28ee33ce2ce659e2e8c2b53b3099a17f519c13ebe5bb7d72aa0",
+    "src/clue_benchmark/public_api.py": "6568d7cf7ac1344e70d9beb33cdfc15a7913ba547596226e024561fd3fc08858",
+    "src/clue_benchmark/replay.py": "2bbf0de1c854f6c52e8468533aadb01503a350e9aa75592e10e5b6aac27172c9",
+    "src/clue_benchmark/research_results.py": "ea72f52b0d3d0f02d1610d4b911905402c0d66662f9e14da4457f49d15e36e5b",
+    "src/clue_benchmark/resources/ambiguous.json": "79816f27bf53e09066c7842c2e84f77f423372324b45d99e8f3d47d17203fb96",
+    "src/clue_benchmark/resources/distributed-evidence/answers.jsonl": "d23aa300b4505f72e15d97518c1b1077da7b58ba14a1646584ad62dfc98151b6",
+    "src/clue_benchmark/resources/distributed-evidence/cases.jsonl": "729ceddcc9fd1b6ee5c82c6a3a789935ba8cad79e59e9c0cdc50d8c6a9804e20",
+    "src/clue_benchmark/resources/distributed-evidence/certificates.jsonl": "7a9a2bf506a438f8725691ae6671a7b9eb1fde0e32a7b99458723111cfd50d0e",
+    "src/clue_benchmark/resources/distributed-evidence/manifest.json": "23fac75272a2ac7bf8afedd582e6dc4aaf394413897977d35bf7afce1f7247bb",
+    "src/clue_benchmark/resources/distributed-evidence/partitions.jsonl": "f6039d657b9a3611a97ce681d47970ce68fdff14588b6063a0200e0bdfd6acd0",
+    "src/clue_benchmark/resources/distributed.json": "72c3a16a49f1f35d355c95edaedae8b4d3eb9032bfb185227224fb69c95292c6",
+    "src/clue_benchmark/resources/false-reports.json": "5f612a3b222093a96774054c9d78af9b31e092edbd2fc1eb58efcc0ef2c90acd",
+    "src/clue_benchmark/resources/hard-example.json": "6018fb66ca0f12c9266e5ae7a92d96bc44a69bd5120dd5ed6b3c91ed80d1b27c",
+    "src/clue_benchmark/resources/measured-results/flash-hard-scale.json": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+    "src/clue_benchmark/resources/measured-results/flash-limits.json": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+    "src/clue_benchmark/resources/measured-results/hardness.json": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+    "src/clue_benchmark/resources/measured-results/index.json": "f5678340dd631ec4183b9866727b79bd24bac78e7ba5e112cf7f7e966ff2d954",
+    "src/clue_benchmark/resources/measured-results/nuisance-followup.json": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+    "src/clue_benchmark/resources/measured-results/pilot.json": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+    "src/clue_benchmark/resources/measured-results/qwen-sampled-screening.json": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+    "src/clue_benchmark/resources/noise-volume.json": "0b218df64e7f2ca513de5a8f90b79c9335cf0c9c399b40d77df8c6a1bd8f1a33",
+    "src/clue_benchmark/resources/parameters.json": "0b3d5919b1d01323277b996e1df8d9573775501482741f90b05e2d563c8ca16a",
+    "src/clue_benchmark/resources/quickstart.json": "162c0cf3dc75dfd0c74c2c97748def598727cd3125d0123cfaf0054e031b3bb2",
+    "src/clue_benchmark/resources/schemas/answer-record.schema.json": "4fd6def7585a07d437334c1318d225f2f3fad235d68e6b0de14d3d237d55052b",
+    "src/clue_benchmark/resources/schemas/authorization.schema.json": "9810197eed452583c33530ecf738a4fb9521f7345f4ec3bff979400008e9bf6c",
+    "src/clue_benchmark/resources/schemas/certificate-record.schema.json": "4b962a4a99042c782c9193da25844cf4deab320880e69ba374d2200548889cbf",
+    "src/clue_benchmark/resources/schemas/configuration.schema.json": "563bb4a6cd9c2162ebb692e8290b724d33223809a38a04862bbb4f468c2ad644",
+    "src/clue_benchmark/resources/schemas/evaluation-plan.schema.json": "ed828b984fa93cddbbad861745cc1c762b5ceb2a3856742bd2de979564311fc2",
+    "src/clue_benchmark/resources/schemas/manifest.schema.json": "0a2ef7be996a3840bb7968573d2288a4b475d1128407cce828f77ddfd22ffde0",
+    "src/clue_benchmark/resources/schemas/partition-record.schema.json": "928987c3d5aa543410907ad520e7ed97bfb9d0743108ff235564e30325ed5d70",
+    "src/clue_benchmark/resources/schemas/public-record.schema.json": "37d61cb558d7aab437e1013bd5d72a2d7b9e8160a4728e82bbada6c322936a02",
+    "src/clue_benchmark/result_figures.py": "16c1bf1f0db4d9c561029e199895f8e95ace52de428f5228fe3f633c29ed6d78",
+    "src/clue_benchmark/results.py": "813b643a36bb16b969ba4db2a79abed58aaa43bdf8f008a0e296610a5459b19c",
+    "src/clue_benchmark/solver.py": "c0165264b88f203412b20df118f0ae386c2abf716b4102dbcb787490c40bb71c",
+    "src/clue_benchmark/world_sampler.py": "9cf288430d1e2bcd941839ac711c5959e7b0c8b1b405a3b08fdfc92f2aaf14c6"
+  },
+  "artifacts": {
+    "dist/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl": {
+      "sha256": "3c76ec88991452311dab5ea5ea75a3624c1a004f712396e6b8a3c2107b5a06fe",
+      "bytes": 316527
+    },
+    "dist/trustprism_clue_benchmark-0.5.0rc2.tar.gz": {
+      "sha256": "9280ead86db9605c8d20eb46f2b61eb54d3fdeffb218bcb921ccef263f7361e5",
+      "bytes": 288561
+    }
+  },
+  "docs": {
+    "site/404.html": "f5b413f2d6fd9aa5eaf49bd7b984ac892b2ef96719c2586fdeb8e0bbc8879402",
+    "site/assets/extended-nuisance-accuracy.svg": "54984676b9a6697aa13d75a6fa287dd8047ea73892438134cc03ad80a7059c0b",
+    "site/assets/extended-nuisance-cost.svg": "8892df18f689ef5530449c9615e78b1664bc40a6c888fc8954762618413c1bff",
+    "site/assets/flash-hard-scale.json": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+    "site/assets/flash-limits.json": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+    "site/assets/hardness.json": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+    "site/assets/index.json": "9e5ea56d9dd94a6353c984297f76e07b85ef5ed9539c179789d29a677d667f78",
+    "site/assets/nuisance-extended-measurements.json": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+    "site/assets/nuisance-extended-reproduction.json": "3c0bee04d2a405b11862fe9c3cd930a4a2e95a004602b20e4006c740a0ad2fb2",
+    "site/assets/nuisance-extended-results.json": "ea615260391b6ad3f92bcdeb6fe4d990f05355338e3a244c74a9919e5e8b32bc",
+    "site/assets/nuisance-followup-cost.svg": "d272e6cb4710a1fe312ee30f7f812fa1e819088747d5f627ad36f49033f45742",
+    "site/assets/nuisance-followup-paired-accuracy.svg": "de61e63e7684c6ad7e9e1bf74046438e3a0c8287ee5cdd98399ad950098df663",
+    "site/assets/nuisance-followup-reproduction.json": "26434ecd19d49af9ae5548ab6aa43648ab95ae7e06b5fcd24a723d54dce6c8bf",
+    "site/assets/nuisance-followup-results.json": "bc34ec40c0492b6c6b1b31a10f9fb0d3c96a2362c3398ea30665f8c5f15668ea",
+    "site/assets/paired-accuracy-and-cost.svg": "145fe3fc35011a0082a8f9d606b61402dcf3d744e1a69b737df2a972eb341bab",
+    "site/assets/pilot.json": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+    "site/assets/quickstart-public.jsonl": "90b201e9eb00779d8f9cc7515871416b7acde6ebe3d3d2a9384aa7fdd7131dfa",
+    "site/assets/qwen-sampled-screening.json": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+    "site/css/base.css": "0dae4dbc308f8eb108946a660d1ec829a1fcb4baca07d7ea17f14244bd8f8a91",
+    "site/css/bootstrap.min.css": "51600b05b09b6cceb8f4865afeb61320b0e69df73e7d7b99410d9ac18042848b",
+    "site/css/bootstrap.min.css.map": "58b97e279a493d3b06ab973c6b35f9f4b8018c8d8acb0242990702f07ca66708",
+    "site/css/brands.min.css": "321e5ebea077d3b3be03f5b0218ceab2259cf6e93035aa8644e7970a054fd687",
+    "site/css/fontawesome.min.css": "8eb5b44ce5971a501e5a17954c464b80aba0c4604675b5603a7f456459af88a1",
+    "site/css/solid.min.css": "b8afa4243dd1bf735f512708da5335b0ed314d9e58a0a1cf1b781250cf5fb004",
+    "site/css/v4-font-face.min.css": "8698ebb2a30433065f31e392cf0e56a7fbe97798da673163606242c7ca85aee6",
+    "site/explanations/pipeline/index.html": "06b4510f571572d5695e7e3348cf15530496f4586c38a1a2096fe5d73de5fd4e",
+    "site/explanations/related-work/index.html": "0db0bfcdc0edcdaee992a17a3ca783762581d566a9e6a037f39be046e77eb400",
+    "site/guides/research-recipes/index.html": "6221e8a95e24f2a7e9a344d015a6aa9d2655fb42d5999c0407dcc9a9ad5a5424",
+    "site/img/favicon.ico": "f16b45bd53fbacaa2cd8f22e8482db5c59e0cef9bd21394474a429a18a98ffd0",
+    "site/img/grid.png": "6e2a58503494a708105ac646d3af5c08c8c890325bb781a257d10f91ff968a9c",
+    "site/index.html": "d484e66f85c9b551b5355c0901e02e828d33db62229a7c584e0bb1f9039f8913",
+    "site/js/base.js": "ea13d8449c21e5a4e5235722e67bfbf45009e8c61cbe8e98e453cc39f46419ed",
+    "site/js/bootstrap.bundle.min.js": "82f64f62bb03c1bc1824b0f9c9e05f70dba33e146818e63cdf5c306c8cf3dedd",
+    "site/js/bootstrap.bundle.min.js.map": "19a5b0b88d24d6b154c4462896c9631c0b317d71f22eebbf0b9e405db4351fd1",
+    "site/js/darkmode.js": "6660ca90a0b34be68edd0503102d013e6d4ea2d4ed8ffdca1ef17e2b69226d90",
+    "site/maintainers/release/index.html": "48e0bd8ee5de154f552ff9d4b2aa3ee56908b40300caf6abfcef9ac41fd2153f",
+    "site/reference/data-dictionary/index.html": "917e923acb8653eeadab284861c2cde2dc9ff6cc7002948caa136aa27279b3a0",
+    "site/reference/interfaces/index.html": "3d206bd04ca01b4c5bfc436d9bcfdc3ddd8163b922d368f0be959dd2f27612b8",
+    "site/reference/parameters/index.html": "a72a7d90da6a6b1d3e6639378311e47c56f2621a50d3679361a6f226a4b98124",
+    "site/reference/predicates/index.html": "fba9b0f9f0b85da5e529beaffe2f0ed7d7374c305158407555f648c2c3446010",
+    "site/reference/troubleshooting/index.html": "19843aea78b9293dc4675e55da3608dffd345384674edc33ba9621cdee3dbbc0",
+    "site/results/index.html": "8cb9c10f46b422381336c4667cf9095ec68a6eaf45763f3b790a47c512eee68e",
+    "site/search/lunr.js": "c1a28d9e95163292fbcc07ff794f1f0e1ade8741c513afe96d5b1046a18110bc",
+    "site/search/main.js": "22961b345ceba9b3a9146577190672a7b1c6881bb84c05bec1e2d0f3a3312389",
+    "site/search/search_index.json": "493d59d395e9aff49fbeb6167c9e101d7248d2d163caa475e33dc8d1cffc2e55",
+    "site/search/worker.js": "b486eab6682d02b7c6ec7bdc965bb051661ee2c6a42bb3442b559cb2c6e2c73c",
+    "site/sitemap.xml": "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
+    "site/sitemap.xml.gz": "0bd8729aff67512637e2c5c7616a955bb2ddef0bc0d2898e677449b2f35c1859",
+    "site/tutorials/distributed-evidence/index.html": "e16b1e23b30e4bede3b98d4f92a7de953f9c98418b7880ca1a99617fdb209ae7",
+    "site/tutorials/first-dataset/index.html": "78087ee8912824de4ee7f31ae38e0ae097103e137755011edcbf5f9a38f613fa",
+    "site/webfonts/fa-brands-400.ttf": "5656d596bc597165a42182f67b2b9f17d2ae47a9e3ef1b042b9a729739730705",
+    "site/webfonts/fa-brands-400.woff2": "3a8924cd5203a28628716aedb5cef0943da4c3b44e3ffcee90ab06387b41c490",
+    "site/webfonts/fa-regular-400.ttf": "5d02dc9b858e3c85a794f87e379857f4fedc4e26cf15001714a9a0e0b1d2294d",
+    "site/webfonts/fa-regular-400.woff2": "2bccecf0bc7e96cd5ce4003abeb3ae9ee4a3d19158c4e6edfd2df32d2f0d5721",
+    "site/webfonts/fa-solid-900.ttf": "fbbf06d7437aa30f3cd44c968380193545a8fc3eadfb7ad897bbb101eefec5a2",
+    "site/webfonts/fa-solid-900.woff2": "9fc85f3a4544ab0d570c7f8f9bbb88db8d92c359b2707580ea8b07c75673eae2",
+    "site/webfonts/fa-v4compatibility.ttf": "09663a36fc05e7190af8324b855105c5bb511ad94f94b81b34afee503279eca2",
+    "site/webfonts/fa-v4compatibility.woff2": "4d4a2d7fd1c6684845cb174fdd7fc073bd64cb741286fb247f8b76c2b7b852c4"
+  },
+  "sanitized_results_index": {
+    "pilot": {
+      "original_source": "benchmarks/pilot-episodes.jsonl",
+      "original_sha256": "b68a927b60db35e899af1b0360f302d4ee9af67dcdffd9e322c0d10baa303427",
+      "sanitized_sha256": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+      "assigned_records": 270,
+      "independent_worlds": 21,
+      "limitations": "Low thinking; 4096 output tokens. One attempt; variants and private agents are not independent worlds.",
+      "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+    },
+    "hardness": {
+      "original_source": "benchmarks/hardness-episodes.jsonl",
+      "original_sha256": "b87b3f764d5b035ef3034f1e776f8495499b7f2f103cbdf0ca224be378c50491",
+      "sanitized_sha256": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+      "assigned_records": 360,
+      "independent_worlds": 30,
+      "limitations": "High thinking. Ten worlds per 32-report arm, three attempts. Certified report cost is not proof depth.",
+      "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+    },
+    "flash-hard-scale": {
+      "original_source": "benchmarks/flash-hard-scale-episodes.jsonl",
+      "original_sha256": "1811f26fc76202ec984b99e0043ad95c720f70710da15dd43aa609499a8da2d2",
+      "sanitized_sha256": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+      "assigned_records": 48,
+      "independent_worlds": 48,
+      "limitations": "Fresh 48-world confirmation: 64 suspects, 455 interacting reports, 32768 output tokens including thinking. Reports are not certified individually necessary.",
+      "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+    },
+    "flash-limits": {
+      "original_source": "benchmarks/flash-limits-episodes.jsonl",
+      "original_sha256": "53284b6909d8238582d4977461410d52d4cc19a1e7a16d8b1a50efd35cc09d5b",
+      "sanitized_sha256": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+      "assigned_records": 40,
+      "independent_worlds": 32,
+      "limitations": "Adaptive resource demonstration; compare matched six-world subsets only, not a new independent confirmation.",
+      "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+    },
+    "qwen-sampled-screening": {
+      "original_source": "benchmarks/qwen-sampled-screening-results.json",
+      "original_sha256": "2e9e8fb66ff0192b4633a562803f0f33c9bdd8a38a3da7867ad8e21382818762",
+      "sanitized_sha256": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+      "assigned_records": 72,
+      "independent_worlds": 36,
+      "limitations": "72 assigned slots, three reused pilot responses. Completion is separate from supported correctness.",
+      "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+    },
+    "nuisance-followup": {
+      "original_source": "benchmarks/nuisance-extended-measurements.json",
+      "original_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+      "sanitized_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+      "assigned_records": 144,
+      "independent_worlds": 12,
+      "limitations": "One final post-result expansion. Same protocol/settings; report initial and extension separately. Combined estimates are exploratory; six underlying worlds per stratum, two attempts per model/dose/world. Equal observed accuracy does not demonstrate equivalence. No mechanism or general robustness claim. All failures retained; no further paid calls.",
+      "sanitization": "Positive outcome/usage field allowlist. No approvals, credentials, ledgers, raw receipts or provider prose. Evaluator data; never agent inputs."
+    }
+  },
+  "archive_inventory": {
+    "benchmarks/data/flash-hard-scale-2026-10-11.tar.gz": {
+      "sha256": "004de6bfbb27cbb428d8f3988365fbd0b65906a3a9bda85ad6bab57a9461181b",
+      "bytes": 7164806,
+      "files_scanned": 468,
+      "findings": [
+        {
+          "file": "datasets/unavoidable-64-case-001/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-002/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-003/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-004/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-005/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-006/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-007/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-008/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-009/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-010/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-011/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-012/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-013/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-014/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-015/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-016/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-017/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-018/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-019/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-020/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-021/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-022/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-023/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-024/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-025/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-026/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-027/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-028/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-029/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-030/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-031/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-032/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-033/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-034/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-035/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-036/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-037/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-038/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-039/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-040/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-041/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-042/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-043/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-044/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-045/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-046/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-047/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-048/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-001.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-002.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-003.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-004.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-005.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-006.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-007.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-008.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-009.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-010.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-011.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-012.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-013.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-014.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-015.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-016.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-017.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-018.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-019.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-020.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-021.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-022.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-023.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-024.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-025.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-026.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-027.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-028.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-029.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-030.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-031.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-032.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-033.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-034.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-035.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-036.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-037.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-038.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-039.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-040.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-041.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-042.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-043.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-044.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-045.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-046.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-047.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-048.json",
+          "finding": "local_home_path"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/flash-hard-scale-measured-2026-10-11.tar.gz": {
+      "sha256": "8700f26a0bcc62d63c325dcfee1c25c45af3b7cd6761d9894add64b3349184bd",
+      "bytes": 7193570,
+      "files_scanned": 518,
+      "findings": [
+        {
+          "file": "datasets/unavoidable-64-case-001/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-002/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-003/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-004/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-005/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-006/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-007/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-008/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-009/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-010/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-011/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-012/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-013/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-014/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-015/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-016/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-017/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-018/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-019/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-020/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-021/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-022/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-023/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-024/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-025/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-026/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-027/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-028/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-029/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-030/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-031/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-032/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-033/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-034/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-035/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-036/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-037/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-038/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-039/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-040/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-041/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-042/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-043/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-044/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-045/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-046/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-047/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/unavoidable-64-case-048/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-001.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-002.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-003.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-004.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-005.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-006.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-007.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-008.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-009.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-010.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-011.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-012.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-013.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-014.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-015.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-016.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-017.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-018.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-019.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-020.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-021.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-022.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-023.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-024.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-025.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-026.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-027.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-028.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-029.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-030.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-031.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-032.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-033.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-034.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-035.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-036.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-037.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-038.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-039.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-040.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-041.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-042.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-043.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-044.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-045.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-046.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-047.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "plans/unavoidable-64-case-048.json",
+          "finding": "local_home_path"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/flash-limits-2026-10-11.tar.gz": {
+      "sha256": "6fad18fd9c2d958693a745cbabb4f81924ee4d988b98a8eee84e2a8f77fb07f5",
+      "bytes": 22215574,
+      "files_scanned": 132,
+      "findings": [
+        {
+          "file": "datasets/repairs-64/answers.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/repairs-64/cases.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/repairs-64/certificates.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/repairs-64/manifest.json",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/repairs-64/partitions.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/screen-16-untouched/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "datasets/screen-64/answers.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/screen-64/cases.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/screen-64/certificates.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/screen-64/manifest.json",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "datasets/screen-64/partitions.jsonl",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "plans/screen-16-untouched.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "validations/repairs-64.json",
+          "finding": "archive_link_or_special_member"
+        },
+        {
+          "file": "validations/screen-64.json",
+          "finding": "archive_link_or_special_member"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/hardness-2026-10-11.tar.gz": {
+      "sha256": "66dfeecafc8c6660ff647a979021ea78bf5e41a2b01b2d9f4fa0c90211f9c27a",
+      "bytes": 11607668,
+      "files_scanned": 154,
+      "findings": [
+        {
+          "file": "continuation-0/datasets/near-decoys-0-noise-0-remaining-0/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "continuation-0/datasets/near-decoys-0-noise-0-remaining-1/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "continuation-0/datasets/near-decoys-12-noise-0-remaining-2/manifest.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "continuation-0/plans/near-decoys-0-noise-0-remaining-0.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "continuation-0/plans/near-decoys-0-noise-0-remaining-1.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "continuation-0/plans/near-decoys-12-noise-0-remaining-2.json",
+          "finding": "local_home_path"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/nuisance-extended-measured-2026-10-27.tar.gz": {
+      "sha256": "6dea1836c094215bd29ed7fa3072b1e69844f0304344a51ab802973dc19b34dc",
+      "bytes": 7384577,
+      "files_scanned": 420,
+      "findings": [],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/nuisance-followup-measured-2026-10-27.tar.gz": {
+      "sha256": "f67e2cba24de71bd61fd61479b3075e4bfa76ae1d27196a341f00839b2a4ee03",
+      "bytes": 4925514,
+      "files_scanned": 246,
+      "findings": [],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/publication-screening-measured-2026-10-15.tar.gz": {
+      "sha256": "14ea5a0a384434b1f4771432e28099431526de2b332caab80f1c6de130af590e",
+      "bytes": 2373497,
+      "files_scanned": 276,
+      "findings": [
+        {
+          "file": "measurement-snapshot/continuation-protocol.json",
+          "finding": "local_home_path"
+        },
+        {
+          "file": "measurement-snapshot/measurements/plans/screening.json",
+          "finding": "local_home_path"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    },
+    "benchmarks/data/publication-v1-prepared-2026-10-15.tar.gz": {
+      "sha256": "a431876fda943332f85ab925b6ff8bca0462718297d9ae9dc1cef2611c010db0",
+      "bytes": 1745274,
+      "files_scanned": 209,
+      "findings": [
+        {
+          "file": "verification/wheel-smoke.json",
+          "finding": "local_home_path"
+        }
+      ],
+      "unscanned_members": [],
+      "distribution_clearance": "pending manual review; immutable original preserved"
+    }
+  },
+  "artifact_scan_findings": [],
+  "history_scan": {
+    "reachable_blobs_scanned": 1334,
+    "findings": [
+      {
+        "revision_blob": "6b6686487e6e99439561471ba938882c9f1b4a6c",
+        "file": "examples/datasets/measured-failures/branching-32/manifest.json",
+        "finding": "local_home_path",
+        "count": 1
+      },
+      {
+        "revision_blob": "5378a0e5d1496f8d178d2731ebbd6adb35b61a25",
+        "file": "examples/datasets/measured-failures/equality_tree-32/manifest.json",
+        "finding": "local_home_path",
+        "count": 1
+      },
+      {
+        "revision_blob": "306c4a35a4c616a51054ce25a353a4bb0d4d0830",
+        "file": "examples/datasets/measured-failures/relational-random-false-2/manifest.json",
+        "finding": "local_home_path",
+        "count": 1
+      },
+      {
+        "revision_blob": "cf7e8aa23ea6464281ab076e62db58c9465aadec",
+        "file": "examples/datasets/measured-failures/relational-targeted-false-2/manifest.json",
+        "finding": "local_home_path",
+        "count": 1
+      },
+      {
+        "revision_blob": "b00f750e6b77df8a0ed1a0af8561c47579563e08",
+        "file": "docs/HANDOFF.md",
+        "finding": "local_home_path",
+        "count": 3
+      },
+      {
+        "revision_blob": "75e7242b9a58eb92b5805006d231bcb84aabd273",
+        "file": "scripts/verify_source.py",
+        "finding": "local_home_path",
+        "count": 1
+      },
+      {
+        "revision_blob": "48739d4ba6daab33e13fb5e7088a8db209a0b9aa",
+        "file": "docs/HANDOFF.md",
+        "finding": "local_home_path",
+        "count": 3
+      }
+    ],
+    "scope": "Pattern scan only; manual privacy, history and ownership review remains required."
+  },
+  "paid_study_completion": {
+    "study_id": "nuisance-followup-20261027-extended",
+    "status": "completed_allowance_closed",
+    "extension_id": "dbc23ed8f4308eb395fb2ffa44bdbc089f62eed4b18036b3907e906375533149",
+    "completed_at_utc": "2026-10-27T18:58:28.223761+00:00",
+    "initial_calls": 98,
+    "new_calls": 48,
+    "combined_calls": 146,
+    "scored_assignments": 144,
+    "underlying_worlds": 12,
+    "worlds_per_stratum": 6,
+    "initial_estimate_microdollars": 4731671,
+    "extension_estimate_microdollars": 2230092,
+    "combined_estimate_microdollars": 6961763,
+    "held_microdollars": 0,
+    "combined_cap_microdollars": 10000000,
+    "preflight_maximum_microdollars": 9400427,
+    "no_further_paid_calls": true,
+    "primary_combined_exploratory": {
+      "burden": 4,
+      "dose_minus_zero": 1000,
+      "exact_two_sided_p": 1.0,
+      "gained_worlds": 1,
+      "interpretation": "Descriptive small-world analysis, not a powered confirmatory test or mechanism identification.",
+      "lost_worlds": 1,
+      "mean_change": 0.0,
+      "model": "gemini-3.5-flash-lite-low",
+      "per_world_changes": {
+        "2f286d4c76c6e3087f78a0568f86ef27e6e5f98f725fab6263a21fd367fbf3f5": -0.5,
+        "3fa54c5a21706e149042b22ecd49fe4c10b0e846efa7d3d4323bc4aef3b257d2": 0.0,
+        "575949deff52702bc6be372e95c26566fa1e9a33e3cd35562006b3389b256229": 0.0,
+        "74a49411c878e24dddc3351562f7b64576d7928660b4f7c57773624fe5243007": 0.0,
+        "da21b2ef3b71566ee43d3d102ff4e9724de1aa5cc9192da1adc0b185cffdc451": 0.5,
+        "ff242e4d1718ef93b05c90a1e1546cc73e5c18e574adea4170c9d7c376362f21": 0.0
+      },
+      "primary": true,
+      "randomization_resolution": 0.015625,
+      "unchanged_worlds": 4,
+      "world_cluster_bootstrap_95_interval": [
+        -0.25,
+        0.25
+      ],
+      "worlds": 6
+    },
+    "measurement_software_version": "0.5.0rc1",
+    "production_software_version": "0.5.0rc2",
+    "accounting_label": "Receipt-based full-price estimate, not provider invoice",
+    "artifact": {
+      "bytes": 7384577,
+      "path": "benchmarks/data/nuisance-extended-measured-2026-10-27.tar.gz",
+      "sha256": "6dea1836c094215bd29ed7fa3072b1e69844f0304344a51ab802973dc19b34dc"
+    },
+    "measurement_sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+    "limitations": "One final post-result expansion. Same protocol/settings; report initial and extension separately. Combined estimates are exploratory; six underlying worlds per stratum, two attempts per model/dose/world. Equal observed accuracy does not demonstrate equivalence. No mechanism or general robustness claim. All failures retained; no further paid calls.",
+    "publication": "pending ownership/privacy/human-review clearance; private candidate only"
+  },
+  "license_state": "ownership clearance pending; no new license grant",
+  "public_release_ready": false,
+  "external_gates": [
+    "two independent rules/template readers",
+    "outside installed-wheel reproduction",
+    "ownership/contributor/provider-output redistribution clearance",
+    "manual source/history/archive privacy and license review",
+    "organization channel access, hosted dataset/Croissant validation and final publication approval"
+  ],
+  "verification_packet": "release/VERIFICATION-0.5.0rc2.md",
+  "review_pr": "https://github.com/TrustPrism/clue-benchmark/pull/2"
+}

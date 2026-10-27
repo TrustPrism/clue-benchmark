@@ -13,7 +13,14 @@ clue-benchmark examples replay measured-results --output runs/counts
 
 The motivating low-thinking Lite counts were 2/5, 3/5, 5/5 at 0/100/1000 records on the same five worlds. Flash was 5/5 throughout. In the eight-report stratum Lite was 5/8, 5/8, 4/8, including one provider failure at the largest dose. This is not established noise-assisted reasoning: one attempt per condition, some identical payloads elsewhere changed answers, and input costs rose sharply.
 
-The preregistered follow-up's primary endpoint is Lite's 1000-minus-0 change in the four-report stratum, with two attempts averaged per world. The private preflight selected eight worlds/96 calls under a combined $9.838478 maximum including a $0.50 probe reserve. It has **no new measured results**. Source, access, pricing, identity and human authorization gates remain. Do not launch its child plans independently.
+The preregistered follow-up used the fixed primary endpoint of Lite's
+1000-minus-zero change in the four-report stratum, with two attempts averaged per
+world. It completed eight worlds/96 scored calls plus two compatibility probes.
+Lite scored **7/8, 5/8, 7/8** in the primary stratum: no aggregate primary
+improvement. The eight-report counts were **6/8, 3/8, 4/8**; Flash scored 8/8 in
+every panel. Four worlds per stratum give limited resolution. Receipt-based
+estimated total was **$4.731671**, no holds, below the $10 cap. See the
+[complete results and replay index](../results/index.md#nuisance-records).
 
 To prepare a new exact study offline, supply explicit reviewed model prices and every prior measured bank:
 

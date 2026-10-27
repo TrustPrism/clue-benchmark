@@ -1,3 +1,19 @@
+# Follow-up execution update — October 27, 2026
+
+The explicitly authorized nuisance follow-up completed **98 calls** (96 scored
+plus two probes) on eight underlying worlds. Receipt-based estimated total:
+**$4.731671**; unresolved holds **$0**; no transport/protocol failures. Lite's
+four-report counts at 0/100/1000 nuisance records were **7/8, 5/8, 7/8**: the
+primary effect is zero. Eight-report Lite: **6/8, 3/8, 4/8**. Flash: 8/8 in every
+panel. Four worlds per stratum, two attempts each; the earlier improvement did
+not reproduce here. [Complete results and limits](docs/nuisance-followup-2026-10-27.md).
+
+Previous preparation/status records below are retained as history. Public release,
+rights clearance and independent human review remain pending; no more paid
+experiments are included.
+
+---
+
 # Release candidate update — October 27, 2026
 
 The private **0.5.0rc1** candidate adds installed offline presets, public exports,

@@ -1,3 +1,22 @@
+# Paid follow-up completion supplement — October 27, 2026
+
+All 98 unique native requests settled (96 scored + 2 probes), estimated
+**$4.731671**, no unresolved holds and no provider/protocol failures. Every
+assigned scored slot is preserved. The primary effect was zero; the earlier
+aggregate Lite improvement did not reproduce in this small cohort.
+
+A fresh extraction of the checksummed sanitized reproduction archive reproduced
+all 12 panels, paired contrasts, costs and outcomes with networking blocked.
+No approval/ledger files or matching credential/local-home-path patterns were
+found in the distribution copy. Ten relevant offline tests passed; strict docs
+build and Ruff checks pass for the new scripts/tests. See followup-completion.json
+for exact artifact hashes and docs/nuisance-followup-2026-10-27.md for interpretation.
+
+The original pre-execution verification below remains as historical evidence;
+its statement that no calls had run describes that earlier point in time.
+
+---
+
 # Verification evidence — October 27, 2026
 
 Local macOS arm64 / CPython 3.14.6: **263 tests passed** in 85.82 seconds.

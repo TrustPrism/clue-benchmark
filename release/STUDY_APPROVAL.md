@@ -1,3 +1,13 @@
+# Execution update — completed October 27, 2026
+
+The user explicitly instructed paid execution after receiving the exact study
+size and maximum. The authorization/evidence are retained privately in the ignored
+run directory. All 98 calls completed; estimated $4.731671, no holds. See
+[measured results](../docs/nuisance-followup-2026-10-27.md). The original pre-execution
+review packet below is preserved as history, not the current execution status.
+
+---
+
 # Exact study review packet — execution pending
 
 Manifest ID: `1fd16445c52a4bed3d55b100d86c285c74b036340da65c1d505060621055ce42`.

@@ -20,7 +20,36 @@ Eight worlds: Flash 8/8 complete answers, 32/32 appropriate abstentions on ambig
 
 Four necessary reports: Lite 2/5, 3/5, 5/5 at 0/100/1000 records; Flash 5/5 at every dose. Eight necessary reports: Lite 5/8, 5/8, 4/8, with a provider error included at the last dose. That last count is not four observed reasoning errors. One repetition; 8/32 preplanned identical-payload pairs elsewhere changed answers, all Lite. [Sanitized assignment records](../assets/pilot.json).
 
-The new preregistered $10 follow-up has only offline preparation, no new measured results, no settled estimate and no unresolved holds. Its preflight selected eight worlds and 96 scored slots, maximum $9.338478 plus the $0.50 probe reserve. Final execution/access/identity authorization is pending. Null or negative results are equally publishable.
+The preregistered follow-up is now **completed**: 96 scored calls plus two
+compatibility probes on eight underlying worlds. At 0/100/1000 records, Lite
+scored **7/8, 5/8, 7/8** in the four-report primary stratum and **6/8, 3/8, 4/8**
+in the eight-report stratum; Flash scored **8/8 throughout**. Each denominator
+eight means two attempts on four worlds, not eight independent worlds.
+
+The primary 1000-minus-zero effect was **0 percentage points**, with a descriptive
+world-bootstrap interval [-37.5, +37.5] points and exact paired sign-flip p=1.0.
+One primary-stratum world improved by 0.5 and another worsened by 0.5. The earlier
+aggregate improvement did not reproduce; the small cohort does not establish a
+general zero effect. Context length and composition change together.
+
+All actions were valid, with no transport/protocol failures: 80 supported correct,
+12 wrong and four unnecessary abstentions across scored slots. Lite's two attempts
+disagreed in 9/24 world-dose pairs; Flash's in 0/24. Estimated total cost from
+recorded usage/prices was **$4.731671**, including **$0.244634** for the probes;
+no holds remain. This is not a provider invoice. Maximum planned commitment
+remained $9.838478 under the single $10 cap. No more paid conditions were added.
+
+![Follow-up paired accuracy](../assets/nuisance-followup-paired-accuracy.svg)
+
+![Follow-up cost](../assets/nuisance-followup-cost.svg)
+
+[Completed machine-readable analysis](../assets/nuisance-followup-results.json)
+and [source/checksum/sanitization index](../assets/nuisance-followup-reproduction.json)
+are downloadable. The indexed reproduction archive is prepared locally, pending
+rights/privacy clearance before external hosting. Extracted frozen sources and
+the saved reports reproduce every panel, paired contrast and cost without a
+provider or credentials; a fresh archive replay with networking blocked matched
+all counts, contrasts, costs and outcomes.
 
 ## Certified burden
 

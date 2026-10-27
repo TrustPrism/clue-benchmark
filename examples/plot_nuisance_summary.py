@@ -93,10 +93,8 @@ def plot_summary(source, output, mobile=False):
         destination.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(destination, metadata={"Date": None}, bbox_inches="tight")
         if destination.suffix == ".svg":
-            destination.write_text(
-                "\n".join(line.rstrip() for line in destination.read_text().splitlines())
-                + "\n"
-            )
+            lines = destination.read_text().splitlines()
+            destination.write_text("\n".join(line.rstrip() for line in lines) + "\n")
         plt.close(fig)
 
 

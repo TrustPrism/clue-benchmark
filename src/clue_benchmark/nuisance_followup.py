@@ -8,6 +8,7 @@ from .community_bundle import (
     export_dataset,
     file_hash,
     load_evaluator_cases,
+    rows,
     source_hashes,
     validate_dataset,
 )
@@ -86,14 +87,32 @@ def prepare_followup(output, models, prior_banks=(), attempts_per_stratum=180):
             raise ValueError(
                 "follow-up requires low thinking, temperature zero, 4096 tokens"
             )
+    models = [{**m, "identity": m["model"]} for m in models]
     root = Path(output)
     root.mkdir(parents=True, exist_ok=False)
     seen = set()
     prior = {}
     for bank in prior_banks:
-        prior[str(bank)] = file_hash(Path(bank) / "manifest.json")
-        for case in load_evaluator_cases(bank):
-            seen.update(_screen(case))
+        # Stream core-only fingerprints. Some historical manifests contain GBs
+        # of per-report diagnostics; screening never needs to load those arrays.
+        directory = Path(bank)
+        prior[str(bank)] = {
+            name: file_hash(directory / name)
+            for name in ("cases.jsonl", "answers.jsonl")
+        }
+        answers = {
+            row["case_id"]: row["solution"] for row in rows(directory / "answers.jsonl")
+        }
+        current = None
+        for row in rows(directory / "cases.jsonl"):
+            if row["kind"] == "case":
+                if current is not None:
+                    seen.update(_screen(current))
+                current = {**row, "solution": answers[row["case_id"]], "reports": []}
+            elif row["constraint"]["type"] != "record_positive":
+                current["reports"].append(row)
+        if current is not None:
+            seen.update(_screen(current))
     blocks, rejections = [], []
     pools = {4: [], 8: []}
     for burden in (4, 8):
@@ -249,5 +268,23 @@ def prepare_followup(output, models, prior_banks=(), attempts_per_stratum=180):
         "paid_calls": 0,
         "execution_gate": "Account access, exact identity and compatibility probes; human manifest-bound authorization. Preparation is not a permit. Child plans must not be launched independently.",
     }
+    if chosen:
+        probe_directory = root / chosen[0]["jobs"][0]["directory"]
+        probe_plan = prepare_evaluation(
+            probe_directory,
+            models,
+            conditions=["complete"],
+            repeats=1,
+            spending_ceiling_microdollars=PROBES,
+            max_requests=2,
+        )
+        atomic_json(probe_directory / "probe-plan.json", probe_plan)
+        report["probe_job"] = {
+            "directory": str(probe_directory.relative_to(root)),
+            "plan_file": "probe-plan.json",
+            "plan_id": probe_plan["plan_id"],
+            "ceiling_microdollars": PROBES,
+        }
+    report["manifest_id"] = digest(report)
     atomic_json(root / "study.json", report)
     return report

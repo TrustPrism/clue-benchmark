@@ -1,0 +1,16 @@
+{
+  "checked_date": "2026-10-27",
+  "official_pricing_source": "https://ai.google.dev/gemini-api/docs/pricing",
+  "billing": "Standard text API; output prices include thinking tokens. No caching, batch, grounding or external tools assumed.",
+  "models": [
+    {"model": "gemini-3.5-flash-lite", "input_usd_per_million": 0.30, "output_usd_per_million_including_thinking": 2.50, "context_tokens": 1048576, "official_model_source": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite"},
+    {"model": "gemini-3.8-flash", "input_usd_per_million": 0.75, "output_usd_per_million_including_thinking": 3.75, "context_tokens": 1048576, "official_model_source": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash", "note": "Introductory pricing; recheck before any later execution."}
+  ],
+  "native_functions": ["answer", "abstain"],
+  "thinking_level": "low",
+  "temperature": 0,
+  "output_tokens_including_thinking": 4096,
+  "timeout_seconds": 600,
+  "retries": 0,
+  "account_access": "pending authorized native compatibility probes; no credential read or paid call by preparation"
+}

@@ -1,0 +1,32 @@
+site_name: Clue Benchmark 0.5.0rc1 — private candidate
+site_description: Certified information availability, reliability and distributed evidence
+docs_dir: docs/site
+site_dir: site
+theme:
+  name: mkdocs
+  navigation_depth: 3
+plugins:
+  - search
+validation:
+  nav:
+    omitted_files: warn
+  links:
+    not_found: warn
+    anchors: warn
+nav:
+  - Home: index.md
+  - Tutorials:
+      - First dataset: tutorials/first-dataset.md
+      - Distributed evidence: tutorials/distributed-evidence.md
+  - Guides:
+      - Research recipes: guides/research-recipes.md
+  - Explanations:
+      - Pipeline and guarantees: explanations/pipeline.md
+  - Reference:
+      - Parameters: reference/parameters.md
+      - Predicates: reference/predicates.md
+      - CLI, Python and tools: reference/interfaces.md
+      - Data dictionary: reference/data-dictionary.md
+      - Troubleshooting: reference/troubleshooting.md
+  - Results: results/index.md
+  - Maintainers: maintainers/release.md

@@ -1,106 +1,21 @@
-# Clue Benchmark
+# Clue Benchmark — 0.5.0rc1 private candidate
 
-Generate clue datasets with configurable puzzle structure, misleading reports,
-text presentation and private information partitions. The generator certifies
-whether the evidence identifies the answer and which agent coalitions have
-enough information to solve it.
+A configurable Python generator and evaluation tool for **certified information availability, reliability, and evidence distribution**. Generate synthetic clue puzzles, certify what each agent can infer, export only public evidence, and score correctness separately from evidential support and abstention.
 
-This is the standalone dataset-generator project. Its current software version
-is **0.5.0.dev2** and its dataset schema is **clue-community-1**.
+A tiny public puzzle: Ada, Ben and Cy have red/blue badges; the responsible person has red, Ada has blue, and Ben has Ada's badge value. Cy is responsible. Remove Ben's report and both Ben and Cy remain possible: a lucky Cy answer is no longer supported. Repeated values are allowed; one culprit need not imply one complete world.
 
-## Install and generate
-
-Use Python 3.12 or newer; local verification uses Python 3.14.
+Ownership clearance and independent review are pending. Install the reviewed private wheel with `python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc1-py3-none-any.whl` (Python >=3.12). No public package upload is claimed.
 
 ```sh
-python -m venv .venv
-. .venv/bin/activate
-python -m pip install .
-clue-benchmark generate-dataset --config examples/basic.json --output runs/basic
-clue-benchmark validate-dataset runs/basic
+clue-benchmark generate-dataset --preset quickstart --output runs/demo
+clue-benchmark validate-dataset runs/demo
+clue-benchmark export-public runs/demo --agent 0 --output runs/agent.jsonl
 ```
 
-Every bundle separates public rules/reports and ownership from private answers
-and certificates. Give agents only the appropriate public view:
+No clone, API key or inference is needed. Discover configurations with `clue-benchmark presets list` and `clue-benchmark explain-config --preset quickstart`. Replay the eight-world information controls with `clue-benchmark examples replay distributed-evidence --output runs/replayed`, or recompute historical assignment counts with `clue-benchmark examples replay measured-results --output runs/results`.
 
-```python
-from clue_benchmark import CommunityConfig, generate_dataset, iter_cases
+Preliminary examples: Flash answered 8/8 complete views and abstained on 32/32 ambiguous private views. Lite's four-report nuisance-dose counts were 2/5, 3/5, 5/5 on the same five worlds, but the eight-report stratum did not improve and one provider error remains in the denominator. A separate fresh hard regime yielded 9/48 correct under its stated resource budget. These are different small studies, not a pooled leaderboard. The new $10 follow-up is prepared and unexecuted.
 
-config = CommunityConfig.from_dict(
-    {
-        "dataset": {"seed": 7, "output_directory": "runs/my-dataset"},
-    }
-)
-generate_dataset(config)
-for record in iter_cases("runs/my-dataset", agent_id=0):
-    print(record)
-```
+Start with [the five-minute tutorial](docs/site/tutorials/first-dataset.md), [distributed evidence](docs/site/tutorials/distributed-evidence.md), [research recipes](docs/site/guides/research-recipes.md), [concepts](docs/site/explanations/pipeline.md), [parameter reference](docs/site/reference/parameters.md), [CLI/Python/tools](docs/site/reference/interfaces.md), [results and limitations](docs/site/results/index.md), or [dataset card](docs/site/reference/data-dictionary.md). Build searchable docs with `mkdocs build --strict` after installing the docs extra.
 
-## What is configurable
-
-- Puzzle size, domains, clue families and repeated or distinct attribute values.
-- Necessary-evidence bounds, entailed additions, independent records, zero to two
-  false reports, targeted corruption, connected relational decoys, and unique-answer
-  or explicitly ambiguous cases.
-- One to eight agents, shared/private replication, exact report quotas, and the
-  required size of the smallest sufficient coalition.
-- Deterministic names, themes, wording, order and length bounds; token bounds
-  require a supplied tokenizer. Evidence can appear early, late or scattered
-  throughout an archive; evaluations support text-only inputs.
-- Seeds, workers, splits, structural holdouts and certification budgets.
-
-Requested settings are hard constraints. A rejected or unresolved instance does
-not silently receive easier settings. Unique-answer cases certify the culprit;
-they do not promise a unique complete world.
-
-See the [generator guide](docs/generator.md), [dataset card](docs/dataset-card.md)
-and [development workflow](docs/development.md). Current JSON schemas are in
-`schemas/`; presets and policy examples are in `examples/`.
-
-## Evaluate and extend
-
-Install `.[providers]` for the evaluation harness. Supply your own model IDs,
-settings, context limits and prices to prepare a frozen plan. Dry runs read no
-credentials and make no network calls; live execution requires new explicit
-authorization. The harness compares complete evidence, private partitions and
-bounded forwarding, with a documented adapter for other communication policies.
-
-`examples/demonstrations.py` prepares necessary-evidence/distractor and
-complete/distributed-information demonstrations. `examples/large-corpus.json`
-profiles 50,000 total records; that volume is separate from the certified number
-of necessary clues.
-
-Four one-case bundles in `examples/datasets/` demonstrate truthful, branching,
-ambiguous and corrupted evidence. The [large-corpus profile](benchmarks/large-corpus.json)
-records a local scaling check, with no model calls.
-
-For focused usefulness demonstrations, the [small pilot](docs/pilot.md) prepares
-matched archive-volume and false-report datasets plus a four-agent information
-bottleneck experiment. `examples/pilot_suite.py` generates and validates these
-offline, freezes a context-checked model plan under one total spending ceiling,
-and computes paired world-level contrasts after separately authorized execution.
-See the dated [resource comparison](docs/resource-comparison.md) for its rationale.
-The [measured Gemini demonstrations](docs/pilot-results.md) contain 269 settled
-responses and one preserved provider failure across all three experiments.
-Results distinguish unsupported guesses, appropriate abstention and errors with
-sufficient evidence. The [checkpoint](docs/pilot-checkpoint.md) records costs.
-
-The [advanced dataset demonstrations](docs/hardness.md) add certified 8/16/32-report
-burdens, relational false reports, near-solutions, connected decoys, evidence
-placement and an eight-agent bottleneck. `examples/hardness_suite.py` prepares
-matched cohorts and frozen experiment plans offline. Small certified examples
-and an offline verification report are included. The [high-thinking Gemini study](docs/hardness-results.md)
-records 359 settled responses and one retained timeout, with paired
-comparisons and [actual development failure examples](examples/datasets/measured-failures/README.md).
-Existing pilot results and authorizations remain separate.
-
-The original `generate`, `validate` and `export` commands and flat `Config` API
-remain available for puzzle-generation compatibility. Retired experiment runners
-are not part of the current interface.
-
-## Release status
-
-The software is locally tested. Public release still requires independent language
-review, independent reproduction and resolved licensing.
-No frontier-model weakness or research novelty is established by software tests.
-See [licensing status](LICENSING.md).
+Contributors: [CONTRIBUTING](CONTRIBUTING.md), [release gates](docs/site/maintainers/release.md), [licensing pending](LICENSING.md), [provenance](PROVENANCE.md). Historical status and the preserved prior README remain in [the archive](docs/archive/readme-before-release-2026-10-27.md); flat v0.3 interfaces remain supported separately.

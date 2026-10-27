@@ -1,7 +1,7 @@
 {
   "schema_version": "clue-private-release-manifest-1",
   "software_version": "0.5.0rc2",
-  "source_revision": "6fdebf3bb76876abc04475c20978c7ec81b4f340",
+  "source_revision": "6df577db7bb29b7610b80f9dd94c0f3f463045f7",
   "source_tree": {
     "src/clue_benchmark/__init__.py": "5d02372c66f338a0fcb635c532cc6404a8d4eff23b96618c82a78a9e800442dd",
     "src/clue_benchmark/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
@@ -31,7 +31,7 @@
     "src/clue_benchmark/presets.py": "7aaf33b95088641f8d7d16a8699c1d14c63c4f8853dc5b04ca2cdea8698bc479",
     "src/clue_benchmark/provider_events.py": "20b8d19fa10ee28ee33ce2ce659e2e8c2b53b3099a17f519c13ebe5bb7d72aa0",
     "src/clue_benchmark/public_api.py": "6568d7cf7ac1344e70d9beb33cdfc15a7913ba547596226e024561fd3fc08858",
-    "src/clue_benchmark/replay.py": "2bbf0de1c854f6c52e8468533aadb01503a350e9aa75592e10e5b6aac27172c9",
+    "src/clue_benchmark/replay.py": "2434b9c55e77b1df07e901a6ef4cb731686bcb628b6c2cd865598adee9209f52",
     "src/clue_benchmark/research_results.py": "ea72f52b0d3d0f02d1610d4b911905402c0d66662f9e14da4457f49d15e36e5b",
     "src/clue_benchmark/resources/ambiguous.json": "79816f27bf53e09066c7842c2e84f77f423372324b45d99e8f3d47d17203fb96",
     "src/clue_benchmark/resources/distributed-evidence/answers.jsonl": "d23aa300b4505f72e15d97518c1b1077da7b58ba14a1646584ad62dfc98151b6",
@@ -60,25 +60,25 @@
     "src/clue_benchmark/resources/schemas/manifest.schema.json": "0a2ef7be996a3840bb7968573d2288a4b475d1128407cce828f77ddfd22ffde0",
     "src/clue_benchmark/resources/schemas/partition-record.schema.json": "928987c3d5aa543410907ad520e7ed97bfb9d0743108ff235564e30325ed5d70",
     "src/clue_benchmark/resources/schemas/public-record.schema.json": "37d61cb558d7aab437e1013bd5d72a2d7b9e8160a4728e82bbada6c322936a02",
-    "src/clue_benchmark/result_figures.py": "16c1bf1f0db4d9c561029e199895f8e95ace52de428f5228fe3f633c29ed6d78",
+    "src/clue_benchmark/result_figures.py": "9c6d675ddbde2c8beff91d6ee33d57a68bfc8d628ea7f9d2390d05ffc35d2e3f",
     "src/clue_benchmark/results.py": "813b643a36bb16b969ba4db2a79abed58aaa43bdf8f008a0e296610a5459b19c",
     "src/clue_benchmark/solver.py": "c0165264b88f203412b20df118f0ae386c2abf716b4102dbcb787490c40bb71c",
     "src/clue_benchmark/world_sampler.py": "9cf288430d1e2bcd941839ac711c5959e7b0c8b1b405a3b08fdfc92f2aaf14c6"
   },
   "artifacts": {
     "dist/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl": {
-      "sha256": "4598d111aacfe6a93e6a7859725f9e472c93af85adfc8cb5e148b4b76275dc8e",
-      "bytes": 317586
+      "sha256": "0a83f16372f1047ea126769b9a7816bd1b252fc88ee58b3c923703fe66a76912",
+      "bytes": 318032
     },
     "dist/trustprism_clue_benchmark-0.5.0rc2.tar.gz": {
-      "sha256": "a2f5302a5b9c6db9920ee1d5058394c280954ae5920fb51037c9cd0b9f0df7b3",
-      "bytes": 290723
+      "sha256": "7e8fd8efac4181a5c5be8d8dc6d8c792ac85cbde896ab8a8a8c43d85aaa33086",
+      "bytes": 291309
     }
   },
   "docs": {
-    "site/404.html": "f5b413f2d6fd9aa5eaf49bd7b984ac892b2ef96719c2586fdeb8e0bbc8879402",
+    "site/404.html": "19abea06e5b81819f5157edb9c76e73ca1d59c04e317f3f7b607dcd13a89dcdb",
     "site/assets/extended-nuisance-accuracy.svg": "54984676b9a6697aa13d75a6fa287dd8047ea73892438134cc03ad80a7059c0b",
-    "site/assets/extended-nuisance-cost.svg": "8892df18f689ef5530449c9615e78b1664bc40a6c888fc8954762618413c1bff",
+    "site/assets/extended-nuisance-cost.svg": "6a16d91b71b4ac04c34f6db4af902f6c3883c74a7f133c6d48b2fc5371cb8f1c",
     "site/assets/flash-hard-scale.json": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
     "site/assets/flash-limits.json": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
     "site/assets/hardness.json": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
@@ -86,11 +86,11 @@
     "site/assets/nuisance-extended-measurements.json": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
     "site/assets/nuisance-extended-reproduction.json": "3c0bee04d2a405b11862fe9c3cd930a4a2e95a004602b20e4006c740a0ad2fb2",
     "site/assets/nuisance-extended-results.json": "ea615260391b6ad3f92bcdeb6fe4d990f05355338e3a244c74a9919e5e8b32bc",
-    "site/assets/nuisance-followup-cost.svg": "d272e6cb4710a1fe312ee30f7f812fa1e819088747d5f627ad36f49033f45742",
+    "site/assets/nuisance-followup-cost.svg": "003cbba72a5ba54efc001c80f3cbc061dafcccb99b49f5a296606147902b8a57",
     "site/assets/nuisance-followup-paired-accuracy.svg": "de61e63e7684c6ad7e9e1bf74046438e3a0c8287ee5cdd98399ad950098df663",
     "site/assets/nuisance-followup-reproduction.json": "26434ecd19d49af9ae5548ab6aa43648ab95ae7e06b5fcd24a723d54dce6c8bf",
     "site/assets/nuisance-followup-results.json": "bc34ec40c0492b6c6b1b31a10f9fb0d3c96a2362c3398ea30665f8c5f15668ea",
-    "site/assets/paired-accuracy-and-cost.svg": "145fe3fc35011a0082a8f9d606b61402dcf3d744e1a69b737df2a972eb341bab",
+    "site/assets/paired-accuracy-and-cost.svg": "f78a08fc0bad3f9f72c74f121842a049fbd72190656933a8536ae475b3c1bd7e",
     "site/assets/pilot.json": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
     "site/assets/quickstart-public.jsonl": "90b201e9eb00779d8f9cc7515871416b7acde6ebe3d3d2a9384aa7fdd7131dfa",
     "site/assets/qwen-sampled-screening.json": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
@@ -101,31 +101,32 @@
     "site/css/fontawesome.min.css": "8eb5b44ce5971a501e5a17954c464b80aba0c4604675b5603a7f456459af88a1",
     "site/css/solid.min.css": "b8afa4243dd1bf735f512708da5335b0ed314d9e58a0a1cf1b781250cf5fb004",
     "site/css/v4-font-face.min.css": "8698ebb2a30433065f31e392cf0e56a7fbe97798da673163606242c7ca85aee6",
-    "site/explanations/pipeline/index.html": "06b4510f571572d5695e7e3348cf15530496f4586c38a1a2096fe5d73de5fd4e",
-    "site/explanations/related-work/index.html": "0db0bfcdc0edcdaee992a17a3ca783762581d566a9e6a037f39be046e77eb400",
-    "site/guides/research-recipes/index.html": "6221e8a95e24f2a7e9a344d015a6aa9d2655fb42d5999c0407dcc9a9ad5a5424",
+    "site/explanations/pipeline/index.html": "9cb507445222f214101a96750e2c71122d43018dfda6cac98ec24cbfe5f1b561",
+    "site/explanations/related-work/index.html": "f74c0f76355bbdc16691f412938d96b14973ea7f190e5bf7cb22ea7fdf95cbe8",
+    "site/guides/research-recipes/index.html": "efeb6722c242258efc5756ab1b099b9ea723bc457dbc8d6721e5d71bc9347fff",
     "site/img/favicon.ico": "f16b45bd53fbacaa2cd8f22e8482db5c59e0cef9bd21394474a429a18a98ffd0",
     "site/img/grid.png": "6e2a58503494a708105ac646d3af5c08c8c890325bb781a257d10f91ff968a9c",
-    "site/index.html": "af895e1bda8eef72c72f7dc2451252bdd343ea90e95d8b6b146adb4aa3adfc93",
+    "site/index.html": "d9970b60c8c674279f77e99940bd5726e74ad3ea212240021833d1617958d457",
     "site/js/base.js": "ea13d8449c21e5a4e5235722e67bfbf45009e8c61cbe8e98e453cc39f46419ed",
     "site/js/bootstrap.bundle.min.js": "82f64f62bb03c1bc1824b0f9c9e05f70dba33e146818e63cdf5c306c8cf3dedd",
     "site/js/bootstrap.bundle.min.js.map": "19a5b0b88d24d6b154c4462896c9631c0b317d71f22eebbf0b9e405db4351fd1",
     "site/js/darkmode.js": "6660ca90a0b34be68edd0503102d013e6d4ea2d4ed8ffdca1ef17e2b69226d90",
-    "site/maintainers/release/index.html": "8d7cb2acb8cc1a38ffe3d582b8432d849b4d5289d26d501112e2cfc63c511590",
-    "site/reference/data-dictionary/index.html": "917e923acb8653eeadab284861c2cde2dc9ff6cc7002948caa136aa27279b3a0",
-    "site/reference/interfaces/index.html": "3d206bd04ca01b4c5bfc436d9bcfdc3ddd8163b922d368f0be959dd2f27612b8",
-    "site/reference/parameters/index.html": "a72a7d90da6a6b1d3e6639378311e47c56f2621a50d3679361a6f226a4b98124",
-    "site/reference/predicates/index.html": "fba9b0f9f0b85da5e529beaffe2f0ed7d7374c305158407555f648c2c3446010",
-    "site/reference/troubleshooting/index.html": "9dad44b848427bb730be3a92137eb040da531bdf7505aa4f2bc03950cab1e3f9",
-    "site/results/index.html": "9e8e1382c0cc27a15c2667d205f9c5e203cf721ee094451758e6abc7fd603e6b",
+    "site/maintainers/release/index.html": "0297fb786a529c39ba4d6830e727b57030a4d6b59f051a55b56dc0279a9af00e",
+    "site/reference/data-dictionary/index.html": "4c4be5d8c1803c4e93d33e739730e4decbba74440bfac62664e96d10a57ab233",
+    "site/reference/interfaces/index.html": "4080192413d5ae5c26f57b372affc3de952f01113c33b350e446c76a4c1d3839",
+    "site/reference/parameters/index.html": "3a2ef7ca4a42ad235a68147fb08a96c655d0b9fc9ccfded5b59bba8035d9b2c0",
+    "site/reference/predicates/index.html": "3306f9f07228225465c2b7cdc87a3ed7318fd57a9d6bfee64473dfaa7846dea3",
+    "site/reference/troubleshooting/index.html": "45b1e9f0e4853f72c72bf599a9ee2a51f09367533fb65b1b644d94e77ecc9ac5",
+    "site/results/index.html": "6a8e8545e95e156613efe6adad23526f62aaf4cf2b42090801416230bf289c45",
+    "site/results/open-questions/index.html": "5b65a680e136bf05ceb5c3da3d91ad2620525f3ebb76a2fbb54063b1c611627f",
     "site/search/lunr.js": "c1a28d9e95163292fbcc07ff794f1f0e1ade8741c513afe96d5b1046a18110bc",
     "site/search/main.js": "22961b345ceba9b3a9146577190672a7b1c6881bb84c05bec1e2d0f3a3312389",
-    "site/search/search_index.json": "3b788e2a9eac8225a739c6013b38e14a268ee2f5ec60c072c23aeb01fd3a047f",
+    "site/search/search_index.json": "4dcbe21395c5cc194418231943df34b1886e010e1160911c81b80f9a3bd4dc5f",
     "site/search/worker.js": "b486eab6682d02b7c6ec7bdc965bb051661ee2c6a42bb3442b559cb2c6e2c73c",
     "site/sitemap.xml": "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
     "site/sitemap.xml.gz": "0bd8729aff67512637e2c5c7616a955bb2ddef0bc0d2898e677449b2f35c1859",
-    "site/tutorials/distributed-evidence/index.html": "e16b1e23b30e4bede3b98d4f92a7de953f9c98418b7880ca1a99617fdb209ae7",
-    "site/tutorials/first-dataset/index.html": "78087ee8912824de4ee7f31ae38e0ae097103e137755011edcbf5f9a38f613fa",
+    "site/tutorials/distributed-evidence/index.html": "c035aa32763d7e85747903e7c9ac77cee77da1cc583fb2df952c9518c906913d",
+    "site/tutorials/first-dataset/index.html": "a8b247825ff3f53e9b9287b7afa8976dd35e6006466e88ea9d07f8a91b958aff",
     "site/webfonts/fa-brands-400.ttf": "5656d596bc597165a42182f67b2b9f17d2ae47a9e3ef1b042b9a729739730705",
     "site/webfonts/fa-brands-400.woff2": "3a8924cd5203a28628716aedb5cef0943da4c3b44e3ffcee90ab06387b41c490",
     "site/webfonts/fa-regular-400.ttf": "5d02dc9b858e3c85a794f87e379857f4fedc4e26cf15001714a9a0e0b1d2294d",
@@ -1125,7 +1126,7 @@
   },
   "artifact_scan_findings": [],
   "history_scan": {
-    "reachable_blobs_scanned": 1350,
+    "reachable_blobs_scanned": 1372,
     "findings": [
       {
         "revision_blob": "6b6686487e6e99439561471ba938882c9f1b4a6c",
@@ -1239,7 +1240,7 @@
   ],
   "verification_packet": "release/VERIFICATION-0.5.0rc2.md",
   "review_pr": "https://github.com/TrustPrism/clue-benchmark/pull/2",
-  "verification_packet_sha256": "cf7a66eb065787cae86dfd7d47b3e7eecbad026f530d96a1daae1601260c5889",
+  "verification_packet_sha256": "2e9a73ca8e18197f86d748ea445cf5c0a8456ee5fe0e48388cc31599a9067a95",
   "local_validation": {
     "tests_passed": 282,
     "macos_python_wheel_installs": [
@@ -1265,5 +1266,20 @@
     "mkdocs_strict": "passed",
     "twine": "passed",
     "paid_calls": 0
+  },
+  "initial_publication": {
+    "record": "release/INITIAL_PUBLICATION.md",
+    "repository": "TrustPrism/clue-benchmark",
+    "owner_authorized_public_repository_and_history": true,
+    "rights_review": "pending",
+    "full_licensed_release_ready": false,
+    "documentation_cost_precision": 2,
+    "exact_microdollar_accounting_preserved": true,
+    "local_tests_passed": 282,
+    "offline_wheel_smoke_python": [
+      "3.12.13",
+      "3.13.12",
+      "3.14.6"
+    ]
   }
 }

@@ -1,28 +1,90 @@
-# First dataset in five minutes
+# Your first dataset
 
-Use Python 3.12 or newer. Install a built candidate wheel supplied by the maintainer, or use `python -m pip install .` from the checked-out preview source. Licensing remains pending; installation instructions do not grant redistribution rights. No PyPI release is claimed.
+Generate a small puzzle, check it, and give an agent only the evidence it is allowed to see.
+{.lead}
+
+**You need:** Python 3.12 or newer on macOS or Linux. Installation downloads dependencies; every exercise below then runs offline. No model account or API key is required.
+
+## 1. Install the preview {#step-1-install-the-preview}
+
+Clone the published candidate, then enter its directory:
 
 ```sh
-python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
-clue-benchmark generate-dataset --preset quickstart --output runs/demo
-clue-benchmark validate-dataset runs/demo
-clue-benchmark export-public runs/demo --agent 0 --output runs/agent.jsonl
+git clone \
+  --branch v0.5.0rc2 \
+  --single-branch \
+  https://github.com/TrustPrism/clue-benchmark.git
+cd clue-benchmark
 ```
 
-Run from any working directory. `runs/demo` is relative to that directory. Generation prints a JSON summary with `complete: true` and validation prints `status: verified`. The preset requests one single-agent case with exactly four necessary reports. It uses bounded search; exhaustion is an explicit incomplete result, never an uncertified puzzle.
+Create an isolated Python environment and install the package:
 
-Inspect the actual evidence:
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+```
+
+<details markdown="1">
+<summary>Already have a built candidate wheel?</summary>
+
+Install that file instead:
+
+```sh
+python -m pip install \
+  /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
+```
+
+The package is not published to PyPI. Licensing remains pending; installation instructions do not grant redistribution rights.
+
+</details>
+
+## 2. Generate a puzzle {#step-2-generate-a-puzzle}
+
+```sh
+clue-benchmark generate-dataset \
+  --preset quickstart \
+  --output runs/demo
+```
+
+The preset asks for **one single-agent case with exactly four necessary reports**. Look for `complete: true` in the JSON summary.
+
+`runs/demo` is relative to your current directory. You can run the installed command from anywhere.
+
+!!! note "If generation stops early"
+    Generation uses bounded search. An incomplete result means it did not find enough certified cases within that budget. It never substitutes an uncertified puzzle. See [candidate exhaustion](../reference/troubleshooting.md#when-generation-cannot-finish).
+
+## 3. Validate it {#step-3-validate-it}
+
+```sh
+clue-benchmark validate-dataset runs/demo
+```
+
+**Expected:** `status: verified`. This checks both the bundle and the puzzle's logical meaning.
+
+## 4. Export the agent's evidence {#step-4-export-the-agent-s-evidence}
+
+```sh
+clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
+```
+
+Give your agent **`runs/agent.jsonl`**, not the whole `runs/demo` directory.
+
+- The exported file contains public case and report rows.
+- The original directory also contains evaluator answers and certificates.
+- The export leaves out solutions, checkpoints, provider receipts and other private fields.
+
+Inspect the public view:
 
 ```sh
 clue-benchmark inspect-case runs/demo --agent 0
-clue-benchmark presets list
-clue-benchmark presets show quickstart
-clue-benchmark explain-config --preset quickstart
 ```
 
-`agent.jsonl` contains public case/report rows. It does not contain a solution, certificate, manifest, checkpoint or provider receipt. The original directory is an evaluator bundle; give your agent only the exported file.
+## 5. Score a sample agent {#step-5-score-a-sample-agent}
 
-## Submit a sample response offline
+This intentionally cautious agent always abstains:
 
 ```python
 from clue_benchmark import evaluate_agent
@@ -33,32 +95,61 @@ result = evaluate_agent(
     output="runs/sample-score.json",
     agent_id=0,
 )
+
 print(result["episodes"][0])
 ```
 
-This deliberately conservative agent sees only public fields. Its action is valid, but abstaining with sufficient evidence is unnecessary; it will not receive a correct or supported answer score. `correct`, `supported`, `protocol_valid`, `sufficient_evidence` and `ambiguous_evidence` are separate booleans.
+Its response is **valid**, but abstaining is unnecessary when the evidence identifies an answer. Valid format and successful reasoning are different scores.
 
-Read the result locally:
+[See all score meanings](../explanations/pipeline.md#what-a-score-means).
 
-```sh
-clue-benchmark report runs/sample-score.json --output runs/sample-report
-```
-
-Open `runs/sample-report/index.html`. It links the exact saved JSON and displays escaped text. No network request or inference occurs.
-
-## Files and resuming
-
-The [data dictionary](../reference/data-dictionary.md) describes the five bundle files. Matching generation checkpoints resume with the same sources/config. A changed source or config is rejected; use a new directory. Exports, reports and replays refuse an existing destination. Never edit a frozen measured run or a ledger to bypass an error.
-
-After rights clearance and actual publication, the installation command may become `python -m pip install trustprism-clue-benchmark`. It is not a claim that this candidate is already publicly available.
-
-
-Replay the final measured nuisance study without credentials:
+## 6. Open a readable report {#step-6-open-a-readable-report}
 
 ```sh
-clue-benchmark examples replay nuisance-followup --output runs/followup
+clue-benchmark report runs/sample-score.json \
+  --output runs/sample-report
 ```
 
-The report separates the original eight-world phase, four-world expansion and
-exploratory combined result; all 144 scored assignments and the combined $10.00
-accounting are bundled as sanitized data.
+Open **`runs/sample-report/index.html`** in your browser. The report also links the exact saved JSON. It makes no model calls.
+
+## Try the measured example
+
+Replay the completed irrelevant-evidence study from saved measurements:
+
+```sh
+clue-benchmark examples replay nuisance-followup \
+  --output runs/followup
+```
+
+The output separates the **initial study**, **final expansion** and **exploratory combined result**. It includes all 144 scored assignments and the closed $10.00 study accounting.
+
+[Read what the study found →](../results/index.md)
+
+## Explore the settings
+
+See the available presets:
+
+```sh
+clue-benchmark presets list
+```
+
+Inspect the quickstart's resolved settings:
+
+```sh
+clue-benchmark presets show quickstart
+clue-benchmark explain-config --preset quickstart
+```
+
+Start with [worked research recipes](../guides/research-recipes.md), then use the [parameter reference](../reference/parameters.md) for details.
+
+<details markdown="1">
+<summary>Existing files, checkpoints and resuming</summary>
+
+- **Generation** can resume a matching checkpoint with the same source and configuration.
+- **Exports, reports and replays** need a new destination. They refuse to overwrite an existing one.
+- A changed source or configuration needs a new generation directory.
+- Do not edit frozen measured runs or ledgers to bypass an error.
+
+The [data dictionary](../reference/data-dictionary.md) describes the five bundle files.
+
+</details>

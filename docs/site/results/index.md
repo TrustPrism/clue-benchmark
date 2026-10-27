@@ -1,124 +1,254 @@
-# Preliminary measured results
+# Results at a glance
 
-These are separate historical studies with different thinking budgets, input shapes, adaptive/fresh status and denominators. No pooled leaderboard is supported. Recompute from sanitized per-assignment records without credentials:
+The surprising pilot result did not repeat consistently: extra irrelevant evidence cost much more, without a reliable accuracy benefit in the follow-up.
+{.lead}
 
-The [initial-preview open questions](open-questions.md) separate unanswered
-research questions from pending full-release decisions.
+<div class="metric-grid" markdown="1">
+<div class="metric" markdown="1">
+
+<span class="metric-label">Scored responses</span>
+**144**
+<span>Plus two compatibility probes.</span>
+
+</div>
+<div class="metric" markdown="1">
+
+<span class="metric-label">Underlying worlds</span>
+**12**
+<span>Six per evidence-burden setting.</span>
+
+</div>
+<div class="metric" markdown="1">
+
+<span class="metric-label">Estimated total</span>
+**$6.96**
+<span>Under the single $10.00 cap.</span>
+
+</div>
+</div>
+
+[Jump to original studies and downloads](#where-to-find-the-original-results) · [Read the open questions](open-questions.md)
+
+## What we learned {#what-is-interesting-about-the-follow-up}
+
+### The earlier improvement was fragile
+
+In the original pilot, Lite improved from **2/5 to 5/5** between zero and 1,000 irrelevant records. In the expanded follow-up's four-report setting, it scored **10/12 at both endpoints**.
+
+### An unchanged average hid individual changes
+
+Four primary worlds stayed unchanged. One improved and one worsened. Extra evidence sometimes changed performance, but without a consistent direction.
+
+### The harder setting may reveal distraction
+
+With eight necessary reports, Lite scored **9/12 → 5/12 → 7/12** as irrelevant records increased. That dip and partial recovery are suggestive, but the pattern is too small and irregular to establish a dose-response effect.
+
+### The cost increase was clearer than the accuracy effect
+
+In the four-report setting, adding 1,000 records increased average call cost about **56× for Lite and 77× for Flash**. Aggregate endpoint accuracy did not improve. Flash stayed at **12/12 throughout** in both settings.
+
+!!! note "How much can we conclude?"
+    Only **six worlds** underpin each setting. Two attempts per world do not make twelve independent cases. The combined result is **exploratory** because the expansion came after the initial results. An unchanged score does not prove that extra evidence has no effect.
+
+## Irrelevant evidence: the full comparison {#nuisance-records}
+
+Each column below adds independent, logically irrelevant records to otherwise matched puzzles. Useful evidence and model settings stay fixed across the doses.
+
+<picture>
+  <source media="(max-width: 600px)" srcset="../assets/nuisance-summary-mobile.svg">
+  <img src="../assets/nuisance-summary.svg" alt="Combined follow-up accuracy for Lite and Flash at zero, 100 and 1,000 irrelevant records, separated by four and eight necessary reports. All counts are also in the table below." width="900" height="420">
+</picture>
+
+Two attempts on six worlds per setting. Counts are responses, not twelve independent worlds. The initial and extension phases are also reported separately below.
+{.figure-note}
+
+| Model | Necessary reports | 0 extra | 100 extra | 1,000 extra |
+|---|---:|---:|---:|---:|
+| Lite | 4 | **10/12** | 9/12 | **10/12** |
+| Lite | 8 | **9/12** | 5/12 | 7/12 |
+| Flash | 4 | 12/12 | 12/12 | 12/12 |
+| Flash | 8 | 12/12 | 12/12 | 12/12 |
+
+Flash's ceiling performance applies to these cases and settings. It is not a general robustness claim.
+
+### Initial follow-up and final expansion {#follow-up-and-final-expansion}
+
+The **initial study** used eight worlds, four per setting: 96 scored calls and two probes.
+
+The **final expansion** used the four remaining worlds from the original screened seed prefix, two per setting: 48 more scored calls. World selection did not use model outcomes, but the decision to expand came after the initial results.
+
+<details markdown="1">
+<summary>See the separate phase counts and accuracy chart</summary>
+
+Counts below follow the order **0 / 100 / 1,000 extra records**.
+
+| Phase | Lite: 4 necessary reports | Lite: 8 necessary reports | Flash: each setting |
+|---|---|---|---|
+| Initial follow-up | 7/8 · 5/8 · 7/8 | 6/8 · 3/8 · 4/8 | 8/8 at every dose |
+| Final expansion | 3/4 · 4/4 · 3/4 | 3/4 · 2/4 · 3/4 | 4/4 at every dose |
+| Exploratory combined | 10/12 · 9/12 · 10/12 | 9/12 · 5/12 · 7/12 | 12/12 at every dose |
+
+![Initial, extension and exploratory combined accuracy, with the two evidence-burden settings separated.](../assets/extended-nuisance-accuracy.svg)
+
+The primary contrast averages the two attempts within each world before comparing 1,000 records with zero. Four primary worlds have no change, one gains 0.5 and one loses 0.5. The mean change is **zero**, with a descriptive 95% world-bootstrap interval of **−25 to +25 percentage points**. The exact two-sided sign-flip p-value is 1.0.
+
+</details>
+
+### What did it cost?
+
+| Part | Estimated spend |
+|---|---:|
+| Initial follow-up, including probes | $4.73 |
+| Final expansion | $2.23 |
+| **Combined** | **$6.96** |
+| Approved cap | $10.00 |
+
+The initial total includes **$0.24 for two probes**. Every request is settled, there are no unresolved holds, and there were no transport or protocol failures. These are receipt-based estimates, not a provider invoice. The preflight maximum commitment was **$9.40**.
+
+In the four-report setting, mean cost per scored call rose:
+
+- **Lite:** from less than $0.01 to **$0.07**.
+- **Flash:** from less than $0.01 to **$0.17**.
+
+Displayed dollar amounts are rounded to two decimals. The downloaded records retain exact accounting. **This allowance is closed; no further paid calls are planned.**
+
+<details markdown="1">
+<summary>See costs across every phase and setting</summary>
+
+![Estimated cost per scored call for both models, across the initial phase, extension and combined result.](../assets/extended-nuisance-cost.svg)
+
+Panel costs exclude probes. The combined accounting above includes them.
+
+</details>
+
+### Replay these findings offline
 
 ```sh
-clue-benchmark examples replay measured-results --output runs/measured
+clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance
 ```
 
-With the optional figures extra installed, add `--figures` to reproduce the paired accuracy/cost SVG. The command writes `results.json` and an accessible local HTML report with study-specific tables, source hashes and assigned counts.
+Open **`runs/nuisance/report/index.html`**. The output includes separate initial, extension and combined analyses. It uses saved measurements and makes no model calls.
 
-## What is interesting about the follow-up?
+Add `--figures` if the optional figures extra is installed. [Download the combined analysis](../assets/nuisance-extended-results.json), [all 144 sanitized assignments](../assets/nuisance-extended-measurements.json), or the [reproduction checksum index](../assets/nuisance-extended-reproduction.json).
 
-The pilot's apparent benefit from irrelevant evidence **did not repeat consistently**. Lite's four-report endpoint accuracy was unchanged on average, but that average hid one improving world and one worsening world, with four unchanged. The eight-report dip at 100 extra records and partial recovery at 1,000 is a possible distraction signal, not an established dose-response pattern. Flash stayed at the ceiling in this narrow setting. The most consistent tradeoff was cost: roughly 56× for Lite and 77× for Flash at 1,000 extra records, without higher aggregate endpoint accuracy.
+### The original pilot {#original-pilot}
 
-These results make a useful replication and robustness example. They do not prove that irrelevant evidence never helps or hurts. The small sample and post-result expansion require exploratory interpretation; the [full phase results below](#follow-up-and-final-expansion) retain uncertainty and all conditions.
+This is the earlier observation that motivated the follow-up. The same five four-report worlds appeared at every dose, with **one attempt each**.
 
-## Where to find the original results
+- **Four necessary reports:** Lite **2/5 → 3/5 → 5/5**; Flash 5/5 throughout.
+- **Eight necessary reports:** Lite **5/8 → 5/8 → 4/8**. The final count includes one provider failure; it is not four observed reasoning errors.
+- Elsewhere in the pilot, **8/32 preplanned identical-payload pairs changed answers**, all for Lite.
 
-The earlier studies have not been replaced by the new follow-up. Their sanitized outcomes are included in both the installed offline gallery and this documentation:
+![Original five-world pilot: accuracy and estimated cost as irrelevant records increase.](../assets/paired-accuracy-and-cost.svg)
 
-- [Original nuisance pilot](#original-pilot) and [information availability](#information-availability): [pilot assignments](../assets/pilot.json).
-- [Certified evidence burden](#certified-burden): [hardness assignments](../assets/hardness.json).
-- [Fresh hard cases](#hard-cases-and-resources): [48-world assignments](../assets/flash-hard-scale.json); the [adaptive output-budget assignments](../assets/flash-limits.json) are a separate study.
-- [Qwen completion and correctness](#completion-versus-supported-correctness): [screening outcomes](../assets/qwen-sampled-screening.json).
-- [Initial October 27 follow-up](#follow-up-and-final-expansion): [original 96-call analysis](../assets/nuisance-followup-results.json) and [original reproduction index](../assets/nuisance-followup-reproduction.json).
-- [Final expansion and exploratory combined result](#follow-up-and-final-expansion): [separate phase summaries](../assets/nuisance-extended-results.json), [144 assignments with phase identities](../assets/nuisance-extended-measurements.json) and [combined reproduction index](../assets/nuisance-extended-reproduction.json).
+A small positive observation can motivate a study without establishing that noise helps reasoning. [Saved pilot assignments](../assets/pilot.json).
+{.figure-note}
 
-The [historical source/checksum index](../assets/index.json) records original source locations and hashes. The original documents, frozen study sources and operational archives remain preserved in the private checkout; distribution copies omit credentials and operational records. Full raw archives are not publicly deployed. Saved evaluator outcomes must never enter agent prompts.
+## Can the agent know the answer? {#information-availability}
 
-![Historical four-report paired accuracy and cost](../assets/paired-accuracy-and-cost.svg)
+The distributed-evidence pilot used eight worlds. Historical Flash results were:
 
-The same five worlds appear at all doses, with one attempt each. Additional context cost more. This small positive Lite observation is a hypothesis, not a general claim that weaker agents benefit from noise.
+- **8/8 correct** with complete evidence.
+- **32/32 appropriate abstentions** on ambiguous private views.
+- **8/8 correct** at the star hub after one round of programmed forwarding.
 
-## Information availability
+Lite made **two lucky correct guesses** in ambiguous ring views. Those answers lacked sufficient evidence.
 
-Eight worlds: Flash 8/8 complete answers, 32/32 appropriate abstentions on ambiguous private views, and 8/8 answers when one-round star forwarding delivered the needed evidence. Lite made two lucky correct ring guesses with insufficient evidence. Forwarding was programmed. The [offline tutorial](../tutorials/distributed-evidence.md) reproduces solver controls separately from these model counts.
+Forwarding was programmed, not learned. The [offline evidence-sharing tutorial](../tutorials/distributed-evidence.md) recomputes the solver controls separately from the saved model counts.
 
-## Nuisance records
+## Does more necessary evidence mean harder reasoning? {#certified-burden}
 
-### Original pilot
+Not automatically. At 32 necessary reports:
 
-Four necessary reports: Lite 2/5, 3/5, 5/5 at 0/100/1000 records; Flash 5/5 at every dose. Eight necessary reports: Lite 5/8, 5/8, 4/8, with a provider error included at the last dose. That last count is not four observed reasoning errors. One repetition; 8/32 preplanned identical-payload pairs elsewhere changed answers, all Lite. [Sanitized assignment records](../assets/pilot.json).
+- **Flash:** 30/30 in each path/tree arm.
+- **Lite:** 9/30 in one arm and 7/30 in the other.
 
-### Follow-up and final expansion
+These are **three attempts on ten worlds per arm**, not thirty independent worlds. The study used high thinking, unlike the low-thinking nuisance pilot. Simple construction heuristics solve some families, so certified evidence cost is not a proof-depth or difficulty scale.
 
-The initial follow-up and one final, outcome-independent expansion are both
-completed. The expansion used all four remaining worlds from the original
-screened seed prefix, with no model outcomes used in selection. Combined:
-**12 underlying worlds, six per stratum, 144 scored calls plus two initial probes**.
-The expansion decision followed the initial result, so report phases separately
-and treat combined estimates as exploratory.
+[Saved evidence-burden assignments](../assets/hardness.json).
 
-At 0/100/1000 independent records:
+## Hard cases and output budgets {#hard-cases-and-resources}
 
-- Initial four-report Lite: **7/8, 5/8, 7/8**; extension: **3/4, 4/4, 3/4**;
-  combined: **10/12, 9/12, 10/12**.
-- Initial eight-report Lite: **6/8, 3/8, 4/8**; extension: **3/4, 2/4, 3/4**;
-  combined: **9/12, 5/12, 7/12**.
-- Flash: every scored response correct in both phases and every dose; **12/12
-  per combined panel**. This ceiling score is specific to these cases/settings.
+A fresh confirmation found a harder regime for Flash:
 
-Each combined denominator twelve means two attempts on six worlds, not twelve
-independent worlds. The primary 1000-minus-zero Lite estimate remains **0 points**:
-four worlds unchanged, one gains 0.5 and one loses 0.5. Descriptive 95% world
-bootstrap interval **[-25, +25] points**, exact sign-flip p=1.0. Equal observed
-accuracy does not establish equivalence or prove no effect. Necessary evidence,
-context length and composition do not isolate a general reasoning mechanism.
-The earlier aggregate improvement did not reproduce here. In the four-report
-stratum, mean estimated cost per scored call rose from less than $0.01 to $0.07
-for Lite (about 56×), and less than $0.01 to $0.17 for Flash (about 77×), while
-zero- and 1000-record aggregate scores stayed unchanged. This is a useful bounded
-cost/robustness example, not a general law about reasoning.
+<div class="metric-grid" markdown="1">
+<div class="metric" markdown="1">
 
-![Initial, extension and exploratory combined accuracy](../assets/extended-nuisance-accuracy.svg)
+<span class="metric-label">Correct</span>
+**9/48**
+<span>Fresh independent worlds.</span>
 
-![Scored-call cost across phases](../assets/extended-nuisance-cost.svg)
+</div>
+<div class="metric" markdown="1">
 
-The combined receipt-based estimate is **$6.96**, including **$4.73**
-initially and **$2.23** for the final expansion. The initial total includes
-**$0.24** for the two probes. No unresolved holds; no transport or protocol
-failures. This is not a provider invoice. The total commitment preflight was
-**$9.40** against the single **$10.00** allowance; no further paid calls are planned.
+<span class="metric-label">Wrong</span>
+**28/48**
+<span>Observed reasoning errors.</span>
 
-Replay from an installed wheel, without a repository, key or provider:
+</div>
+<div class="metric" markdown="1">
+
+<span class="metric-label">Abstained</span>
+**11/48**
+<span>No provider/protocol failures.</span>
+
+</div>
+</div>
+
+Each case had **64 suspects and 455 interacting reports**, with a 32,768-token output allowance including thinking. The reports were **not** certified individually necessary. The estimated **$7.23** spend belongs to a separate, closed historical allowance.
+
+An earlier **adaptive comparison on the same six worlds** improved from **2/6 to 5/6** with more output allowance. That demonstration and the fresh 48-world confirmation answer different questions; they must not be pooled.
+
+[Fresh confirmation records](../assets/flash-hard-scale.json) · [Adaptive budget comparison](../assets/flash-limits.json).
+
+## More completed answers did not mean better reasoning {#completion-versus-supported-correctness}
+
+In the sampled Qwen screening, **67/72 slots produced a valid final action**. Those 67 outcomes comprised:
+
+- **22** supported correct answers.
+- **15** wrong answers despite sufficient evidence.
+- **11** appropriate abstentions.
+- **19** unsupported answers, including two lucky correct guesses.
+
+The other **five** were output-limit protocol failures. Three responses were reused from the pilot, so 72 slots does not mean 72 fresh calls or independent worlds.
+
+On 29 matched returned slots, completion rose from **13/29 to 25/29**, while supported correctness changed from **13/29 to 12/29**.
+
+**Completion and reasoning quality need separate measures.** [Saved screening outcomes](../assets/qwen-sampled-screening.json). Raw provider replay remains private pending review.
+
+## Original studies and downloads {#where-to-find-the-original-results}
+
+The earlier results have not been replaced by the follow-up. These downloads are **evaluator outcomes**, not agent inputs.
+
+| Study | Saved evidence |
+|---|---|
+| Original nuisance and distributed-evidence pilot | [Pilot assignments](../assets/pilot.json) |
+| Certified evidence burden | [Hardness assignments](../assets/hardness.json) |
+| Fresh hard-case confirmation | [48-world assignments](../assets/flash-hard-scale.json) |
+| Adaptive output-budget comparison | [Resource comparison](../assets/flash-limits.json) |
+| Qwen screening | [Screening outcomes](../assets/qwen-sampled-screening.json) |
+| Initial October 27 follow-up | [96-call analysis](../assets/nuisance-followup-results.json) · [Reproduction index](../assets/nuisance-followup-reproduction.json) |
+| Final expansion and combined result | [Phase analyses](../assets/nuisance-extended-results.json) · [144 assignments](../assets/nuisance-extended-measurements.json) · [Reproduction index](../assets/nuisance-extended-reproduction.json) |
+
+Recompute all packaged historical panels:
 
 ```sh
-clue-benchmark examples replay nuisance-followup --output runs/nuisance
+clue-benchmark examples replay measured-results \
+  --output runs/measured
 ```
 
-Add `--figures` with the figures extra. The output contains initial.json,
-extension.json, analysis.json and an accessible local HTML report with separate
-phase tables. The general `examples replay measured-results` gallery also includes
-these 144 saved assignments, preserving study/settings identities.
+Open **`runs/measured/report/index.html`**. Add `--figures` with the optional figures extra to reproduce the historical paired accuracy/cost chart.
 
-[Combined analysis](../assets/nuisance-extended-results.json) and
-[all sanitized assignments](../assets/nuisance-extended-measurements.json), and
-[source/archive checksum index](../assets/nuisance-extended-reproduction.json) retain
-nulls, wrong answers and abstentions. Approvals, credentials, dispatch ledgers,
-provider prose and raw receipts are excluded. These are evaluator outcomes and
-must not be added to agent prompts. Initial study source archives remain immutable;
-the expansion and production code have distinct version/source identities.
+## Sources and limits {#provenance-and-limits}
 
-## Certified burden
+The [source and sanitization index](../assets/index.json) records original source locations, hashes and distribution-copy hashes. The new follow-up has its own [source/archive index](../assets/nuisance-extended-reproduction.json).
 
-Flash 30/30 in each 32-report path/tree arm; Lite 9/30 and 7/30. These are three attempts on ten worlds per arm. A simple heuristic solves some constructions. Necessary-report cost is not proof depth or model difficulty. High thinking differs from the motivating low-thinking pilot. [Sanitized records](../assets/hardness.json).
+Keep these distinctions in mind:
 
-## Hard cases and resources
+- **Responses are not independent worlds.** Repeats and paired conditions share cases.
+- **Settings differ across studies.** Thinking budgets, formats and adaptive/fresh status affect interpretation.
+- **Null and failed outcomes remain visible.** No pooled model leaderboard is supported.
+- **Integrity is not ownership clearance.** Licensing, outside reproduction and human template reviews remain pending.
 
-Fresh confirmation: 9/48 correct, 28 wrong, 11 abstentions, no provider/protocol errors, 48 independent worlds, 64 suspects, 455 interacting reports, 32768 output tokens including thinking. The 455 reports were not individually necessary. Estimated $7.23 belongs to a closed historical allowance. [Fresh records](../assets/flash-hard-scale.json).
-
-An earlier adaptive same-six-world comparison rose from 2/6 to 5/6 with more output allowance. Preserve adaptive status and resource differences. [Adaptive records](../assets/flash-limits.json).
-
-## Completion versus supported correctness
-
-Sampled Qwen: 67/72 valid final actions, 22 supported correct, 15 wrong with sufficient evidence, 11 appropriate abstentions, 19 unsupported answers including two lucky correct guesses, and five output-limit protocol failures. Three receipts were reused; 72 slots were not 72 fresh calls or independent worlds. On 29 matched returned slots completion rose 13/29 to 25/29 while supported correctness changed 13/29 to 12/29. More completed outputs did not imply better reasoning. [Sanitized indexed outcomes](../assets/qwen-sampled-screening.json) permit count replay; full raw provider replay remains private/pending rights and sanitization review.
-
-## Provenance and limits
-
-[Source/checksum/sanitization index](../assets/index.json) records original source paths and SHA-256 values plus hashes of the distribution copies. Only selected evaluator outcome fields are retained; no raw receipt, approval, checkpoint or model prose is shipped. These summaries are evaluator data and must not be placed in agent prompts. Hashes are integrity evidence, not ownership clearance.
-
-The original documents and frozen sources remain preserved. The owner authorized public visibility of the existing repository and its history; ignored operational archives remain local and are not uploaded. Licensing, outside reproduction and human template review remain pending. No inference occurs when reading or replaying these records.
+Original documents and frozen sources are preserved. The existing repository and its history are public at the owner's request; ignored operational archives remain local. Credentials, authorizations and dispatch ledgers are not part of the documentation deployment. Reading or replaying these records makes no model calls.

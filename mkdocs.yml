@@ -1,11 +1,23 @@
-site_name: Clue Benchmark 0.5.0rc2 — research preview
+site_name: Clue Benchmark
 site_url: https://trustprism.github.io/clue-benchmark/
 site_description: Certified information availability, reliability and distributed evidence
 docs_dir: docs/site
 site_dir: site
 theme:
   name: mkdocs
+  custom_dir: docs/theme
   navigation_depth: 3
+  highlightjs: false
+extra_css:
+  - stylesheets/reading.css
+extra_javascript:
+  - javascripts/reading.js
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
 plugins:
   - search
 validation:
@@ -15,21 +27,20 @@ validation:
     not_found: warn
     anchors: warn
 nav:
-  - Home: index.md
-  - Tutorials:
+  - Start here: index.md
+  - Learn:
       - First dataset: tutorials/first-dataset.md
       - Distributed evidence: tutorials/distributed-evidence.md
-  - Guides:
       - Research recipes: guides/research-recipes.md
-  - Explanations:
       - Pipeline and guarantees: explanations/pipeline.md
-      - Related implementations: explanations/related-work.md
+  - Results: results/index.md
   - Reference:
       - Parameters: reference/parameters.md
       - Predicates: reference/predicates.md
       - CLI, Python and tools: reference/interfaces.md
       - Data dictionary: reference/data-dictionary.md
       - Troubleshooting: reference/troubleshooting.md
-  - Results: results/index.md
   - Open questions: results/open-questions.md
-  - Maintainers: maintainers/release.md
+  - About:
+      - Related implementations: explanations/related-work.md
+      - Release and review: maintainers/release.md

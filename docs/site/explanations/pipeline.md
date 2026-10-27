@@ -1,29 +1,109 @@
-# What the certificates mean
+# What the guarantees mean
 
-## Generation and validation pipeline
+A certificate tells you what the evidence supports. It does not tell you how difficult a model will find the puzzle.
+{.lead}
 
-Configuration validation → seeded sampled world → truthful core → optional evidence transformations → reliability-aware certification → partitions and coalition checks → deterministic rendering → structural duplicate/split screening → streamed bundle export → public agent views → scoring and analysis.
+![Build a world, certify its reports, then evaluate an agent while keeping the answer key separate.](../assets/evidence-flow.svg)
 
-Suspects may share motive, location, weapon or time. `assignment_mode=repeated` permits this; `distinct` forbids repeated values within an attribute and needs enough active domain values. Crime attributes match the culprit's attributes. Identifying one culprit does **not** identify a unique full assignment: Ada can be ruled out while her unmentioned weapon remains unknown.
+## The pipeline in three stages
 
-## Reliability and interventions
+### 1. Create and transform a case {#step-1-create-and-transform-a-case}
 
-A truthful clue describes the sampled world. A reported statement is what an agent receives. A sampled false report changes that statement; its identity and actual false count belong to the evaluator. The public rule permits **at most k** false reports, including zero, one, ..., k. Trusted structural rules stay trusted; an agent cannot discard the rule that crime attributes match the culprit.
+Validate the configuration, sample a seeded world, and build truthful core reports. Then apply the requested changes: irrelevant records, redundancy, false reports or presentation changes.
 
-Independent nuisance records introduce disjoint one-variable components. Each asserts a value in its own domain; it is satisfiable and shares no target variables. Conjoining it cannot change the target candidates. Core-entailed additions follow from the useful core; connected decoys are entailed relational additions involving target variables. Either can improve redundancy. False statements change reliability constraints. Prose padding changes presentation without adding claims. These are different interventions; extra text is not automatically harder.
+### 2. Certify what can be inferred {#step-2-certify-what-can-be-inferred}
 
-## What is certified
+Check the evidence under its public reliability rule. Create agent partitions, verify coalition conditions, and screen selected structural duplicates and splits.
 
-Total report count differs from minimum sufficient subset cost. Lower and upper bounds describe the least number of original reports needed to force the answer under the reliability rule. A lower bound is not an exact minimum until it meets an upper bound. Neither count certifies proof depth, solver difficulty, strategic diversity, or model accuracy.
+### 3. Export and evaluate {#step-3-export-and-evaluate}
 
-The production and independent Boolean encodings agree, but both use CP-SAT. Tiny exhaustive reference enumeration is engine-independent. Solver timeout or work exhaustion means **unresolved**, not uniqueness, inconsistency, or unsatisfiability. No supported workflow disables certification to force acceptance.
+Render deterministic text and write a streamed bundle. Export only public agent views, then score returned actions against evaluator-only answers.
 
-A private view can be ambiguous while the global view is unique. Globally ambiguous data permits several culprits even with all reports. Inconsistent evidence permits none. A correct unsupported guess differs from a supported answer; appropriate abstention on ambiguity differs from unnecessary abstention when evidence is sufficient.
+## What a score means
 
-Coalition checks currently cover at most eight agents and can be expensive. Reports retain their original identities when replicated/forwarded. Deterministic bounded report forwarding is a programmed protocol, not learned conversation, free-form dialogue, or a communication-emergence claim.
+| Outcome | The question it answers |
+|---|---|
+| **Correct** | Did the agent name the actual responsible suspect? |
+| **Supported** | Does the available evidence justify that answer? |
+| **Sufficient evidence** | Could this view identify one responsible suspect? |
+| **Valid protocol** | Did the agent return a permitted final action? |
+| **Abstained** | Did it choose not to name a suspect? |
 
-## Seeds, splits and duplicates
+A correct guess on ambiguous evidence can be **unsupported**. Abstaining when several suspects remain possible can be appropriate; abstaining when one answer is established is unnecessary.
 
-Deterministic generation screens structural fingerprints and renamings. World-hash allocation keeps paired variants in the same split; configured holdout families go to transfer. Screening detects selected structural symmetries, not every equivalent strategy or reasoning shortcut. Family holdout does not prove out-of-distribution competence.
+## Four different evidence states
 
-English comes from templates, never an LLM. Internal IDs are S01, S02, ...; presentation permutes Person/Entity numbers with `naming_seed`. Default domains are weapon (Rope, Wrench, Poison, Knife), location (Study, Kitchen, Library, Garden), motive (Revenge, Inheritance, Jealousy, Blackmail), and time (20:00, 21:00, 22:00, 23:00). Customize `puzzle.config.domains` with distinct nonempty strings and inspect the resolved configuration. Quotes and unicode are JSON escaped by the formatter.
+- **Unique:** the evidence permits exactly one responsible suspect.
+- **Ambiguous:** it permits several.
+- **Inconsistent:** it permits none.
+- **Unresolved:** the solver ran out of time or work before establishing the result.
+
+Unresolved is never treated as a proof of uniqueness, inconsistency or unsatisfiability.
+
+A private view can be ambiguous even when the complete view is unique. Globally ambiguous data remains ambiguous even with all reports.
+
+## One culprit does not mean one complete world
+
+Suspects can share motives, rooms, weapons or times. The default `repeated` assignment mode permits this.
+
+Finding one responsible suspect does not determine every unmentioned attribute. You might rule out Ada without learning which weapon she has.
+
+The `distinct` mode instead forbids repeated values within an attribute. It needs enough active domain values for every suspect.
+
+## What does “at most k false reports” mean?
+
+A truthful clue describes the sampled world. A **report** is the statement the agent receives; a sampled corruption can make it false.
+
+An allowance of **at most two** permits **zero, one or two** false reports. It does not assert that exactly two are false.
+
+The evaluator keeps the actual corrupted identities and count private. Structural rules stay trusted, including the rule connecting crime attributes to the culprit.
+
+## Extra evidence is not one intervention
+
+| Change | What it adds or changes |
+|---|---|
+| Independent nuisance records | Satisfiable claims about disjoint variables. They cannot change the target candidates. |
+| Core-entailed additions | Facts already implied by the useful core. They can add redundancy. |
+| Connected decoys | Entailed relational additions involving target variables. |
+| False reports | Statements that change the reliability problem. |
+| Prose padding | Presentation text without additional factual claims. |
+
+Do not treat these as interchangeable ways to make a puzzle harder.
+
+## Necessary reports are not a difficulty score
+
+The **total report count** is different from the **minimum sufficient subset**: the fewest original reports needed to force an answer under the reliability rule.
+
+- A lower bound is not an exact minimum until it matches an upper bound.
+- Neither count certifies proof depth, model accuracy or strategic diversity.
+- Simple construction heuristics can solve some high-burden families.
+
+The production and independent Boolean encodings agree, but both use CP-SAT. Tiny exhaustive reference enumeration provides an engine-independent check.
+
+## Evidence sharing has limits
+
+Coalition checks currently support **up to eight agents** and can be expensive. Replicated or forwarded reports retain their original identities.
+
+The current bounded forwarding protocol is programmed. It is not evidence of learned dialogue, communication emergence or an optimal sharing policy.
+
+## Seeds, splits and duplicate screening
+
+World-hash allocation keeps paired variants in the **same split**. Configured holdout families go to the transfer split.
+
+Screening checks selected structural fingerprints and renamings. It does not detect every equivalent strategy or reasoning shortcut. A family holdout alone does not prove out-of-distribution competence.
+
+<details markdown="1">
+<summary>Rendering, labels and default domains</summary>
+
+English comes from deterministic templates, not an LLM. Internal suspect IDs are `S01`, `S02`, and so on. The `naming_seed` permutes the Person/Entity display labels.
+
+Default domain values are:
+
+- **Weapon:** Rope, Wrench, Poison, Knife.
+- **Location:** Study, Kitchen, Library, Garden.
+- **Motive:** Revenge, Inheritance, Jealousy, Blackmail.
+- **Time:** 20:00, 21:00, 22:00, 23:00.
+
+Customize `puzzle.config.domains` with distinct, nonempty strings. The formatter JSON-escapes quotes and Unicode. Inspect the resolved configuration before running a study.
+
+</details>

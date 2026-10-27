@@ -1,85 +1,247 @@
-# CLI, Python and native tools
+# CLI and Python reference
 
-## Current commands
+Find the command you need, then open the advanced evaluation details only when you need them.
+{.lead}
 
-`clue-benchmark --help` is the installed command inventory. `--version` prints the software identity. All offline commands work without provider/figure/docs extras.
+## Find a preset
 
-- `presets list` lists purpose; `presets show NAME` includes resolved values.
-- `generate-dataset` and `profile-dataset` accept exactly one of `--preset NAME` or `--config PATH`. Explicit `--output` and `--workers` override either source.
-- `explain-config` accepts the same config selectors and overrides; it returns resolved values with authored field descriptions.
-- `validate-dataset DIRECTORY` checks the five-file bundle and independent semantics.
-- `export-public DIRECTORY --agent 0 --output FILE` writes allowlisted public case/report JSONL only.
-- `inspect-case DIRECTORY [--case-id ID] [--agent 0]` returns public evidence for one case.
-- `examples replay distributed-evidence --output DIRECTORY` recomputes solver information controls.
-- `examples replay nuisance-followup --output DIRECTORY` recomputes the initial, final expansion and exploratory combined study; optional `--figures` writes plots.
-- `examples replay measured-results --output DIRECTORY` recomputes all packaged historical panels, preserving study/model/arm/condition denominators.
-- `report SOURCE.json --output DIRECTORY` writes local HTML, exact source JSON and a machine-readable report. It never runs inference.
-- `prepare-nuisance-followup` prepares offline matched inputs and full-study costs; it grants no execution permit.
+```sh
+clue-benchmark presets list
+clue-benchmark presets show quickstart
+```
 
-Invalid inputs and incomplete work use status 2 with actionable stderr errors. Normal command summaries are JSON on stdout. Exports/reports/replays refuse overwrites. Generation resumes only matching source/config checkpoints. A frozen evaluation plan rejects drift.
+`clue-benchmark --help` lists every installed command. `clue-benchmark --version` prints the software version.
 
-## Python public API
+## Generate and inspect
+
+Generate with **one** configuration source: `--preset NAME` or `--config PATH`.
+
+```sh
+clue-benchmark generate-dataset \
+  --preset quickstart \
+  --output runs/demo
+```
+
+| Command | Purpose |
+|---|---|
+| `explain-config --preset quickstart` | Show resolved values and field descriptions. |
+| `profile-dataset --preset quickstart` | Profile a declared generation configuration. |
+| `validate-dataset runs/demo` | Check the bundle and independent semantics. |
+| `inspect-case runs/demo --agent 0` | Show one agent's public evidence. |
+
+`--output` and `--workers` override values from the selected preset or configuration file. `explain-config` accepts the same selectors and overrides. Use `--case-id ID` to inspect a specific case.
+
+## Export public evidence
+
+```sh
+clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
+```
+
+Only allowlisted public case/report fields are exported. Give the agent this file, not the evaluator bundle.
+
+## Replay a saved example
+
+```sh
+clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance
+```
+
+| Example name | What it recomputes |
+|---|---|
+| `distributed-evidence` | Solver information controls on historical worlds. |
+| `nuisance-followup` | Initial, extension and exploratory combined measured results. |
+| `measured-results` | All packaged historical panels with separate study/settings identities. |
+
+These commands make **no model calls**. The nuisance and measured-results replays accept `--figures` when the optional figures extra is installed.
+
+## Build a readable report
+
+```sh
+clue-benchmark report runs/sample-score.json \
+  --output runs/sample-report
+```
+
+Open **`runs/sample-report/index.html`**. Reports include escaped text, exact source JSON and machine-readable output. They never run inference.
+
+## Use Python
 
 ```python
 from clue_benchmark import (
-    resolve_config, generate_dataset, validate_dataset,
-    iter_cases, export_public, inspect_case, evaluate_agent,
+    evaluate_agent,
+    export_public,
+    generate_dataset,
+    inspect_case,
+    resolve_config,
+    validate_dataset,
 )
-config = resolve_config(name="quickstart", output="runs/python-demo")
+
+config = resolve_config(
+    name="quickstart",
+    output="runs/python-demo",
+)
+
 generate_dataset(config)
 validate_dataset("runs/python-demo")
-export_public("runs/python-demo", "runs/python-agent.jsonl", agent_id=0)
-print(inspect_case("runs/python-demo", agent_id=0)["rules"])
-result = evaluate_agent("runs/python-demo", lambda view: {"kind": "abstain"})
+
+export_public(
+    "runs/python-demo",
+    "runs/python-agent.jsonl",
+    agent_id=0,
+)
+
+public_case = inspect_case("runs/python-demo", agent_id=0)
+print(public_case["rules"])
+
+result = evaluate_agent(
+    "runs/python-demo",
+    lambda view: {"kind": "abstain"},
+)
 ```
 
-`CommunityConfig`, `generate_case`, `partition`, `score` and `profile_dataset` remain available. `iter_cases` streams public bundle rows. `evaluate_agent` supplies copies of public fields to a trusted callable; it owns the evaluator labels. This is an API boundary, not process isolation. Run untrusted code separately with only exported public files, then score its returned actions in the evaluator process.
+Also available: `CommunityConfig`, `generate_case`, `partition`, `score`, `profile_dataset` and `iter_cases`. The latter streams public bundle rows.
 
-## Native actions and evaluation
+!!! warning "A public view is not process isolation"
+    `evaluate_agent` supplies copies of public fields to a trusted callable; the evaluator still owns the labels. Run untrusted code in a separate process with exported public files, then score its returned actions in the evaluator process.
 
-The supported final actions are `answer(target)` and `abstain()`. `target` must be a listed internal suspect ID, not the display name. Python response dictionaries are `{"kind":"answer","target":"S01"}` or exactly `{"kind":"abstain"}`. Missing, malformed or extra actions are protocol failures, separately reported from wrong supported-context answers.
+## Supported final actions
 
-`prepare-community-evaluation DIRECTORY --models models.json --output plan.json --ceiling-microdollars INTEGER` freezes explicit models, prices and settings. Conditions: complete, independent private views, sharing. Graphs: star, ring, chain, complete. Defaults: all three conditions, complete graph, three rounds, 64 reports/message, one repeat, structured_text input. CLI `--input-view text_only` omits formal constraints; do not pool with structured_text results.
+Name a listed **internal suspect ID**, not its display name:
 
-Each model supplies id, vendor, model, settings, context_tokens, input/output_microdollars_per_million_tokens; optional identity is an exact expected returned string, tokenizer_identity is descriptive. Vendor-specific settings are validated. Output allowances include thinking when the provider bills it. One dollar is 1,000,000 microdollars. Conservative serialized-byte bounds include tool overhead. Overflow is rejected, never truncated.
+```json
+{"kind": "answer", "target": "S01"}
+```
 
-`run-community-evaluation plan.json --dataset DIRECTORY --output RUN --dry-run` serializes/preflights without credentials or network. `--execute --authorization human.json` requires the human plan-bound contract; the command never creates approval. Request timeouts are 600 seconds, retries zero. Persistent SQLite reservations survive interruption and concurrent launches. Settled usage plus unresolved maxima must fit the plan cap. Unknown usage or identity/resource breaches stop and hold funds. Never release holds by guessing or edit the ledger. The new $10.00 study additionally requires one shared allocation across every child plan and probe; a cap per arm is forbidden.
+Or abstain:
 
-## Legacy appendix
+```json
+{"kind": "abstain"}
+```
 
-Flat `generate`, `validate`, `export`, the legacy `Config` API and v0.3 archives retain their original shapes. They are not aliases for community bundles. Old investigation/request-clue interfaces are historical; current modes are complete, independent private views and bounded report forwarding.
+Native tools are `answer(target)` and `abstain()`. Missing, malformed or extra actions count as **protocol failures**, separately from wrong answers on sufficient evidence.
 
-`run-nuisance-followup DIRECTORY` preflights every frozen scored/probe plan offline.
-Its explicit `--execute --authorization human.json` mode serializes the entire study,
-checks the sum of child ceilings, and stops all later jobs on unknown usage or a
-failed native compatibility probe. Fixed child ledgers prevent replay on resume.
-Human approval binds `manifest_id`, the $10.00 cap and exact total request count;
-the current candidate permits 96 scored slots plus at most two compatibility calls.
-No authorization is generated by preparation.
+## Paid evaluation: preparation and execution
 
-`analyze-nuisance-followup DIRECTORY --output NEW_DIRECTORY` writes per-call JSONL
-and a machine-readable analysis. It preserves never-dispatched slots and leaves
-completed-panel accuracy and paired effects null while execution is incomplete.
-Completed studies use world-level two-attempt means, descriptive cluster bootstrap,
-exact sign-flip analysis and between-model differences. No paid model is called.
+Preparation and dry runs work without provider credentials. Actual execution is separately authorized.
 
-`unpack-archive FILE.tar.gz --sha256 PUBLISHED_HASH --output NEW_DIRECTORY` handles
-explicit local reproduction downloads. It verifies the checksum before extraction,
-rejects links/traversal/duplicate paths, and enforces a declared uncompressed byte
-limit (`--maximum-bytes`, default one billion). No hosted URLs or download service
-are claimed until the owner clears and publishes the artifacts.
+<details markdown="1">
+<summary>Prepare an evaluation plan</summary>
 
+```sh
+clue-benchmark prepare-community-evaluation runs/demo \
+  --models models.json \
+  --output plan.json \
+  --ceiling-microdollars 1000000
+```
 
-## Output safety in 0.5.0rc2
+The example ceiling is **$1.00**. Preparation freezes explicit models, prices and settings; it does not spend or authorize that amount.
 
-Completed matching datasets are returned without solver work or file rewrites.
-Generation and native evaluation take an exclusive per-directory lock on Linux
-and macOS; simultaneous writers receive a short error. A request whose atomic
-reservation was lost to another launcher is never dispatched. Ledger identity
-creation is serialized. Unknown usage still stops and holds the maximum.
+Defaults:
 
-JSON files use unique temporary files and atomic publication. Public exports and
-new evaluator outputs use atomic no-clobber publication. An occupied evaluator
-output is rejected before invoking an agent callback. Reports validate source
-shape before creating output, escape arbitrary text and retain exact source JSON;
-phase-separated result tables are keyboard-scrollable.
+- **Conditions:** complete, independent private views and sharing.
+- **Graph:** complete; other choices are star, ring and chain.
+- **Sharing:** three rounds, at most 64 reports per message.
+- **Repeats:** one.
+- **Input format:** `structured_text`.
+
+`--input-view text_only` omits formal constraints. Keep those results separate from structured-text results.
+
+Each model record supplies `id`, `vendor`, `model`, `settings`, `context_tokens`, `input_microdollars_per_million_tokens` and `output_microdollars_per_million_tokens`.
+
+An optional `identity` is an exact expected returned model string; `tokenizer_identity` is descriptive. Vendor-specific settings are validated. Billed output allowances include thinking where applicable.
+
+One dollar equals **1,000,000 microdollars**. Serialized-byte bounds include tool overhead. Context overflow is rejected, never truncated.
+
+</details>
+
+<details markdown="1">
+<summary>Dry-run, execution and durable budget controls</summary>
+
+```sh
+clue-benchmark run-community-evaluation plan.json \
+  --dataset runs/demo \
+  --output runs/evaluation \
+  --dry-run
+```
+
+Actual execution needs `--execute --authorization human.json` with a human, plan-bound contract. The command never creates approval.
+
+- Request timeout: **600 seconds**.
+- Automatic retries: **zero**.
+- Persistent SQLite reservations survive interruptions and concurrent launches.
+- Settled usage plus unresolved maximum reservations must fit the plan cap.
+- Unknown usage or identity/resource breaches stop execution and retain a conservative hold.
+
+Do not edit ledger balances or assume unresolved calls were free. The completed $10.00 follow-up used one shared allowance across child plans and probes; a separate cap per arm was not allowed.
+
+</details>
+
+## Files, errors and concurrent runs
+
+- **Success summaries:** JSON on stdout.
+- **Invalid or incomplete work:** exit status 2 with an actionable error on stderr.
+- **Exports, reports and replays:** refuse an existing destination.
+- **Generation:** resumes only a matching source/config checkpoint. Complete matching datasets return without being regenerated or rewritten.
+- **Frozen evaluations:** reject source/config drift.
+
+<details markdown="1">
+<summary>Atomic writes and concurrency guarantees in 0.5.0rc2</summary>
+
+Generation and native evaluation take exclusive per-directory locks on Linux and macOS. Simultaneous writers receive a short error.
+
+A request that loses an atomic budget reservation is never dispatched. Ledger identity creation is serialized. Unknown usage still stops execution and holds the maximum.
+
+JSON writes use unique temporary files and atomic publication. Public exports and new evaluator outputs do not overwrite existing files. An occupied evaluator output is rejected before calling the agent.
+
+Reports validate their source before creating output, escape text, retain exact JSON, and keep phase tables keyboard-scrollable.
+
+</details>
+
+## Advanced reproduction and legacy commands
+
+<details markdown="1">
+<summary>Prepare, run or analyze the original follow-up protocol</summary>
+
+`prepare-nuisance-followup` prepares matched inputs and maximum costs offline. It grants no execution permit.
+
+```sh
+clue-benchmark run-nuisance-followup runs/followup
+```
+
+This preflights the original frozen study offline. Explicit execution requires `--execute --authorization human.json`. It serializes the study, checks child ceilings, and stops later jobs after unknown usage or a failed compatibility probe. Fixed child ledgers prevent replay on resume.
+
+The original manifest binds 96 scored slots plus at most two probes. The final expansion is recorded separately; the closed allowance cannot be reused.
+
+```sh
+clue-benchmark analyze-nuisance-followup runs/followup \
+  --output runs/followup-analysis
+```
+
+Analysis preserves never-dispatched slots. Incomplete panel accuracy and paired effects remain null until completion. Completed analyses use world-level attempt means, descriptive cluster bootstrap, exact sign-flip analysis and between-model differences. No model is called.
+
+</details>
+
+<details markdown="1">
+<summary>Unpack an explicit reproduction archive</summary>
+
+```sh
+clue-benchmark unpack-archive study.tar.gz \
+  --sha256 PUBLISHED_HASH \
+  --output runs/unpacked
+```
+
+Use the actual published hash, not the placeholder above. The command verifies it before extraction and rejects links, traversal and duplicate paths.
+
+The default uncompressed limit is one billion bytes; override with `--maximum-bytes`. Full study archives are separate from the public sanitized outcome downloads and remain pending review where not released.
+
+</details>
+
+<details markdown="1">
+<summary>Legacy v0.3 interfaces</summary>
+
+Flat `generate`, `validate`, `export`, the legacy `Config` API and v0.3 archives retain their original shapes. They are separate from community bundles.
+
+Old investigation/request-clue interfaces are historical. Current conditions are complete evidence, independent private views and bounded forwarding.
+
+</details>

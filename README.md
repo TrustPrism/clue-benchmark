@@ -1,48 +1,104 @@
-# Clue Benchmark — 0.5.0rc2 research preview
+# Clue Benchmark
 
-A configurable Python generator and evaluation tool for **certified information availability, reliability, and evidence distribution**. Generate synthetic clue puzzles, certify what each agent can infer, export only public evidence, and score correctness separately from evidential support and abstention.
+**A research preview for reasoning with evidence.** Generate synthetic logic puzzles, certify what each agent can infer, and score a correct answer separately from a supported one.
 
-[Public documentation and results](https://trustprism.github.io/clue-benchmark/) · [Open questions](https://trustprism.github.io/clue-benchmark/results/open-questions/) · [Initial prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2)
+[Read the website](https://trustprism.github.io/clue-benchmark/) · [Measured results](https://trustprism.github.io/clue-benchmark/results/) · [Open questions](https://trustprism.github.io/clue-benchmark/results/open-questions/) · [Initial prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2)
 
-A tiny public puzzle: Ada, Ben and Cy have red/blue badges; the responsible person has red, Ada has blue, and Ben has Ada's badge value. Cy is responsible. Remove Ben's report and both Ben and Cy remain possible: a lucky Cy answer is no longer supported. Repeated values are allowed; one culprit need not imply one complete world.
+## Start offline
 
-Ownership clearance, licensing and independent review are pending. This initial research preview does not grant an open-source or dataset license. With Python >=3.12, install a built candidate wheel using `python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl`, or install the checked-out source using `python -m pip install .`. No PyPI upload is claimed. The [open questions](docs/site/results/open-questions.md) describe the unanswered research and full-release decisions.
+Use **Python 3.12 or newer**. From the checked-out preview source:
 
 ```sh
-clue-benchmark generate-dataset --preset quickstart --output runs/demo
+python -m pip install .
+```
+
+Generate one case:
+
+```sh
+clue-benchmark generate-dataset \
+  --preset quickstart \
+  --output runs/demo
+```
+
+Check it and export only the agent's evidence:
+
+```sh
 clue-benchmark validate-dataset runs/demo
-clue-benchmark export-public runs/demo --agent 0 --output runs/agent.jsonl
+
+clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
 ```
 
-No clone, API key or inference is needed. Discover configurations with `clue-benchmark presets list` and `clue-benchmark explain-config --preset quickstart`. Replay the eight-world information controls with `clue-benchmark examples replay distributed-evidence --output runs/replayed`, or recompute historical assignment counts with `clue-benchmark examples replay measured-results --output runs/results`.
+After installation these commands run without a key, network or paid model calls. Give the agent **`runs/agent.jsonl`**, not the evaluator bundle.
 
-## What the experiments found
+[Follow the complete tutorial →](docs/site/tutorials/first-dataset.md)
 
-**The original observation that irrelevant evidence helped Lite did not repeat consistently.** In the original pilot, Lite scored 2/5, 3/5 and 5/5 with 0, 100 and 1,000 extra records on the same five four-report worlds. In the follow-up plus final expansion, those counts were **10/12, 9/12 and 10/12**. Each denominator twelve represents two attempts on six worlds. Four worlds stayed unchanged between the endpoint doses, one improved and one worsened: an unchanged average hid changes on individual worlds.
+## What makes this useful?
 
-In the eight-report setting, Lite scored **9/12, 5/12 and 7/12**. The dip and partial recovery suggest a possible distraction effect, but this small, irregular pattern does not establish one. Flash scored **12/12 at every dose in both settings**. At 1,000 extra records, average call cost in the four-report setting rose about **56× for Lite and 77× for Flash**, without improving aggregate endpoint accuracy.
+![Build a world, certify what the evidence supports, then score an agent while keeping the answer key separate.](docs/site/assets/evidence-flow.svg)
 
-The combined primary change was zero, with a descriptive 95% world-bootstrap interval of **[-25, +25] percentage points**. This does not establish equivalence or prove no effect. The final expansion followed the initial result, so the combined findings are exploratory. All **144 scored calls plus two compatibility probes** completed without provider/protocol failures; the receipt-based estimate was **$6.96 of the single $10.00 cap**, with no unresolved holds. The allowance is closed.
+- **Evidence sufficiency:** distinguish one identifiable answer from several possibilities.
+- **Reliability:** reason under a public at-most-k false-report rule.
+- **Distribution:** compare complete, private and forwarded evidence.
+- **Separate outcomes:** keep correctness, support, abstention and protocol failures distinct.
 
-[Full results, separate phases and costs](docs/site/results/index.md#nuisance-records) remain available. Replay these saved measurements without a key or paid calls:
+A tiny example: Ada has a blue badge; Ben's badge matches Ada's; the responsible person's badge is red. Cy is the only possible responsible person. Remove Ben's report and both Ben and Cy become possible. Guessing Cy can then be correct without being supported.
 
-```sh
-clue-benchmark examples replay nuisance-followup --output runs/nuisance
-```
+## What did the latest experiment find?
+
+**The pilot's apparent benefit from irrelevant evidence did not repeat consistently.**
+
+In the expanded follow-up, Lite's four-report scores were **10/12, 9/12, 10/12** with 0, 100 and 1,000 extra records. Four worlds stayed unchanged between the endpoints, one improved and one worsened. Flash scored **12/12 throughout** in both burden settings.
+
+Costs rose roughly **56× for Lite and 77× for Flash** in the four-report setting without higher aggregate endpoint accuracy.
+
+The combined result is exploratory: six worlds per setting, two attempts each, with a primary interval of **−25 to +25 percentage points**. An unchanged score is not proof of no effect.
+
+All **144 scored calls and two probes** completed without provider/protocol failures. Estimated spend: **$6.96 of the single $10.00 cap**, with no unresolved holds. The allowance is closed.
+
+[Read every condition, separate phases and costs →](docs/site/results/index.md)
 
 ## Where are the original results?
 
-The [results gallery and source index](docs/site/results/index.md#where-to-find-the-original-results) preserve the earlier studies alongside the follow-up. They use different settings and denominators and must not be pooled into a leaderboard.
+The [original-study index](docs/site/results/index.md#where-to-find-the-original-results) preserves the earlier evidence:
 
-- [Original pilot: irrelevant evidence](docs/site/results/index.md#original-pilot): Lite's 2/5 → 5/5 observation, the eight-report negative/control result and its provider error; [saved pilot assignments](docs/site/assets/pilot.json).
-- [Information availability and distributed evidence](docs/site/results/index.md#information-availability): Flash 8/8 complete answers, 32/32 appropriate abstentions and 8/8 after programmed star forwarding; also in the pilot assignments.
-- [Certified evidence burden](docs/site/results/index.md#certified-burden): Flash 30/30 in each 32-report arm, Lite 9/30 and 7/30; [saved assignments](docs/site/assets/hardness.json).
-- [Hard cases and output resources](docs/site/results/index.md#hard-cases-and-resources): fresh Flash confirmation 9/48 correct, separately from the adaptive six-world 2/6 → 5/6 comparison; [fresh assignments](docs/site/assets/flash-hard-scale.json), [adaptive assignments](docs/site/assets/flash-limits.json).
-- [Qwen completion versus supported correctness](docs/site/results/index.md#completion-versus-supported-correctness): 67/72 valid final actions, 22 supported correct and five output-limit failures; [saved outcomes](docs/site/assets/qwen-sampled-screening.json).
-- [Initial October 27 follow-up and final expansion](docs/site/results/index.md#follow-up-and-final-expansion): the initial 96 scored calls remain separate from the 48-call extension; [initial analysis](docs/site/assets/nuisance-followup-results.json), [phase-separated combined analysis](docs/site/assets/nuisance-extended-results.json), [all 144 saved assignments](docs/site/assets/nuisance-extended-measurements.json).
+- Original nuisance pilot and distributed-evidence controls.
+- Certified evidence-burden comparisons.
+- Fresh hard cases and a separate adaptive output-budget example.
+- Qwen completion versus supported correctness.
+- Initial follow-up, final expansion and exploratory combined result.
 
-Recompute all included historical counts with `clue-benchmark examples replay measured-results --output runs/results`. The [source/checksum index](docs/site/assets/index.json) identifies original sources and sanitized copies. Full operational archives remain private pending privacy and rights review.
+They use different settings and denominators. They are not a pooled leaderboard.
 
-Start with [the five-minute tutorial](docs/site/tutorials/first-dataset.md), [distributed evidence](docs/site/tutorials/distributed-evidence.md), [research recipes](docs/site/guides/research-recipes.md), [concepts](docs/site/explanations/pipeline.md), [parameter reference](docs/site/reference/parameters.md), [CLI/Python/tools](docs/site/reference/interfaces.md), [results and limitations](docs/site/results/index.md), or [dataset card](docs/site/reference/data-dictionary.md). Build searchable docs with `mkdocs build --strict` after installing the docs extra.
+Replay the saved follow-up:
 
-Contributors: [CONTRIBUTING](CONTRIBUTING.md), [release gates](docs/site/maintainers/release.md), [licensing pending](LICENSING.md), [provenance](PROVENANCE.md). Historical status and the preserved prior README remain in [the archive](docs/archive/readme-before-release-2026-10-27.md); flat v0.3 interfaces remain supported separately.
+```sh
+clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance
+```
+
+Or replay all packaged historical panels:
+
+```sh
+clue-benchmark examples replay measured-results \
+  --output runs/results
+```
+
+## Learn more
+
+- [Research recipes](docs/site/guides/research-recipes.md).
+- [Pipeline and guarantees](docs/site/explanations/pipeline.md).
+- [Parameter reference](docs/site/reference/parameters.md).
+- [CLI and Python API](docs/site/reference/interfaces.md).
+- [Data dictionary](docs/site/reference/data-dictionary.md).
+
+Build the searchable site with `mkdocs build --strict` after installing the docs extra.
+
+## Preview status
+
+Software **0.5.0rc2**; dataset schema **clue-community-1**. No PyPI release is claimed.
+
+**Licensing, ownership clearance and independent reviews remain pending.** Public availability does not grant an open-source or dataset redistribution license. See [licensing](LICENSING.md), [provenance](PROVENANCE.md) and [release reviews](docs/site/maintainers/release.md).
+
+For contributions, see [CONTRIBUTING](CONTRIBUTING.md). The [preserved earlier README](docs/archive/readme-before-release-2026-10-27.md) retains the historical interface context; legacy flat v0.3 data remains supported separately.

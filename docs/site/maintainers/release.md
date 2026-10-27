@@ -1,33 +1,98 @@
-# Research preview and full-release gates
+# Release status and next steps
 
-The owner requested an initial public research preview on October 27 while
-rights review remains pending. Its scope is the prepared documentation and
-sanitized result summaries, with [open questions](../results/open-questions.md)
-visible. The owner also explicitly authorized making the existing repository
-public, including its history. That does not grant licenses, publish packages
-to PyPI, upload ignored operational archives or clear the full-release gates.
+The initial research preview is live. The full licensed software and data release remains pending.
+{.lead}
 
-Do not publish packages from an ordinary pull request. The full licensed release remains pending ownership/redistribution clearance, two independent rules/template readers, one outside installation/replay run, manual source/history/archive review, organization distribution account access and final owner approval. The initial research preview is separately authorized with these questions visibly pending.
+## Available now
 
-## Review packets
+- [Public documentation](https://trustprism.github.io/clue-benchmark/), results and sanitized outcome downloads.
+- [Initial 0.5.0rc2 prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2).
+- The existing repository and its history, made public with the owner's explicit authorization.
+- [Open research and publication questions](../results/open-questions.md).
 
-Rules readers: read the predicate reference, pipeline explanation, public quickstart export and one false-report case. Check each active template against its formal semantics, satisfying example and counterexample. Record name/date, reviewed hashes, disagreements and resolution; leave unsigned slots pending.
+That publication does not grant licenses, publish the package to PyPI or upload ignored operational archives. The initial preview is separate from full-release acceptance.
 
-Outside user: receive the exact wheel hash, use a fresh Python environment outside the checkout, follow the five-minute tutorial, replay distributed evidence and measured counts, and report actual OS/Python/commands/output. No paid model calls. Do not impersonate either reader or convert earlier waivers into completed reviews.
+## Remaining reviews
+
+### Two independent rules readers
+
+Each reader should examine:
+
+1. The [predicate reference](../reference/predicates.md).
+2. The [pipeline and guarantees](../explanations/pipeline.md).
+3. A public quickstart export and one false-report example.
+4. Every active template's formal meaning, satisfying example and counterexample.
+
+**Record:** reader name, date, reviewed hashes, disagreements and their resolution. Unsigned slots stay pending.
+
+### One outside installer
+
+Supply the exact candidate wheel hash. Ask the reviewer to:
+
+1. Use a fresh Python environment outside the checkout.
+2. Follow the [first-dataset tutorial](../tutorials/first-dataset.md).
+3. Replay distributed evidence and measured counts without paid model calls.
+4. Report the actual OS, Python version, commands and outputs.
+
+An earlier review waiver is a waiver, not a completed review. Do not impersonate a reviewer or invent a signoff.
 
 ## Maintainer checklist
 
-1. Review the source baseline, preserved local files and private study snapshot. Never mix the historical checkout or budgets.
-2. Verify the closed study accounting: the initial follow-up plus its one final expansion completed 146 paid requests (144 scored and two probes), estimated $6.96 total with $0.00 holds under the single $10.00 cap. No further paid calls are planned. Original measured sources remain frozen for reproduction; do not launch child plans independently.
-3. Run offline tests, field coverage, strict docs build, wheel/sdist build, metadata check and installed-wheel smoke tests outside the checkout. Retain logs and hashes.
-4. Review provenance for imported generator code, dependencies, generated assets and saved provider outputs. Confirm TrustPrism redistribution rights and real maintainer identity. Only then apply proposed Apache-2.0 code and CC BY 4.0 data/prose licenses and notices.
-5. Scan intended source **and history**, and all downloadable archives, for credentials, approvals, ledgers, checkpoints, paths and personal data. Preserve originals privately; redact distribution copies and index the transformations. A scanner is not ownership clearance.
-6. Review the concrete release manifest, candidate hashes, docs build, schemas, example bundles and sanitized outcome index. Large archives are explicit separate versioned downloads; preserve original hashes.
-7. Clear organization-owned GitHub/PyPI/Hugging Face access, review tag/environment protections and final owner publication approval. Do not substitute a personal account.
-8. After authorization, upload reviewed immutable artifacts, deploy docs and verify anonymous installation, sample loading, links, hashes, licenses and offline replay. Record failures; use a patch release or documented yank rather than silently replacing data.
+### 1. Preserve the study and baseline {#step-1-preserve-the-study-and-baseline}
 
-The prepared workflow requires an explicit `rights_cleared` approval input and protected release environment. It cannot establish ownership by itself. Real public URLs and validated Croissant metadata are pending hosted artifacts, not fabricated placeholders.
+Review the source baseline, preserved local files and frozen study sources. Keep historical checkouts and budgets separate.
 
-## Supported versions
+The closed follow-up completed **146 paid requests**: 144 scored assignments and two probes. Estimated spend is **$6.96**, holds **$0.00**, against a **$10.00** cap. Do not reuse that allowance or launch child plans independently.
 
-Python >=3.12 is required. Clean offline wheel installations have passed locally on macOS Python 3.12.13, 3.13.12 and 3.14.6; offline installation from the source archive also passes. Hosted Linux/macOS 3.12–3.14 and documentation checks passed on commit 35173b84f05d9f34812102235075b330e188f0eb; check the current PR for subsequent revisions. No Windows support claim. No promise of indefinite support or availability. Security reports use private GitHub reporting when configured; do not invent a contact address.
+### 2. Verify the candidate {#step-2-verify-the-candidate}
+
+Retain logs and hashes for:
+
+- Offline tests and parameter coverage.
+- Strict documentation build.
+- Wheel/source-archive build and metadata checks.
+- Installed-wheel smoke tests outside the checkout.
+- Saved-result and archive reproduction.
+
+### 3. Clear ownership and licensing {#step-3-clear-ownership-and-licensing}
+
+Review imported code, contributor work, dependencies, generated assets and saved provider outcomes. Confirm redistribution rights, maintainer identity and required attribution.
+
+Only after clearance should the proposed **Apache-2.0 code** and **CC BY 4.0 data/prose** licenses and notices be applied.
+
+### 4. Review distribution copies {#step-4-review-distribution-copies}
+
+Scan source, history and downloadable archives for credentials, authorizations, ledgers, checkpoints, personal data and local paths.
+
+Preserve originals; redact only distribution copies and index the transformations. Automated scanning is not manual privacy review or ownership clearance.
+
+### 5. Approve exact artifacts and channels {#step-5-approve-exact-artifacts-and-channels}
+
+Review the concrete source revision, release manifest, wheel/source hashes, documentation, schemas, examples and sanitized outcome index.
+
+Confirm organization-owned GitHub, PyPI and dataset account access. Review protected tags/environments, trusted publishing and final hosted dataset/Croissant validation. Do not substitute a personal account.
+
+### 6. Publish and verify {#step-6-publish-and-verify}
+
+After the remaining approvals, upload the reviewed immutable artifacts and verify anonymous installation, sample loading, links, hashes, licenses and offline replay.
+
+For errors, use a corrective patch release or documented yank. Do not silently replace a versioned measured dataset.
+
+<details markdown="1">
+<summary>How the full-release workflow is gated</summary>
+
+Package publication is not triggered by an ordinary PR. The prepared workflow requires an explicit `rights_cleared` input and a protected release environment. That input cannot itself establish ownership.
+
+The already-live research preview is separately authorized. Full package/dataset publication and validated hosted Croissant metadata remain pending.
+
+</details>
+
+## Supported versions and evidence
+
+- **Python:** 3.12–3.14.
+- **Hosted checks:** Linux and macOS matrix plus documentation passed on `72b437a1a9d34464374db0bbb1ef3173b58284f9`.
+- **Local wheel installs:** macOS Python 3.12.13, 3.13.12 and 3.14.6, offline and outside the checkout.
+- **Source archive:** offline installation also checked.
+- **Windows:** not advertised as verified.
+
+[Check the current PR](https://github.com/TrustPrism/clue-benchmark/pull/2) for later revisions. There is no indefinite-support or availability promise. Use private GitHub security reporting when configured; no contact address is invented.

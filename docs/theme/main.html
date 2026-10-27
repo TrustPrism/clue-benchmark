@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block next_prev %}{% endblock %}
+
+{% block content %}
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          {% for item in page.toc %}
+            {% for section in item.children %}
+            <li><a href="{{ section.url }}">{{ section.title }}</a></li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </details>
+    <a class="toc-start" href="{{ 'tutorials/first-dataset/'|url }}">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content{% if page.url == 'reference/parameters/' %} parameter-reference{% endif %}">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    {% include "content.html" %}
+    <nav class="reading-next" aria-label="Continue reading">
+      {% if page.previous_page %}<a rel="prev" href="{{ page.previous_page.url|url }}"><small>Previous</small>{{ page.previous_page.title }}</a>{% endif %}
+      {% if page.next_page %}<a rel="next" href="{{ page.next_page.url|url }}"><small>Next</small>{{ page.next_page.title }} <span aria-hidden="true">→</span></a>{% endif %}
+    </nav>
+  </main>
+</div>
+{% endblock %}
+
+{% block footer %}
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="{{ 'results/open-questions/'|url }}">See the open questions</a>.</p>
+{% endblock %}

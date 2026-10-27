@@ -1,73 +1,135 @@
-# Every active clue predicate
+# How to read a clue
 
-Let x(s,a) be suspect s's value for attribute a, and c the responsible suspect.
-Crime values equal x(c,a). A report can be false only under the public at-most-k
-rule; structural rules stay trusted. Values may repeat unless distinct is explicit.
-In the examples below, A and B are suspect IDs, color has red/blue, and room has
-hall/study. Unmentioned assignments are arbitrary permitted values.
+Each report has a readable sentence and a formal constraint. This page pairs each active clue type with a true example and a counterexample.
+{.lead}
 
-## unary_positive
+## Reading the notation
 
-English: `Suspect "A" has "color" = "red".` Formal: x(A,color)=red.
-Satisfying: A red. Counterexample: A blue.
+- `x(s, a)` means suspect **s** has a value for attribute **a**.
+- `c` means the responsible suspect. Crime values equal `x(c, a)`.
+- Examples use suspects **A** and **B**, colors red/blue and rooms hall/study.
+- Unmentioned attributes can take any permitted values.
 
-## unary_negative
+Reports may be false only under the public **at-most-k** rule. Structural rules stay trusted. Values may repeat unless distinct assignment is explicitly required.
 
-English: `Suspect "A" has "color" != "red".` Formal: x(A,color)≠red.
-Satisfying: A blue. Counterexample: A red.
+## A suspect has a value {#unary_positive}
 
-## crime_positive
+Type: `unary_positive`.
 
-English: `The murderer has "color" = "red".` Formal: x(c,color)=red.
-Satisfying: culprit A red. Counterexample: culprit A blue.
+> Suspect "A" has "color" = "red".
 
-## crime_negative
+- **Formal:** `x(A, color) = red`.
+- **True example:** A is red.
+- **Counterexample:** A is blue.
 
-English: `The murderer has "color" != "red".` Formal: x(c,color)≠red.
-Satisfying: culprit A blue. Counterexample: culprit A red. This is categorized as
-indirect by the current sampling code; everyday language categories can differ.
+## A suspect does not have a value {#unary_negative}
 
-## crime_same_as
+Type: `unary_negative`.
 
-English: `The murderer has the same "color" value as suspect "A".`
-Formal: x(c,color)=x(A,color). Satisfying: culprit B blue, A blue.
-Counterexample: culprit B red, A blue. This does not assert c=A; sharing values is allowed.
+> Suspect "A" has "color" != "red".
 
-## crime_different_from
+- **Formal:** `x(A, color) ≠ red`.
+- **True example:** A is blue.
+- **Counterexample:** A is red.
 
-English: `The murderer has a different "color" value as suspect "A".`
-Formal: x(c,color)≠x(A,color). Satisfying: culprit B red, A blue.
-Counterexample: culprit B blue, A blue. With c=A this report is always false.
+## The culprit has a value {#crime_positive}
 
-## suspect_same_as
+Type: `crime_positive`.
 
-English: `Suspects "A" and "B" have the same "color" values.`
-Formal: x(A,color)=x(B,color). Satisfying: both red. Counterexample: A red, B blue.
+> The murderer has "color" = "red".
 
-## suspect_different_from
+- **Formal:** `x(c, color) = red`.
+- **True example:** culprit A is red.
+- **Counterexample:** culprit A is blue.
 
-English: `Suspects "A" and "B" have different "color" values.`
-Formal: x(A,color)≠x(B,color). Satisfying: A red, B blue. Counterexample: both red.
+## The culprit does not have a value {#crime_negative}
 
-## indirect_positive
+Type: `crime_negative`.
 
-English: `At least one suspect has "color" = "red" and "room" = "hall".`
-Formal: ∃s: x(s,color)=red ∧ x(s,room)=hall.
-Satisfying: A red/hall. Counterexample: A red/study and B blue/hall.
-The same suspect must satisfy both halves; this does not identify the culprit.
+> The murderer has "color" != "red".
 
-## indirect_negative
+- **Formal:** `x(c, color) ≠ red`.
+- **True example:** culprit A is blue.
+- **Counterexample:** culprit A is red.
 
-English: `No suspect has both "color" = "red" and "room" = "hall".`
-Formal: ¬∃s: x(s,color)=red ∧ x(s,room)=hall.
-Satisfying: A red/study and B blue/hall. Counterexample: A red/hall.
-This does not forbid red alone or hall alone.
+The sampling code categorizes this as indirect. That internal category can differ from everyday language.
 
-## record_positive
+## The culprit shares a suspect's value {#crime_same_as}
 
-English: `Record COMPONENT: its independent value equals "0".`
-Formal: y(COMPONENT,value)=0 with declared domain {0,1}, disjoint from target variables.
-Satisfying: that component's value 0. Counterexample: that value 1.
-Each generated component has one such in-domain assertion, so it is satisfiable;
-conjoining the stream leaves target candidates unchanged. This is not an entailed
-fact about suspects and does not assert anything about culprit attributes.
+Type: `crime_same_as`.
+
+> The murderer has the same "color" value as suspect "A".
+
+- **Formal:** `x(c, color) = x(A, color)`.
+- **True example:** culprit B is blue and A is blue.
+- **Counterexample:** culprit B is red and A is blue.
+
+This does **not** assert that A is responsible. Different suspects can share a value.
+
+## The culprit differs from a suspect {#crime_different_from}
+
+Type: `crime_different_from`.
+
+> The murderer has a different "color" value as suspect "A".
+
+- **Formal:** `x(c, color) ≠ x(A, color)`.
+- **True example:** culprit B is red and A is blue.
+- **Counterexample:** culprit B is blue and A is blue.
+
+If A is responsible, this report is always false.
+
+## Two suspects share a value {#suspect_same_as}
+
+Type: `suspect_same_as`.
+
+> Suspects "A" and "B" have the same "color" values.
+
+- **Formal:** `x(A, color) = x(B, color)`.
+- **True example:** both are red.
+- **Counterexample:** A is red and B is blue.
+
+## Two suspects have different values {#suspect_different_from}
+
+Type: `suspect_different_from`.
+
+> Suspects "A" and "B" have different "color" values.
+
+- **Formal:** `x(A, color) ≠ x(B, color)`.
+- **True example:** A is red and B is blue.
+- **Counterexample:** both are red.
+
+## Someone has both properties {#indirect_positive}
+
+Type: `indirect_positive`.
+
+> At least one suspect has "color" = "red" and "room" = "hall".
+
+- **Formal:** there exists an `s` with `x(s, color) = red` **and** `x(s, room) = hall`.
+- **True example:** A is red and in the hall.
+- **Counterexample:** A is red/in the study; B is blue/in the hall.
+
+The **same suspect** must satisfy both halves. The clue does not identify that suspect as the culprit.
+
+## Nobody has both properties {#indirect_negative}
+
+Type: `indirect_negative`.
+
+> No suspect has both "color" = "red" and "room" = "hall".
+
+- **Formal:** no `s` has both `x(s, color) = red` and `x(s, room) = hall`.
+- **True example:** A is red/in the study; B is blue/in the hall.
+- **Counterexample:** A is red/in the hall.
+
+Red by itself is allowed. Being in the hall by itself is allowed. Only their combination is forbidden.
+
+## An unrelated record has a value {#record_positive}
+
+Type: `record_positive`.
+
+> Record COMPONENT: its independent value equals "0".
+
+- **Formal:** `y(COMPONENT, value) = 0`, with declared domain `{0, 1}` and no target variables.
+- **True example:** the component's value is 0.
+- **Counterexample:** its value is 1.
+
+Each generated component has one in-domain assertion, so the stream is satisfiable and leaves target candidates unchanged. It is not an entailed fact about suspects or culprit attributes.

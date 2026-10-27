@@ -1,35 +1,103 @@
-# Clue Benchmark 0.5.0rc2
+# Test what the evidence actually supports.
 
-**Initial research preview. Ownership clearance, licensing and independent review are pending.**
+Synthetic logic puzzles for studying **reasoning, uncertainty and evidence sharing**. Generate a case, check what can be inferred, and evaluate an agent without confusing a lucky guess with a supported answer.
+{.lead}
 
-The [initial public research preview](https://trustprism.github.io/clue-benchmark/) and
-[0.5.0rc2 prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2)
-are available. The [open questions](results/open-questions.md)
-state what the experiments leave unresolved and what must be answered before
-the full software/data release. Public preview availability does not establish
-redistribution rights or grant a license.
+<div class="button-row" markdown="1">
 
-Clue Benchmark is a configurable Python generator and evaluation tool for certified information availability, reliability, and evidence distribution. It creates deterministic synthetic mysteries with explicit logical rules, certifies which answers the evidence supports, and separates public agent inputs from evaluator answers.
+[Try the offline tutorial](tutorials/first-dataset.md)
+[Explore the results](results/index.md)
 
-Start with [your first dataset](tutorials/first-dataset.md), then try [distributed evidence](tutorials/distributed-evidence.md). See [research recipes](guides/research-recipes.md), [concepts](explanations/pipeline.md), [all parameters](reference/parameters.md), [tools and Python API](reference/interfaces.md), and the [preliminary results gallery](results/index.md).
+</div>
 
-No model service, account, key or repository clone is needed for the installed offline workflow. Paid model evaluation is separately authorized and never runs in the tutorials.
+## From puzzle to score
 
-## Measured findings and original studies
+![Build a world, certify its evidence, then score correctness and support separately.](assets/evidence-flow.svg)
 
-The [latest follow-up](results/index.md#what-is-interesting-about-the-follow-up) found no consistent accuracy benefit from extra irrelevant evidence: Lite's primary endpoint stayed at 10/12, with changes on individual worlds, while Flash remained at 12/12. Costs rose roughly 56× and 77× respectively in the four-report setting. These small, exploratory results include both phases and uncertainty; they do not establish equivalence.
+1. **Build a case.** Choose the useful evidence, irrelevant records and reliability rules.
+2. **Certify it.** Check which answers the evidence permits, including each agent's private view.
+3. **Evaluate.** Record correctness, evidential support, abstention and protocol failures separately.
 
-The [original-results index](results/index.md#where-to-find-the-original-results) links the pilot, distributed-evidence controls, certified-burden study, hard cases, output-budget comparison and Qwen screening, alongside the initial follow-up and final expansion. Replay all included counts offline with `clue-benchmark examples replay measured-results --output runs/results`.
+Once installed, generation and saved-result replay work **offline, without an API key or paid calls**.
 
-## A miniature public puzzle
+## Choose a starting point
 
-Ada, Ben and Cy each have one badge value: red or blue. Repeated values are allowed. The responsible person's badge is red. Ada's badge is blue. Ben's badge equals Ada's. These three truthful reports identify Cy; they do not determine every other attribute of the world. If Ben's report is missing, Ben and Cy are both possible, so abstaining is supported and a lucky Cy guess is not supported correctness.
+<div class="link-grid" markdown="1">
 
-This is a teaching example, not a model measurement. See [predicate semantics](reference/predicates.md) for the formal rules used by the generator.
+<div class="link-card" markdown="1">
 
-## Version identities
+### Make your first dataset
 
-Software: **0.5.0rc2**. Dataset schema: **clue-community-1**. Legacy flat data: **0.3.0**. Presentation IDs, study IDs, returned model identities and source hashes describe different things; never substitute one for another.
+Generate, validate and export a small case in a few steps.
 
-[Download a real public-only quickstart case](assets/quickstart-public.jsonl).
-The [bundle dictionary](reference/data-dictionary.md) explains how to keep evaluator labels separate.
+[Start the tutorial →](tutorials/first-dataset.md)
+
+</div>
+<div class="link-card" markdown="1">
+
+### Read the experiments
+
+See what happened when models received more evidence, less evidence or more output budget.
+
+[Browse measured results →](results/index.md)
+
+</div>
+<div class="link-card" markdown="1">
+
+### Understand the guarantees
+
+Learn what a certificate establishes and why a correct answer can still lack support.
+
+[How it works →](explanations/pipeline.md)
+
+</div>
+<div class="link-card" markdown="1">
+
+### Configure a study
+
+Start from a preset, then look up only the settings you need.
+
+[Find a setting →](reference/parameters.md)
+
+</div>
+</div>
+
+## The latest finding
+
+**Extra irrelevant evidence did not consistently improve accuracy.** The earlier pilot's apparent benefit did not repeat in the expanded follow-up.
+
+Lite's primary score stayed at **10/12** between zero and 1,000 extra records. Four worlds stayed unchanged, one improved and one worsened. Flash remained at **12/12** in every condition.
+
+Costs rose roughly **56× for Lite and 77× for Flash** in the four-report setting, without higher endpoint accuracy. The sample is small, and the combined result is exploratory.
+
+[Read the findings, costs and limitations →](results/index.md#what-is-interesting-about-the-follow-up)
+
+## A puzzle you can solve now
+
+Ada, Ben and Cy have red or blue badges. Badge values may repeat.
+
+- The responsible person has a **red** badge.
+- Ada's badge is **blue**.
+- Ben's badge has the **same value as Ada's**.
+
+**Cy is the only possible responsible person.** Ada and Ben are both ruled out.
+
+![Ada and Ben have blue badges; Cy is the only remaining possibility. Removing Ben's report leaves Ben and Cy possible.](assets/badge-puzzle.svg)
+
+Now remove the report about Ben. **Both Ben and Cy become possible.** An agent that guesses Cy may be correct, but its answer is no longer supported by the available evidence.
+
+This is a teaching example, not a model measurement. [See the formal clue rules](reference/predicates.md), or [download a generated public-only case](assets/quickstart-public.jsonl).
+
+!!! note "An early research preview"
+    Version **0.5.0rc2** is [available as a prerelease](https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2). Licensing, ownership clearance and independent reviews remain pending. Public availability does not grant a redistribution license. [See the open questions](results/open-questions.md).
+
+<details markdown="1">
+<summary>Software, schema and historical versions</summary>
+
+- **Software:** `0.5.0rc2`.
+- **Current dataset schema:** `clue-community-1`.
+- **Legacy flat data:** `0.3.0`.
+
+Study IDs, source hashes and presentation IDs serve different purposes. The [data dictionary](reference/data-dictionary.md) explains these identities and the evaluator-only files.
+
+</details>

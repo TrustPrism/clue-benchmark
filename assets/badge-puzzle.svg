@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img" aria-labelledby="title desc">
+  <title id="title">A three-person badge puzzle</title>
+  <desc id="desc">Ada has a blue badge. Ben has the same badge value as Ada, so his is blue. The responsible person has red, leaving Cy as the only possible responsible person. Without the report about Ben, both Ben and Cy are possible.</desc>
+  <rect width="900" height="300" rx="18" fill="#f1f4ee"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g fill="#fff" stroke="#d3ded1"><rect x="28" y="26" width="265" height="204" rx="14"/><rect x="318" y="26" width="265" height="204" rx="14"/><rect x="608" y="26" width="265" height="204" rx="14"/></g>
+    <g fill="#e5ebe0" stroke="#5c7968" stroke-width="2"><circle cx="161" cy="78" r="24"/><path d="M119 139q0-43 42-43t42 43"/><circle cx="451" cy="78" r="24"/><path d="M409 139q0-43 42-43t42 43"/><circle cx="741" cy="78" r="24"/><path d="M699 139q0-43 42-43t42 43"/></g>
+    <g stroke="#fff" stroke-width="3"><circle cx="187" cy="125" r="15" fill="#42799a"/><circle cx="477" cy="125" r="15" fill="#42799a"/><circle cx="767" cy="125" r="15" fill="#b65c42"/></g>
+    <g fill="#203731" font-size="24" font-weight="650"><text x="161" y="175">Ada</text><text x="451" y="175">Ben</text><text x="741" y="175">Cy</text></g>
+    <g fill="#60706a" font-size="18"><text x="161" y="205">Known blue → ruled out</text><text x="451" y="205">Same as Ada → ruled out</text><text x="741" y="205">Only remaining possibility</text></g>
+    <text x="450" y="269" fill="#52685b" font-size="21">Remove Ben's report → Ben or Cy could be responsible.</text>
+  </g>
+</svg>

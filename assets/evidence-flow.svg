@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 290" role="img" aria-labelledby="title desc">
+  <title id="title">From a puzzle to an evidence-aware score</title>
+  <desc id="desc">Create a synthetic world, certify what its reports imply, then score an agent's answer and whether the evidence supports it. The evaluator keeps the answer key separate from the reports sent to the agent.</desc>
+  <rect width="900" height="290" rx="18" fill="#eef3e9"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g fill="#fff" stroke="#c7d8c8"><rect x="26" y="28" width="254" height="216" rx="13"/><rect x="323" y="28" width="254" height="216" rx="13"/><rect x="620" y="28" width="254" height="216" rx="13"/></g>
+    <g fill="#dbe9dc" stroke="#316554" stroke-width="2"><circle cx="132" cy="82" r="13"/><circle cx="173" cy="82" r="13"/><path d="M112 119q20-40 40 0m0 0q20-40 40 0" fill="none"/><rect x="418" y="62" width="64" height="65" rx="8" fill="#e6eee1"/><path d="m432 91 12 12 25-28" fill="none" stroke-width="5"/><path d="M699 117v-32h24v32m15 0V68h24v49m15 0v-20h24v20"/></g>
+    <g fill="#203731" font-size="23" font-weight="650"><text x="153" y="162">1. Build a world</text><text x="450" y="162">2. Certify the evidence</text><text x="747" y="162">3. Score the agent</text></g>
+    <g fill="#60706a" font-size="17"><text x="153" y="194">A hidden answer and reports</text><text x="450" y="194">What can a reader infer?</text><text x="747" y="194">Correct? Supported? Valid?</text></g>
+    <g fill="none" stroke="#6c8f74" stroke-width="2"><path d="M288 130h27m-8-7 8 7-8 7M585 130h27m-8-7 8 7-8 7"/></g>
+    <text x="450" y="271" fill="#52685b" font-size="16">The agent receives public reports. The evaluator keeps the answer key.</text>
+  </g>
+</svg>

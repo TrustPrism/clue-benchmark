@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/reference/predicates/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Predicates - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Predicates - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../parameters/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../interfaces/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,126 +114,190 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#every-active-clue-predicate" class="nav-link">Every active clue predicate</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#unary_positive" class="nav-link">unary_positive</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#unary_negative" class="nav-link">unary_negative</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#crime_positive" class="nav-link">crime_positive</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#crime_negative" class="nav-link">crime_negative</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#crime_same_as" class="nav-link">crime_same_as</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#crime_different_from" class="nav-link">crime_different_from</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#suspect_same_as" class="nav-link">suspect_same_as</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#suspect_different_from" class="nav-link">suspect_different_from</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#indirect_positive" class="nav-link">indirect_positive</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#indirect_negative" class="nav-link">indirect_negative</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#record_positive" class="nav-link">record_positive</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#reading-the-notation">Reading the notation</a></li>
+            
+            <li><a href="#unary_positive">A suspect has a value</a></li>
+            
+            <li><a href="#unary_negative">A suspect does not have a value</a></li>
+            
+            <li><a href="#crime_positive">The culprit has a value</a></li>
+            
+            <li><a href="#crime_negative">The culprit does not have a value</a></li>
+            
+            <li><a href="#crime_same_as">The culprit shares a suspect's value</a></li>
+            
+            <li><a href="#crime_different_from">The culprit differs from a suspect</a></li>
+            
+            <li><a href="#suspect_same_as">Two suspects share a value</a></li>
+            
+            <li><a href="#suspect_different_from">Two suspects have different values</a></li>
+            
+            <li><a href="#indirect_positive">Someone has both properties</a></li>
+            
+            <li><a href="#indirect_negative">Nobody has both properties</a></li>
+            
+            <li><a href="#record_positive">An unrelated record has a value</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="every-active-clue-predicate">Every active clue predicate</h1>
-<p>Let x(s,a) be suspect s's value for attribute a, and c the responsible suspect.
-Crime values equal x(c,a). A report can be false only under the public at-most-k
-rule; structural rules stay trusted. Values may repeat unless distinct is explicit.
-In the examples below, A and B are suspect IDs, color has red/blue, and room has
-hall/study. Unmentioned assignments are arbitrary permitted values.</p>
-<h2 id="unary_positive">unary_positive</h2>
-<p>English: <code>Suspect "A" has "color" = "red".</code> Formal: x(A,color)=red.
-Satisfying: A red. Counterexample: A blue.</p>
-<h2 id="unary_negative">unary_negative</h2>
-<p>English: <code>Suspect "A" has "color" != "red".</code> Formal: x(A,color)≠red.
-Satisfying: A blue. Counterexample: A red.</p>
-<h2 id="crime_positive">crime_positive</h2>
-<p>English: <code>The murderer has "color" = "red".</code> Formal: x(c,color)=red.
-Satisfying: culprit A red. Counterexample: culprit A blue.</p>
-<h2 id="crime_negative">crime_negative</h2>
-<p>English: <code>The murderer has "color" != "red".</code> Formal: x(c,color)≠red.
-Satisfying: culprit A blue. Counterexample: culprit A red. This is categorized as
-indirect by the current sampling code; everyday language categories can differ.</p>
-<h2 id="crime_same_as">crime_same_as</h2>
-<p>English: <code>The murderer has the same "color" value as suspect "A".</code>
-Formal: x(c,color)=x(A,color). Satisfying: culprit B blue, A blue.
-Counterexample: culprit B red, A blue. This does not assert c=A; sharing values is allowed.</p>
-<h2 id="crime_different_from">crime_different_from</h2>
-<p>English: <code>The murderer has a different "color" value as suspect "A".</code>
-Formal: x(c,color)≠x(A,color). Satisfying: culprit B red, A blue.
-Counterexample: culprit B blue, A blue. With c=A this report is always false.</p>
-<h2 id="suspect_same_as">suspect_same_as</h2>
-<p>English: <code>Suspects "A" and "B" have the same "color" values.</code>
-Formal: x(A,color)=x(B,color). Satisfying: both red. Counterexample: A red, B blue.</p>
-<h2 id="suspect_different_from">suspect_different_from</h2>
-<p>English: <code>Suspects "A" and "B" have different "color" values.</code>
-Formal: x(A,color)≠x(B,color). Satisfying: A red, B blue. Counterexample: both red.</p>
-<h2 id="indirect_positive">indirect_positive</h2>
-<p>English: <code>At least one suspect has "color" = "red" and "room" = "hall".</code>
-Formal: ∃s: x(s,color)=red ∧ x(s,room)=hall.
-Satisfying: A red/hall. Counterexample: A red/study and B blue/hall.
-The same suspect must satisfy both halves; this does not identify the culprit.</p>
-<h2 id="indirect_negative">indirect_negative</h2>
-<p>English: <code>No suspect has both "color" = "red" and "room" = "hall".</code>
-Formal: ¬∃s: x(s,color)=red ∧ x(s,room)=hall.
-Satisfying: A red/study and B blue/hall. Counterexample: A red/hall.
-This does not forbid red alone or hall alone.</p>
-<h2 id="record_positive">record_positive</h2>
-<p>English: <code>Record COMPONENT: its independent value equals "0".</code>
-Formal: y(COMPONENT,value)=0 with declared domain {0,1}, disjoint from target variables.
-Satisfying: that component's value 0. Counterexample: that value 1.
-Each generated component has one such in-domain assertion, so it is satisfiable;
-conjoining the stream leaves target candidates unchanged. This is not an entailed
-fact about suspects and does not assert anything about culprit attributes.</p></div>
+<h1 id="how-to-read-a-clue">How to read a clue<a class="headerlink" href="#how-to-read-a-clue" title="Permanent link">&para;</a></h1>
+<p class="lead">Each report has a readable sentence and a formal constraint. This page pairs each active clue type with a true example and a counterexample.</p>
+<h2 id="reading-the-notation">Reading the notation<a class="headerlink" href="#reading-the-notation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>x(s, a)</code> means suspect <strong>s</strong> has a value for attribute <strong>a</strong>.</li>
+<li><code>c</code> means the responsible suspect. Crime values equal <code>x(c, a)</code>.</li>
+<li>Examples use suspects <strong>A</strong> and <strong>B</strong>, colors red/blue and rooms hall/study.</li>
+<li>Unmentioned attributes can take any permitted values.</li>
+</ul>
+<p>Reports may be false only under the public <strong>at-most-k</strong> rule. Structural rules stay trusted. Values may repeat unless distinct assignment is explicitly required.</p>
+<h2 id="unary_positive">A suspect has a value<a class="headerlink" href="#unary_positive" title="Permanent link">&para;</a></h2>
+<p>Type: <code>unary_positive</code>.</p>
+<blockquote>
+<p>Suspect "A" has "color" = "red".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(A, color) = red</code>.</li>
+<li><strong>True example:</strong> A is red.</li>
+<li><strong>Counterexample:</strong> A is blue.</li>
+</ul>
+<h2 id="unary_negative">A suspect does not have a value<a class="headerlink" href="#unary_negative" title="Permanent link">&para;</a></h2>
+<p>Type: <code>unary_negative</code>.</p>
+<blockquote>
+<p>Suspect "A" has "color" != "red".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(A, color) ≠ red</code>.</li>
+<li><strong>True example:</strong> A is blue.</li>
+<li><strong>Counterexample:</strong> A is red.</li>
+</ul>
+<h2 id="crime_positive">The culprit has a value<a class="headerlink" href="#crime_positive" title="Permanent link">&para;</a></h2>
+<p>Type: <code>crime_positive</code>.</p>
+<blockquote>
+<p>The murderer has "color" = "red".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(c, color) = red</code>.</li>
+<li><strong>True example:</strong> culprit A is red.</li>
+<li><strong>Counterexample:</strong> culprit A is blue.</li>
+</ul>
+<h2 id="crime_negative">The culprit does not have a value<a class="headerlink" href="#crime_negative" title="Permanent link">&para;</a></h2>
+<p>Type: <code>crime_negative</code>.</p>
+<blockquote>
+<p>The murderer has "color" != "red".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(c, color) ≠ red</code>.</li>
+<li><strong>True example:</strong> culprit A is blue.</li>
+<li><strong>Counterexample:</strong> culprit A is red.</li>
+</ul>
+<p>The sampling code categorizes this as indirect. That internal category can differ from everyday language.</p>
+<h2 id="crime_same_as">The culprit shares a suspect's value<a class="headerlink" href="#crime_same_as" title="Permanent link">&para;</a></h2>
+<p>Type: <code>crime_same_as</code>.</p>
+<blockquote>
+<p>The murderer has the same "color" value as suspect "A".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(c, color) = x(A, color)</code>.</li>
+<li><strong>True example:</strong> culprit B is blue and A is blue.</li>
+<li><strong>Counterexample:</strong> culprit B is red and A is blue.</li>
+</ul>
+<p>This does <strong>not</strong> assert that A is responsible. Different suspects can share a value.</p>
+<h2 id="crime_different_from">The culprit differs from a suspect<a class="headerlink" href="#crime_different_from" title="Permanent link">&para;</a></h2>
+<p>Type: <code>crime_different_from</code>.</p>
+<blockquote>
+<p>The murderer has a different "color" value as suspect "A".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(c, color) ≠ x(A, color)</code>.</li>
+<li><strong>True example:</strong> culprit B is red and A is blue.</li>
+<li><strong>Counterexample:</strong> culprit B is blue and A is blue.</li>
+</ul>
+<p>If A is responsible, this report is always false.</p>
+<h2 id="suspect_same_as">Two suspects share a value<a class="headerlink" href="#suspect_same_as" title="Permanent link">&para;</a></h2>
+<p>Type: <code>suspect_same_as</code>.</p>
+<blockquote>
+<p>Suspects "A" and "B" have the same "color" values.</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(A, color) = x(B, color)</code>.</li>
+<li><strong>True example:</strong> both are red.</li>
+<li><strong>Counterexample:</strong> A is red and B is blue.</li>
+</ul>
+<h2 id="suspect_different_from">Two suspects have different values<a class="headerlink" href="#suspect_different_from" title="Permanent link">&para;</a></h2>
+<p>Type: <code>suspect_different_from</code>.</p>
+<blockquote>
+<p>Suspects "A" and "B" have different "color" values.</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>x(A, color) ≠ x(B, color)</code>.</li>
+<li><strong>True example:</strong> A is red and B is blue.</li>
+<li><strong>Counterexample:</strong> both are red.</li>
+</ul>
+<h2 id="indirect_positive">Someone has both properties<a class="headerlink" href="#indirect_positive" title="Permanent link">&para;</a></h2>
+<p>Type: <code>indirect_positive</code>.</p>
+<blockquote>
+<p>At least one suspect has "color" = "red" and "room" = "hall".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> there exists an <code>s</code> with <code>x(s, color) = red</code> <strong>and</strong> <code>x(s, room) = hall</code>.</li>
+<li><strong>True example:</strong> A is red and in the hall.</li>
+<li><strong>Counterexample:</strong> A is red/in the study; B is blue/in the hall.</li>
+</ul>
+<p>The <strong>same suspect</strong> must satisfy both halves. The clue does not identify that suspect as the culprit.</p>
+<h2 id="indirect_negative">Nobody has both properties<a class="headerlink" href="#indirect_negative" title="Permanent link">&para;</a></h2>
+<p>Type: <code>indirect_negative</code>.</p>
+<blockquote>
+<p>No suspect has both "color" = "red" and "room" = "hall".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> no <code>s</code> has both <code>x(s, color) = red</code> and <code>x(s, room) = hall</code>.</li>
+<li><strong>True example:</strong> A is red/in the study; B is blue/in the hall.</li>
+<li><strong>Counterexample:</strong> A is red/in the hall.</li>
+</ul>
+<p>Red by itself is allowed. Being in the hall by itself is allowed. Only their combination is forbidden.</p>
+<h2 id="record_positive">An unrelated record has a value<a class="headerlink" href="#record_positive" title="Permanent link">&para;</a></h2>
+<p>Type: <code>record_positive</code>.</p>
+<blockquote>
+<p>Record COMPONENT: its independent value equals "0".</p>
+</blockquote>
+<ul>
+<li><strong>Formal:</strong> <code>y(COMPONENT, value) = 0</code>, with declared domain <code>{0, 1}</code> and no target variables.</li>
+<li><strong>True example:</strong> the component's value is 0.</li>
+<li><strong>Counterexample:</strong> its value is 1.</li>
+</ul>
+<p>Each generated component has one in-domain assertion, so the stream is satisfiable and leaves target candidates unchanged. It is not an entailed fact about suspects or culprit attributes.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../parameters/"><small>Previous</small>Parameters</a>
+      <a rel="next" href="../interfaces/"><small>Next</small>CLI, Python and tools <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -258,6 +305,7 @@ fact about suspects and does not assert anything about culprit attributes.</p></
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

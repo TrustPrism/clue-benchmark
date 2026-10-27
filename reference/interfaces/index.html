@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/reference/interfaces/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>CLI, Python and tools - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>CLI, Python and tools - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../predicates/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../data-dictionary/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,117 +114,265 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#cli-python-and-native-tools" class="nav-link">CLI, Python and native tools</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#current-commands" class="nav-link">Current commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#python-public-api" class="nav-link">Python public API</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#native-actions-and-evaluation" class="nav-link">Native actions and evaluation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#legacy-appendix" class="nav-link">Legacy appendix</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#output-safety-in-050rc2" class="nav-link">Output safety in 0.5.0rc2</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#find-a-preset">Find a preset</a></li>
+            
+            <li><a href="#generate-and-inspect">Generate and inspect</a></li>
+            
+            <li><a href="#export-public-evidence">Export public evidence</a></li>
+            
+            <li><a href="#replay-a-saved-example">Replay a saved example</a></li>
+            
+            <li><a href="#build-a-readable-report">Build a readable report</a></li>
+            
+            <li><a href="#use-python">Use Python</a></li>
+            
+            <li><a href="#supported-final-actions">Supported final actions</a></li>
+            
+            <li><a href="#paid-evaluation-preparation-and-execution">Paid evaluation: preparation and execution</a></li>
+            
+            <li><a href="#files-errors-and-concurrent-runs">Files, errors and concurrent runs</a></li>
+            
+            <li><a href="#advanced-reproduction-and-legacy-commands">Advanced reproduction and legacy commands</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="cli-python-and-native-tools">CLI, Python and native tools</h1>
-<h2 id="current-commands">Current commands</h2>
-<p><code>clue-benchmark --help</code> is the installed command inventory. <code>--version</code> prints the software identity. All offline commands work without provider/figure/docs extras.</p>
-<ul>
-<li><code>presets list</code> lists purpose; <code>presets show NAME</code> includes resolved values.</li>
-<li><code>generate-dataset</code> and <code>profile-dataset</code> accept exactly one of <code>--preset NAME</code> or <code>--config PATH</code>. Explicit <code>--output</code> and <code>--workers</code> override either source.</li>
-<li><code>explain-config</code> accepts the same config selectors and overrides; it returns resolved values with authored field descriptions.</li>
-<li><code>validate-dataset DIRECTORY</code> checks the five-file bundle and independent semantics.</li>
-<li><code>export-public DIRECTORY --agent 0 --output FILE</code> writes allowlisted public case/report JSONL only.</li>
-<li><code>inspect-case DIRECTORY [--case-id ID] [--agent 0]</code> returns public evidence for one case.</li>
-<li><code>examples replay distributed-evidence --output DIRECTORY</code> recomputes solver information controls.</li>
-<li><code>examples replay nuisance-followup --output DIRECTORY</code> recomputes the initial, final expansion and exploratory combined study; optional <code>--figures</code> writes plots.</li>
-<li><code>examples replay measured-results --output DIRECTORY</code> recomputes all packaged historical panels, preserving study/model/arm/condition denominators.</li>
-<li><code>report SOURCE.json --output DIRECTORY</code> writes local HTML, exact source JSON and a machine-readable report. It never runs inference.</li>
-<li><code>prepare-nuisance-followup</code> prepares offline matched inputs and full-study costs; it grants no execution permit.</li>
-</ul>
-<p>Invalid inputs and incomplete work use status 2 with actionable stderr errors. Normal command summaries are JSON on stdout. Exports/reports/replays refuse overwrites. Generation resumes only matching source/config checkpoints. A frozen evaluation plan rejects drift.</p>
-<h2 id="python-public-api">Python public API</h2>
+<h1 id="cli-and-python-reference">CLI and Python reference<a class="headerlink" href="#cli-and-python-reference" title="Permanent link">&para;</a></h1>
+<p class="lead">Find the command you need, then open the advanced evaluation details only when you need them.</p>
+<h2 id="find-a-preset">Find a preset<a class="headerlink" href="#find-a-preset" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark presets list
+clue-benchmark presets show quickstart
+</code></pre>
+<p><code>clue-benchmark --help</code> lists every installed command. <code>clue-benchmark --version</code> prints the software version.</p>
+<h2 id="generate-and-inspect">Generate and inspect<a class="headerlink" href="#generate-and-inspect" title="Permanent link">&para;</a></h2>
+<p>Generate with <strong>one</strong> configuration source: <code>--preset NAME</code> or <code>--config PATH</code>.</p>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset quickstart \
+  --output runs/demo
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>explain-config --preset quickstart</code></td>
+<td>Show resolved values and field descriptions.</td>
+</tr>
+<tr>
+<td><code>profile-dataset --preset quickstart</code></td>
+<td>Profile a declared generation configuration.</td>
+</tr>
+<tr>
+<td><code>validate-dataset runs/demo</code></td>
+<td>Check the bundle and independent semantics.</td>
+</tr>
+<tr>
+<td><code>inspect-case runs/demo --agent 0</code></td>
+<td>Show one agent's public evidence.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--output</code> and <code>--workers</code> override values from the selected preset or configuration file. <code>explain-config</code> accepts the same selectors and overrides. Use <code>--case-id ID</code> to inspect a specific case.</p>
+<h2 id="export-public-evidence">Export public evidence<a class="headerlink" href="#export-public-evidence" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
+</code></pre>
+<p>Only allowlisted public case/report fields are exported. Give the agent this file, not the evaluator bundle.</p>
+<h2 id="replay-a-saved-example">Replay a saved example<a class="headerlink" href="#replay-a-saved-example" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Example name</th>
+<th>What it recomputes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>distributed-evidence</code></td>
+<td>Solver information controls on historical worlds.</td>
+</tr>
+<tr>
+<td><code>nuisance-followup</code></td>
+<td>Initial, extension and exploratory combined measured results.</td>
+</tr>
+<tr>
+<td><code>measured-results</code></td>
+<td>All packaged historical panels with separate study/settings identities.</td>
+</tr>
+</tbody>
+</table>
+<p>These commands make <strong>no model calls</strong>. The nuisance and measured-results replays accept <code>--figures</code> when the optional figures extra is installed.</p>
+<h2 id="build-a-readable-report">Build a readable report<a class="headerlink" href="#build-a-readable-report" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark report runs/sample-score.json \
+  --output runs/sample-report
+</code></pre>
+<p>Open <strong><code>runs/sample-report/index.html</code></strong>. Reports include escaped text, exact source JSON and machine-readable output. They never run inference.</p>
+<h2 id="use-python">Use Python<a class="headerlink" href="#use-python" title="Permanent link">&para;</a></h2>
 <pre><code class="language-python">from clue_benchmark import (
-    resolve_config, generate_dataset, validate_dataset,
-    iter_cases, export_public, inspect_case, evaluate_agent,
+    evaluate_agent,
+    export_public,
+    generate_dataset,
+    inspect_case,
+    resolve_config,
+    validate_dataset,
 )
-config = resolve_config(name=&quot;quickstart&quot;, output=&quot;runs/python-demo&quot;)
+
+config = resolve_config(
+    name=&quot;quickstart&quot;,
+    output=&quot;runs/python-demo&quot;,
+)
+
 generate_dataset(config)
 validate_dataset(&quot;runs/python-demo&quot;)
-export_public(&quot;runs/python-demo&quot;, &quot;runs/python-agent.jsonl&quot;, agent_id=0)
-print(inspect_case(&quot;runs/python-demo&quot;, agent_id=0)[&quot;rules&quot;])
-result = evaluate_agent(&quot;runs/python-demo&quot;, lambda view: {&quot;kind&quot;: &quot;abstain&quot;})
+
+export_public(
+    &quot;runs/python-demo&quot;,
+    &quot;runs/python-agent.jsonl&quot;,
+    agent_id=0,
+)
+
+public_case = inspect_case(&quot;runs/python-demo&quot;, agent_id=0)
+print(public_case[&quot;rules&quot;])
+
+result = evaluate_agent(
+    &quot;runs/python-demo&quot;,
+    lambda view: {&quot;kind&quot;: &quot;abstain&quot;},
+)
 </code></pre>
-<p><code>CommunityConfig</code>, <code>generate_case</code>, <code>partition</code>, <code>score</code> and <code>profile_dataset</code> remain available. <code>iter_cases</code> streams public bundle rows. <code>evaluate_agent</code> supplies copies of public fields to a trusted callable; it owns the evaluator labels. This is an API boundary, not process isolation. Run untrusted code separately with only exported public files, then score its returned actions in the evaluator process.</p>
-<h2 id="native-actions-and-evaluation">Native actions and evaluation</h2>
-<p>The supported final actions are <code>answer(target)</code> and <code>abstain()</code>. <code>target</code> must be a listed internal suspect ID, not the display name. Python response dictionaries are <code>{"kind":"answer","target":"S01"}</code> or exactly <code>{"kind":"abstain"}</code>. Missing, malformed or extra actions are protocol failures, separately reported from wrong supported-context answers.</p>
-<p><code>prepare-community-evaluation DIRECTORY --models models.json --output plan.json --ceiling-microdollars INTEGER</code> freezes explicit models, prices and settings. Conditions: complete, independent private views, sharing. Graphs: star, ring, chain, complete. Defaults: all three conditions, complete graph, three rounds, 64 reports/message, one repeat, structured_text input. CLI <code>--input-view text_only</code> omits formal constraints; do not pool with structured_text results.</p>
-<p>Each model supplies id, vendor, model, settings, context_tokens, input/output_microdollars_per_million_tokens; optional identity is an exact expected returned string, tokenizer_identity is descriptive. Vendor-specific settings are validated. Output allowances include thinking when the provider bills it. One dollar is 1,000,000 microdollars. Conservative serialized-byte bounds include tool overhead. Overflow is rejected, never truncated.</p>
-<p><code>run-community-evaluation plan.json --dataset DIRECTORY --output RUN --dry-run</code> serializes/preflights without credentials or network. <code>--execute --authorization human.json</code> requires the human plan-bound contract; the command never creates approval. Request timeouts are 600 seconds, retries zero. Persistent SQLite reservations survive interruption and concurrent launches. Settled usage plus unresolved maxima must fit the plan cap. Unknown usage or identity/resource breaches stop and hold funds. Never release holds by guessing or edit the ledger. The new $10.00 study additionally requires one shared allocation across every child plan and probe; a cap per arm is forbidden.</p>
-<h2 id="legacy-appendix">Legacy appendix</h2>
-<p>Flat <code>generate</code>, <code>validate</code>, <code>export</code>, the legacy <code>Config</code> API and v0.3 archives retain their original shapes. They are not aliases for community bundles. Old investigation/request-clue interfaces are historical; current modes are complete, independent private views and bounded report forwarding.</p>
-<p><code>run-nuisance-followup DIRECTORY</code> preflights every frozen scored/probe plan offline.
-Its explicit <code>--execute --authorization human.json</code> mode serializes the entire study,
-checks the sum of child ceilings, and stops all later jobs on unknown usage or a
-failed native compatibility probe. Fixed child ledgers prevent replay on resume.
-Human approval binds <code>manifest_id</code>, the $10.00 cap and exact total request count;
-the current candidate permits 96 scored slots plus at most two compatibility calls.
-No authorization is generated by preparation.</p>
-<p><code>analyze-nuisance-followup DIRECTORY --output NEW_DIRECTORY</code> writes per-call JSONL
-and a machine-readable analysis. It preserves never-dispatched slots and leaves
-completed-panel accuracy and paired effects null while execution is incomplete.
-Completed studies use world-level two-attempt means, descriptive cluster bootstrap,
-exact sign-flip analysis and between-model differences. No paid model is called.</p>
-<p><code>unpack-archive FILE.tar.gz --sha256 PUBLISHED_HASH --output NEW_DIRECTORY</code> handles
-explicit local reproduction downloads. It verifies the checksum before extraction,
-rejects links/traversal/duplicate paths, and enforces a declared uncompressed byte
-limit (<code>--maximum-bytes</code>, default one billion). No hosted URLs or download service
-are claimed until the owner clears and publishes the artifacts.</p>
-<h2 id="output-safety-in-050rc2">Output safety in 0.5.0rc2</h2>
-<p>Completed matching datasets are returned without solver work or file rewrites.
-Generation and native evaluation take an exclusive per-directory lock on Linux
-and macOS; simultaneous writers receive a short error. A request whose atomic
-reservation was lost to another launcher is never dispatched. Ledger identity
-creation is serialized. Unknown usage still stops and holds the maximum.</p>
-<p>JSON files use unique temporary files and atomic publication. Public exports and
-new evaluator outputs use atomic no-clobber publication. An occupied evaluator
-output is rejected before invoking an agent callback. Reports validate source
-shape before creating output, escape arbitrary text and retain exact source JSON;
-phase-separated result tables are keyboard-scrollable.</p></div>
+<p>Also available: <code>CommunityConfig</code>, <code>generate_case</code>, <code>partition</code>, <code>score</code>, <code>profile_dataset</code> and <code>iter_cases</code>. The latter streams public bundle rows.</p>
+<div class="admonition warning">
+<p class="admonition-title">A public view is not process isolation</p>
+<p><code>evaluate_agent</code> supplies copies of public fields to a trusted callable; the evaluator still owns the labels. Run untrusted code in a separate process with exported public files, then score its returned actions in the evaluator process.</p>
+</div>
+<h2 id="supported-final-actions">Supported final actions<a class="headerlink" href="#supported-final-actions" title="Permanent link">&para;</a></h2>
+<p>Name a listed <strong>internal suspect ID</strong>, not its display name:</p>
+<pre><code class="language-json">{&quot;kind&quot;: &quot;answer&quot;, &quot;target&quot;: &quot;S01&quot;}
+</code></pre>
+<p>Or abstain:</p>
+<pre><code class="language-json">{&quot;kind&quot;: &quot;abstain&quot;}
+</code></pre>
+<p>Native tools are <code>answer(target)</code> and <code>abstain()</code>. Missing, malformed or extra actions count as <strong>protocol failures</strong>, separately from wrong answers on sufficient evidence.</p>
+<h2 id="paid-evaluation-preparation-and-execution">Paid evaluation: preparation and execution<a class="headerlink" href="#paid-evaluation-preparation-and-execution" title="Permanent link">&para;</a></h2>
+<p>Preparation and dry runs work without provider credentials. Actual execution is separately authorized.</p>
+<details>
+<summary>Prepare an evaluation plan</summary>
+<pre><code class="language-sh">clue-benchmark prepare-community-evaluation runs/demo \
+  --models models.json \
+  --output plan.json \
+  --ceiling-microdollars 1000000
+</code></pre>
+<p>The example ceiling is <strong>$1.00</strong>. Preparation freezes explicit models, prices and settings; it does not spend or authorize that amount.</p>
+<p>Defaults:</p>
+<ul>
+<li><strong>Conditions:</strong> complete, independent private views and sharing.</li>
+<li><strong>Graph:</strong> complete; other choices are star, ring and chain.</li>
+<li><strong>Sharing:</strong> three rounds, at most 64 reports per message.</li>
+<li><strong>Repeats:</strong> one.</li>
+<li><strong>Input format:</strong> <code>structured_text</code>.</li>
+</ul>
+<p><code>--input-view text_only</code> omits formal constraints. Keep those results separate from structured-text results.</p>
+<p>Each model record supplies <code>id</code>, <code>vendor</code>, <code>model</code>, <code>settings</code>, <code>context_tokens</code>, <code>input_microdollars_per_million_tokens</code> and <code>output_microdollars_per_million_tokens</code>.</p>
+<p>An optional <code>identity</code> is an exact expected returned model string; <code>tokenizer_identity</code> is descriptive. Vendor-specific settings are validated. Billed output allowances include thinking where applicable.</p>
+<p>One dollar equals <strong>1,000,000 microdollars</strong>. Serialized-byte bounds include tool overhead. Context overflow is rejected, never truncated.</p>
+</details>
+<details>
+<summary>Dry-run, execution and durable budget controls</summary>
+<pre><code class="language-sh">clue-benchmark run-community-evaluation plan.json \
+  --dataset runs/demo \
+  --output runs/evaluation \
+  --dry-run
+</code></pre>
+<p>Actual execution needs <code>--execute --authorization human.json</code> with a human, plan-bound contract. The command never creates approval.</p>
+<ul>
+<li>Request timeout: <strong>600 seconds</strong>.</li>
+<li>Automatic retries: <strong>zero</strong>.</li>
+<li>Persistent SQLite reservations survive interruptions and concurrent launches.</li>
+<li>Settled usage plus unresolved maximum reservations must fit the plan cap.</li>
+<li>Unknown usage or identity/resource breaches stop execution and retain a conservative hold.</li>
+</ul>
+<p>Do not edit ledger balances or assume unresolved calls were free. The completed $10.00 follow-up used one shared allowance across child plans and probes; a separate cap per arm was not allowed.</p>
+</details>
+<h2 id="files-errors-and-concurrent-runs">Files, errors and concurrent runs<a class="headerlink" href="#files-errors-and-concurrent-runs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Success summaries:</strong> JSON on stdout.</li>
+<li><strong>Invalid or incomplete work:</strong> exit status 2 with an actionable error on stderr.</li>
+<li><strong>Exports, reports and replays:</strong> refuse an existing destination.</li>
+<li><strong>Generation:</strong> resumes only a matching source/config checkpoint. Complete matching datasets return without being regenerated or rewritten.</li>
+<li><strong>Frozen evaluations:</strong> reject source/config drift.</li>
+</ul>
+<details>
+<summary>Atomic writes and concurrency guarantees in 0.5.0rc2</summary>
+<p>Generation and native evaluation take exclusive per-directory locks on Linux and macOS. Simultaneous writers receive a short error.</p>
+<p>A request that loses an atomic budget reservation is never dispatched. Ledger identity creation is serialized. Unknown usage still stops execution and holds the maximum.</p>
+<p>JSON writes use unique temporary files and atomic publication. Public exports and new evaluator outputs do not overwrite existing files. An occupied evaluator output is rejected before calling the agent.</p>
+<p>Reports validate their source before creating output, escape text, retain exact JSON, and keep phase tables keyboard-scrollable.</p>
+</details>
+<h2 id="advanced-reproduction-and-legacy-commands">Advanced reproduction and legacy commands<a class="headerlink" href="#advanced-reproduction-and-legacy-commands" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Prepare, run or analyze the original follow-up protocol</summary>
+<p><code>prepare-nuisance-followup</code> prepares matched inputs and maximum costs offline. It grants no execution permit.</p>
+<pre><code class="language-sh">clue-benchmark run-nuisance-followup runs/followup
+</code></pre>
+<p>This preflights the original frozen study offline. Explicit execution requires <code>--execute --authorization human.json</code>. It serializes the study, checks child ceilings, and stops later jobs after unknown usage or a failed compatibility probe. Fixed child ledgers prevent replay on resume.</p>
+<p>The original manifest binds 96 scored slots plus at most two probes. The final expansion is recorded separately; the closed allowance cannot be reused.</p>
+<pre><code class="language-sh">clue-benchmark analyze-nuisance-followup runs/followup \
+  --output runs/followup-analysis
+</code></pre>
+<p>Analysis preserves never-dispatched slots. Incomplete panel accuracy and paired effects remain null until completion. Completed analyses use world-level attempt means, descriptive cluster bootstrap, exact sign-flip analysis and between-model differences. No model is called.</p>
+</details>
+<details>
+<summary>Unpack an explicit reproduction archive</summary>
+<pre><code class="language-sh">clue-benchmark unpack-archive study.tar.gz \
+  --sha256 PUBLISHED_HASH \
+  --output runs/unpacked
+</code></pre>
+<p>Use the actual published hash, not the placeholder above. The command verifies it before extraction and rejects links, traversal and duplicate paths.</p>
+<p>The default uncompressed limit is one billion bytes; override with <code>--maximum-bytes</code>. Full study archives are separate from the public sanitized outcome downloads and remain pending review where not released.</p>
+</details>
+<details>
+<summary>Legacy v0.3 interfaces</summary>
+<p>Flat <code>generate</code>, <code>validate</code>, <code>export</code>, the legacy <code>Config</code> API and v0.3 archives retain their original shapes. They are separate from community bundles.</p>
+<p>Old investigation/request-clue interfaces are historical. Current conditions are complete evidence, independent private views and bounded forwarding.</p>
+</details>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../predicates/"><small>Previous</small>Predicates</a>
+      <a rel="next" href="../data-dictionary/"><small>Next</small>Data dictionary <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -249,6 +380,7 @@ phase-separated result tables are keyboard-scrollable.</p></div>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

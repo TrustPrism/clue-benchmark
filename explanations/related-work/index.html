@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/explanations/related-work/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Related implementations - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Related implementations - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../pipeline/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../../reference/parameters/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,66 +114,73 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#related-implementation-checks-october-27-2026" class="nav-link">Related implementation checks — October 27, 2026</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#temporal-clue" class="nav-link">Temporal Clue</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#enigmaforge" class="nav-link">EnigmaForge</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#positioning-and-publication-patterns" class="nav-link">Positioning and publication patterns</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#temporal-clue">Temporal Clue</a></li>
+            
+            <li><a href="#enigmaforge">EnigmaForge</a></li>
+            
+            <li><a href="#positioning-and-publication-patterns">Positioning and publication patterns</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="related-implementation-checks-october-27-2026">Related implementation checks — October 27, 2026</h1>
-<p>These narrow source inspections guide positioning, not claims of superiority or
-reproductions of another project's model results. File blob hashes identify the
-actual inspected contents; main-branch links may later change.</p>
-<h2 id="temporal-clue">Temporal Clue</h2>
+<h1 id="related-implementations">Related implementations<a class="headerlink" href="#related-implementations" title="Permanent link">&para;</a></h1>
+<p class="lead">Source checks recorded on <strong>October 27, 2026</strong>. These narrow inspections guide positioning; they are not head-to-head evaluations or claims of superiority.</p>
+<p><strong>What was checked:</strong> selected source files. <strong>What was not checked:</strong> complete test suites or another project's model results. Main-branch links can change; the inspected file hashes are retained below.</p>
+<h2 id="temporal-clue">Temporal Clue<a class="headerlink" href="#temporal-clue" title="Permanent link">&para;</a></h2>
+<p>The code constructs a temporal/spatial mystery prompt with suspects, weapons,
+rooms, times, motives, questions and a solution export. Its CP-SAT model enforces:</p>
+<ul>
+<li>Categorical assignments.</li>
+<li>Movement adjacency.</li>
+<li>Weapon movement with suspects.</li>
+<li>Crime room/time relationships.</li>
+</ul>
+<p>These are confirmed features in the inspected files.
+No broad assertion about absent capabilities follows from inspecting two files;
+we did not run its generation tests or reproduce its evaluations.</p>
+<details>
+<summary>Inspected source files and hashes</summary>
 <p>Inspected <a href="https://github.com/bradhilton/temporal-clue/blob/main/temporal_clue/puzzle.py">puzzle.py</a>,
 blob <code>bcaa67ff012c0528860c04874dba591a8c544571</code>, and
 <a href="https://github.com/bradhilton/temporal-clue/blob/main/temporal_clue/model.py">model.py</a>,
 blob <code>4668d89c0dbc63249a3bbf9870011f20a8b9487b</code>.</p>
-<p>The code constructs a temporal/spatial mystery prompt with suspects, weapons,
-rooms, times, motives, questions and a solution export. Its CP-SAT model enforces
-categorical assignments, movement adjacency, weapon movement with suspects, and
-crime room/time relationships. These are confirmed implementation features.
-No broad assertion about absent capabilities follows from inspecting two files;
-we did not run its generation tests or reproduce its evaluations.</p>
-<h2 id="enigmaforge">EnigmaForge</h2>
+</details>
+<h2 id="enigmaforge">EnigmaForge<a class="headerlink" href="#enigmaforge" title="Permanent link">&para;</a></h2>
+<p>The generator samples a ground truth, adds consistent relational constraints,
+strengthens toward uniqueness, and minimizes surviving constraints. Verification code includes:</p>
+<ul>
+<li>SAT/oracle model-set and uniqueness checks.</li>
+<li>Ablation and distractor safety.</li>
+<li>Template realization and round-trip checks.</li>
+</ul>
+<p>These overlap with verified
+puzzle generation and controlled evidence; those features alone are not novelty
+claims. We did not establish coverage or correctness by executing this source,
+nor verify its model-performance claims.</p>
+<details>
+<summary>Inspected source files and hashes</summary>
 <p>Inspected <a href="https://github.com/robottwo/enigmaforge/blob/main/enigmaforge/generator.py">generator.py</a>,
 blob <code>b1d1145d6ff5cf44d01813ae92be5cd952e344a1</code>, and
 <a href="https://github.com/robottwo/enigmaforge/blob/main/enigmaforge/verify.py">verify.py</a>,
 blob <code>9c69c6dfeb72a2c8b8d856c00fb04cf0af198766</code>.</p>
-<p>The generator samples a ground truth, adds consistent relational constraints,
-strengthens toward uniqueness, and minimizes surviving constraints. Verification
-code includes SAT/oracle model-set checks, uniqueness, ablation, distractor
-safety, and template realization/round-trip checks. These overlap with verified
-puzzle generation and controlled evidence; those features alone are not novelty
-claims. We did not establish coverage or correctness by executing this source,
-nor verify its model-performance claims.</p>
-<h2 id="positioning-and-publication-patterns">Positioning and publication patterns</h2>
+</details>
+<h2 id="positioning-and-publication-patterns">Positioning and publication patterns<a class="headerlink" href="#positioning-and-publication-patterns" title="Permanent link">&para;</a></h2>
 <p>Clue Benchmark focuses on configurable certified information availability,
 public reliability rules, private/coalition evidence and supported correctness.
 It does not claim novelty for mysteries, distractors, graphs or verified puzzles
@@ -199,13 +189,22 @@ in isolation. <a href="https://github.com/open-thought/reasoning-gym">Reasoning 
 onboarding/interface references; <a href="https://inspect.aisi.org.uk/eval-logs.html">Inspect</a>
 illustrates readable saved records. No adapter compatibility is advertised.</p>
 <p>The static docs separate tutorials, practical guides, explanations and reference
-following <a href="https://diataxis.fr/">Diataxis</a>, with <a href="https://www.mkdocs.org/">MkDocs</a> search.</p></div>
+following <a href="https://diataxis.fr/">Diataxis</a>, with <a href="https://www.mkdocs.org/">MkDocs</a> search.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../../results/open-questions/"><small>Previous</small>Open questions</a>
+      <a rel="next" href="../../maintainers/release/"><small>Next</small>Release and review <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -213,6 +212,7 @@ following <a href="https://diataxis.fr/">Diataxis</a>, with <a href="https://www
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

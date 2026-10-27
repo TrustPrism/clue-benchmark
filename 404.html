@@ -8,23 +8,20 @@
         
         
         <link rel="shortcut icon" href="/clue-benchmark/img/favicon.ico">
-        <title>Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Clue Benchmark</title>
         <link href="/clue-benchmark/css/bootstrap.min.css" rel="stylesheet">
         <link href="/clue-benchmark/css/fontawesome.min.css" rel="stylesheet">
         <link href="/clue-benchmark/css/brands.min.css" rel="stylesheet">
         <link href="/clue-benchmark/css/solid.min.css" rel="stylesheet">
         <link href="/clue-benchmark/css/v4-font-face.min.css" rel="stylesheet">
         <link href="/clue-benchmark/css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="/clue-benchmark/stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="/clue-benchmark/.">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="/clue-benchmark/.">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="/clue-benchmark/." class="nav-link">Home</a>
+                                <a href="/clue-benchmark/." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="/clue-benchmark/tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="/clue-benchmark/guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="/clue-benchmark/explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="/clue-benchmark/explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/clue-benchmark/results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="/clue-benchmark/results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="/clue-benchmark/results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="/clue-benchmark/maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="/clue-benchmark/explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="/clue-benchmark/maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -143,6 +136,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="/clue-benchmark/js/base.js"></script>
+        <script src="/clue-benchmark/javascripts/reading.js"></script>
         <script src="/clue-benchmark/search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

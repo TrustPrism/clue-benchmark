@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/">
         <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Clue Benchmark</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/fontawesome.min.css" rel="stylesheet">
         <link href="css/brands.min.css" rel="stylesheet">
         <link href="css/solid.min.css" rel="stylesheet">
         <link href="css/v4-font-face.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body class="homepage">
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href=".">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Home</a>
+                                <a href="." class="nav-link active" aria-current="page">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="tutorials/first-dataset/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,65 +114,114 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#clue-benchmark-050rc2" class="nav-link">Clue Benchmark 0.5.0rc2</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#measured-findings-and-original-studies" class="nav-link">Measured findings and original studies</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#a-miniature-public-puzzle" class="nav-link">A miniature public puzzle</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#version-identities" class="nav-link">Version identities</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#from-puzzle-to-score">From puzzle to score</a></li>
+            
+            <li><a href="#choose-a-starting-point">Choose a starting point</a></li>
+            
+            <li><a href="#the-latest-finding">The latest finding</a></li>
+            
+            <li><a href="#a-puzzle-you-can-solve-now">A puzzle you can solve now</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="clue-benchmark-050rc2">Clue Benchmark 0.5.0rc2</h1>
-<p><strong>Initial research preview. Ownership clearance, licensing and independent review are pending.</strong></p>
-<p>The <a href="https://trustprism.github.io/clue-benchmark/">initial public research preview</a> and
-<a href="https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2">0.5.0rc2 prerelease</a>
-are available. The <a href="results/open-questions/">open questions</a>
-state what the experiments leave unresolved and what must be answered before
-the full software/data release. Public preview availability does not establish
-redistribution rights or grant a license.</p>
-<p>Clue Benchmark is a configurable Python generator and evaluation tool for certified information availability, reliability, and evidence distribution. It creates deterministic synthetic mysteries with explicit logical rules, certifies which answers the evidence supports, and separates public agent inputs from evaluator answers.</p>
-<p>Start with <a href="tutorials/first-dataset/">your first dataset</a>, then try <a href="tutorials/distributed-evidence/">distributed evidence</a>. See <a href="guides/research-recipes/">research recipes</a>, <a href="explanations/pipeline/">concepts</a>, <a href="reference/parameters/">all parameters</a>, <a href="reference/interfaces/">tools and Python API</a>, and the <a href="results/">preliminary results gallery</a>.</p>
-<p>No model service, account, key or repository clone is needed for the installed offline workflow. Paid model evaluation is separately authorized and never runs in the tutorials.</p>
-<h2 id="measured-findings-and-original-studies">Measured findings and original studies</h2>
-<p>The <a href="results/#what-is-interesting-about-the-follow-up">latest follow-up</a> found no consistent accuracy benefit from extra irrelevant evidence: Lite's primary endpoint stayed at 10/12, with changes on individual worlds, while Flash remained at 12/12. Costs rose roughly 56× and 77× respectively in the four-report setting. These small, exploratory results include both phases and uncertainty; they do not establish equivalence.</p>
-<p>The <a href="results/#where-to-find-the-original-results">original-results index</a> links the pilot, distributed-evidence controls, certified-burden study, hard cases, output-budget comparison and Qwen screening, alongside the initial follow-up and final expansion. Replay all included counts offline with <code>clue-benchmark examples replay measured-results --output runs/results</code>.</p>
-<h2 id="a-miniature-public-puzzle">A miniature public puzzle</h2>
-<p>Ada, Ben and Cy each have one badge value: red or blue. Repeated values are allowed. The responsible person's badge is red. Ada's badge is blue. Ben's badge equals Ada's. These three truthful reports identify Cy; they do not determine every other attribute of the world. If Ben's report is missing, Ben and Cy are both possible, so abstaining is supported and a lucky Cy guess is not supported correctness.</p>
-<p>This is a teaching example, not a model measurement. See <a href="reference/predicates/">predicate semantics</a> for the formal rules used by the generator.</p>
-<h2 id="version-identities">Version identities</h2>
-<p>Software: <strong>0.5.0rc2</strong>. Dataset schema: <strong>clue-community-1</strong>. Legacy flat data: <strong>0.3.0</strong>. Presentation IDs, study IDs, returned model identities and source hashes describe different things; never substitute one for another.</p>
-<p><a href="assets/quickstart-public.jsonl">Download a real public-only quickstart case</a>.
-The <a href="reference/data-dictionary/">bundle dictionary</a> explains how to keep evaluator labels separate.</p></div>
+<h1 id="test-what-the-evidence-actually-supports">Test what the evidence actually supports.<a class="headerlink" href="#test-what-the-evidence-actually-supports" title="Permanent link">&para;</a></h1>
+<p class="lead">Synthetic logic puzzles for studying <strong>reasoning, uncertainty and evidence sharing</strong>. Generate a case, check what can be inferred, and evaluate an agent without confusing a lucky guess with a supported answer.</p>
+<div class="button-row">
+<p><a href="tutorials/first-dataset/">Try the offline tutorial</a>
+<a href="results/">Explore the results</a></p>
+</div>
+<h2 id="from-puzzle-to-score">From puzzle to score<a class="headerlink" href="#from-puzzle-to-score" title="Permanent link">&para;</a></h2>
+<p><img alt="Build a world, certify its evidence, then score correctness and support separately." src="assets/evidence-flow.svg" /></p>
+<ol>
+<li><strong>Build a case.</strong> Choose the useful evidence, irrelevant records and reliability rules.</li>
+<li><strong>Certify it.</strong> Check which answers the evidence permits, including each agent's private view.</li>
+<li><strong>Evaluate.</strong> Record correctness, evidential support, abstention and protocol failures separately.</li>
+</ol>
+<p>Once installed, generation and saved-result replay work <strong>offline, without an API key or paid calls</strong>.</p>
+<h2 id="choose-a-starting-point">Choose a starting point<a class="headerlink" href="#choose-a-starting-point" title="Permanent link">&para;</a></h2>
+<div class="link-grid">
+<div class="link-card">
+<h3 id="make-your-first-dataset">Make your first dataset<a class="headerlink" href="#make-your-first-dataset" title="Permanent link">&para;</a></h3>
+<p>Generate, validate and export a small case in a few steps.</p>
+<p><a href="tutorials/first-dataset/">Start the tutorial →</a></p>
+</div>
+<div class="link-card">
+<h3 id="read-the-experiments">Read the experiments<a class="headerlink" href="#read-the-experiments" title="Permanent link">&para;</a></h3>
+<p>See what happened when models received more evidence, less evidence or more output budget.</p>
+<p><a href="results/">Browse measured results →</a></p>
+</div>
+<div class="link-card">
+<h3 id="understand-the-guarantees">Understand the guarantees<a class="headerlink" href="#understand-the-guarantees" title="Permanent link">&para;</a></h3>
+<p>Learn what a certificate establishes and why a correct answer can still lack support.</p>
+<p><a href="explanations/pipeline/">How it works →</a></p>
+</div>
+<div class="link-card">
+<h3 id="configure-a-study">Configure a study<a class="headerlink" href="#configure-a-study" title="Permanent link">&para;</a></h3>
+<p>Start from a preset, then look up only the settings you need.</p>
+<p><a href="reference/parameters/">Find a setting →</a></p>
+</div>
+</div>
+<h2 id="the-latest-finding">The latest finding<a class="headerlink" href="#the-latest-finding" title="Permanent link">&para;</a></h2>
+<p><strong>Extra irrelevant evidence did not consistently improve accuracy.</strong> The earlier pilot's apparent benefit did not repeat in the expanded follow-up.</p>
+<p>Lite's primary score stayed at <strong>10/12</strong> between zero and 1,000 extra records. Four worlds stayed unchanged, one improved and one worsened. Flash remained at <strong>12/12</strong> in every condition.</p>
+<p>Costs rose roughly <strong>56× for Lite and 77× for Flash</strong> in the four-report setting, without higher endpoint accuracy. The sample is small, and the combined result is exploratory.</p>
+<p><a href="results/#what-is-interesting-about-the-follow-up">Read the findings, costs and limitations →</a></p>
+<h2 id="a-puzzle-you-can-solve-now">A puzzle you can solve now<a class="headerlink" href="#a-puzzle-you-can-solve-now" title="Permanent link">&para;</a></h2>
+<p>Ada, Ben and Cy have red or blue badges. Badge values may repeat.</p>
+<ul>
+<li>The responsible person has a <strong>red</strong> badge.</li>
+<li>Ada's badge is <strong>blue</strong>.</li>
+<li>Ben's badge has the <strong>same value as Ada's</strong>.</li>
+</ul>
+<p><strong>Cy is the only possible responsible person.</strong> Ada and Ben are both ruled out.</p>
+<p><img alt="Ada and Ben have blue badges; Cy is the only remaining possibility. Removing Ben's report leaves Ben and Cy possible." src="assets/badge-puzzle.svg" /></p>
+<p>Now remove the report about Ben. <strong>Both Ben and Cy become possible.</strong> An agent that guesses Cy may be correct, but its answer is no longer supported by the available evidence.</p>
+<p>This is a teaching example, not a model measurement. <a href="reference/predicates/">See the formal clue rules</a>, or <a href="assets/quickstart-public.jsonl">download a generated public-only case</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">An early research preview</p>
+<p>Version <strong>0.5.0rc2</strong> is <a href="https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2">available as a prerelease</a>. Licensing, ownership clearance and independent reviews remain pending. Public availability does not grant a redistribution license. <a href="results/open-questions/">See the open questions</a>.</p>
+</div>
+<details>
+<summary>Software, schema and historical versions</summary>
+<ul>
+<li><strong>Software:</strong> <code>0.5.0rc2</code>.</li>
+<li><strong>Current dataset schema:</strong> <code>clue-community-1</code>.</li>
+<li><strong>Legacy flat data:</strong> <code>0.3.0</code>.</li>
+</ul>
+<p>Study IDs, source hashes and presentation IDs serve different purposes. The <a href="reference/data-dictionary/">data dictionary</a> explains these identities and the evaluator-only files.</p>
+</details>
+    <nav class="reading-next" aria-label="Continue reading">
+      
+      <a rel="next" href="tutorials/first-dataset/"><small>Next</small>First dataset <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script>
@@ -197,6 +229,7 @@ The <a href="reference/data-dictionary/">bundle dictionary</a> explains how to k
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="js/base.js"></script>
+        <script src="javascripts/reading.js"></script>
         <script src="search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -265,5 +298,5 @@ The <a href="reference/data-dictionary/">bundle dictionary</a> explains how to k
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-10-27 20:10:46.176011+00:00
+Build Date UTC : 2026-10-27 23:12:59.528646+00:00
 -->

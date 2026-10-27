@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/guides/research-recipes/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Research recipes - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Research recipes - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../../tutorials/distributed-evidence/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../../explanations/pipeline/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,82 +114,117 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#four-worked-research-recipes" class="nav-link">Four worked research recipes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#independent-nuisance-dose" class="nav-link">Independent nuisance dose</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#completeprivateshared-evidence" class="nav-link">Complete/private/shared evidence</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#false-report-robustness" class="nav-link">False-report robustness</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#burden-and-resource-limits" class="nav-link">Burden and resource limits</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#step-1-add-irrelevant-evidence">1. Add irrelevant evidence</a></li>
+            
+            <li><a href="#step-2-split-and-share-evidence">2. Split and share evidence</a></li>
+            
+            <li><a href="#step-3-introduce-false-reports">3. Introduce false reports</a></li>
+            
+            <li><a href="#step-4-explore-evidence-burden">4. Explore evidence burden</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="four-worked-research-recipes">Four worked research recipes</h1>
-<p>Each recipe keeps logical guarantees separate from observed model behavior. Use a new output directory; none of these commands invokes a model.</p>
-<h2 id="independent-nuisance-dose">Independent nuisance dose</h2>
-<p>Question: can more irrelevant evidence improve a weaker model's supported accuracy? <code>noise-volume</code> generates one four-necessary-report branching world with 100 satisfiable independent records, no false reports, single-agent complete evidence, and the useful stream in front.</p>
-<pre><code class="language-sh">clue-benchmark generate-dataset --preset noise-volume --output runs/noise
-clue-benchmark examples replay measured-results --output runs/counts
+<h1 id="four-research-recipes">Four research recipes<a class="headerlink" href="#four-research-recipes" title="Permanent link">&para;</a></h1>
+<p class="lead">Start with a concrete question, generate a small example, then inspect the guarantees before evaluating a model.</p>
+<p><strong>All commands on this page run offline.</strong> Use a new output directory for each example.</p>
+<h2 id="step-1-add-irrelevant-evidence">1. Add irrelevant evidence<a class="headerlink" href="#step-1-add-irrelevant-evidence" title="Permanent link">&para;</a></h2>
+<p><strong>Question:</strong> can more irrelevant evidence improve supported accuracy?</p>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset noise-volume \
+  --output runs/noise
 </code></pre>
-<p>The motivating low-thinking Lite counts were 2/5, 3/5, 5/5 at 0/100/1000 records on the same five worlds. Flash was 5/5 throughout. In the eight-report stratum Lite was 5/8, 5/8, 4/8, including one provider failure at the largest dose. This is not established noise-assisted reasoning: one attempt per condition, some identical payloads elsewhere changed answers, and input costs rose sharply.</p>
-<p>The fixed endpoint was Lite's 1000-minus-zero change in the four-report stratum,
-with two attempts averaged per world. The initial study plus one final expansion
-completed twelve worlds and 144 scored calls plus two initial probes. Combined
-Lite counts were <strong>10/12, 9/12, 10/12</strong> in the primary stratum and <strong>9/12, 5/12,
-7/12</strong> in the eight-report stratum; Flash scored 12/12 throughout. Six worlds per
-stratum give limited precision. The primary estimate is zero with a descriptive
-95% world-bootstrap interval [-25, +25] points; unchanged scores are not proof of
-equivalence. The combined estimate is explicitly exploratory because expansion
-followed the initial result. Estimated total <strong>$6.96</strong>, no holds, below $10.
-See <a href="../../results/#nuisance-records">separate phases and replay</a>.</p>
-<p>To prepare a new exact study offline, supply explicit reviewed model prices and every prior measured bank:</p>
-<pre><code class="language-sh">clue-benchmark prepare-nuisance-followup --models models.json --prior-bank prior/bank --output runs/followup
+<p>This preset creates:</p>
+<ul>
+<li>One branching world with <strong>four necessary reports</strong>.</li>
+<li><strong>100 satisfiable, independent records</strong> unrelated to the target answer.</li>
+<li>Complete evidence for one agent, with useful reports first.</li>
+<li>No false reports.</li>
+</ul>
+<p>The original pilot suggested an improvement for Lite. The follow-up did not repeat that benefit consistently: the primary score was <strong>10/12 at both endpoint doses</strong>, while costs rose sharply.</p>
+<p><a href="../../results/#nuisance-records">See all doses, phases and limitations →</a></p>
+<p>Replay the saved measurements:</p>
+<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup \
+  --output runs/noise-results
 </code></pre>
-<p>This command prepares candidates and maximum reservations only. It cannot authorize inference. Recognizable records differ from adversarial prose; the design changes context length and composition together and cannot identify a mechanism.</p>
-<h2 id="completeprivateshared-evidence">Complete/private/shared evidence</h2>
-<p>Question: does the receiver have enough information? Use <code>distributed</code> and the <a href="../../tutorials/distributed-evidence/">eight-world replay tutorial</a>. The complete views are unique; private views are ambiguous, and bounded forwarding retains report identities. The observed star success is a property of this protocol and fixture, not a universal topology ranking.</p>
-<h2 id="false-report-robustness">False-report robustness</h2>
-<pre><code class="language-sh">clue-benchmark generate-dataset --preset false-reports --output runs/false
-clue-benchmark explain-config --preset false-reports
+<details>
+<summary>Prepare a separate matched study without running it</summary>
+<p>Supply explicit reviewed model prices and the prior measured bank:</p>
+<pre><code class="language-sh">clue-benchmark prepare-nuisance-followup \
+  --models models.json \
+  --prior-bank prior/bank \
+  --output runs/new-followup
 </code></pre>
-<p>Question: can an agent reason under an at-most-k rule? The preset publishes allowance two with one sampled false report; actual corrupted identities are private. Final uniqueness is certified under the published rule. The historical fixed-allowance experiment scored Lite 8/8, 7/8, 8/8 and Flash 8/8 throughout at 0/1/2 actual corruptions. Necessary evidence was not held fixed. This small result is not monotonic evidence of difficulty.</p>
-<h2 id="burden-and-resource-limits">Burden and resource limits</h2>
-<pre><code class="language-sh">clue-benchmark generate-dataset --preset hard-example --output runs/hard
+<p>Preparation creates candidates and maximum reservations. It <strong>does not authorize inference</strong>. The completed October 27 allowance is closed at an estimated <strong>$6.96 of $10.00</strong>, with no holds.</p>
+<p>Recognizable records are different from adversarial prose. Changing context length and composition together does not isolate a reasoning mechanism. Any new paid study needs a separate plan and budget.</p>
+</details>
+<h2 id="step-2-split-and-share-evidence">2. Split and share evidence<a class="headerlink" href="#step-2-split-and-share-evidence" title="Permanent link">&para;</a></h2>
+<p><strong>Question:</strong> does the receiver have enough information to answer?</p>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset distributed \
+  --output runs/distributed
 </code></pre>
-<p>This small bounded example has eight suspects and eight necessary reports. It is not the measured large hard regime. At 32 necessary reports, historical Flash scored 30/30 in two path/tree arms while Lite scored 9/30 and 7/30, from three attempts on ten worlds per arm. Simple construction heuristics solve some families.</p>
-<p>The fresh large confirmation scored 9/48 correct, 28 wrong and 11 abstentions with 64 suspects, 455 interacting reports and 32768 output tokens including thinking; no protocol/provider failures. The reports were not individually necessary. A prior adaptive six-world example improved from 2/6 to 5/6 with larger output allowance. Resource budgets materially affect interpretation. Do not merge these settings into one model score.</p></div>
+<p>The complete view is unique, while private views are ambiguous. Forwarding retains the original report identities.</p>
+<p>The saved star-forwarding success applies to a particular protocol and fixture. It is not a universal ranking of network topologies or learned communication.</p>
+<p><a href="../../tutorials/distributed-evidence/">Work through the eight-world replay →</a></p>
+<h2 id="step-3-introduce-false-reports">3. Introduce false reports<a class="headerlink" href="#step-3-introduce-false-reports" title="Permanent link">&para;</a></h2>
+<p><strong>Question:</strong> can an agent reason under a public <strong>at-most-k</strong> reliability rule?</p>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset false-reports \
+  --output runs/false
+</code></pre>
+<p>Inspect the resolved configuration:</p>
+<pre><code class="language-sh">clue-benchmark explain-config --preset false-reports
+</code></pre>
+<p>This preset publishes an allowance of <strong>at most two false reports</strong>, with <strong>one sampled false report</strong>. The actual corrupted identities remain evaluator-only. The answer is certified under the public rule.</p>
+<p>A historical fixed-allowance experiment scored Lite <strong>8/8, 7/8, 8/8</strong> at 0/1/2 actual corruptions; Flash scored 8/8 throughout. Necessary evidence was not held fixed, so these small results do not establish a monotonic difficulty effect.</p>
+<p><a href="../../explanations/pipeline/#what-does-at-most-k-false-reports-mean">Understand the reliability rule →</a></p>
+<h2 id="step-4-explore-evidence-burden">4. Explore evidence burden<a class="headerlink" href="#step-4-explore-evidence-burden" title="Permanent link">&para;</a></h2>
+<p><strong>Question:</strong> does the amount of necessary evidence predict difficulty?</p>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset hard-example \
+  --output runs/hard
+</code></pre>
+<p>This small example has <strong>eight suspects and eight necessary reports</strong>. It is not the measured large hard regime.</p>
+<p>Historical results show why that distinction matters:</p>
+<ul>
+<li>At <strong>32 necessary reports</strong>, Flash scored 30/30 in each of two path/tree arms; Lite scored 9/30 and 7/30. Some constructions also admit simple heuristics.</li>
+<li>A <strong>fresh 48-world hard confirmation</strong> produced 9 correct, 28 wrong and 11 abstentions under a specified output budget.</li>
+<li>An <strong>adaptive six-world comparison</strong> improved from 2/6 to 5/6 with more output allowance.</li>
+</ul>
+<p>Report structure, model resources and study design all affect interpretation. Do not merge these settings into one score.</p>
+<p><a href="../../results/#hard-cases-and-resources">Read the hard-case and resource results →</a></p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../../tutorials/distributed-evidence/"><small>Previous</small>Distributed evidence</a>
+      <a rel="next" href="../../explanations/pipeline/"><small>Next</small>Pipeline and guarantees <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -214,6 +232,7 @@ clue-benchmark explain-config --preset false-reports
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

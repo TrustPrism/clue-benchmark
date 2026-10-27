@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/results/open-questions/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Open questions - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Open questions - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="./" class="nav-link active" aria-current="page">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../../maintainers/release/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,118 +114,122 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#open-questions-for-the-initial-preview" class="nav-link">Open questions for the initial preview</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#questions-the-experiments-leave-open" class="nav-link">Questions the experiments leave open</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#questions-before-a-full-software-and-data-release" class="nav-link">Questions before a full software and data release</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#what-is-available-now" class="nav-link">What is available now?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#research-questions">Research questions</a></li>
+            
+            <li><a href="#before-a-full-release">Before a full release</a></li>
+            
+            <li><a href="#explore-what-is-available-now">Explore what is available now</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="open-questions-for-the-initial-preview">Open questions for the initial preview</h1>
-<p>This is an early research preview of Clue Benchmark 0.5.0rc2. The measured
-results are preliminary; the software candidate, redistribution licenses and
-human reviews remain pending. The owner requested an initial public preview
-with those questions visible. This does not grant an open-source or dataset
-license or claim a PyPI release.</p>
-<h2 id="questions-the-experiments-leave-open">Questions the experiments leave open</h2>
-<ol>
-<li><strong>Does irrelevant evidence ever help consistently?</strong> The original five-world
-   Lite improvement did not repeat in the expanded follow-up. The primary
-   endpoint change was zero, with a descriptive interval of [-25, +25] percentage
-   points on six worlds. A larger, separately preregistered sample would be
-   needed to distinguish a repeatable benefit from sampling and response variation.</li>
-<li><strong>Why did individual worlds improve or worsen?</strong> Four primary worlds stayed
-   unchanged, one improved and one worsened. These outcomes do not identify a
-   reasoning mechanism. Content, order and context length need separate controls
-   before attributing changes to distraction or useful extra computation.</li>
-<li><strong>Is the harder-setting dip repeatable?</strong> Lite's 9/12 → 5/12 → 7/12 pattern
-   at 0/100/1,000 irrelevant records is small and non-monotonic. Does it recur on
-   fresh worlds, and how much is ordinary response variation?</li>
-<li><strong>When does robustness become worth its cost?</strong> In the four-report setting,
-   cost rose about 56× for Lite and 77× for Flash at 1,000 records without higher
-   endpoint accuracy. Does that tradeoff change with useful redundancy, related
-   distractors, other models or a different resource allowance?</li>
-<li><strong>What makes a certified puzzle difficult for an agent?</strong> Minimum necessary
-   evidence measures information burden, not proof depth or model difficulty.
-   Which structural properties predict errors after controlling for simple
-   construction heuristics, input length and output budget?</li>
-<li><strong>How stable are results across resource settings and model versions?</strong> The
-   adaptive six-world budget comparison and fresh 48-world hard confirmation
-   answer different questions. Fresh matched comparisons are needed before
-   generalizing across thinking/output allowances, formats or model revisions.</li>
-<li><strong>Can agents learn to communicate the right evidence?</strong> Current star
-   forwarding is programmed. It demonstrates delivery sufficiency, not learned
-   collaboration or efficient communication policies.</li>
-<li><strong>Do supported correctness and completion improve together?</strong> Qwen's matched
-   returned slots showed more completed actions without higher supported
-   correctness. Future work should retain lucky guesses, appropriate abstentions,
-   wrong answers and protocol failures as separate outcomes.</li>
-<li><strong>Do independent people interpret the rules as intended?</strong> Two independent
-   template/rule reviews and an outside installation/replay run remain pending.
-   Automated solver checks do not substitute for these reviews.</li>
-</ol>
-<p>These are proposed research questions, not registered experiments or authorized
-spending. The October 27 allowance is closed at an estimated <strong>$6.96</strong>, with
-no holds and no further paid calls. Any future study requires a separate plan
-and budget.</p>
-<h2 id="questions-before-a-full-software-and-data-release">Questions before a full software and data release</h2>
-<ul>
-<li><strong>Rights and licenses:</strong> Does TrustPrism have redistribution rights for all
-  imported code, contributor work, generated assets and saved provider outcomes?
-  Are Apache-2.0 for code and CC BY 4.0 for data/prose the final approved scopes?</li>
-<li><strong>Attribution and maintenance:</strong> Who are the confirmed maintainers and citation
-  authors, and which notices or exclusions are required?</li>
-<li><strong>Human validation:</strong> Who will complete the two rule reviews and outside
-  installation/reproduction review, and how will disagreements be recorded?</li>
-<li><strong>Historical archive boundary:</strong> Which additional reproduction archives may
-  be distributed after manual privacy review? The owner authorized public
-  visibility of the existing repository and its history. The documentation
-  deployment excludes credentials, authorizations, ledgers and raw provider
-  prose; ignored operational archives remain local and are not uploaded.</li>
-<li><strong>Distribution:</strong> Which organization-owned PyPI and dataset accounts will host
-  approved artifacts? Are protected environments, trusted publishing and final
-  hosted dataset/Croissant checks configured?</li>
-<li><strong>Final acceptance:</strong> Which exact source revision and artifact hashes will
-  the owner approve for the complete release? Public preview availability does
-  not clear these gates.</li>
-</ul>
-<h2 id="what-is-available-now">What is available now?</h2>
-<p>Read the <a href="../">results and original-study index</a>, including phase-separated
-follow-up measurements, limitations and sanitized assignment downloads. Read
-the <a href="../../tutorials/first-dataset/">tutorial</a>, <a href="../../reference/parameters/">parameter reference</a>
-and <a href="../../maintainers/release/">release checklist</a>. Package installation commands
-describe the candidate workflow; no public PyPI release is claimed.</p></div>
+<h1 id="what-is-still-unanswered">What is still unanswered?<a class="headerlink" href="#what-is-still-unanswered" title="Permanent link">&para;</a></h1>
+<p class="lead">The preview is public. The research findings are preliminary, and the full licensed release still has unfinished reviews.</p>
+<h2 id="research-questions">Research questions<a class="headerlink" href="#research-questions" title="Permanent link">&para;</a></h2>
+<h3 id="does-irrelevant-evidence-ever-help-consistently">Does irrelevant evidence ever help consistently?<a class="headerlink" href="#does-irrelevant-evidence-ever-help-consistently" title="Permanent link">&para;</a></h3>
+<p>The original five-world Lite improvement did not repeat in the expanded follow-up. The primary change was zero, with a descriptive interval of <strong>−25 to +25 percentage points</strong> on six worlds.</p>
+<p><strong>What would help:</strong> a larger, separately preregistered fresh sample that distinguishes a repeatable benefit from sampling and response variation.</p>
+<h3 id="why-did-individual-worlds-change">Why did individual worlds change?<a class="headerlink" href="#why-did-individual-worlds-change" title="Permanent link">&para;</a></h3>
+<p>Four primary worlds stayed unchanged, one improved and one worsened. Those outcomes do not identify a reasoning mechanism.</p>
+<p><strong>What would help:</strong> separate controls for content, report order and context length before attributing the changes to distraction or useful extra computation.</p>
+<h3 id="is-the-harder-setting-dip-repeatable">Is the harder-setting dip repeatable?<a class="headerlink" href="#is-the-harder-setting-dip-repeatable" title="Permanent link">&para;</a></h3>
+<p>Lite's <strong>9/12 → 5/12 → 7/12</strong> pattern is small and non-monotonic.</p>
+<p><strong>What would help:</strong> fresh matched worlds and a better estimate of ordinary response variation.</p>
+<h3 id="when-is-extra-context-worth-the-cost">When is extra context worth the cost?<a class="headerlink" href="#when-is-extra-context-worth-the-cost" title="Permanent link">&para;</a></h3>
+<p>In the four-report setting, costs rose roughly <strong>56× for Lite and 77× for Flash</strong> without higher endpoint accuracy.</p>
+<p><strong>What would help:</strong> comparisons involving useful redundancy, related distractors, different models and explicit resource allowances.</p>
+<h3 id="what-makes-a-puzzle-difficult">What makes a puzzle difficult?<a class="headerlink" href="#what-makes-a-puzzle-difficult" title="Permanent link">&para;</a></h3>
+<p>Minimum necessary evidence measures information burden, not proof depth or model difficulty.</p>
+<p><strong>What would help:</strong> structural predictors of errors that control for construction heuristics, input length and output budget.</p>
+<h3 id="how-stable-are-results-across-model-and-budget-changes">How stable are results across model and budget changes?<a class="headerlink" href="#how-stable-are-results-across-model-and-budget-changes" title="Permanent link">&para;</a></h3>
+<p>The adaptive six-world output-budget comparison and fresh 48-world confirmation answer different questions.</p>
+<p><strong>What would help:</strong> fresh matched comparisons before generalizing across thinking budgets, output allowances, input formats or model revisions.</p>
+<h3 id="can-agents-learn-useful-communication">Can agents learn useful communication?<a class="headerlink" href="#can-agents-learn-useful-communication" title="Permanent link">&para;</a></h3>
+<p>Current star forwarding is programmed. It demonstrates evidence delivery, not learned collaboration or an efficient communication policy.</p>
+<p><strong>What would help:</strong> an explicitly different experiment measuring what agents choose to send and whether those choices deliver sufficient evidence.</p>
+<h3 id="do-completion-and-supported-correctness-improve-together">Do completion and supported correctness improve together?<a class="headerlink" href="#do-completion-and-supported-correctness-improve-together" title="Permanent link">&para;</a></h3>
+<p>Qwen's matched returned slots showed more completed actions without higher supported correctness.</p>
+<p><strong>What would help:</strong> reporting lucky guesses, appropriate abstentions, wrong answers and protocol failures separately in future studies.</p>
+<h3 id="do-independent-readers-agree-with-the-rules">Do independent readers agree with the rules?<a class="headerlink" href="#do-independent-readers-agree-with-the-rules" title="Permanent link">&para;</a></h3>
+<p>Two independent template/rule reviews and an outside installation/replay run remain pending. Automated solver checks do not replace those reviews.</p>
+<div class="admonition note">
+<p class="admonition-title">These are questions, not funded experiments</p>
+<p>The October 27 allowance is closed at an estimated <strong>$6.96</strong>, with no holds. No further paid calls are planned. Any future study needs a separate plan and budget.</p>
+</div>
+<h2 id="before-a-full-release">Before a full release<a class="headerlink" href="#before-a-full-release" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Answer still needed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rights and licenses</strong></td>
+<td>Are imported code, contributor work, generated assets and saved outcomes cleared for redistribution? Are the proposed Apache-2.0 and CC BY 4.0 scopes approved?</td>
+</tr>
+<tr>
+<td><strong>Attribution</strong></td>
+<td>Who are the confirmed maintainers and citation authors? Which notices or exclusions are required?</td>
+</tr>
+<tr>
+<td><strong>Independent reviews</strong></td>
+<td>Who will complete the two rule reviews and outside installation check? How will disagreements be recorded?</td>
+</tr>
+<tr>
+<td><strong>Additional archives</strong></td>
+<td>Which reproduction archives can be distributed after manual privacy review?</td>
+</tr>
+<tr>
+<td><strong>Distribution accounts</strong></td>
+<td>Are the organization-owned PyPI/dataset accounts, protected environments and trusted-publishing configuration ready?</td>
+</tr>
+<tr>
+<td><strong>Final acceptance</strong></td>
+<td>Which exact source revision and artifact hashes will the owner approve for the complete release?</td>
+</tr>
+</tbody>
+</table>
+<p>The owner authorized public visibility of the existing repository and its history. The documentation deployment excludes credentials, authorizations, ledgers and raw provider prose. Ignored operational archives remain local.</p>
+<p>Public availability is <strong>not a license grant or completed review</strong>. No PyPI release is claimed.</p>
+<h2 id="explore-what-is-available-now">Explore what is available now<a class="headerlink" href="#explore-what-is-available-now" title="Permanent link">&para;</a></h2>
+<div class="button-row">
+<p><a href="../">Read the results</a>
+<a href="../../tutorials/first-dataset/">Try the offline tutorial</a></p>
+</div>
+<p>For the concrete review packets and publication steps, see the <a href="../../maintainers/release/">maintainer checklist</a>.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../../reference/troubleshooting/"><small>Previous</small>Troubleshooting</a>
+      <a rel="next" href="../../explanations/related-work/"><small>Next</small>Related implementations <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="./">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -250,6 +237,7 @@ describe the candidate workflow; no public PyPI release is claimed.</p></div>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

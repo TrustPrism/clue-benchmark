@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/reference/data-dictionary/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Data dictionary - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Data dictionary - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../interfaces/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../troubleshooting/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,64 +114,168 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#bundle-data-dictionary-and-dataset-card" class="nav-link">Bundle data dictionary and dataset card</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#scope-and-provenance" class="nav-link">Scope and provenance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#packaged-nuisance-measurement-dictionary" class="nav-link">Packaged nuisance measurement dictionary</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#the-five-bundle-files">The five bundle files</a></li>
+            
+            <li><a href="#public-case-and-report-rows">Public case and report rows</a></li>
+            
+            <li><a href="#what-hashes-doand-do-notestablish">What hashes do—and do not—establish</a></li>
+            
+            <li><a href="#dataset-scope">Dataset scope</a></li>
+            
+            <li><a href="#saved-nuisance-measurements">Saved nuisance measurements</a></li>
+            
+            <li><a href="#licensing-and-distribution">Licensing and distribution</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="bundle-data-dictionary-and-dataset-card">Bundle data dictionary and dataset card</h1>
-<p>Every community bundle contains five files. <code>cases.jsonl</code> streams one public case header followed by report rows (<code>kind</code>, <code>case_id</code>, <code>report_id</code>, deterministic <code>text</code>, formal <code>constraint</code>). Headers include suspect IDs/domains, display names, assignment rule, public corruption allowance, report count and presentation identity. <code>partitions.jsonl</code> maps each original report ID to its owner agent IDs and partition identity.</p>
-<p><code>answers.jsonl</code> is evaluator-only: sampled solution, possible culprits, actual false report IDs, core report IDs and nuisance count. <code>certificates.jsonl</code> is evaluator-only: answerability, sufficient-subset bounds, witnesses, reliability/coalition checks and partition quotas. <code>manifest.json</code> identifies schema/software/solver, resolved config/config hash, SHA-256 for the other four files, source/checkpoint identity, world/split list, metrics and explicit release gates. The manifest is not an agent input: it can expose evaluator metrics and seeds.</p>
-<p>Checksums detect changes, not human approval, originality, logical depth, or license clearance. Public export uses positive case/report/constraint field allowlists and does not copy the manifest, partitions, evaluator files, checkpoints, ledgers or receipts. Anyone releasing labels for reproduction must keep them out of agent input directories.</p>
-<h2 id="scope-and-provenance">Scope and provenance</h2>
-<p>Synthetic worlds, deterministic templates and configured domains; no human cases or personal records are required. Coverage depends on selected families, types, domains and acceptance filters. Rejection sampling changes observed frequencies. Known shortcuts exist in construction families; certified information cost is not a certified hardness scale. Splits use world hashes with optional family transfer overrides; paired variants share a world split.</p>
-<p>Appropriate uses include evidence sufficiency controls, reliability reasoning, abstention, communication delivery and bounded reproducible demonstrations. Do not infer real-world investigative skill, universal frontier-model weakness, human validation, or learned collaboration from these scores.</p>
-<p>Code license proposal: Apache-2.0. Dataset/prose proposal: CC BY 4.0. <strong>Neither is granted by this candidate; ownership clearance is pending.</strong> No hosted dataset URLs, Croissant distribution URLs, DOI or public upload is claimed. Large measured archives remain separate private artifacts until screened and cleared. The wheel contains only tiny example data and sanitized assignment outcomes for offline reanalysis.</p>
-<h2 id="packaged-nuisance-measurement-dictionary">Packaged nuisance measurement dictionary</h2>
-<p>The measured-results resource <code>nuisance-followup.json</code> uses
-<code>clue-nuisance-measurements-1</code>. <code>episodes</code> contains all 144 scored slots; <code>phase</code>
-is initial or extension, and <code>burden</code>, <code>dose</code>, <code>world_id</code>, <code>model</code>, <code>repeat</code> identify
-the matched design. <code>answer</code>, supported/correct/abstained/protocol flags and
-sufficiency labels are evaluator outcomes. <code>input_tokens</code>, <code>output_tokens</code>
-(including thinking), <code>thinking_tokens</code>, latency seconds and integer microdollar
-estimates preserve resource costs. Request IDs remain unique per dispatched
-attempt. The accounting header includes the two initial probes and the combined
-$10.00 cap; scored panel costs exclude probes and are not provider invoices.</p>
-<p>Current software is 0.5.0rc2; measured generation/evaluation sources were
-0.5.0rc1 and remain frozen separately. The post-result expansion is labeled;
-combined summaries are exploratory. Resource and source indexes verify hashes.
-No credentials, human authorization evidence, SQLite ledgers, raw receipt bodies
-or provider prose are part of these distribution copies. Public agent exports
-never read this evaluator measurement resource.</p></div>
+<h1 id="what-is-in-a-dataset">What is in a dataset?<a class="headerlink" href="#what-is-in-a-dataset" title="Permanent link">&para;</a></h1>
+<p class="lead">A community bundle contains five files. Only the public export belongs in an agent's input directory.</p>
+<h2 id="the-five-bundle-files">The five bundle files<a class="headerlink" href="#the-five-bundle-files" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Give it to the agent?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cases.jsonl</code></td>
+<td>Public case headers and report rows.</td>
+<td>Use the allowlisted public export.</td>
+</tr>
+<tr>
+<td><code>partitions.jsonl</code></td>
+<td>Maps original reports to owner agents.</td>
+<td>No.</td>
+</tr>
+<tr>
+<td><code>answers.jsonl</code></td>
+<td>Sampled solution, possible culprits and actual corruption identities.</td>
+<td><strong>No — evaluator only.</strong></td>
+</tr>
+<tr>
+<td><code>certificates.jsonl</code></td>
+<td>Answerability, subset bounds, witnesses and coalition checks.</td>
+<td><strong>No — evaluator only.</strong></td>
+</tr>
+<tr>
+<td><code>manifest.json</code></td>
+<td>Configuration, hashes, versions, splits, metrics and source identity.</td>
+<td><strong>No — can reveal seeds and evaluator metrics.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Create the agent-safe file:</p>
+<pre><code class="language-sh">clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
+</code></pre>
+<p>The export uses positive field allowlists. It leaves out manifests, partitions, evaluator files, checkpoints, ledgers and receipts.</p>
+<h2 id="public-case-and-report-rows">Public case and report rows<a class="headerlink" href="#public-case-and-report-rows" title="Permanent link">&para;</a></h2>
+<p><code>cases.jsonl</code> starts each case with a header, followed by its reports.</p>
+<p><strong>Headers</strong> describe suspect IDs, domains, display names, assignment rules, public corruption allowance, report count and presentation identity.</p>
+<p><strong>Report rows</strong> contain <code>kind</code>, <code>case_id</code>, <code>report_id</code>, deterministic <code>text</code> and the formal <code>constraint</code>.</p>
+<details>
+<summary>Evaluator files in more detail</summary>
+<ul>
+<li><strong>Answers:</strong> sampled solution, possible culprits, actual false-report IDs, core report IDs and nuisance count.</li>
+<li><strong>Certificates:</strong> answerability, sufficient-subset bounds, witnesses, reliability/coalition checks and partition quotas.</li>
+<li><strong>Manifest:</strong> schema/software/solver identities; resolved configuration and its hash; SHA-256 values for the other four files; source/checkpoint identity; world/split list; metrics; explicit release gates.</li>
+<li><strong>Partitions:</strong> owner agent IDs and partition identity for each original report.</li>
+</ul>
+</details>
+<h2 id="what-hashes-doand-do-notestablish">What hashes do—and do not—establish<a class="headerlink" href="#what-hashes-doand-do-notestablish" title="Permanent link">&para;</a></h2>
+<p>Checksums detect changes. They do <strong>not</strong> establish human approval, originality, logical depth or license clearance.</p>
+<p>Keep released evaluator labels separate from agent inputs, even when sharing them for reproduction.</p>
+<h2 id="dataset-scope">Dataset scope<a class="headerlink" href="#dataset-scope" title="Permanent link">&para;</a></h2>
+<p>Cases use <strong>synthetic worlds, deterministic templates and configured domains</strong>. No human cases or personal records are required.</p>
+<p>Coverage depends on the selected families, types, domains and acceptance filters. Rejection sampling changes observed frequencies. Some construction families have known shortcuts.</p>
+<p>Splits use world hashes, with optional family transfer overrides. Paired variants share a world split.</p>
+<h3 id="appropriate-uses">Appropriate uses<a class="headerlink" href="#appropriate-uses" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Evidence-sufficiency and reliability controls.</li>
+<li>Abstention and supported-correctness evaluation.</li>
+<li>Communication delivery checks.</li>
+<li>Small, bounded and reproducible model demonstrations.</li>
+</ul>
+<p>These scores do not establish real-world investigative skill, universal frontier-model weakness, human validation or learned collaboration.</p>
+<h2 id="saved-nuisance-measurements">Saved nuisance measurements<a class="headerlink" href="#saved-nuisance-measurements" title="Permanent link">&para;</a></h2>
+<p>The packaged resource <code>nuisance-followup.json</code> uses <strong><code>clue-nuisance-measurements-1</code></strong>. It contains all <strong>144 scored slots</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Fields</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>phase</code></td>
+<td>Initial study or final extension.</td>
+</tr>
+<tr>
+<td><code>burden</code>, <code>dose</code>, <code>world_id</code>, <code>model</code>, <code>repeat</code></td>
+<td>Identify the matched assignment.</td>
+</tr>
+<tr>
+<td><code>answer</code> and outcome flags</td>
+<td>Evaluator correctness, support, abstention, protocol and sufficiency labels.</td>
+</tr>
+<tr>
+<td>Token counts and latency</td>
+<td>Observed resources; output includes thinking where billed.</td>
+</tr>
+<tr>
+<td>Integer microdollar values</td>
+<td>Exact estimated costs. Dollar displays round to two decimals.</td>
+</tr>
+<tr>
+<td>Request ID</td>
+<td>Unique per dispatched attempt.</td>
+</tr>
+</tbody>
+</table>
+<p>The accounting header includes the two initial probes and the combined <strong>$10.00 cap</strong>. Scored panel costs exclude probes. Estimates are not provider invoices.</p>
+<p>Current software is <strong>0.5.0rc2</strong>; the measured generation/evaluation sources remain frozen at <strong>0.5.0rc1</strong>. The post-result expansion is labeled, and combined summaries are exploratory.</p>
+<p>No credentials, human authorization evidence, SQLite ledgers, raw receipt bodies or provider prose belong in these distribution copies. Public agent exports never read the evaluator measurement resource.</p>
+<h2 id="licensing-and-distribution">Licensing and distribution<a class="headerlink" href="#licensing-and-distribution" title="Permanent link">&para;</a></h2>
+<p><strong>Licensing is pending.</strong> Proposed scopes are Apache-2.0 for code and CC BY 4.0 for data/prose; neither is granted by the candidate.</p>
+<p>Public documentation includes sanitized outcome downloads. There is no claimed PyPI release, DOI, full hosted dataset or validated hosted Croissant distribution. Large measured archives remain separate artifacts pending screening and clearance.</p>
+<p><a href="../../results/open-questions/#before-a-full-release">See the remaining release questions →</a></p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../interfaces/"><small>Previous</small>CLI, Python and tools</a>
+      <a rel="next" href="../troubleshooting/"><small>Next</small>Troubleshooting <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -196,6 +283,7 @@ never read this evaluator measurement resource.</p></div>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/maintainers/release/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Maintainers - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Release and review - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../../results/open-questions/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,69 +114,116 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#research-preview-and-full-release-gates" class="nav-link">Research preview and full-release gates</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#review-packets" class="nav-link">Review packets</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#maintainer-checklist" class="nav-link">Maintainer checklist</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#supported-versions" class="nav-link">Supported versions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#available-now">Available now</a></li>
+            
+            <li><a href="#remaining-reviews">Remaining reviews</a></li>
+            
+            <li><a href="#maintainer-checklist">Maintainer checklist</a></li>
+            
+            <li><a href="#supported-versions-and-evidence">Supported versions and evidence</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="research-preview-and-full-release-gates">Research preview and full-release gates</h1>
-<p>The owner requested an initial public research preview on October 27 while
-rights review remains pending. Its scope is the prepared documentation and
-sanitized result summaries, with <a href="../../results/open-questions/">open questions</a>
-visible. The owner also explicitly authorized making the existing repository
-public, including its history. That does not grant licenses, publish packages
-to PyPI, upload ignored operational archives or clear the full-release gates.</p>
-<p>Do not publish packages from an ordinary pull request. The full licensed release remains pending ownership/redistribution clearance, two independent rules/template readers, one outside installation/replay run, manual source/history/archive review, organization distribution account access and final owner approval. The initial research preview is separately authorized with these questions visibly pending.</p>
-<h2 id="review-packets">Review packets</h2>
-<p>Rules readers: read the predicate reference, pipeline explanation, public quickstart export and one false-report case. Check each active template against its formal semantics, satisfying example and counterexample. Record name/date, reviewed hashes, disagreements and resolution; leave unsigned slots pending.</p>
-<p>Outside user: receive the exact wheel hash, use a fresh Python environment outside the checkout, follow the five-minute tutorial, replay distributed evidence and measured counts, and report actual OS/Python/commands/output. No paid model calls. Do not impersonate either reader or convert earlier waivers into completed reviews.</p>
-<h2 id="maintainer-checklist">Maintainer checklist</h2>
+<h1 id="release-status-and-next-steps">Release status and next steps<a class="headerlink" href="#release-status-and-next-steps" title="Permanent link">&para;</a></h1>
+<p class="lead">The initial research preview is live. The full licensed software and data release remains pending.</p>
+<h2 id="available-now">Available now<a class="headerlink" href="#available-now" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://trustprism.github.io/clue-benchmark/">Public documentation</a>, results and sanitized outcome downloads.</li>
+<li><a href="https://github.com/TrustPrism/clue-benchmark/releases/tag/v0.5.0rc2">Initial 0.5.0rc2 prerelease</a>.</li>
+<li>The existing repository and its history, made public with the owner's explicit authorization.</li>
+<li><a href="../../results/open-questions/">Open research and publication questions</a>.</li>
+</ul>
+<p>That publication does not grant licenses, publish the package to PyPI or upload ignored operational archives. The initial preview is separate from full-release acceptance.</p>
+<h2 id="remaining-reviews">Remaining reviews<a class="headerlink" href="#remaining-reviews" title="Permanent link">&para;</a></h2>
+<h3 id="two-independent-rules-readers">Two independent rules readers<a class="headerlink" href="#two-independent-rules-readers" title="Permanent link">&para;</a></h3>
+<p>Each reader should examine:</p>
 <ol>
-<li>Review the source baseline, preserved local files and private study snapshot. Never mix the historical checkout or budgets.</li>
-<li>Verify the closed study accounting: the initial follow-up plus its one final expansion completed 146 paid requests (144 scored and two probes), estimated $6.96 total with $0.00 holds under the single $10.00 cap. No further paid calls are planned. Original measured sources remain frozen for reproduction; do not launch child plans independently.</li>
-<li>Run offline tests, field coverage, strict docs build, wheel/sdist build, metadata check and installed-wheel smoke tests outside the checkout. Retain logs and hashes.</li>
-<li>Review provenance for imported generator code, dependencies, generated assets and saved provider outputs. Confirm TrustPrism redistribution rights and real maintainer identity. Only then apply proposed Apache-2.0 code and CC BY 4.0 data/prose licenses and notices.</li>
-<li>Scan intended source <strong>and history</strong>, and all downloadable archives, for credentials, approvals, ledgers, checkpoints, paths and personal data. Preserve originals privately; redact distribution copies and index the transformations. A scanner is not ownership clearance.</li>
-<li>Review the concrete release manifest, candidate hashes, docs build, schemas, example bundles and sanitized outcome index. Large archives are explicit separate versioned downloads; preserve original hashes.</li>
-<li>Clear organization-owned GitHub/PyPI/Hugging Face access, review tag/environment protections and final owner publication approval. Do not substitute a personal account.</li>
-<li>After authorization, upload reviewed immutable artifacts, deploy docs and verify anonymous installation, sample loading, links, hashes, licenses and offline replay. Record failures; use a patch release or documented yank rather than silently replacing data.</li>
+<li>The <a href="../../reference/predicates/">predicate reference</a>.</li>
+<li>The <a href="../../explanations/pipeline/">pipeline and guarantees</a>.</li>
+<li>A public quickstart export and one false-report example.</li>
+<li>Every active template's formal meaning, satisfying example and counterexample.</li>
 </ol>
-<p>The prepared workflow requires an explicit <code>rights_cleared</code> approval input and protected release environment. It cannot establish ownership by itself. Real public URLs and validated Croissant metadata are pending hosted artifacts, not fabricated placeholders.</p>
-<h2 id="supported-versions">Supported versions</h2>
-<p>Python &gt;=3.12 is required. Clean offline wheel installations have passed locally on macOS Python 3.12.13, 3.13.12 and 3.14.6; offline installation from the source archive also passes. Hosted Linux/macOS 3.12–3.14 and documentation checks passed on commit 35173b84f05d9f34812102235075b330e188f0eb; check the current PR for subsequent revisions. No Windows support claim. No promise of indefinite support or availability. Security reports use private GitHub reporting when configured; do not invent a contact address.</p></div>
+<p><strong>Record:</strong> reader name, date, reviewed hashes, disagreements and their resolution. Unsigned slots stay pending.</p>
+<h3 id="one-outside-installer">One outside installer<a class="headerlink" href="#one-outside-installer" title="Permanent link">&para;</a></h3>
+<p>Supply the exact candidate wheel hash. Ask the reviewer to:</p>
+<ol>
+<li>Use a fresh Python environment outside the checkout.</li>
+<li>Follow the <a href="../../tutorials/first-dataset/">first-dataset tutorial</a>.</li>
+<li>Replay distributed evidence and measured counts without paid model calls.</li>
+<li>Report the actual OS, Python version, commands and outputs.</li>
+</ol>
+<p>An earlier review waiver is a waiver, not a completed review. Do not impersonate a reviewer or invent a signoff.</p>
+<h2 id="maintainer-checklist">Maintainer checklist<a class="headerlink" href="#maintainer-checklist" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-preserve-the-study-and-baseline">1. Preserve the study and baseline<a class="headerlink" href="#step-1-preserve-the-study-and-baseline" title="Permanent link">&para;</a></h3>
+<p>Review the source baseline, preserved local files and frozen study sources. Keep historical checkouts and budgets separate.</p>
+<p>The closed follow-up completed <strong>146 paid requests</strong>: 144 scored assignments and two probes. Estimated spend is <strong>$6.96</strong>, holds <strong>$0.00</strong>, against a <strong>$10.00</strong> cap. Do not reuse that allowance or launch child plans independently.</p>
+<h3 id="step-2-verify-the-candidate">2. Verify the candidate<a class="headerlink" href="#step-2-verify-the-candidate" title="Permanent link">&para;</a></h3>
+<p>Retain logs and hashes for:</p>
+<ul>
+<li>Offline tests and parameter coverage.</li>
+<li>Strict documentation build.</li>
+<li>Wheel/source-archive build and metadata checks.</li>
+<li>Installed-wheel smoke tests outside the checkout.</li>
+<li>Saved-result and archive reproduction.</li>
+</ul>
+<h3 id="step-3-clear-ownership-and-licensing">3. Clear ownership and licensing<a class="headerlink" href="#step-3-clear-ownership-and-licensing" title="Permanent link">&para;</a></h3>
+<p>Review imported code, contributor work, dependencies, generated assets and saved provider outcomes. Confirm redistribution rights, maintainer identity and required attribution.</p>
+<p>Only after clearance should the proposed <strong>Apache-2.0 code</strong> and <strong>CC BY 4.0 data/prose</strong> licenses and notices be applied.</p>
+<h3 id="step-4-review-distribution-copies">4. Review distribution copies<a class="headerlink" href="#step-4-review-distribution-copies" title="Permanent link">&para;</a></h3>
+<p>Scan source, history and downloadable archives for credentials, authorizations, ledgers, checkpoints, personal data and local paths.</p>
+<p>Preserve originals; redact only distribution copies and index the transformations. Automated scanning is not manual privacy review or ownership clearance.</p>
+<h3 id="step-5-approve-exact-artifacts-and-channels">5. Approve exact artifacts and channels<a class="headerlink" href="#step-5-approve-exact-artifacts-and-channels" title="Permanent link">&para;</a></h3>
+<p>Review the concrete source revision, release manifest, wheel/source hashes, documentation, schemas, examples and sanitized outcome index.</p>
+<p>Confirm organization-owned GitHub, PyPI and dataset account access. Review protected tags/environments, trusted publishing and final hosted dataset/Croissant validation. Do not substitute a personal account.</p>
+<h3 id="step-6-publish-and-verify">6. Publish and verify<a class="headerlink" href="#step-6-publish-and-verify" title="Permanent link">&para;</a></h3>
+<p>After the remaining approvals, upload the reviewed immutable artifacts and verify anonymous installation, sample loading, links, hashes, licenses and offline replay.</p>
+<p>For errors, use a corrective patch release or documented yank. Do not silently replace a versioned measured dataset.</p>
+<details>
+<summary>How the full-release workflow is gated</summary>
+<p>Package publication is not triggered by an ordinary PR. The prepared workflow requires an explicit <code>rights_cleared</code> input and a protected release environment. That input cannot itself establish ownership.</p>
+<p>The already-live research preview is separately authorized. Full package/dataset publication and validated hosted Croissant metadata remain pending.</p>
+</details>
+<h2 id="supported-versions-and-evidence">Supported versions and evidence<a class="headerlink" href="#supported-versions-and-evidence" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Python:</strong> 3.12–3.14.</li>
+<li><strong>Hosted checks:</strong> Linux and macOS matrix plus documentation passed on <code>72b437a1a9d34464374db0bbb1ef3173b58284f9</code>.</li>
+<li><strong>Local wheel installs:</strong> macOS Python 3.12.13, 3.13.12 and 3.14.6, offline and outside the checkout.</li>
+<li><strong>Source archive:</strong> offline installation also checked.</li>
+<li><strong>Windows:</strong> not advertised as verified.</li>
+</ul>
+<p><a href="https://github.com/TrustPrism/clue-benchmark/pull/2">Check the current PR</a> for later revisions. There is no indefinite-support or availability promise. Use private GitHub security reporting when configured; no contact address is invented.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../../explanations/related-work/"><small>Previous</small>Related implementations</a>
+      
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -201,6 +231,7 @@ to PyPI, upload ignored operational archives or clear the full-release gates.</p
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

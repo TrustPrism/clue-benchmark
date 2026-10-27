@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/reference/parameters/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Parameters - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Parameters - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../../explanations/related-work/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../predicates/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,468 +114,399 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#complete-generation-parameter-reference" class="nav-link">Complete generation parameter reference</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#puzzlefamily" class="nav-link">puzzle.family</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleassignment_mode" class="nav-link">puzzle.assignment_mode</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleextra_clue_scope" class="nav-link">puzzle.extra_clue_scope</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleattribute_mismatches" class="nav-link">puzzle.attribute_mismatches</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigsuspect_count" class="nav-link">puzzle.config.suspect_count</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigdomains" class="nav-link">puzzle.config.domains</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigclue_count" class="nav-link">puzzle.config.clue_count</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigenabled_types" class="nav-link">puzzle.config.enabled_types</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigalpha" class="nav-link">puzzle.config.alpha</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigbeta" class="nav-link">puzzle.config.beta</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmin_murderer_links" class="nav-link">puzzle.config.min_murderer_links</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmax_murderer_links" class="nav-link">puzzle.config.max_murderer_links</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmax_positive_murderer_links" class="nav-link">puzzle.config.max_positive_murderer_links</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmin_indirect_clues" class="nav-link">puzzle.config.min_indirect_clues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmin_unique_subset_size" class="nav-link">puzzle.config.min_unique_subset_size</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigrequire_indirect_essential" class="nav-link">puzzle.config.require_indirect_essential</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmin_pairwise_clues" class="nav-link">puzzle.config.min_pairwise_clues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigactive_values_per_attribute" class="nav-link">puzzle.config.active_values_per_attribute</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigreasoning_route" class="nav-link">puzzle.config.reasoning_route</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmax_attempts" class="nav-link">puzzle.config.max_attempts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmutation_steps" class="nav-link">puzzle.config.mutation_steps</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigmax_solver_calls" class="nav-link">puzzle.config.max_solver_calls</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigsolver_seconds" class="nav-link">puzzle.config.solver_seconds</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfigsolver_work" class="nav-link">puzzle.config.solver_work</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#puzzleconfiggeneration_seconds" class="nav-link">puzzle.config.generation_seconds</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidenceminimum_sufficient_clues" class="nav-link">evidence.minimum_sufficient_clues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencemaximum_sufficient_clues" class="nav-link">evidence.maximum_sufficient_clues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidenceentailed_clues" class="nav-link">evidence.entailed_clues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidenceconnected_decoys" class="nav-link">evidence.connected_decoys</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidenceirrelevant_records" class="nav-link">evidence.irrelevant_records</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencefalse_reports" class="nav-link">evidence.false_reports</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencecorruption_allowance" class="nav-link">evidence.corruption_allowance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidenceanswerability" class="nav-link">evidence.answerability</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencecorruption_strategy" class="nav-link">evidence.corruption_strategy</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencecorruption_search_attempts" class="nav-link">evidence.corruption_search_attempts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#evidencemaximum_alternative_margin" class="nav-link">evidence.maximum_alternative_margin</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionagent_count" class="nav-link">distribution.agent_count</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionshared_reports" class="nav-link">distribution.shared_reports</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionprivate_replication" class="nav-link">distribution.private_replication</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionper_agent_quotas" class="nav-link">distribution.per_agent_quotas</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionminimum_coalition_size" class="nav-link">distribution.minimum_coalition_size</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#distributionmax_attempts" class="nav-link">distribution.max_attempts</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationtheme" class="nav-link">presentation.theme</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationnaming_seed" class="nav-link">presentation.naming_seed</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationtemplate" class="nav-link">presentation.template</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationclue_order" class="nav-link">presentation.clue_order</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationevidence_placement" class="nav-link">presentation.evidence_placement</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationminimum_words" class="nav-link">presentation.minimum_words</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationmaximum_words" class="nav-link">presentation.maximum_words</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationminimum_tokens" class="nav-link">presentation.minimum_tokens</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#presentationmaximum_tokens" class="nav-link">presentation.maximum_tokens</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetcount" class="nav-link">dataset.count</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetseed" class="nav-link">dataset.seed</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetworkers" class="nav-link">dataset.workers</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetsplits" class="nav-link">dataset.splits</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetholdout_families" class="nav-link">dataset.holdout_families</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetoutput_directory" class="nav-link">dataset.output_directory</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetcertification_seconds" class="nav-link">dataset.certification_seconds</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetmax_solver_calls" class="nav-link">dataset.max_solver_calls</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetmax_candidates_per_case" class="nav-link">dataset.max_candidates_per_case</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#datasetlarge_corpus" class="nav-link">dataset.large_corpus</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#schema_version" class="nav-link">schema_version</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#puzzlefamily">puzzle.family</a></li>
+            
+            <li><a href="#puzzleassignment_mode">puzzle.assignment_mode</a></li>
+            
+            <li><a href="#puzzleextra_clue_scope">puzzle.extra_clue_scope</a></li>
+            
+            <li><a href="#puzzleattribute_mismatches">puzzle.attribute_mismatches</a></li>
+            
+            <li><a href="#puzzleconfigsuspect_count">puzzle.config.suspect_count</a></li>
+            
+            <li><a href="#puzzleconfigdomains">puzzle.config.domains</a></li>
+            
+            <li><a href="#puzzleconfigclue_count">puzzle.config.clue_count</a></li>
+            
+            <li><a href="#puzzleconfigenabled_types">puzzle.config.enabled_types</a></li>
+            
+            <li><a href="#puzzleconfigalpha">puzzle.config.alpha</a></li>
+            
+            <li><a href="#puzzleconfigbeta">puzzle.config.beta</a></li>
+            
+            <li><a href="#puzzleconfigmin_murderer_links">puzzle.config.min_murderer_links</a></li>
+            
+            <li><a href="#puzzleconfigmax_murderer_links">puzzle.config.max_murderer_links</a></li>
+            
+            <li><a href="#puzzleconfigmax_positive_murderer_links">puzzle.config.max_positive_murderer_links</a></li>
+            
+            <li><a href="#puzzleconfigmin_indirect_clues">puzzle.config.min_indirect_clues</a></li>
+            
+            <li><a href="#puzzleconfigmin_unique_subset_size">puzzle.config.min_unique_subset_size</a></li>
+            
+            <li><a href="#puzzleconfigrequire_indirect_essential">puzzle.config.require_indirect_essential</a></li>
+            
+            <li><a href="#puzzleconfigmin_pairwise_clues">puzzle.config.min_pairwise_clues</a></li>
+            
+            <li><a href="#puzzleconfigactive_values_per_attribute">puzzle.config.active_values_per_attribute</a></li>
+            
+            <li><a href="#puzzleconfigreasoning_route">puzzle.config.reasoning_route</a></li>
+            
+            <li><a href="#puzzleconfigmax_attempts">puzzle.config.max_attempts</a></li>
+            
+            <li><a href="#puzzleconfigmutation_steps">puzzle.config.mutation_steps</a></li>
+            
+            <li><a href="#puzzleconfigmax_solver_calls">puzzle.config.max_solver_calls</a></li>
+            
+            <li><a href="#puzzleconfigsolver_seconds">puzzle.config.solver_seconds</a></li>
+            
+            <li><a href="#puzzleconfigsolver_work">puzzle.config.solver_work</a></li>
+            
+            <li><a href="#puzzleconfiggeneration_seconds">puzzle.config.generation_seconds</a></li>
+            
+            <li><a href="#evidenceminimum_sufficient_clues">evidence.minimum_sufficient_clues</a></li>
+            
+            <li><a href="#evidencemaximum_sufficient_clues">evidence.maximum_sufficient_clues</a></li>
+            
+            <li><a href="#evidenceentailed_clues">evidence.entailed_clues</a></li>
+            
+            <li><a href="#evidenceconnected_decoys">evidence.connected_decoys</a></li>
+            
+            <li><a href="#evidenceirrelevant_records">evidence.irrelevant_records</a></li>
+            
+            <li><a href="#evidencefalse_reports">evidence.false_reports</a></li>
+            
+            <li><a href="#evidencecorruption_allowance">evidence.corruption_allowance</a></li>
+            
+            <li><a href="#evidenceanswerability">evidence.answerability</a></li>
+            
+            <li><a href="#evidencecorruption_strategy">evidence.corruption_strategy</a></li>
+            
+            <li><a href="#evidencecorruption_search_attempts">evidence.corruption_search_attempts</a></li>
+            
+            <li><a href="#evidencemaximum_alternative_margin">evidence.maximum_alternative_margin</a></li>
+            
+            <li><a href="#distributionagent_count">distribution.agent_count</a></li>
+            
+            <li><a href="#distributionshared_reports">distribution.shared_reports</a></li>
+            
+            <li><a href="#distributionprivate_replication">distribution.private_replication</a></li>
+            
+            <li><a href="#distributionper_agent_quotas">distribution.per_agent_quotas</a></li>
+            
+            <li><a href="#distributionminimum_coalition_size">distribution.minimum_coalition_size</a></li>
+            
+            <li><a href="#distributionmax_attempts">distribution.max_attempts</a></li>
+            
+            <li><a href="#presentationtheme">presentation.theme</a></li>
+            
+            <li><a href="#presentationnaming_seed">presentation.naming_seed</a></li>
+            
+            <li><a href="#presentationtemplate">presentation.template</a></li>
+            
+            <li><a href="#presentationclue_order">presentation.clue_order</a></li>
+            
+            <li><a href="#presentationevidence_placement">presentation.evidence_placement</a></li>
+            
+            <li><a href="#presentationminimum_words">presentation.minimum_words</a></li>
+            
+            <li><a href="#presentationmaximum_words">presentation.maximum_words</a></li>
+            
+            <li><a href="#presentationminimum_tokens">presentation.minimum_tokens</a></li>
+            
+            <li><a href="#presentationmaximum_tokens">presentation.maximum_tokens</a></li>
+            
+            <li><a href="#datasetcount">dataset.count</a></li>
+            
+            <li><a href="#datasetseed">dataset.seed</a></li>
+            
+            <li><a href="#datasetworkers">dataset.workers</a></li>
+            
+            <li><a href="#datasetsplits">dataset.splits</a></li>
+            
+            <li><a href="#datasetholdout_families">dataset.holdout_families</a></li>
+            
+            <li><a href="#datasetoutput_directory">dataset.output_directory</a></li>
+            
+            <li><a href="#datasetcertification_seconds">dataset.certification_seconds</a></li>
+            
+            <li><a href="#datasetmax_solver_calls">dataset.max_solver_calls</a></li>
+            
+            <li><a href="#datasetmax_candidates_per_case">dataset.max_candidates_per_case</a></li>
+            
+            <li><a href="#datasetlarge_corpus">dataset.large_corpus</a></li>
+            
+            <li><a href="#schema_version">schema_version</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content parameter-reference">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="complete-generation-parameter-reference">Complete generation parameter reference</h1>
-<p>Defaults below come directly from the current dataclasses; descriptions are authored and coverage is tested. All fields affect local generation/certification only; none authorizes paid inference. Examples show JSON leaf values: place them at the named path. Bounds/compatibility and invalid combinations are stated with each description. <a href="../interfaces/">Evaluation/tool controls</a> and <a href="../troubleshooting/">troubleshooting</a> are separate.</p>
-<h2 id="puzzlefamily"><code>puzzle.family</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"standard"</code>.</p>
+<h1 id="find-a-generation-setting">Find a generation setting<a class="headerlink" href="#find-a-generation-setting" title="Permanent link">&para;</a></h1>
+<p class="lead">Start with a preset. Change a small number of settings, then inspect the resolved configuration before generating data.</p>
+<pre><code class="language-sh">clue-benchmark explain-config --preset quickstart
+</code></pre>
+<p><strong>Common starting points:</strong> <a href="#puzzlefamily">construction family</a>, <a href="#puzzleconfigsuspect_count">number of suspects</a>, <a href="#evidenceirrelevant_records">irrelevant records</a>, <a href="#evidencefalse_reports">false reports</a>, <a href="#distributionagent_count">agents</a>, <a href="#datasetseed">seed</a> and <a href="#datasetworkers">workers</a>.</p>
+<p>Search by name or description below. Open a setting to see its type, default and compatibility rules. With JavaScript disabled, every entry remains readable.</p>
+<p>These controls affect local generation and certification. None authorizes paid inference. Examples are JSON values to place at the named path. Defaults come from the current dataclasses; coverage is tested. <a href="../interfaces/">Evaluation controls</a> and <a href="../troubleshooting/">troubleshooting</a> are separate.</p>
+<h2 id="puzzlefamily"><code>puzzle.family</code><a class="headerlink" href="#puzzlefamily" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"standard"</code></p>
 <p>Construction family: standard, pairwise, cross_attribute, equality_tree, branching, redundant_paths. Family-specific enabled types must remain available. A family is not a difficulty guarantee.</p>
-<h2 id="puzzleassignment_mode"><code>puzzle.assignment_mode</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"repeated"</code>.</p>
+<h2 id="puzzleassignment_mode"><code>puzzle.assignment_mode</code><a class="headerlink" href="#puzzleassignment_mode" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"repeated"</code></p>
 <p>repeated permits shared attribute values; distinct requires at least suspect_count active values in every domain and forbids equality families.</p>
-<h2 id="puzzleextra_clue_scope"><code>puzzle.extra_clue_scope</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"all"</code>.</p>
+<h2 id="puzzleextra_clue_scope"><code>puzzle.extra_clue_scope</code><a class="headerlink" href="#puzzleextra_clue_scope" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"all"</code></p>
 <p>all samples from all attributes; non_target_attributes requires branching/equality_tree and at least two attributes.</p>
-<h2 id="puzzleattribute_mismatches"><code>puzzle.attribute_mismatches</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="puzzleattribute_mismatches"><code>puzzle.attribute_mismatches</code><a class="headerlink" href="#puzzleattribute_mismatches" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional integer 1..number of attributes; only redundant_paths. Controls how many attribute anchors differ from the culprit.</p>
-<h2 id="puzzleconfigsuspect_count"><code>puzzle.config.suspect_count</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>4</code>.</p>
+<h2 id="puzzleconfigsuspect_count"><code>puzzle.config.suspect_count</code><a class="headerlink" href="#puzzleconfigsuspect_count" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>4</code></p>
 <p>Integer 2..64 suspects. More suspects increase encoding size and subset search; no universal accuracy prediction.</p>
-<h2 id="puzzleconfigdomains"><code>puzzle.config.domains</code></h2>
-<p>Type: <code>&lt;class 'dict'&gt;</code>. Resolved default / JSON example: <code>{"location": ["Study", "Kitchen", "Library", "Garden"], "motive": ["Revenge", "Inheritance", "Jealousy", "Blackmail"], "time": ["20:00", "21:00", "22:00", "23:00"], "weapon": ["Rope", "Wrench", "Poison", "Knife"]}</code>.</p>
+<h2 id="puzzleconfigdomains"><code>puzzle.config.domains</code><a class="headerlink" href="#puzzleconfigdomains" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>object</code></p>
+<p><strong>Default / JSON example:</strong></p>
+<pre><code class="language-json">{
+  &quot;location&quot;: [
+    &quot;Study&quot;,
+    &quot;Kitchen&quot;,
+    &quot;Library&quot;,
+    &quot;Garden&quot;
+  ],
+  &quot;motive&quot;: [
+    &quot;Revenge&quot;,
+    &quot;Inheritance&quot;,
+    &quot;Jealousy&quot;,
+    &quot;Blackmail&quot;
+  ],
+  &quot;time&quot;: [
+    &quot;20:00&quot;,
+    &quot;21:00&quot;,
+    &quot;22:00&quot;,
+    &quot;23:00&quot;
+  ],
+  &quot;weapon&quot;: [
+    &quot;Rope&quot;,
+    &quot;Wrench&quot;,
+    &quot;Poison&quot;,
+    &quot;Knife&quot;
+  ]
+}
+</code></pre>
 <p>Map of 1..8 nonempty attribute names to 2..32 distinct strings. Domains may contain unicode/quotes. Changing values changes the world identity. Default lists are printed in the resolved configuration.</p>
-<h2 id="puzzleconfigclue_count"><code>puzzle.config.clue_count</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>8</code>.</p>
+<h2 id="puzzleconfigclue_count"><code>puzzle.config.clue_count</code><a class="headerlink" href="#puzzleconfigclue_count" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>8</code></p>
 <p>Positive integer core reports, before evidence transformations. Must cover all configured minima. Equality constructions require at least suspect_count; redundant_paths requires (suspect_count+1)*attributes.</p>
-<h2 id="puzzleconfigenabled_types"><code>puzzle.config.enabled_types</code></h2>
-<p>Type: <code>&lt;class 'tuple'&gt;</code>. Resolved default / JSON example: <code>["crime_different_from", "crime_negative", "crime_positive", "crime_same_as", "indirect_negative", "indirect_positive", "suspect_different_from", "suspect_same_as", "unary_negative", "unary_positive"]</code>.</p>
+<h2 id="puzzleconfigenabled_types"><code>puzzle.config.enabled_types</code><a class="headerlink" href="#puzzleconfigenabled_types" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>array</code></p>
+<p><strong>Default / JSON example:</strong></p>
+<pre><code class="language-json">[
+  &quot;crime_different_from&quot;,
+  &quot;crime_negative&quot;,
+  &quot;crime_positive&quot;,
+  &quot;crime_same_as&quot;,
+  &quot;indirect_negative&quot;,
+  &quot;indirect_positive&quot;,
+  &quot;suspect_different_from&quot;,
+  &quot;suspect_same_as&quot;,
+  &quot;unary_negative&quot;,
+  &quot;unary_positive&quot;
+]
+</code></pre>
 <p>Nonempty unique list of the ten supported clue predicates. Constructed families require their named predicates; see predicate reference.</p>
-<h2 id="puzzleconfigalpha"><code>puzzle.config.alpha</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>0.7</code>.</p>
+<h2 id="puzzleconfigalpha"><code>puzzle.config.alpha</code><a class="headerlink" href="#puzzleconfigalpha" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>0.7</code></p>
 <p>Sampling weight/control in [0,1]. Direct category weight alpha; indirect category weight 1-alpha. Construction also uses alpha when choosing available direct versus relational anchors. Rejection and availability condition these weights.</p>
-<h2 id="puzzleconfigbeta"><code>puzzle.config.beta</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>0.75</code>.</p>
+<h2 id="puzzleconfigbeta"><code>puzzle.config.beta</code><a class="headerlink" href="#puzzleconfigbeta" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>0.75</code></p>
 <p>Conditional positive relationship weight in [0,1] within indirect sampling, with complement for negative relationships. Availability and rejection alter realized frequencies; not a measured difficulty slider.</p>
-<h2 id="puzzleconfigmin_murderer_links"><code>puzzle.config.min_murderer_links</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>1</code>.</p>
+<h2 id="puzzleconfigmin_murderer_links"><code>puzzle.config.min_murderer_links</code><a class="headerlink" href="#puzzleconfigmin_murderer_links" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>1</code></p>
 <p>Nonnegative integer lower bound on murderer-link reports, at most clue_count. Hard accepted-case filter.</p>
-<h2 id="puzzleconfigmax_murderer_links"><code>puzzle.config.max_murderer_links</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="puzzleconfigmax_murderer_links"><code>puzzle.config.max_murderer_links</code><a class="headerlink" href="#puzzleconfigmax_murderer_links" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative integer upper bound, no smaller than the minimum. Impossible limits exhaust candidates.</p>
-<h2 id="puzzleconfigmax_positive_murderer_links"><code>puzzle.config.max_positive_murderer_links</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="puzzleconfigmax_positive_murderer_links"><code>puzzle.config.max_positive_murderer_links</code><a class="headerlink" href="#puzzleconfigmax_positive_murderer_links" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative cap on positive murderer links; may conflict with available family anchors.</p>
-<h2 id="puzzleconfigmin_indirect_clues"><code>puzzle.config.min_indirect_clues</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="puzzleconfigmin_indirect_clues"><code>puzzle.config.min_indirect_clues</code><a class="headerlink" href="#puzzleconfigmin_indirect_clues" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative minimum number of indirect reports, at most clue_count. Requires enabled indirect types.</p>
-<h2 id="puzzleconfigmin_unique_subset_size"><code>puzzle.config.min_unique_subset_size</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>1</code>.</p>
+<h2 id="puzzleconfigmin_unique_subset_size"><code>puzzle.config.min_unique_subset_size</code><a class="headerlink" href="#puzzleconfigmin_unique_subset_size" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>1</code></p>
 <p>Positive minimum sufficient subset size, at most clue_count. Community sufficient bounds cannot undercut this legacy minimum.</p>
-<h2 id="puzzleconfigrequire_indirect_essential"><code>puzzle.config.require_indirect_essential</code></h2>
-<p>Type: <code>&lt;class 'bool'&gt;</code>. Resolved default / JSON example: <code>false</code>.</p>
+<h2 id="puzzleconfigrequire_indirect_essential"><code>puzzle.config.require_indirect_essential</code><a class="headerlink" href="#puzzleconfigrequire_indirect_essential" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>boolean</code> · <strong>Default / JSON example:</strong> <code>false</code></p>
 <p>Boolean hard requirement: at least one indirect clue is essential; impossible with no indirect types.</p>
-<h2 id="puzzleconfigmin_pairwise_clues"><code>puzzle.config.min_pairwise_clues</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="puzzleconfigmin_pairwise_clues"><code>puzzle.config.min_pairwise_clues</code><a class="headerlink" href="#puzzleconfigmin_pairwise_clues" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative required suspect-comparison count, at most clue_count. May reject unsupported families.</p>
-<h2 id="puzzleconfigactive_values_per_attribute"><code>puzzle.config.active_values_per_attribute</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="puzzleconfigactive_values_per_attribute"><code>puzzle.config.active_values_per_attribute</code><a class="headerlink" href="#puzzleconfigactive_values_per_attribute" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional integer 2..smallest domain size. Distinct assignment also requires at least suspect_count active values.</p>
-<h2 id="puzzleconfigreasoning_route"><code>puzzle.config.reasoning_route</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"standard"</code>.</p>
+<h2 id="puzzleconfigreasoning_route"><code>puzzle.config.reasoning_route</code><a class="headerlink" href="#puzzleconfigreasoning_route" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"standard"</code></p>
 <p>standard, pairwise or cross_attribute legacy construction route. Keep standard for equality constructions; family and route must agree.</p>
-<h2 id="puzzleconfigmax_attempts"><code>puzzle.config.max_attempts</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>64</code>.</p>
+<h2 id="puzzleconfigmax_attempts"><code>puzzle.config.max_attempts</code><a class="headerlink" href="#puzzleconfigmax_attempts" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>64</code></p>
 <p>Positive bounded legacy construction attempts per candidate; increasing it costs solver time and does not relax semantic filters.</p>
-<h2 id="puzzleconfigmutation_steps"><code>puzzle.config.mutation_steps</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>12</code>.</p>
+<h2 id="puzzleconfigmutation_steps"><code>puzzle.config.mutation_steps</code><a class="headerlink" href="#puzzleconfigmutation_steps" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>12</code></p>
 <p>Nonnegative legacy search mutation steps. Zero skips mutation; it does not skip certification.</p>
-<h2 id="puzzleconfigmax_solver_calls"><code>puzzle.config.max_solver_calls</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>10000</code>.</p>
+<h2 id="puzzleconfigmax_solver_calls"><code>puzzle.config.max_solver_calls</code><a class="headerlink" href="#puzzleconfigmax_solver_calls" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>10000</code></p>
 <p>Positive maximum legacy solver calls. Exhaustion means unresolved, never a proof.</p>
-<h2 id="puzzleconfigsolver_seconds"><code>puzzle.config.solver_seconds</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>2.0</code>.</p>
+<h2 id="puzzleconfigsolver_seconds"><code>puzzle.config.solver_seconds</code><a class="headerlink" href="#puzzleconfigsolver_seconds" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>2.0</code></p>
 <p>Positive per-solve wall-time seconds in legacy construction. Timeouts mean unresolved.</p>
-<h2 id="puzzleconfigsolver_work"><code>puzzle.config.solver_work</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>0.2</code>.</p>
+<h2 id="puzzleconfigsolver_work"><code>puzzle.config.solver_work</code><a class="headerlink" href="#puzzleconfigsolver_work" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>0.2</code></p>
 <p>Positive CP-SAT deterministic work bound. Engine-specific effort units; unrelated to model reasoning depth.</p>
-<h2 id="puzzleconfiggeneration_seconds"><code>puzzle.config.generation_seconds</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>30.0</code>.</p>
+<h2 id="puzzleconfiggeneration_seconds"><code>puzzle.config.generation_seconds</code><a class="headerlink" href="#puzzleconfiggeneration_seconds" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>30.0</code></p>
 <p>Positive total legacy generation wall-time seconds. Independent of community certification_seconds.</p>
-<h2 id="evidenceminimum_sufficient_clues"><code>evidence.minimum_sufficient_clues</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="evidenceminimum_sufficient_clues"><code>evidence.minimum_sufficient_clues</code><a class="headerlink" href="#evidenceminimum_sufficient_clues" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative certified lower bound in reports. Must not exceed maximum or undercut legacy minimum; ambiguous cases forbid it.</p>
-<h2 id="evidencemaximum_sufficient_clues"><code>evidence.maximum_sufficient_clues</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="evidencemaximum_sufficient_clues"><code>evidence.maximum_sufficient_clues</code><a class="headerlink" href="#evidencemaximum_sufficient_clues" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative certified upper bound in reports; ambiguous cases forbid a sufficient subset.</p>
-<h2 id="evidenceentailed_clues"><code>evidence.entailed_clues</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="evidenceentailed_clues"><code>evidence.entailed_clues</code><a class="headerlink" href="#evidenceentailed_clues" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative count of extra core-entailed reports. Can improve redundancy and model performance; increases text and certification cost.</p>
-<h2 id="evidenceconnected_decoys"><code>evidence.connected_decoys</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="evidenceconnected_decoys"><code>evidence.connected_decoys</code><a class="headerlink" href="#evidenceconnected_decoys" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative count of extra relational entailed reports connected to target variables. Different from independent nuisance.</p>
-<h2 id="evidenceirrelevant_records"><code>evidence.irrelevant_records</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="evidenceirrelevant_records"><code>evidence.irrelevant_records</code><a class="headerlink" href="#evidenceirrelevant_records" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative count of satisfiable independent one-variable components, appended by default. Above 1000 requires large_corpus=true. Increases export and model input cost.</p>
-<h2 id="evidencefalse_reports"><code>evidence.false_reports</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="evidencefalse_reports"><code>evidence.false_reports</code><a class="headerlink" href="#evidencefalse_reports" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Integer 0..2 actual sampled corruptions; private evaluator information. Cannot exceed corruption_allowance.</p>
-<h2 id="evidencecorruption_allowance"><code>evidence.corruption_allowance</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="evidencecorruption_allowance"><code>evidence.corruption_allowance</code><a class="headerlink" href="#evidencecorruption_allowance" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Optional integer 0..2 public at-most-k rule; resolves to false_reports when omitted. At most is not exactly k.</p>
-<h2 id="evidenceanswerability"><code>evidence.answerability</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"unique"</code>.</p>
+<h2 id="evidenceanswerability"><code>evidence.answerability</code><a class="headerlink" href="#evidenceanswerability" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"unique"</code></p>
 <p>unique or ambiguous after all reports and the reliability rule. Ambiguous requires null sufficient bounds and null minimum coalition size.</p>
-<h2 id="evidencecorruption_strategy"><code>evidence.corruption_strategy</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"random"</code>.</p>
+<h2 id="evidencecorruption_strategy"><code>evidence.corruption_strategy</code><a class="headerlink" href="#evidencecorruption_strategy" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"random"</code></p>
 <p>random or targeted. Targeted false reports require unique answerability and may increase solver search.</p>
-<h2 id="evidencecorruption_search_attempts"><code>evidence.corruption_search_attempts</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>12</code>.</p>
+<h2 id="evidencecorruption_search_attempts"><code>evidence.corruption_search_attempts</code><a class="headerlink" href="#evidencecorruption_search_attempts" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>12</code></p>
 <p>Positive targeted-search attempt cap. Exhaustion retains rejection evidence; never implies success.</p>
-<h2 id="evidencemaximum_alternative_margin"><code>evidence.maximum_alternative_margin</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="evidencemaximum_alternative_margin"><code>evidence.maximum_alternative_margin</code><a class="headerlink" href="#evidencemaximum_alternative_margin" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional positive maximum alternative reliability margin; requires unique answerability. Extra solver profiling cost.</p>
-<h2 id="distributionagent_count"><code>distribution.agent_count</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>2</code>.</p>
+<h2 id="distributionagent_count"><code>distribution.agent_count</code><a class="headerlink" href="#distributionagent_count" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>2</code></p>
 <p>Integer 1..8. Explicitly use one for single-agent work; default two. Coalition enumeration grows exponentially.</p>
-<h2 id="distributionshared_reports"><code>distribution.shared_reports</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="distributionshared_reports"><code>distribution.shared_reports</code><a class="headerlink" href="#distributionshared_reports" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative count visible to every agent, no larger than total report count.</p>
-<h2 id="distributionprivate_replication"><code>distribution.private_replication</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>1</code>.</p>
+<h2 id="distributionprivate_replication"><code>distribution.private_replication</code><a class="headerlink" href="#distributionprivate_replication" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>1</code></p>
 <p>Integer 1..max(1,agent_count-1) owners per non-shared report; repeated presentation retains original report identity.</p>
-<h2 id="distributionper_agent_quotas"><code>distribution.per_agent_quotas</code></h2>
-<p>Type: <code>list[int] | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="distributionper_agent_quotas"><code>distribution.per_agent_quotas</code><a class="headerlink" href="#distributionper_agent_quotas" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>list[int] | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional exact nonnegative report counts, one per agent. Must be feasible with sharing and replication; impossible quotas reject candidates.</p>
-<h2 id="distributionminimum_coalition_size"><code>distribution.minimum_coalition_size</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>2</code>.</p>
+<h2 id="distributionminimum_coalition_size"><code>distribution.minimum_coalition_size</code><a class="headerlink" href="#distributionminimum_coalition_size" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>2</code></p>
 <p>Optional integer 1..agent_count. Hard certified minimum team size; null for globally ambiguous data.</p>
-<h2 id="distributionmax_attempts"><code>distribution.max_attempts</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>128</code>.</p>
+<h2 id="distributionmax_attempts"><code>distribution.max_attempts</code><a class="headerlink" href="#distributionmax_attempts" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>128</code></p>
 <p>Positive bounded partition-search retries; more retries cost certification time, not a relaxed quota.</p>
-<h2 id="presentationtheme"><code>presentation.theme</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"mystery"</code>.</p>
+<h2 id="presentationtheme"><code>presentation.theme</code><a class="headerlink" href="#presentationtheme" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"mystery"</code></p>
 <p>mystery or investigation. Uses Person/Entity labels, deterministic wording and no LLM.</p>
-<h2 id="presentationnaming_seed"><code>presentation.naming_seed</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="presentationnaming_seed"><code>presentation.naming_seed</code><a class="headerlink" href="#presentationnaming_seed" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Integer seed for label permutation, independent of the sampled world; labels are not real people.</p>
-<h2 id="presentationtemplate"><code>presentation.template</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"compact"</code>.</p>
+<h2 id="presentationtemplate"><code>presentation.template</code><a class="headerlink" href="#presentationtemplate" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"compact"</code></p>
 <p>compact or expanded deterministic report wording. Expanded adds a fixed sentence to each report.</p>
-<h2 id="presentationclue_order"><code>presentation.clue_order</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"shuffle"</code>.</p>
+<h2 id="presentationclue_order"><code>presentation.clue_order</code><a class="headerlink" href="#presentationclue_order" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"shuffle"</code></p>
 <p>shuffle, canonical or reverse. Shuffle uses a deterministic seed; canonical sorts report hashes.</p>
-<h2 id="presentationevidence_placement"><code>presentation.evidence_placement</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"front"</code>.</p>
+<h2 id="presentationevidence_placement"><code>presentation.evidence_placement</code><a class="headerlink" href="#presentationevidence_placement" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"front"</code></p>
 <p>front, middle, end or interleaved position of core reports within the independent nuisance stream.</p>
-<h2 id="presentationminimum_words"><code>presentation.minimum_words</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="presentationminimum_words"><code>presentation.minimum_words</code><a class="headerlink" href="#presentationminimum_words" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative minimum whitespace word count. Adds explicitly nonfactual template padding when necessary.</p>
-<h2 id="presentationmaximum_words"><code>presentation.maximum_words</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="presentationmaximum_words"><code>presentation.maximum_words</code><a class="headerlink" href="#presentationmaximum_words" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative maximum whitespace word count. Evidence is never truncated; impossible bounds reject.</p>
-<h2 id="presentationminimum_tokens"><code>presentation.minimum_tokens</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="presentationminimum_tokens"><code>presentation.minimum_tokens</code><a class="headerlink" href="#presentationminimum_tokens" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative lower token bound. Requires Python tokenizer with stable identity and workers=1; not provider chat billing.</p>
-<h2 id="presentationmaximum_tokens"><code>presentation.maximum_tokens</code></h2>
-<p>Type: <code>int | None</code>. Resolved default / JSON example: <code>null</code>.</p>
+<h2 id="presentationmaximum_tokens"><code>presentation.maximum_tokens</code><a class="headerlink" href="#presentationmaximum_tokens" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>int | None</code> · <strong>Default / JSON example:</strong> <code>null</code></p>
 <p>Optional nonnegative upper token bound; same tokenizer constraints. Overflow rejects instead of shortening reports.</p>
-<h2 id="datasetcount"><code>dataset.count</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>1</code>.</p>
+<h2 id="datasetcount"><code>dataset.count</code><a class="headerlink" href="#datasetcount" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>1</code></p>
 <p>Positive accepted-world target. Candidate exhaustion writes incomplete status and CLI exits 2.</p>
-<h2 id="datasetseed"><code>dataset.seed</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>0</code>.</p>
+<h2 id="datasetseed"><code>dataset.seed</code><a class="headerlink" href="#datasetseed" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>0</code></p>
 <p>Nonnegative first candidate seed; candidates increase in deterministic order. Resume reuses recorded candidate receipts.</p>
-<h2 id="datasetworkers"><code>dataset.workers</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>1</code>.</p>
+<h2 id="datasetworkers"><code>dataset.workers</code><a class="headerlink" href="#datasetworkers" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>1</code></p>
 <p>Positive process count. Does not change config fingerprint or accepted seed order. Custom tokenizer requires one worker.</p>
-<h2 id="datasetsplits"><code>dataset.splits</code></h2>
-<p>Type: <code>&lt;class 'dict'&gt;</code>. Resolved default / JSON example: <code>{"development": 0.8, "test": 0.2}</code>.</p>
+<h2 id="datasetsplits"><code>dataset.splits</code><a class="headerlink" href="#datasetsplits" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>object</code> · <strong>Default / JSON example:</strong> <code>{"development": 0.8, "test": 0.2}</code></p>
 <p>development/test/transfer proportions, finite nonnegative values summing to one. Hash-based allocation keeps paired worlds together.</p>
-<h2 id="datasetholdout_families"><code>dataset.holdout_families</code></h2>
-<p>Type: <code>list[str]</code>. Resolved default / JSON example: <code>[]</code>.</p>
+<h2 id="datasetholdout_families"><code>dataset.holdout_families</code><a class="headerlink" href="#datasetholdout_families" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>list[str]</code> · <strong>Default / JSON example:</strong> <code>[]</code></p>
 <p>List of valid families forced to transfer split; family holdout is not a proof of strategy diversity.</p>
-<h2 id="datasetoutput_directory"><code>dataset.output_directory</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"community-output"</code>.</p>
+<h2 id="datasetoutput_directory"><code>dataset.output_directory</code><a class="headerlink" href="#datasetoutput_directory" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"community-output"</code></p>
 <p>Nonempty local directory. Existing matching checkpoints resume; source/config drift rejects. Keep frozen measured runs separate.</p>
-<h2 id="datasetcertification_seconds"><code>dataset.certification_seconds</code></h2>
-<p>Type: <code>&lt;class 'float'&gt;</code>. Resolved default / JSON example: <code>60</code>.</p>
+<h2 id="datasetcertification_seconds"><code>dataset.certification_seconds</code><a class="headerlink" href="#datasetcertification_seconds" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>number</code> · <strong>Default / JSON example:</strong> <code>60</code></p>
 <p>Positive community certification wall-time seconds per candidate. Includes coalition checks; unresolved timeouts reject.</p>
-<h2 id="datasetmax_solver_calls"><code>dataset.max_solver_calls</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>20000</code>.</p>
+<h2 id="datasetmax_solver_calls"><code>dataset.max_solver_calls</code><a class="headerlink" href="#datasetmax_solver_calls" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>20000</code></p>
 <p>Positive community certification call budget. Separate from nested legacy generation controls.</p>
-<h2 id="datasetmax_candidates_per_case"><code>dataset.max_candidates_per_case</code></h2>
-<p>Type: <code>&lt;class 'int'&gt;</code>. Resolved default / JSON example: <code>20</code>.</p>
+<h2 id="datasetmax_candidates_per_case"><code>dataset.max_candidates_per_case</code><a class="headerlink" href="#datasetmax_candidates_per_case" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>integer</code> · <strong>Default / JSON example:</strong> <code>20</code></p>
 <p>Positive candidate multiplier; total attempted candidates bounded by count times this value.</p>
-<h2 id="datasetlarge_corpus"><code>dataset.large_corpus</code></h2>
-<p>Type: <code>&lt;class 'bool'&gt;</code>. Resolved default / JSON example: <code>false</code>.</p>
+<h2 id="datasetlarge_corpus"><code>dataset.large_corpus</code><a class="headerlink" href="#datasetlarge_corpus" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>boolean</code> · <strong>Default / JSON example:</strong> <code>false</code></p>
 <p>Boolean explicit opt-in for more than 1000 independent records. Does not authorize inference or raise any monetary cap.</p>
-<h2 id="schema_version"><code>schema_version</code></h2>
-<p>Type: <code>&lt;class 'str'&gt;</code>. Resolved default / JSON example: <code>"clue-community-1"</code>.</p>
-<p>Exact wire contract clue-community-1. Separate from software and presentation identity; stale schemas are rejected.</p></div>
+<h2 id="schema_version"><code>schema_version</code><a class="headerlink" href="#schema_version" title="Permanent link">&para;</a></h2>
+<p><strong>Type:</strong> <code>string</code> · <strong>Default / JSON example:</strong> <code>"clue-community-1"</code></p>
+<p>Exact wire contract clue-community-1. Separate from software and presentation identity; stale schemas are rejected.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../../results/"><small>Previous</small>Results</a>
+      <a rel="next" href="../predicates/"><small>Next</small>Predicates <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -600,6 +514,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

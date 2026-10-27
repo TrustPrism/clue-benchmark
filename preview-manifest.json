@@ -1,18 +1,30 @@
 {
-  "source_revision": "c3b824fdabaad961b50a5ce8beb4209da66e5f19",
-  "scope": "Static research preview on gh-pages in existing TrustPrism/clue-benchmark repository",
+  "source_revision": "c7ca79655320bd67af54e2740ff9b2d4bce50e97",
+  "scope": "Readable documentation refresh on gh-pages in existing TrustPrism/clue-benchmark repository",
   "files": {
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "404.html": {
-      "sha256": "cdef89027d8d97b0b42d680cd5d5e2f0c311c43494e160eb7d9efb1ce07d9ae2",
-      "bytes": 9618
+      "sha256": "758eed3efe42cf94dbdc2eaf492f1a2bf207850968cf33766d847f0e46a09108",
+      "bytes": 8870
     },
     "README.md": {
       "sha256": "b4ee9c3e429ec17e5af595d5f3ead36a674273a3fbd1e6fa48cd3b6562e47d1b",
       "bytes": 321
+    },
+    "assets/badge-puzzle.svg": {
+      "sha256": "81856502615108cfed1cf86aa4e2f7f7c6bf2566f17b5732d03bea16c28e26d6",
+      "bytes": 1681
+    },
+    "assets/evidence-flow.svg": {
+      "sha256": "5b81665ac508c626a5e76e90a421efdb0af2cadee6602c1541c7958e1b87e708",
+      "bytes": 1774
+    },
+    "assets/evidence-sharing.svg": {
+      "sha256": "17f173348d0a9d3f1f9e4505a4f37a845694ee648ac30ec72ec1559be0784680",
+      "bytes": 1751
     },
     "assets/extended-nuisance-accuracy.svg": {
       "sha256": "54984676b9a6697aa13d75a6fa287dd8047ea73892438134cc03ad80a7059c0b",
@@ -66,6 +78,14 @@
       "sha256": "bc34ec40c0492b6c6b1b31a10f9fb0d3c96a2362c3398ea30665f8c5f15668ea",
       "bytes": 135477
     },
+    "assets/nuisance-summary-mobile.svg": {
+      "sha256": "67663ca1cb8281f2b652667ef74fdcac8370eb5910652269de11fa360df1d84a",
+      "bytes": 45658
+    },
+    "assets/nuisance-summary.svg": {
+      "sha256": "0e699e3e859b953d527e0842ac4157a6d7bbf27ed49eb4b583c5bad132612532",
+      "bytes": 43859
+    },
     "assets/paired-accuracy-and-cost.svg": {
       "sha256": "f78a08fc0bad3f9f72c74f121842a049fbd72190656933a8536ae475b3c1bd7e",
       "bytes": 60286
@@ -111,16 +131,16 @@
       "bytes": 1736
     },
     "explanations/pipeline/index.html": {
-      "sha256": "d798dedb6c182083b6b7172f03c21e0f38377e963616f80a0f14ab97a4d8a2a0",
-      "bytes": 15827
+      "sha256": "2f4ba61e3e694eea6dd898cbf596519fb186502440e6d06e32c3242649ad96b9",
+      "bytes": 18820
     },
     "explanations/related-work/index.html": {
-      "sha256": "68f6e919bc94fb90f984d0e9fec33fc1e1fbb4ec2c9ea86f4cd2c42c3256e782",
-      "bytes": 14315
+      "sha256": "d35cd916bdcbb30c988ff1ba8d0d9127a434c38fc8dcaaa77ae3f9420fdda82c",
+      "bytes": 13545
     },
     "guides/research-recipes/index.html": {
-      "sha256": "3f4b51c818c338b481654d50b21d3af9ba00b307f7ca17872bf5ae297a2d2623",
-      "bytes": 16206
+      "sha256": "a3bea7bdd5595cb99ff8277808277694fa6c68ba65d268f8f110920c1dc49532",
+      "bytes": 15503
     },
     "img/favicon.ico": {
       "sha256": "f16b45bd53fbacaa2cd8f22e8482db5c59e0cef9bd21394474a429a18a98ffd0",
@@ -131,8 +151,12 @@
       "bytes": 1458
     },
     "index.html": {
-      "sha256": "230367ad9bdd762be18cab36fee8d9c901eae652c88eca9b0991aae6b9a60ce1",
-      "bytes": 15040
+      "sha256": "f9335ebbd3d6487fd8dc189e3f2178ee49e78283e98baf7ed354f4896203de93",
+      "bytes": 15483
+    },
+    "javascripts/reading.js": {
+      "sha256": "4edd239868ba0235a9fb92e936288770c2b2b94369d921758c2bf93ab159113b",
+      "bytes": 5203
     },
     "js/base.js": {
       "sha256": "ea13d8449c21e5a4e5235722e67bfbf45009e8c61cbe8e98e453cc39f46419ed",
@@ -151,36 +175,36 @@
       "bytes": 2618
     },
     "maintainers/release/index.html": {
-      "sha256": "afa1a88757714e631fcf426d29c00b60ab5c2315c926423b5f9ae6ede8ce71ef",
-      "bytes": 15756
+      "sha256": "fd02e96da3eceb773e354172721b349664297e76056d054c049d9b8d8a6e4b23",
+      "bytes": 16846
     },
     "reference/data-dictionary/index.html": {
-      "sha256": "2c47e2b11c51322283205d94df231c05f2147fa85a9c89628bf27b3f4d157cd7",
-      "bytes": 15274
+      "sha256": "b6aebdcfabd815b24cdba57347836b61d4c8c5b2c36b29669d196ad9d8e79ad6",
+      "bytes": 16897
     },
     "reference/interfaces/index.html": {
-      "sha256": "e6c9bca1a02eaa999970c18cd6d672caf4b5cae7d9f776afcd66afaa73497298",
-      "bytes": 19833
+      "sha256": "575b7d44112f71b1eb20fbadeeaa7068890109d6ea9728f06152b02d5fb432cb",
+      "bytes": 22887
     },
     "reference/parameters/index.html": {
-      "sha256": "4f4304a1cbd0ebee21ae4a52671a9467bf25403852994ea1210c1a82af6c2d0d",
-      "bytes": 44013
+      "sha256": "544f2b3a59940e47a91c97c5b1f6eebd9277305755c0b1d7b89ae5562efbcddc",
+      "bytes": 43434
     },
     "reference/predicates/index.html": {
-      "sha256": "41848b290e7f1cb1a22ea3162a5c1e2f747b7e2f52de088976254d4fb4548f87",
-      "bytes": 16258
+      "sha256": "90c4c8192a66051e3f5766108d0c38ef7555adbe38a72e26797a8681016958d9",
+      "bytes": 17768
     },
     "reference/troubleshooting/index.html": {
-      "sha256": "41515fde3580a32f7b0fc2a1ac97d20dc8da724ab236be57cd0e28cdc1a25be2",
-      "bytes": 13362
+      "sha256": "708418f3b0bfbcee61b06cbfadc8ba5c661e3e8644b6a6498cc34b876aafd6c5",
+      "bytes": 16428
     },
     "results/index.html": {
-      "sha256": "ef8a143d82e3e43e93fcd28b811fcd6d8c9c5a2218875691528fd8130437f791",
-      "bytes": 24310
+      "sha256": "30296ab58b1533df868f795cdbea057fc92dc6916a89a08f3dbf19c913a1c5ff",
+      "bytes": 28237
     },
     "results/open-questions/index.html": {
-      "sha256": "f9af246bb24ff663b689d06cd73112406f117200eab4b8f113250f32710ccf91",
-      "bytes": 16945
+      "sha256": "cc286f3d8adf36e07f49caebab1116b4f7a8f23d2bf78c7b7e4121f34437c09b",
+      "bytes": 16871
     },
     "search/lunr.js": {
       "sha256": "c1a28d9e95163292fbcc07ff794f1f0e1ade8741c513afe96d5b1046a18110bc",
@@ -191,8 +215,8 @@
       "bytes": 3206
     },
     "search/search_index.json": {
-      "sha256": "d310fdeb561939a3543cd5ab2ccf21cea2105c06ab1ea96a73f1d674ad24d45f",
-      "bytes": 140667
+      "sha256": "793e278bea50e70f1e7ec5eddb66a887ed02079f0945afeec8728979df1ea22b",
+      "bytes": 161351
     },
     "search/worker.js": {
       "sha256": "b486eab6682d02b7c6ec7bdc965bb051661ee2c6a42bb3442b559cb2c6e2c73c",
@@ -206,13 +230,17 @@
       "sha256": "0a9c8b38f1bae7f9f6fa5211535a79da08ad84cf3a61788c8ddcabeaccc4d420",
       "bytes": 369
     },
+    "stylesheets/reading.css": {
+      "sha256": "7d0acd84b1396aea2408d1fd0165bf3e5a9e81121e6df6858af8154c58dd8543",
+      "bytes": 13632
+    },
     "tutorials/distributed-evidence/index.html": {
-      "sha256": "8db5f3e0f80332d2df36e2f16d3e0dc278f0af91dd8ceca9dbe1deb971d3d4e5",
-      "bytes": 12190
+      "sha256": "8af6574c1db8d41b087946e5bac444e331386f1388be403236762c9fd1756631",
+      "bytes": 13753
     },
     "tutorials/first-dataset/index.html": {
-      "sha256": "dfc98370f94927d8dfe76f6e0e576360cde89b3522e7957508134e642a98b3c9",
-      "bytes": 14731
+      "sha256": "9c520b7a6bbb3d3c1198ceda11e41b6a5c3825d7308cce1bef5cb719bad143b6",
+      "bytes": 16791
     },
     "webfonts/fa-brands-400.ttf": {
       "sha256": "5656d596bc597165a42182f67b2b9f17d2ae47a9e3ef1b042b9a729739730705",
@@ -249,5 +277,6 @@
   },
   "pattern_scan_findings": [],
   "full_licensed_release_ready": false,
-  "public_site_url": "https://trustprism.github.io/clue-benchmark/"
+  "public_site_url": "https://trustprism.github.io/clue-benchmark/",
+  "verification_packet": "release/READABILITY-2026-10-27.md"
 }

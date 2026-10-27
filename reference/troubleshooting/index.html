@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/reference/troubleshooting/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Troubleshooting - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Troubleshooting - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../data-dictionary/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../../results/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,50 +114,98 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
+            <li><a href="#when-generation-cannot-finish">When generation cannot finish</a></li>
+            
+            <li><a href="#when-outputs-already-exist">When outputs already exist</a></li>
+            
+            <li><a href="#when-size-bounds-cannot-be-met">When size bounds cannot be met</a></li>
+            
+            <li><a href="#when-a-model-run-fails">When a model run fails</a></li>
+            
+            <li><a href="#supported-platforms">Supported platforms</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="troubleshooting">Troubleshooting</h1>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<p class="lead">Start with the message you received. An incomplete or unresolved result is reported explicitly; it is never silently treated as a certified puzzle.</p>
+<h2 id="when-generation-cannot-finish">When generation cannot finish<a class="headerlink" href="#when-generation-cannot-finish" title="Permanent link">&para;</a></h2>
+<h3 id="candidate-exhaustion">Candidate exhaustion<a class="headerlink" href="#candidate-exhaustion" title="Permanent link">&para;</a></h3>
+<p>Inspect the saved rejection reasons. Use a fresh output directory with a revised configuration. Increasing a retry limit cannot make contradictory requirements feasible.</p>
+<p>An incomplete bank uses <strong>exit status 2</strong>.</p>
+<h3 id="solver-timeout-or-work-exhaustion">Solver timeout or work exhaustion<a class="headerlink" href="#solver-timeout-or-work-exhaustion" title="Permanent link">&para;</a></h3>
+<p>The result is <strong>unresolved</strong>. Use a declared larger offline budget on fresh outputs if appropriate. Do not disable certification or count the timeout as a proof.</p>
+<h3 id="distinct-values-exhausted">Distinct values exhausted<a class="headerlink" href="#distinct-values-exhausted" title="Permanent link">&para;</a></h3>
+<p>Expand the domains or active-value set, or reduce the number of suspects. Equality construction families require repeated assignments.</p>
+<h3 id="family-and-enabled-types-disagree">Family and enabled types disagree<a class="headerlink" href="#family-and-enabled-types-disagree" title="Permanent link">&para;</a></h3>
+<p>Restore the required predicates or choose a compatible family and route. <code>redundant_paths</code> needs exactly <code>suspect_count + 1</code> reports per attribute.</p>
+<h3 id="impossible-quotas-or-coalition-requirements">Impossible quotas or coalition requirements<a class="headerlink" href="#impossible-quotas-or-coalition-requirements" title="Permanent link">&para;</a></h3>
+<p>Check the shared count, replication factor and per-agent quotas. Coalition checks support <strong>at most eight agents</strong>. More retries do not fix impossible quotas.</p>
+<h3 id="ambiguity-conflicts-with-a-sufficient-subset">Ambiguity conflicts with a sufficient subset<a class="headerlink" href="#ambiguity-conflicts-with-a-sufficient-subset" title="Permanent link">&para;</a></h3>
+<p>For globally ambiguous cases, set the sufficient bounds and minimum coalition size to <code>null</code>. Do not claim a unique answer.</p>
+<h2 id="when-outputs-already-exist">When outputs already exist<a class="headerlink" href="#when-outputs-already-exist" title="Permanent link">&para;</a></h2>
+<p><strong>Exports, reports and replays</strong> need a fresh destination:</p>
+<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance-new
+</code></pre>
+<p><strong>Generation</strong> can resume a checkpoint only when the source and configuration match. Complete matching datasets return without being rewritten.</p>
+<p>For a stale schema, source or configuration, use the frozen historical source for its historical plan—or prepare a new plan and output. Do not rewrite hashes to make an old plan pass.</p>
+<h2 id="when-size-bounds-cannot-be-met">When size bounds cannot be met<a class="headerlink" href="#when-size-bounds-cannot-be-met" title="Permanent link">&para;</a></h2>
+<h3 id="tokenizer-is-absent">Tokenizer is absent<a class="headerlink" href="#tokenizer-is-absent" title="Permanent link">&para;</a></h3>
+<p>Supply a tokenizer with a stable identity through Python and use <code>workers=1</code>, or remove token constraints. Do not silently substitute another tokenizer.</p>
+<h3 id="word-or-token-bounds-are-impossible">Word or token bounds are impossible<a class="headerlink" href="#word-or-token-bounds-are-impossible" title="Permanent link">&para;</a></h3>
+<p>Raise the bound or explicitly change the requested evidence. The generator never truncates evidence to fit.</p>
+<h3 id="model-context-would-overflow">Model context would overflow<a class="headerlink" href="#model-context-would-overflow" title="Permanent link">&para;</a></h3>
+<p>Reject the request before dispatch. Do not omit evidence or shrink an answer allowance after freezing a matched study.</p>
+<h2 id="when-a-model-run-fails">When a model run fails<a class="headerlink" href="#when-a-model-run-fails" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Keep failure types separate</p>
+<p>A wrong answer, malformed final action, provider failure and unresolved budget hold are different outcomes.</p>
+</div>
+<h3 id="malformed-tool-call-or-missing-final-action">Malformed tool call or missing final action<a class="headerlink" href="#malformed-tool-call-or-missing-final-action" title="Permanent link">&para;</a></h3>
+<p>Retain a protocol failure. Inspect the saved finish reason separately from reasoning errors.</p>
+<h3 id="provider-error-model-drift-or-unknown-usage">Provider error, model drift or unknown usage<a class="headerlink" href="#provider-error-model-drift-or-unknown-usage" title="Permanent link">&para;</a></h3>
+<p>Stop and preserve the returned identity, safe receipt and maximum reservation. Reconcile from documented evidence; do not edit ledger balances or assume zero cost.</p>
+<h3 id="held-funds-after-an-interruption">Held funds after an interruption<a class="headerlink" href="#held-funds-after-an-interruption" title="Permanent link">&para;</a></h3>
+<p>Resume only with the same plan, sources and durable ledger. An unresolved dispatch must not replay automatically. <strong>Zero automatic retries is intentional.</strong></p>
+<h2 id="supported-platforms">Supported platforms<a class="headerlink" href="#supported-platforms" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Distinct values exhausted:</strong> expand every domain/active-value set or reduce suspects; equality families require repeated assignments.</li>
-<li><strong>Family/types disagree:</strong> restore required predicates or choose a compatible family/route. Redundant paths needs exactly n+1 reports per attribute.</li>
-<li><strong>Impossible quotas/coalition:</strong> check shared count, replication, per-agent sums and agent limits (at most eight). A retry limit does not make impossible quotas feasible.</li>
-<li><strong>Ambiguous with a sufficient subset:</strong> set sufficient bounds and minimum coalition to null; do not claim a unique answer.</li>
-<li><strong>Tokenizer absent:</strong> supply a stable-identity tokenizer via Python with workers=1, or remove token constraints. Do not silently switch tokenizers.</li>
-<li><strong>Impossible word/token bounds:</strong> raise the bound or explicitly change the requested evidence. Evidence is never truncated to fit.</li>
-<li><strong>Candidate exhaustion:</strong> inspect saved rejection reasons and choose a new output config/directory. Incomplete is exit 2, not a complete bank.</li>
-<li><strong>Solver timeout/work exhaustion:</strong> unresolved; use a declared larger offline budget on fresh outputs. Never disable certification.</li>
-<li><strong>Context overflow:</strong> reject before dispatch. Do not omit evidence or shrink an answer budget after freezing a matched study.</li>
-<li><strong>Malformed tools/missing final action:</strong> retain a protocol failure and inspect the saved finish reason separately from wrong answers.</li>
-<li><strong>Provider error/model drift/unknown usage:</strong> stop. Preserve returned identity, safe receipt and maximum reservation. Use the documented reconciliation procedure; never edit ledger balances or assume zero cost.</li>
-<li><strong>Held funds/interruption:</strong> resume with the same plan, sources and durable ledger. An unresolved dispatch must not replay automatically; zero retries is intentional.</li>
-<li><strong>Stale schema/source/config:</strong> use the frozen historical source for historical plans, or prepare a new plan/output explicitly. Do not rewrite hashes to make a plan pass.</li>
-<li><strong>Existing export/report/replay output:</strong> choose a new path. Generation alone supports identity-checked checkpoint resume.</li>
-<li><strong>Platform limitations:</strong> native provider paths/locking are separate from offline generation. Local candidate verification is macOS/Python 3.12–3.14; Hosted Linux 3.12–3.14 and macOS 3.12 checks have passed; the remaining hosted macOS checks must be confirmed in the current PR. Windows is not advertised as verified.</li>
-</ul></div>
+<li><strong>Python:</strong> 3.12–3.14 checked on Linux and macOS in hosted CI.</li>
+<li><strong>Local installation:</strong> clean offline candidate-wheel checks on macOS Python 3.12–3.14; source-archive installation also checked.</li>
+<li><strong>Windows:</strong> not advertised as verified.</li>
+</ul>
+<p>Generation and saved-data replay are distinct from optional native provider paths. Check <a href="https://github.com/TrustPrism/clue-benchmark/pull/2">PR #2</a> for checks on the current revision.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../data-dictionary/"><small>Previous</small>Data dictionary</a>
+      <a rel="next" href="../../results/open-questions/"><small>Next</small>Open questions <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -182,6 +213,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

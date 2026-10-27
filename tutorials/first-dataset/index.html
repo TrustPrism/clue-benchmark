@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/tutorials/first-dataset/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>First dataset - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>First dataset - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../.." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../distributed-evidence/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,50 +114,96 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#first-dataset-in-five-minutes" class="nav-link">First dataset in five minutes</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#submit-a-sample-response-offline" class="nav-link">Submit a sample response offline</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#files-and-resuming" class="nav-link">Files and resuming</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#step-1-install-the-preview">1. Install the preview</a></li>
+            
+            <li><a href="#step-2-generate-a-puzzle">2. Generate a puzzle</a></li>
+            
+            <li><a href="#step-3-validate-it">3. Validate it</a></li>
+            
+            <li><a href="#step-4-export-the-agent-s-evidence">4. Export the agent's evidence</a></li>
+            
+            <li><a href="#step-5-score-a-sample-agent">5. Score a sample agent</a></li>
+            
+            <li><a href="#step-6-open-a-readable-report">6. Open a readable report</a></li>
+            
+            <li><a href="#try-the-measured-example">Try the measured example</a></li>
+            
+            <li><a href="#explore-the-settings">Explore the settings</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="./">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="first-dataset-in-five-minutes">First dataset in five minutes</h1>
-<p>Use Python 3.12 or newer. Install a built candidate wheel supplied by the maintainer, or use <code>python -m pip install .</code> from the checked-out preview source. Licensing remains pending; installation instructions do not grant redistribution rights. No PyPI release is claimed.</p>
-<pre><code class="language-sh">python -m pip install /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
-clue-benchmark generate-dataset --preset quickstart --output runs/demo
-clue-benchmark validate-dataset runs/demo
-clue-benchmark export-public runs/demo --agent 0 --output runs/agent.jsonl
+<h1 id="your-first-dataset">Your first dataset<a class="headerlink" href="#your-first-dataset" title="Permanent link">&para;</a></h1>
+<p class="lead">Generate a small puzzle, check it, and give an agent only the evidence it is allowed to see.</p>
+<p><strong>You need:</strong> Python 3.12 or newer on macOS or Linux. Installation downloads dependencies; every exercise below then runs offline. No model account or API key is required.</p>
+<h2 id="step-1-install-the-preview">1. Install the preview<a class="headerlink" href="#step-1-install-the-preview" title="Permanent link">&para;</a></h2>
+<p>Clone the published candidate, then enter its directory:</p>
+<pre><code class="language-sh">git clone \
+  --branch v0.5.0rc2 \
+  --single-branch \
+  https://github.com/TrustPrism/clue-benchmark.git
+cd clue-benchmark
 </code></pre>
-<p>Run from any working directory. <code>runs/demo</code> is relative to that directory. Generation prints a JSON summary with <code>complete: true</code> and validation prints <code>status: verified</code>. The preset requests one single-agent case with exactly four necessary reports. It uses bounded search; exhaustion is an explicit incomplete result, never an uncertified puzzle.</p>
-<p>Inspect the actual evidence:</p>
+<p>Create an isolated Python environment and install the package:</p>
+<pre><code class="language-sh">python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+</code></pre>
+<details>
+<summary>Already have a built candidate wheel?</summary>
+<p>Install that file instead:</p>
+<pre><code class="language-sh">python -m pip install \
+  /path/to/trustprism_clue_benchmark-0.5.0rc2-py3-none-any.whl
+</code></pre>
+<p>The package is not published to PyPI. Licensing remains pending; installation instructions do not grant redistribution rights.</p>
+</details>
+<h2 id="step-2-generate-a-puzzle">2. Generate a puzzle<a class="headerlink" href="#step-2-generate-a-puzzle" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset quickstart \
+  --output runs/demo
+</code></pre>
+<p>The preset asks for <strong>one single-agent case with exactly four necessary reports</strong>. Look for <code>complete: true</code> in the JSON summary.</p>
+<p><code>runs/demo</code> is relative to your current directory. You can run the installed command from anywhere.</p>
+<div class="admonition note">
+<p class="admonition-title">If generation stops early</p>
+<p>Generation uses bounded search. An incomplete result means it did not find enough certified cases within that budget. It never substitutes an uncertified puzzle. See <a href="../../reference/troubleshooting/#when-generation-cannot-finish">candidate exhaustion</a>.</p>
+</div>
+<h2 id="step-3-validate-it">3. Validate it<a class="headerlink" href="#step-3-validate-it" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark validate-dataset runs/demo
+</code></pre>
+<p><strong>Expected:</strong> <code>status: verified</code>. This checks both the bundle and the puzzle's logical meaning.</p>
+<h2 id="step-4-export-the-agent-s-evidence">4. Export the agent's evidence<a class="headerlink" href="#step-4-export-the-agent-s-evidence" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark export-public runs/demo \
+  --agent 0 \
+  --output runs/agent.jsonl
+</code></pre>
+<p>Give your agent <strong><code>runs/agent.jsonl</code></strong>, not the whole <code>runs/demo</code> directory.</p>
+<ul>
+<li>The exported file contains public case and report rows.</li>
+<li>The original directory also contains evaluator answers and certificates.</li>
+<li>The export leaves out solutions, checkpoints, provider receipts and other private fields.</li>
+</ul>
+<p>Inspect the public view:</p>
 <pre><code class="language-sh">clue-benchmark inspect-case runs/demo --agent 0
-clue-benchmark presets list
-clue-benchmark presets show quickstart
-clue-benchmark explain-config --preset quickstart
 </code></pre>
-<p><code>agent.jsonl</code> contains public case/report rows. It does not contain a solution, certificate, manifest, checkpoint or provider receipt. The original directory is an evaluator bundle; give your agent only the exported file.</p>
-<h2 id="submit-a-sample-response-offline">Submit a sample response offline</h2>
+<h2 id="step-5-score-a-sample-agent">5. Score a sample agent<a class="headerlink" href="#step-5-score-a-sample-agent" title="Permanent link">&para;</a></h2>
+<p>This intentionally cautious agent always abstains:</p>
 <pre><code class="language-python">from clue_benchmark import evaluate_agent
 
 result = evaluate_agent(
@@ -183,28 +212,57 @@ result = evaluate_agent(
     output=&quot;runs/sample-score.json&quot;,
     agent_id=0,
 )
+
 print(result[&quot;episodes&quot;][0])
 </code></pre>
-<p>This deliberately conservative agent sees only public fields. Its action is valid, but abstaining with sufficient evidence is unnecessary; it will not receive a correct or supported answer score. <code>correct</code>, <code>supported</code>, <code>protocol_valid</code>, <code>sufficient_evidence</code> and <code>ambiguous_evidence</code> are separate booleans.</p>
-<p>Read the result locally:</p>
-<pre><code class="language-sh">clue-benchmark report runs/sample-score.json --output runs/sample-report
+<p>Its response is <strong>valid</strong>, but abstaining is unnecessary when the evidence identifies an answer. Valid format and successful reasoning are different scores.</p>
+<p><a href="../../explanations/pipeline/#what-a-score-means">See all score meanings</a>.</p>
+<h2 id="step-6-open-a-readable-report">6. Open a readable report<a class="headerlink" href="#step-6-open-a-readable-report" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark report runs/sample-score.json \
+  --output runs/sample-report
 </code></pre>
-<p>Open <code>runs/sample-report/index.html</code>. It links the exact saved JSON and displays escaped text. No network request or inference occurs.</p>
-<h2 id="files-and-resuming">Files and resuming</h2>
-<p>The <a href="../../reference/data-dictionary/">data dictionary</a> describes the five bundle files. Matching generation checkpoints resume with the same sources/config. A changed source or config is rejected; use a new directory. Exports, reports and replays refuse an existing destination. Never edit a frozen measured run or a ledger to bypass an error.</p>
-<p>After rights clearance and actual publication, the installation command may become <code>python -m pip install trustprism-clue-benchmark</code>. It is not a claim that this candidate is already publicly available.</p>
-<p>Replay the final measured nuisance study without credentials:</p>
-<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup --output runs/followup
+<p>Open <strong><code>runs/sample-report/index.html</code></strong> in your browser. The report also links the exact saved JSON. It makes no model calls.</p>
+<h2 id="try-the-measured-example">Try the measured example<a class="headerlink" href="#try-the-measured-example" title="Permanent link">&para;</a></h2>
+<p>Replay the completed irrelevant-evidence study from saved measurements:</p>
+<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup \
+  --output runs/followup
 </code></pre>
-<p>The report separates the original eight-world phase, four-world expansion and
-exploratory combined result; all 144 scored assignments and the combined $10.00
-accounting are bundled as sanitized data.</p></div>
+<p>The output separates the <strong>initial study</strong>, <strong>final expansion</strong> and <strong>exploratory combined result</strong>. It includes all 144 scored assignments and the closed $10.00 study accounting.</p>
+<p><a href="../../results/">Read what the study found →</a></p>
+<h2 id="explore-the-settings">Explore the settings<a class="headerlink" href="#explore-the-settings" title="Permanent link">&para;</a></h2>
+<p>See the available presets:</p>
+<pre><code class="language-sh">clue-benchmark presets list
+</code></pre>
+<p>Inspect the quickstart's resolved settings:</p>
+<pre><code class="language-sh">clue-benchmark presets show quickstart
+clue-benchmark explain-config --preset quickstart
+</code></pre>
+<p>Start with <a href="../../guides/research-recipes/">worked research recipes</a>, then use the <a href="../../reference/parameters/">parameter reference</a> for details.</p>
+<details>
+<summary>Existing files, checkpoints and resuming</summary>
+<ul>
+<li><strong>Generation</strong> can resume a matching checkpoint with the same source and configuration.</li>
+<li><strong>Exports, reports and replays</strong> need a new destination. They refuse to overwrite an existing one.</li>
+<li>A changed source or configuration needs a new generation directory.</li>
+<li>Do not edit frozen measured runs or ledgers to bypass an error.</li>
+</ul>
+<p>The <a href="../../reference/data-dictionary/">data dictionary</a> describes the five bundle files.</p>
+</details>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../.."><small>Previous</small>Start here</a>
+      <a rel="next" href="../distributed-evidence/"><small>Next</small>Distributed evidence <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -212,6 +270,7 @@ accounting are bundled as sanitized data.</p></div>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

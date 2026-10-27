@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 270" role="img" aria-labelledby="title desc">
+  <title id="title">Why evidence delivery changes answerability</title>
+  <desc id="desc">A complete view can support one answer. Splitting reports across private views can leave several answers possible. Programmed star forwarding can deliver enough reports to the hub to support one answer again. This describes an information control, not learned communication.</desc>
+  <rect width="900" height="270" rx="18" fill="#eef3e9"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g fill="#fff" stroke="#cfddcc"><rect x="24" y="24" width="267" height="218" rx="12"/><rect x="316" y="24" width="267" height="218" rx="12"/><rect x="608" y="24" width="267" height="218" rx="12"/></g>
+    <g fill="#e1ebdc" stroke="#47715b" stroke-width="2"><rect x="111" y="60" width="72" height="70" rx="6"/><path d="M125 79h44m-44 15h44m-44 15h30"/><rect x="390" y="62" width="48" height="63" rx="5"/><rect x="462" y="62" width="48" height="63" rx="5"/><path d="M401 80h25m-25 16h25m48-16h25m-25 16h25"/><circle cx="742" cy="96" r="22"/><circle cx="695" cy="56" r="10"/><circle cx="791" cy="56" r="10"/><circle cx="695" cy="137" r="10"/><circle cx="791" cy="137" r="10"/><path d="m704 64 22 19m33 0 25-20m-81 65 23-19m34 0 24 20"/></g>
+    <g fill="#203731" font-size="24" font-weight="650"><text x="157" y="176">Complete</text><text x="450" y="176">Private</text><text x="742" y="176">Forwarded</text></g>
+    <g font-size="18"><text x="157" y="210" fill="#166557">One supported answer</text><text x="450" y="210" fill="#95621f">Several possible answers</text><text x="742" y="210" fill="#166557">Enough evidence at the hub</text></g>
+  </g>
+</svg>

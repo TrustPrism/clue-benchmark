@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/results/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Results - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Results - Clue Benchmark</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
         <link href="../css/solid.min.css" rel="stylesheet">
         <link href="../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href=".." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../reference/troubleshooting/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="open-questions/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,158 +114,336 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#preliminary-measured-results" class="nav-link">Preliminary measured results</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#what-is-interesting-about-the-follow-up" class="nav-link">What is interesting about the follow-up?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#where-to-find-the-original-results" class="nav-link">Where to find the original results</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#information-availability" class="nav-link">Information availability</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#nuisance-records" class="nav-link">Nuisance records</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="3"><a href="#original-pilot" class="nav-link">Original pilot</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="3"><a href="#follow-up-and-final-expansion" class="nav-link">Follow-up and final expansion</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#certified-burden" class="nav-link">Certified burden</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#hard-cases-and-resources" class="nav-link">Hard cases and resources</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#completion-versus-supported-correctness" class="nav-link">Completion versus supported correctness</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#provenance-and-limits" class="nav-link">Provenance and limits</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
+            <li><a href="#what-is-interesting-about-the-follow-up">What we learned</a></li>
+            
+            <li><a href="#nuisance-records">Irrelevant evidence: the full comparison</a></li>
+            
+            <li><a href="#information-availability">Can the agent know the answer?</a></li>
+            
+            <li><a href="#certified-burden">Does more necessary evidence mean harder reasoning?</a></li>
+            
+            <li><a href="#hard-cases-and-resources">Hard cases and output budgets</a></li>
+            
+            <li><a href="#completion-versus-supported-correctness">More completed answers did not mean better reasoning</a></li>
+            
+            <li><a href="#where-to-find-the-original-results">Original studies and downloads</a></li>
+            
+            <li><a href="#provenance-and-limits">Sources and limits</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../tutorials/first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="preliminary-measured-results">Preliminary measured results</h1>
-<p>These are separate historical studies with different thinking budgets, input shapes, adaptive/fresh status and denominators. No pooled leaderboard is supported. Recompute from sanitized per-assignment records without credentials:</p>
-<p>The <a href="open-questions/">initial-preview open questions</a> separate unanswered
-research questions from pending full-release decisions.</p>
-<pre><code class="language-sh">clue-benchmark examples replay measured-results --output runs/measured
-</code></pre>
-<p>With the optional figures extra installed, add <code>--figures</code> to reproduce the paired accuracy/cost SVG. The command writes <code>results.json</code> and an accessible local HTML report with study-specific tables, source hashes and assigned counts.</p>
-<h2 id="what-is-interesting-about-the-follow-up">What is interesting about the follow-up?</h2>
-<p>The pilot's apparent benefit from irrelevant evidence <strong>did not repeat consistently</strong>. Lite's four-report endpoint accuracy was unchanged on average, but that average hid one improving world and one worsening world, with four unchanged. The eight-report dip at 100 extra records and partial recovery at 1,000 is a possible distraction signal, not an established dose-response pattern. Flash stayed at the ceiling in this narrow setting. The most consistent tradeoff was cost: roughly 56× for Lite and 77× for Flash at 1,000 extra records, without higher aggregate endpoint accuracy.</p>
-<p>These results make a useful replication and robustness example. They do not prove that irrelevant evidence never helps or hurts. The small sample and post-result expansion require exploratory interpretation; the <a href="#follow-up-and-final-expansion">full phase results below</a> retain uncertainty and all conditions.</p>
-<h2 id="where-to-find-the-original-results">Where to find the original results</h2>
-<p>The earlier studies have not been replaced by the new follow-up. Their sanitized outcomes are included in both the installed offline gallery and this documentation:</p>
+<h1 id="results-at-a-glance">Results at a glance<a class="headerlink" href="#results-at-a-glance" title="Permanent link">&para;</a></h1>
+<p class="lead">The surprising pilot result did not repeat consistently: extra irrelevant evidence cost much more, without a reliable accuracy benefit in the follow-up.</p>
+<div class="metric-grid">
+<div class="metric">
+<p><span class="metric-label">Scored responses</span>
+<strong>144</strong>
+<span>Plus two compatibility probes.</span></p>
+</div>
+<div class="metric">
+<p><span class="metric-label">Underlying worlds</span>
+<strong>12</strong>
+<span>Six per evidence-burden setting.</span></p>
+</div>
+<div class="metric">
+<p><span class="metric-label">Estimated total</span>
+<strong>$6.96</strong>
+<span>Under the single $10.00 cap.</span></p>
+</div>
+</div>
+<p><a href="#where-to-find-the-original-results">Jump to original studies and downloads</a> · <a href="open-questions/">Read the open questions</a></p>
+<h2 id="what-is-interesting-about-the-follow-up">What we learned<a class="headerlink" href="#what-is-interesting-about-the-follow-up" title="Permanent link">&para;</a></h2>
+<h3 id="the-earlier-improvement-was-fragile">The earlier improvement was fragile<a class="headerlink" href="#the-earlier-improvement-was-fragile" title="Permanent link">&para;</a></h3>
+<p>In the original pilot, Lite improved from <strong>2/5 to 5/5</strong> between zero and 1,000 irrelevant records. In the expanded follow-up's four-report setting, it scored <strong>10/12 at both endpoints</strong>.</p>
+<h3 id="an-unchanged-average-hid-individual-changes">An unchanged average hid individual changes<a class="headerlink" href="#an-unchanged-average-hid-individual-changes" title="Permanent link">&para;</a></h3>
+<p>Four primary worlds stayed unchanged. One improved and one worsened. Extra evidence sometimes changed performance, but without a consistent direction.</p>
+<h3 id="the-harder-setting-may-reveal-distraction">The harder setting may reveal distraction<a class="headerlink" href="#the-harder-setting-may-reveal-distraction" title="Permanent link">&para;</a></h3>
+<p>With eight necessary reports, Lite scored <strong>9/12 → 5/12 → 7/12</strong> as irrelevant records increased. That dip and partial recovery are suggestive, but the pattern is too small and irregular to establish a dose-response effect.</p>
+<h3 id="the-cost-increase-was-clearer-than-the-accuracy-effect">The cost increase was clearer than the accuracy effect<a class="headerlink" href="#the-cost-increase-was-clearer-than-the-accuracy-effect" title="Permanent link">&para;</a></h3>
+<p>In the four-report setting, adding 1,000 records increased average call cost about <strong>56× for Lite and 77× for Flash</strong>. Aggregate endpoint accuracy did not improve. Flash stayed at <strong>12/12 throughout</strong> in both settings.</p>
+<div class="admonition note">
+<p class="admonition-title">How much can we conclude?</p>
+<p>Only <strong>six worlds</strong> underpin each setting. Two attempts per world do not make twelve independent cases. The combined result is <strong>exploratory</strong> because the expansion came after the initial results. An unchanged score does not prove that extra evidence has no effect.</p>
+</div>
+<h2 id="nuisance-records">Irrelevant evidence: the full comparison<a class="headerlink" href="#nuisance-records" title="Permanent link">&para;</a></h2>
+<p>Each column below adds independent, logically irrelevant records to otherwise matched puzzles. Useful evidence and model settings stay fixed across the doses.</p>
+<p><picture>
+  <source media="(max-width: 600px)" srcset="../assets/nuisance-summary-mobile.svg">
+  <img src="../assets/nuisance-summary.svg" alt="Combined follow-up accuracy for Lite and Flash at zero, 100 and 1,000 irrelevant records, separated by four and eight necessary reports. All counts are also in the table below." width="900" height="420">
+</picture></p>
+<p class="figure-note">Two attempts on six worlds per setting. Counts are responses, not twelve independent worlds. The initial and extension phases are also reported separately below.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">Necessary reports</th>
+<th style="text-align: right;">0 extra</th>
+<th style="text-align: right;">100 extra</th>
+<th style="text-align: right;">1,000 extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lite</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;"><strong>10/12</strong></td>
+<td style="text-align: right;">9/12</td>
+<td style="text-align: right;"><strong>10/12</strong></td>
+</tr>
+<tr>
+<td>Lite</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;"><strong>9/12</strong></td>
+<td style="text-align: right;">5/12</td>
+<td style="text-align: right;">7/12</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">12/12</td>
+<td style="text-align: right;">12/12</td>
+<td style="text-align: right;">12/12</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12/12</td>
+<td style="text-align: right;">12/12</td>
+<td style="text-align: right;">12/12</td>
+</tr>
+</tbody>
+</table>
+<p>Flash's ceiling performance applies to these cases and settings. It is not a general robustness claim.</p>
+<h3 id="follow-up-and-final-expansion">Initial follow-up and final expansion<a class="headerlink" href="#follow-up-and-final-expansion" title="Permanent link">&para;</a></h3>
+<p>The <strong>initial study</strong> used eight worlds, four per setting: 96 scored calls and two probes.</p>
+<p>The <strong>final expansion</strong> used the four remaining worlds from the original screened seed prefix, two per setting: 48 more scored calls. World selection did not use model outcomes, but the decision to expand came after the initial results.</p>
+<details>
+<summary>See the separate phase counts and accuracy chart</summary>
+<p>Counts below follow the order <strong>0 / 100 / 1,000 extra records</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Lite: 4 necessary reports</th>
+<th>Lite: 8 necessary reports</th>
+<th>Flash: each setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial follow-up</td>
+<td>7/8 · 5/8 · 7/8</td>
+<td>6/8 · 3/8 · 4/8</td>
+<td>8/8 at every dose</td>
+</tr>
+<tr>
+<td>Final expansion</td>
+<td>3/4 · 4/4 · 3/4</td>
+<td>3/4 · 2/4 · 3/4</td>
+<td>4/4 at every dose</td>
+</tr>
+<tr>
+<td>Exploratory combined</td>
+<td>10/12 · 9/12 · 10/12</td>
+<td>9/12 · 5/12 · 7/12</td>
+<td>12/12 at every dose</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Initial, extension and exploratory combined accuracy, with the two evidence-burden settings separated." src="../assets/extended-nuisance-accuracy.svg" /></p>
+<p>The primary contrast averages the two attempts within each world before comparing 1,000 records with zero. Four primary worlds have no change, one gains 0.5 and one loses 0.5. The mean change is <strong>zero</strong>, with a descriptive 95% world-bootstrap interval of <strong>−25 to +25 percentage points</strong>. The exact two-sided sign-flip p-value is 1.0.</p>
+</details>
+<h3 id="what-did-it-cost">What did it cost?<a class="headerlink" href="#what-did-it-cost" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th style="text-align: right;">Estimated spend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial follow-up, including probes</td>
+<td style="text-align: right;">$4.73</td>
+</tr>
+<tr>
+<td>Final expansion</td>
+<td style="text-align: right;">$2.23</td>
+</tr>
+<tr>
+<td><strong>Combined</strong></td>
+<td style="text-align: right;"><strong>$6.96</strong></td>
+</tr>
+<tr>
+<td>Approved cap</td>
+<td style="text-align: right;">$10.00</td>
+</tr>
+</tbody>
+</table>
+<p>The initial total includes <strong>$0.24 for two probes</strong>. Every request is settled, there are no unresolved holds, and there were no transport or protocol failures. These are receipt-based estimates, not a provider invoice. The preflight maximum commitment was <strong>$9.40</strong>.</p>
+<p>In the four-report setting, mean cost per scored call rose:</p>
 <ul>
-<li><a href="#original-pilot">Original nuisance pilot</a> and <a href="#information-availability">information availability</a>: <a href="../assets/pilot.json">pilot assignments</a>.</li>
-<li><a href="#certified-burden">Certified evidence burden</a>: <a href="../assets/hardness.json">hardness assignments</a>.</li>
-<li><a href="#hard-cases-and-resources">Fresh hard cases</a>: <a href="../assets/flash-hard-scale.json">48-world assignments</a>; the <a href="../assets/flash-limits.json">adaptive output-budget assignments</a> are a separate study.</li>
-<li><a href="#completion-versus-supported-correctness">Qwen completion and correctness</a>: <a href="../assets/qwen-sampled-screening.json">screening outcomes</a>.</li>
-<li><a href="#follow-up-and-final-expansion">Initial October 27 follow-up</a>: <a href="../assets/nuisance-followup-results.json">original 96-call analysis</a> and <a href="../assets/nuisance-followup-reproduction.json">original reproduction index</a>.</li>
-<li><a href="#follow-up-and-final-expansion">Final expansion and exploratory combined result</a>: <a href="../assets/nuisance-extended-results.json">separate phase summaries</a>, <a href="../assets/nuisance-extended-measurements.json">144 assignments with phase identities</a> and <a href="../assets/nuisance-extended-reproduction.json">combined reproduction index</a>.</li>
+<li><strong>Lite:</strong> from less than $0.01 to <strong>$0.07</strong>.</li>
+<li><strong>Flash:</strong> from less than $0.01 to <strong>$0.17</strong>.</li>
 </ul>
-<p>The <a href="../assets/index.json">historical source/checksum index</a> records original source locations and hashes. The original documents, frozen study sources and operational archives remain preserved in the private checkout; distribution copies omit credentials and operational records. Full raw archives are not publicly deployed. Saved evaluator outcomes must never enter agent prompts.</p>
-<p><img alt="Historical four-report paired accuracy and cost" src="../assets/paired-accuracy-and-cost.svg" /></p>
-<p>The same five worlds appear at all doses, with one attempt each. Additional context cost more. This small positive Lite observation is a hypothesis, not a general claim that weaker agents benefit from noise.</p>
-<h2 id="information-availability">Information availability</h2>
-<p>Eight worlds: Flash 8/8 complete answers, 32/32 appropriate abstentions on ambiguous private views, and 8/8 answers when one-round star forwarding delivered the needed evidence. Lite made two lucky correct ring guesses with insufficient evidence. Forwarding was programmed. The <a href="../tutorials/distributed-evidence/">offline tutorial</a> reproduces solver controls separately from these model counts.</p>
-<h2 id="nuisance-records">Nuisance records</h2>
-<h3 id="original-pilot">Original pilot</h3>
-<p>Four necessary reports: Lite 2/5, 3/5, 5/5 at 0/100/1000 records; Flash 5/5 at every dose. Eight necessary reports: Lite 5/8, 5/8, 4/8, with a provider error included at the last dose. That last count is not four observed reasoning errors. One repetition; 8/32 preplanned identical-payload pairs elsewhere changed answers, all Lite. <a href="../assets/pilot.json">Sanitized assignment records</a>.</p>
-<h3 id="follow-up-and-final-expansion">Follow-up and final expansion</h3>
-<p>The initial follow-up and one final, outcome-independent expansion are both
-completed. The expansion used all four remaining worlds from the original
-screened seed prefix, with no model outcomes used in selection. Combined:
-<strong>12 underlying worlds, six per stratum, 144 scored calls plus two initial probes</strong>.
-The expansion decision followed the initial result, so report phases separately
-and treat combined estimates as exploratory.</p>
-<p>At 0/100/1000 independent records:</p>
-<ul>
-<li>Initial four-report Lite: <strong>7/8, 5/8, 7/8</strong>; extension: <strong>3/4, 4/4, 3/4</strong>;
-  combined: <strong>10/12, 9/12, 10/12</strong>.</li>
-<li>Initial eight-report Lite: <strong>6/8, 3/8, 4/8</strong>; extension: <strong>3/4, 2/4, 3/4</strong>;
-  combined: <strong>9/12, 5/12, 7/12</strong>.</li>
-<li>Flash: every scored response correct in both phases and every dose; <strong>12/12
-  per combined panel</strong>. This ceiling score is specific to these cases/settings.</li>
-</ul>
-<p>Each combined denominator twelve means two attempts on six worlds, not twelve
-independent worlds. The primary 1000-minus-zero Lite estimate remains <strong>0 points</strong>:
-four worlds unchanged, one gains 0.5 and one loses 0.5. Descriptive 95% world
-bootstrap interval <strong>[-25, +25] points</strong>, exact sign-flip p=1.0. Equal observed
-accuracy does not establish equivalence or prove no effect. Necessary evidence,
-context length and composition do not isolate a general reasoning mechanism.
-The earlier aggregate improvement did not reproduce here. In the four-report
-stratum, mean estimated cost per scored call rose from less than $0.01 to $0.07
-for Lite (about 56×), and less than $0.01 to $0.17 for Flash (about 77×), while
-zero- and 1000-record aggregate scores stayed unchanged. This is a useful bounded
-cost/robustness example, not a general law about reasoning.</p>
-<p><img alt="Initial, extension and exploratory combined accuracy" src="../assets/extended-nuisance-accuracy.svg" /></p>
-<p><img alt="Scored-call cost across phases" src="../assets/extended-nuisance-cost.svg" /></p>
-<p>The combined receipt-based estimate is <strong>$6.96</strong>, including <strong>$4.73</strong>
-initially and <strong>$2.23</strong> for the final expansion. The initial total includes
-<strong>$0.24</strong> for the two probes. No unresolved holds; no transport or protocol
-failures. This is not a provider invoice. The total commitment preflight was
-<strong>$9.40</strong> against the single <strong>$10.00</strong> allowance; no further paid calls are planned.</p>
-<p>Replay from an installed wheel, without a repository, key or provider:</p>
-<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup --output runs/nuisance
+<p>Displayed dollar amounts are rounded to two decimals. The downloaded records retain exact accounting. <strong>This allowance is closed; no further paid calls are planned.</strong></p>
+<details>
+<summary>See costs across every phase and setting</summary>
+<p><img alt="Estimated cost per scored call for both models, across the initial phase, extension and combined result." src="../assets/extended-nuisance-cost.svg" /></p>
+<p>Panel costs exclude probes. The combined accounting above includes them.</p>
+</details>
+<h3 id="replay-these-findings-offline">Replay these findings offline<a class="headerlink" href="#replay-these-findings-offline" title="Permanent link">&para;</a></h3>
+<pre><code class="language-sh">clue-benchmark examples replay nuisance-followup \
+  --output runs/nuisance
 </code></pre>
-<p>Add <code>--figures</code> with the figures extra. The output contains initial.json,
-extension.json, analysis.json and an accessible local HTML report with separate
-phase tables. The general <code>examples replay measured-results</code> gallery also includes
-these 144 saved assignments, preserving study/settings identities.</p>
-<p><a href="../assets/nuisance-extended-results.json">Combined analysis</a> and
-<a href="../assets/nuisance-extended-measurements.json">all sanitized assignments</a>, and
-<a href="../assets/nuisance-extended-reproduction.json">source/archive checksum index</a> retain
-nulls, wrong answers and abstentions. Approvals, credentials, dispatch ledgers,
-provider prose and raw receipts are excluded. These are evaluator outcomes and
-must not be added to agent prompts. Initial study source archives remain immutable;
-the expansion and production code have distinct version/source identities.</p>
-<h2 id="certified-burden">Certified burden</h2>
-<p>Flash 30/30 in each 32-report path/tree arm; Lite 9/30 and 7/30. These are three attempts on ten worlds per arm. A simple heuristic solves some constructions. Necessary-report cost is not proof depth or model difficulty. High thinking differs from the motivating low-thinking pilot. <a href="../assets/hardness.json">Sanitized records</a>.</p>
-<h2 id="hard-cases-and-resources">Hard cases and resources</h2>
-<p>Fresh confirmation: 9/48 correct, 28 wrong, 11 abstentions, no provider/protocol errors, 48 independent worlds, 64 suspects, 455 interacting reports, 32768 output tokens including thinking. The 455 reports were not individually necessary. Estimated $7.23 belongs to a closed historical allowance. <a href="../assets/flash-hard-scale.json">Fresh records</a>.</p>
-<p>An earlier adaptive same-six-world comparison rose from 2/6 to 5/6 with more output allowance. Preserve adaptive status and resource differences. <a href="../assets/flash-limits.json">Adaptive records</a>.</p>
-<h2 id="completion-versus-supported-correctness">Completion versus supported correctness</h2>
-<p>Sampled Qwen: 67/72 valid final actions, 22 supported correct, 15 wrong with sufficient evidence, 11 appropriate abstentions, 19 unsupported answers including two lucky correct guesses, and five output-limit protocol failures. Three receipts were reused; 72 slots were not 72 fresh calls or independent worlds. On 29 matched returned slots completion rose 13/29 to 25/29 while supported correctness changed 13/29 to 12/29. More completed outputs did not imply better reasoning. <a href="../assets/qwen-sampled-screening.json">Sanitized indexed outcomes</a> permit count replay; full raw provider replay remains private/pending rights and sanitization review.</p>
-<h2 id="provenance-and-limits">Provenance and limits</h2>
-<p><a href="../assets/index.json">Source/checksum/sanitization index</a> records original source paths and SHA-256 values plus hashes of the distribution copies. Only selected evaluator outcome fields are retained; no raw receipt, approval, checkpoint or model prose is shipped. These summaries are evaluator data and must not be placed in agent prompts. Hashes are integrity evidence, not ownership clearance.</p>
-<p>The original documents and frozen sources remain preserved. The owner authorized public visibility of the existing repository and its history; ignored operational archives remain local and are not uploaded. Licensing, outside reproduction and human template review remain pending. No inference occurs when reading or replaying these records.</p></div>
+<p>Open <strong><code>runs/nuisance/report/index.html</code></strong>. The output includes separate initial, extension and combined analyses. It uses saved measurements and makes no model calls.</p>
+<p>Add <code>--figures</code> if the optional figures extra is installed. <a href="../assets/nuisance-extended-results.json">Download the combined analysis</a>, <a href="../assets/nuisance-extended-measurements.json">all 144 sanitized assignments</a>, or the <a href="../assets/nuisance-extended-reproduction.json">reproduction checksum index</a>.</p>
+<h3 id="original-pilot">The original pilot<a class="headerlink" href="#original-pilot" title="Permanent link">&para;</a></h3>
+<p>This is the earlier observation that motivated the follow-up. The same five four-report worlds appeared at every dose, with <strong>one attempt each</strong>.</p>
+<ul>
+<li><strong>Four necessary reports:</strong> Lite <strong>2/5 → 3/5 → 5/5</strong>; Flash 5/5 throughout.</li>
+<li><strong>Eight necessary reports:</strong> Lite <strong>5/8 → 5/8 → 4/8</strong>. The final count includes one provider failure; it is not four observed reasoning errors.</li>
+<li>Elsewhere in the pilot, <strong>8/32 preplanned identical-payload pairs changed answers</strong>, all for Lite.</li>
+</ul>
+<p><img alt="Original five-world pilot: accuracy and estimated cost as irrelevant records increase." src="../assets/paired-accuracy-and-cost.svg" /></p>
+<p class="figure-note">A small positive observation can motivate a study without establishing that noise helps reasoning. <a href="../assets/pilot.json">Saved pilot assignments</a>.</p>
+<h2 id="information-availability">Can the agent know the answer?<a class="headerlink" href="#information-availability" title="Permanent link">&para;</a></h2>
+<p>The distributed-evidence pilot used eight worlds. Historical Flash results were:</p>
+<ul>
+<li><strong>8/8 correct</strong> with complete evidence.</li>
+<li><strong>32/32 appropriate abstentions</strong> on ambiguous private views.</li>
+<li><strong>8/8 correct</strong> at the star hub after one round of programmed forwarding.</li>
+</ul>
+<p>Lite made <strong>two lucky correct guesses</strong> in ambiguous ring views. Those answers lacked sufficient evidence.</p>
+<p>Forwarding was programmed, not learned. The <a href="../tutorials/distributed-evidence/">offline evidence-sharing tutorial</a> recomputes the solver controls separately from the saved model counts.</p>
+<h2 id="certified-burden">Does more necessary evidence mean harder reasoning?<a class="headerlink" href="#certified-burden" title="Permanent link">&para;</a></h2>
+<p>Not automatically. At 32 necessary reports:</p>
+<ul>
+<li><strong>Flash:</strong> 30/30 in each path/tree arm.</li>
+<li><strong>Lite:</strong> 9/30 in one arm and 7/30 in the other.</li>
+</ul>
+<p>These are <strong>three attempts on ten worlds per arm</strong>, not thirty independent worlds. The study used high thinking, unlike the low-thinking nuisance pilot. Simple construction heuristics solve some families, so certified evidence cost is not a proof-depth or difficulty scale.</p>
+<p><a href="../assets/hardness.json">Saved evidence-burden assignments</a>.</p>
+<h2 id="hard-cases-and-resources">Hard cases and output budgets<a class="headerlink" href="#hard-cases-and-resources" title="Permanent link">&para;</a></h2>
+<p>A fresh confirmation found a harder regime for Flash:</p>
+<div class="metric-grid">
+<div class="metric">
+<p><span class="metric-label">Correct</span>
+<strong>9/48</strong>
+<span>Fresh independent worlds.</span></p>
+</div>
+<div class="metric">
+<p><span class="metric-label">Wrong</span>
+<strong>28/48</strong>
+<span>Observed reasoning errors.</span></p>
+</div>
+<div class="metric">
+<p><span class="metric-label">Abstained</span>
+<strong>11/48</strong>
+<span>No provider/protocol failures.</span></p>
+</div>
+</div>
+<p>Each case had <strong>64 suspects and 455 interacting reports</strong>, with a 32,768-token output allowance including thinking. The reports were <strong>not</strong> certified individually necessary. The estimated <strong>$7.23</strong> spend belongs to a separate, closed historical allowance.</p>
+<p>An earlier <strong>adaptive comparison on the same six worlds</strong> improved from <strong>2/6 to 5/6</strong> with more output allowance. That demonstration and the fresh 48-world confirmation answer different questions; they must not be pooled.</p>
+<p><a href="../assets/flash-hard-scale.json">Fresh confirmation records</a> · <a href="../assets/flash-limits.json">Adaptive budget comparison</a>.</p>
+<h2 id="completion-versus-supported-correctness">More completed answers did not mean better reasoning<a class="headerlink" href="#completion-versus-supported-correctness" title="Permanent link">&para;</a></h2>
+<p>In the sampled Qwen screening, <strong>67/72 slots produced a valid final action</strong>. Those 67 outcomes comprised:</p>
+<ul>
+<li><strong>22</strong> supported correct answers.</li>
+<li><strong>15</strong> wrong answers despite sufficient evidence.</li>
+<li><strong>11</strong> appropriate abstentions.</li>
+<li><strong>19</strong> unsupported answers, including two lucky correct guesses.</li>
+</ul>
+<p>The other <strong>five</strong> were output-limit protocol failures. Three responses were reused from the pilot, so 72 slots does not mean 72 fresh calls or independent worlds.</p>
+<p>On 29 matched returned slots, completion rose from <strong>13/29 to 25/29</strong>, while supported correctness changed from <strong>13/29 to 12/29</strong>.</p>
+<p><strong>Completion and reasoning quality need separate measures.</strong> <a href="../assets/qwen-sampled-screening.json">Saved screening outcomes</a>. Raw provider replay remains private pending review.</p>
+<h2 id="where-to-find-the-original-results">Original studies and downloads<a class="headerlink" href="#where-to-find-the-original-results" title="Permanent link">&para;</a></h2>
+<p>The earlier results have not been replaced by the follow-up. These downloads are <strong>evaluator outcomes</strong>, not agent inputs.</p>
+<table>
+<thead>
+<tr>
+<th>Study</th>
+<th>Saved evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original nuisance and distributed-evidence pilot</td>
+<td><a href="../assets/pilot.json">Pilot assignments</a></td>
+</tr>
+<tr>
+<td>Certified evidence burden</td>
+<td><a href="../assets/hardness.json">Hardness assignments</a></td>
+</tr>
+<tr>
+<td>Fresh hard-case confirmation</td>
+<td><a href="../assets/flash-hard-scale.json">48-world assignments</a></td>
+</tr>
+<tr>
+<td>Adaptive output-budget comparison</td>
+<td><a href="../assets/flash-limits.json">Resource comparison</a></td>
+</tr>
+<tr>
+<td>Qwen screening</td>
+<td><a href="../assets/qwen-sampled-screening.json">Screening outcomes</a></td>
+</tr>
+<tr>
+<td>Initial October 27 follow-up</td>
+<td><a href="../assets/nuisance-followup-results.json">96-call analysis</a> · <a href="../assets/nuisance-followup-reproduction.json">Reproduction index</a></td>
+</tr>
+<tr>
+<td>Final expansion and combined result</td>
+<td><a href="../assets/nuisance-extended-results.json">Phase analyses</a> · <a href="../assets/nuisance-extended-measurements.json">144 assignments</a> · <a href="../assets/nuisance-extended-reproduction.json">Reproduction index</a></td>
+</tr>
+</tbody>
+</table>
+<p>Recompute all packaged historical panels:</p>
+<pre><code class="language-sh">clue-benchmark examples replay measured-results \
+  --output runs/measured
+</code></pre>
+<p>Open <strong><code>runs/measured/report/index.html</code></strong>. Add <code>--figures</code> with the optional figures extra to reproduce the historical paired accuracy/cost chart.</p>
+<h2 id="provenance-and-limits">Sources and limits<a class="headerlink" href="#provenance-and-limits" title="Permanent link">&para;</a></h2>
+<p>The <a href="../assets/index.json">source and sanitization index</a> records original source locations, hashes and distribution-copy hashes. The new follow-up has its own <a href="../assets/nuisance-extended-reproduction.json">source/archive index</a>.</p>
+<p>Keep these distinctions in mind:</p>
+<ul>
+<li><strong>Responses are not independent worlds.</strong> Repeats and paired conditions share cases.</li>
+<li><strong>Settings differ across studies.</strong> Thinking budgets, formats and adaptive/fresh status affect interpretation.</li>
+<li><strong>Null and failed outcomes remain visible.</strong> No pooled model leaderboard is supported.</li>
+<li><strong>Integrity is not ownership clearance.</strong> Licensing, outside reproduction and human template reviews remain pending.</li>
+</ul>
+<p>Original documents and frozen sources are preserved. The existing repository and its history are public at the owner's request; ignored operational archives remain local. Credentials, authorizations and dispatch ledgers are not part of the documentation deployment. Reading or replaying these records makes no model calls.</p>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../explanations/pipeline/"><small>Previous</small>Pipeline and guarantees</a>
+      <a rel="next" href="../reference/parameters/"><small>Next</small>Parameters <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -290,6 +451,7 @@ the expansion and production code have distinct version/source identities.</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js"></script>
+        <script src="../javascripts/reading.js"></script>
         <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

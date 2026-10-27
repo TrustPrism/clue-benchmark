@@ -8,23 +8,20 @@
         
         <link rel="canonical" href="https://trustprism.github.io/clue-benchmark/tutorials/distributed-evidence/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Distributed evidence - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <title>Distributed evidence - Clue Benchmark</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
         <link href="../../css/solid.min.css" rel="stylesheet">
         <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
+        <link href="../../stylesheets/reading.css" rel="stylesheet"> 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <a class="navbar-brand" href="../..">Clue Benchmark</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,10 +32,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Start here</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Learn</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -48,29 +45,18 @@
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">Distributed evidence</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
 </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
-                                <ul class="dropdown-menu">
                                     
 <li>
     <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
 </li>
-                                    
-<li>
-    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
-</li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
@@ -98,13 +84,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="../../results/" class="nav-link">Results</a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../../results/open-questions/" class="nav-link">Open questions</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                    
+<li>
+    <a href="../../maintainers/release/" class="dropdown-item">Release and review</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
@@ -114,16 +107,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../first-dataset/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../../guides/research-recipes/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -131,39 +114,114 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
+<a class="skip-reading" href="#main-content">Skip to content</a>
+<div class="reading-layout">
+  <aside class="page-toc bs-sidebar" aria-label="Page contents">
+    <details open>
+      <summary>On this page</summary>
+      <nav aria-label="Section navigation">
+        <ul>
+          
             
-            <li class="nav-item" data-bs-level="1"><a href="#complete-private-and-forwarded-evidence" class="nav-link">Complete, private and forwarded evidence</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
+            <li><a href="#replay-the-information-controls">Replay the information controls</a></li>
+            
+            <li><a href="#what-changes-across-the-views">What changes across the views?</a></li>
+            
+            <li><a href="#what-did-the-models-do">What did the models do?</a></li>
+            
+            <li><a href="#generate-a-fresh-small-example">Generate a fresh small example</a></li>
+            
+          
         </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+      </nav>
+    </details>
+    <a class="toc-start" href="../first-dataset/">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
+  </aside>
+  <main id="main-content" class="reading-content">
+    <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
+    
 
-<h1 id="complete-private-and-forwarded-evidence">Complete, private and forwarded evidence</h1>
-<pre><code class="language-sh">clue-benchmark examples replay distributed-evidence --output runs/replayed
+<h1 id="when-agents-see-different-evidence">When agents see different evidence<a class="headerlink" href="#when-agents-see-different-evidence" title="Permanent link">&para;</a></h1>
+<p class="lead">A puzzle can have one answer overall while each agent still lacks enough information to identify it.</p>
+<p><img alt="Complete evidence supports one answer, private views can be ambiguous, and programmed forwarding can deliver sufficient evidence to a hub." src="../../assets/evidence-sharing.svg" /></p>
+<h2 id="replay-the-information-controls">Replay the information controls<a class="headerlink" href="#replay-the-information-controls" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark examples replay distributed-evidence \
+  --output runs/replayed
 </code></pre>
-<p>This bundled eight-world historical fixture is small enough to ship with the wheel. The command validates its checksums and independently recomputes which answers each view permits. It writes <code>replay.json</code>, the five-file evaluator bundle, and <code>report/index.html</code>.</p>
-<p>For all eight complete views the solver finds a unique answer. The 32 private views remain ambiguous. One round of programmed star forwarding brings enough reports to the hub in all eight worlds. This is an <strong>offline solver control</strong>, not new model inference and not learned communication.</p>
-<p>The historical low-thinking Flash measurements were 8/8 complete answers, 32/32 appropriate private abstentions, and 8/8 answers at the star hub. In the ambiguous ring condition Lite made two correct unsupported guesses. <a href="../../results/">Replay measured counts</a> separately; those observations do not become new experiments when recomputed.</p>
-<p>Generate a fresh small example with <code>clue-benchmark generate-dataset --preset distributed --output runs/fresh-distributed</code>. Each private view receives a certified partition, retaining original report identities. More received reports do not guarantee sufficient evidence: which reports arrive matters.</p></div>
+<p>This command uses <strong>eight saved worlds</strong>. It checks the bundled files and recomputes what each view logically permits. It does not call a model.</p>
+<p>Open <strong><code>runs/replayed/report/index.html</code></strong> to inspect the result.</p>
+<h2 id="what-changes-across-the-views">What changes across the views?<a class="headerlink" href="#what-changes-across-the-views" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>View</th>
+<th>What the solver finds</th>
+<th>What that means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Complete evidence</td>
+<td>One answer in all 8 worlds</td>
+<td>An answer can be supported.</td>
+</tr>
+<tr>
+<td>Private evidence</td>
+<td>All 32 private views are ambiguous</td>
+<td>Guessing is different from knowing.</td>
+</tr>
+<tr>
+<td>Star forwarding</td>
+<td>Enough evidence reaches the hub in all 8 worlds</td>
+<td>Delivery can restore answerability.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which reports arrive matters.</strong> Receiving more reports does not automatically make an answer identifiable.</p>
+<div class="admonition note">
+<p class="admonition-title">Forwarding is programmed</p>
+<p>This fixture uses a fixed star protocol. It demonstrates evidence delivery, not learned conversation or a universal ranking of network topologies.</p>
+</div>
+<h2 id="what-did-the-models-do">What did the models do?<a class="headerlink" href="#what-did-the-models-do" title="Permanent link">&para;</a></h2>
+<p>The historical low-thinking Flash measurements were:</p>
+<ul>
+<li><strong>8/8</strong> correct answers with complete evidence.</li>
+<li><strong>32/32</strong> appropriate abstentions on ambiguous private views.</li>
+<li><strong>8/8</strong> correct answers at the star hub after forwarding.</li>
+</ul>
+<p>Lite made <strong>two correct but unsupported guesses</strong> in an ambiguous ring condition. A lucky answer does not establish sufficient evidence.</p>
+<p>These are saved model measurements. The offline command above recomputes solver controls; it does not rerun inference.</p>
+<p><a href="../../results/#information-availability">See measured results and source records →</a></p>
+<h2 id="generate-a-fresh-small-example">Generate a fresh small example<a class="headerlink" href="#generate-a-fresh-small-example" title="Permanent link">&para;</a></h2>
+<pre><code class="language-sh">clue-benchmark generate-dataset \
+  --preset distributed \
+  --output runs/fresh-distributed
+</code></pre>
+<p>Each private view receives a certified partition. Forwarded or replicated reports retain their original identities.</p>
+<details>
+<summary>Files written by the replay</summary>
+<ul>
+<li><code>replay.json</code> — recomputed solver controls.</li>
+<li>The five-file evaluator bundle — saved cases, partitions, answers, certificates and manifest.</li>
+<li><code>report/index.html</code> — the readable local report.</li>
+</ul>
+<p>The fixture ships with the package. Once installed, replay needs no repository clone, key or network.</p>
+</details>
+    <nav class="reading-next" aria-label="Continue reading">
+      <a rel="prev" href="../first-dataset/"><small>Previous</small>First dataset</a>
+      <a rel="next" href="../../guides/research-recipes/"><small>Next</small>Research recipes <span aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+</div>
+
             </div>
         </div>
 
         <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+<p><strong>Clue Benchmark</strong> · Research preview 0.5.0rc2</p>
+<p>Preliminary measurements. Licensing and independent reviews remain pending.
+<a href="../../results/open-questions/">See the open questions</a>.</p>
+
         </footer>
         <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
@@ -171,6 +229,7 @@
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../../js/base.js"></script>
+        <script src="../../javascripts/reading.js"></script>
         <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">

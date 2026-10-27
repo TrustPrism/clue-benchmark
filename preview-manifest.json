@@ -1,0 +1,252 @@
+{
+  "source_revision": "26d600e00fab735179e5ff6736403a6f2f1e367e",
+  "scope": "Static research preview on gh-pages in the existing TrustPrism/clue-benchmark repository",
+  "files": {
+    ".nojekyll": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "404.html": {
+      "sha256": "19abea06e5b81819f5157edb9c76e73ca1d59c04e317f3f7b607dcd13a89dcdb",
+      "bytes": 9228
+    },
+    "README.md": {
+      "sha256": "b4ee9c3e429ec17e5af595d5f3ead36a674273a3fbd1e6fa48cd3b6562e47d1b",
+      "bytes": 321
+    },
+    "assets/extended-nuisance-accuracy.svg": {
+      "sha256": "54984676b9a6697aa13d75a6fa287dd8047ea73892438134cc03ad80a7059c0b",
+      "bytes": 131020
+    },
+    "assets/extended-nuisance-cost.svg": {
+      "sha256": "6a16d91b71b4ac04c34f6db4af902f6c3883c74a7f133c6d48b2fc5371cb8f1c",
+      "bytes": 130847
+    },
+    "assets/flash-hard-scale.json": {
+      "sha256": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+      "bytes": 35161
+    },
+    "assets/flash-limits.json": {
+      "sha256": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+      "bytes": 28680
+    },
+    "assets/hardness.json": {
+      "sha256": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+      "bytes": 281327
+    },
+    "assets/index.json": {
+      "sha256": "9e5ea56d9dd94a6353c984297f76e07b85ef5ed9539c179789d29a677d667f78",
+      "bytes": 3251
+    },
+    "assets/nuisance-extended-measurements.json": {
+      "sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+      "bytes": 113257
+    },
+    "assets/nuisance-extended-reproduction.json": {
+      "sha256": "3c0bee04d2a405b11862fe9c3cd930a4a2e95a004602b20e4006c740a0ad2fb2",
+      "bytes": 65003
+    },
+    "assets/nuisance-extended-results.json": {
+      "sha256": "ea615260391b6ad3f92bcdeb6fe4d990f05355338e3a244c74a9919e5e8b32bc",
+      "bytes": 43712
+    },
+    "assets/nuisance-followup-cost.svg": {
+      "sha256": "003cbba72a5ba54efc001c80f3cbc061dafcccb99b49f5a296606147902b8a57",
+      "bytes": 63469
+    },
+    "assets/nuisance-followup-paired-accuracy.svg": {
+      "sha256": "de61e63e7684c6ad7e9e1bf74046438e3a0c8287ee5cdd98399ad950098df663",
+      "bytes": 59015
+    },
+    "assets/nuisance-followup-reproduction.json": {
+      "sha256": "26434ecd19d49af9ae5548ab6aa43648ab95ae7e06b5fcd24a723d54dce6c8bf",
+      "bytes": 42566
+    },
+    "assets/nuisance-followup-results.json": {
+      "sha256": "bc34ec40c0492b6c6b1b31a10f9fb0d3c96a2362c3398ea30665f8c5f15668ea",
+      "bytes": 135477
+    },
+    "assets/paired-accuracy-and-cost.svg": {
+      "sha256": "f78a08fc0bad3f9f72c74f121842a049fbd72190656933a8536ae475b3c1bd7e",
+      "bytes": 60286
+    },
+    "assets/pilot.json": {
+      "sha256": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+      "bytes": 189703
+    },
+    "assets/quickstart-public.jsonl": {
+      "sha256": "90b201e9eb00779d8f9cc7515871416b7acde6ebe3d3d2a9384aa7fdd7131dfa",
+      "bytes": 2368
+    },
+    "assets/qwen-sampled-screening.json": {
+      "sha256": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+      "bytes": 60106
+    },
+    "css/base.css": {
+      "sha256": "0dae4dbc308f8eb108946a660d1ec829a1fcb4baca07d7ea17f14244bd8f8a91",
+      "bytes": 8461
+    },
+    "css/bootstrap.min.css": {
+      "sha256": "51600b05b09b6cceb8f4865afeb61320b0e69df73e7d7b99410d9ac18042848b",
+      "bytes": 235601
+    },
+    "css/bootstrap.min.css.map": {
+      "sha256": "58b97e279a493d3b06ab973c6b35f9f4b8018c8d8acb0242990702f07ca66708",
+      "bytes": 88399
+    },
+    "css/brands.min.css": {
+      "sha256": "321e5ebea077d3b3be03f5b0218ceab2259cf6e93035aa8644e7970a054fd687",
+      "bytes": 19307
+    },
+    "css/fontawesome.min.css": {
+      "sha256": "8eb5b44ce5971a501e5a17954c464b80aba0c4604675b5603a7f456459af88a1",
+      "bytes": 80795
+    },
+    "css/solid.min.css": {
+      "sha256": "b8afa4243dd1bf735f512708da5335b0ed314d9e58a0a1cf1b781250cf5fb004",
+      "bytes": 572
+    },
+    "css/v4-font-face.min.css": {
+      "sha256": "8698ebb2a30433065f31e392cf0e56a7fbe97798da673163606242c7ca85aee6",
+      "bytes": 1736
+    },
+    "explanations/pipeline/index.html": {
+      "sha256": "9cb507445222f214101a96750e2c71122d43018dfda6cac98ec24cbfe5f1b561",
+      "bytes": 15731
+    },
+    "explanations/related-work/index.html": {
+      "sha256": "f74c0f76355bbdc16691f412938d96b14973ea7f190e5bf7cb22ea7fdf95cbe8",
+      "bytes": 14215
+    },
+    "guides/research-recipes/index.html": {
+      "sha256": "efeb6722c242258efc5756ab1b099b9ea723bc457dbc8d6721e5d71bc9347fff",
+      "bytes": 16108
+    },
+    "img/favicon.ico": {
+      "sha256": "f16b45bd53fbacaa2cd8f22e8482db5c59e0cef9bd21394474a429a18a98ffd0",
+      "bytes": 1150
+    },
+    "img/grid.png": {
+      "sha256": "6e2a58503494a708105ac646d3af5c08c8c890325bb781a257d10f91ff968a9c",
+      "bytes": 1458
+    },
+    "index.html": {
+      "sha256": "d9970b60c8c674279f77e99940bd5726e74ad3ea212240021833d1617958d457",
+      "bytes": 14804
+    },
+    "js/base.js": {
+      "sha256": "ea13d8449c21e5a4e5235722e67bfbf45009e8c61cbe8e98e453cc39f46419ed",
+      "bytes": 8242
+    },
+    "js/bootstrap.bundle.min.js": {
+      "sha256": "82f64f62bb03c1bc1824b0f9c9e05f70dba33e146818e63cdf5c306c8cf3dedd",
+      "bytes": 80663
+    },
+    "js/bootstrap.bundle.min.js.map": {
+      "sha256": "19a5b0b88d24d6b154c4462896c9631c0b317d71f22eebbf0b9e405db4351fd1",
+      "bytes": 331886
+    },
+    "js/darkmode.js": {
+      "sha256": "6660ca90a0b34be68edd0503102d013e6d4ea2d4ed8ffdca1ef17e2b69226d90",
+      "bytes": 2618
+    },
+    "maintainers/release/index.html": {
+      "sha256": "0297fb786a529c39ba4d6830e727b57030a4d6b59f051a55b56dc0279a9af00e",
+      "bytes": 15662
+    },
+    "reference/data-dictionary/index.html": {
+      "sha256": "4c4be5d8c1803c4e93d33e739730e4decbba74440bfac62664e96d10a57ab233",
+      "bytes": 15174
+    },
+    "reference/interfaces/index.html": {
+      "sha256": "4080192413d5ae5c26f57b372affc3de952f01113c33b350e446c76a4c1d3839",
+      "bytes": 19738
+    },
+    "reference/parameters/index.html": {
+      "sha256": "3a2ef7ca4a42ad235a68147fb08a96c655d0b9fc9ccfded5b59bba8035d9b2c0",
+      "bytes": 43918
+    },
+    "reference/predicates/index.html": {
+      "sha256": "3306f9f07228225465c2b7cdc87a3ed7318fd57a9d6bfee64473dfaa7846dea3",
+      "bytes": 16163
+    },
+    "reference/troubleshooting/index.html": {
+      "sha256": "45b1e9f0e4853f72c72bf599a9ee2a51f09367533fb65b1b644d94e77ecc9ac5",
+      "bytes": 13262
+    },
+    "results/index.html": {
+      "sha256": "6a8e8545e95e156613efe6adad23526f62aaf4cf2b42090801416230bf289c45",
+      "bytes": 24228
+    },
+    "results/open-questions/index.html": {
+      "sha256": "5b65a680e136bf05ceb5c3da3d91ad2620525f3ebb76a2fbb54063b1c611627f",
+      "bytes": 16848
+    },
+    "search/lunr.js": {
+      "sha256": "c1a28d9e95163292fbcc07ff794f1f0e1ade8741c513afe96d5b1046a18110bc",
+      "bytes": 99805
+    },
+    "search/main.js": {
+      "sha256": "22961b345ceba9b3a9146577190672a7b1c6881bb84c05bec1e2d0f3a3312389",
+      "bytes": 3206
+    },
+    "search/search_index.json": {
+      "sha256": "4dcbe21395c5cc194418231943df34b1886e010e1160911c81b80f9a3bd4dc5f",
+      "bytes": 140625
+    },
+    "search/worker.js": {
+      "sha256": "b486eab6682d02b7c6ec7bdc965bb051661ee2c6a42bb3442b559cb2c6e2c73c",
+      "bytes": 3724
+    },
+    "sitemap.xml": {
+      "sha256": "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
+      "bytes": 109
+    },
+    "sitemap.xml.gz": {
+      "sha256": "0bd8729aff67512637e2c5c7616a955bb2ddef0bc0d2898e677449b2f35c1859",
+      "bytes": 127
+    },
+    "tutorials/distributed-evidence/index.html": {
+      "sha256": "c035aa32763d7e85747903e7c9ac77cee77da1cc583fb2df952c9518c906913d",
+      "bytes": 12085
+    },
+    "tutorials/first-dataset/index.html": {
+      "sha256": "a8b247825ff3f53e9b9287b7afa8976dd35e6006466e88ea9d07f8a91b958aff",
+      "bytes": 14633
+    },
+    "webfonts/fa-brands-400.ttf": {
+      "sha256": "5656d596bc597165a42182f67b2b9f17d2ae47a9e3ef1b042b9a729739730705",
+      "bytes": 207972
+    },
+    "webfonts/fa-brands-400.woff2": {
+      "sha256": "3a8924cd5203a28628716aedb5cef0943da4c3b44e3ffcee90ab06387b41c490",
+      "bytes": 117372
+    },
+    "webfonts/fa-regular-400.ttf": {
+      "sha256": "5d02dc9b858e3c85a794f87e379857f4fedc4e26cf15001714a9a0e0b1d2294d",
+      "bytes": 68004
+    },
+    "webfonts/fa-regular-400.woff2": {
+      "sha256": "2bccecf0bc7e96cd5ce4003abeb3ae9ee4a3d19158c4e6edfd2df32d2f0d5721",
+      "bytes": 25452
+    },
+    "webfonts/fa-solid-900.ttf": {
+      "sha256": "fbbf06d7437aa30f3cd44c968380193545a8fc3eadfb7ad897bbb101eefec5a2",
+      "bytes": 419720
+    },
+    "webfonts/fa-solid-900.woff2": {
+      "sha256": "9fc85f3a4544ab0d570c7f8f9bbb88db8d92c359b2707580ea8b07c75673eae2",
+      "bytes": 156496
+    },
+    "webfonts/fa-v4compatibility.ttf": {
+      "sha256": "09663a36fc05e7190af8324b855105c5bb511ad94f94b81b34afee503279eca2",
+      "bytes": 10832
+    },
+    "webfonts/fa-v4compatibility.woff2": {
+      "sha256": "4d4a2d7fd1c6684845cb174fdd7fc073bd64cb741286fb247f8b76c2b7b852c4",
+      "bytes": 4792
+    }
+  },
+  "pattern_scan_findings": [],
+  "full_licensed_release_ready": false
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Open questions - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorials/first-dataset/" class="dropdown-item">First dataset</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
+</li>
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../reference/parameters/" class="dropdown-item">Parameters</a>
+</li>
+                                    
+<li>
+    <a href="../../reference/predicates/" class="dropdown-item">Predicates</a>
+</li>
+                                    
+<li>
+    <a href="../../reference/interfaces/" class="dropdown-item">CLI, Python and tools</a>
+</li>
+                                    
+<li>
+    <a href="../../reference/data-dictionary/" class="dropdown-item">Data dictionary</a>
+</li>
+                                    
+<li>
+    <a href="../../reference/troubleshooting/" class="dropdown-item">Troubleshooting</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../" class="nav-link">Results</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Open questions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../maintainers/release/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#open-questions-for-the-initial-preview" class="nav-link">Open questions for the initial preview</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#questions-the-experiments-leave-open" class="nav-link">Questions the experiments leave open</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#questions-before-a-full-software-and-data-release" class="nav-link">Questions before a full software and data release</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-available-now" class="nav-link">What is available now?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="open-questions-for-the-initial-preview">Open questions for the initial preview</h1>
+<p>This is an early research preview of Clue Benchmark 0.5.0rc2. The measured
+results are preliminary; the software candidate, redistribution licenses and
+human reviews remain pending. The owner requested an initial public preview
+with those questions visible. This does not grant an open-source or dataset
+license or claim a PyPI release.</p>
+<h2 id="questions-the-experiments-leave-open">Questions the experiments leave open</h2>
+<ol>
+<li><strong>Does irrelevant evidence ever help consistently?</strong> The original five-world
+   Lite improvement did not repeat in the expanded follow-up. The primary
+   endpoint change was zero, with a descriptive interval of [-25, +25] percentage
+   points on six worlds. A larger, separately preregistered sample would be
+   needed to distinguish a repeatable benefit from sampling and response variation.</li>
+<li><strong>Why did individual worlds improve or worsen?</strong> Four primary worlds stayed
+   unchanged, one improved and one worsened. These outcomes do not identify a
+   reasoning mechanism. Content, order and context length need separate controls
+   before attributing changes to distraction or useful extra computation.</li>
+<li><strong>Is the harder-setting dip repeatable?</strong> Lite's 9/12 → 5/12 → 7/12 pattern
+   at 0/100/1,000 irrelevant records is small and non-monotonic. Does it recur on
+   fresh worlds, and how much is ordinary response variation?</li>
+<li><strong>When does robustness become worth its cost?</strong> In the four-report setting,
+   cost rose about 56× for Lite and 77× for Flash at 1,000 records without higher
+   endpoint accuracy. Does that tradeoff change with useful redundancy, related
+   distractors, other models or a different resource allowance?</li>
+<li><strong>What makes a certified puzzle difficult for an agent?</strong> Minimum necessary
+   evidence measures information burden, not proof depth or model difficulty.
+   Which structural properties predict errors after controlling for simple
+   construction heuristics, input length and output budget?</li>
+<li><strong>How stable are results across resource settings and model versions?</strong> The
+   adaptive six-world budget comparison and fresh 48-world hard confirmation
+   answer different questions. Fresh matched comparisons are needed before
+   generalizing across thinking/output allowances, formats or model revisions.</li>
+<li><strong>Can agents learn to communicate the right evidence?</strong> Current star
+   forwarding is programmed. It demonstrates delivery sufficiency, not learned
+   collaboration or efficient communication policies.</li>
+<li><strong>Do supported correctness and completion improve together?</strong> Qwen's matched
+   returned slots showed more completed actions without higher supported
+   correctness. Future work should retain lucky guesses, appropriate abstentions,
+   wrong answers and protocol failures as separate outcomes.</li>
+<li><strong>Do independent people interpret the rules as intended?</strong> Two independent
+   template/rule reviews and an outside installation/replay run remain pending.
+   Automated solver checks do not substitute for these reviews.</li>
+</ol>
+<p>These are proposed research questions, not registered experiments or authorized
+spending. The October 27 allowance is closed at an estimated <strong>$6.96</strong>, with
+no holds and no further paid calls. Any future study requires a separate plan
+and budget.</p>
+<h2 id="questions-before-a-full-software-and-data-release">Questions before a full software and data release</h2>
+<ul>
+<li><strong>Rights and licenses:</strong> Does TrustPrism have redistribution rights for all
+  imported code, contributor work, generated assets and saved provider outcomes?
+  Are Apache-2.0 for code and CC BY 4.0 for data/prose the final approved scopes?</li>
+<li><strong>Attribution and maintenance:</strong> Who are the confirmed maintainers and citation
+  authors, and which notices or exclusions are required?</li>
+<li><strong>Human validation:</strong> Who will complete the two rule reviews and outside
+  installation/reproduction review, and how will disagreements be recorded?</li>
+<li><strong>Historical archive boundary:</strong> Which additional reproduction archives may
+  be distributed after manual privacy review? The owner authorized public
+  visibility of the existing repository and its history. The documentation
+  deployment excludes credentials, authorizations, ledgers and raw provider
+  prose; ignored operational archives remain local and are not uploaded.</li>
+<li><strong>Distribution:</strong> Which organization-owned PyPI and dataset accounts will host
+  approved artifacts? Are protected environments, trusted publishing and final
+  hosted dataset/Croissant checks configured?</li>
+<li><strong>Final acceptance:</strong> Which exact source revision and artifact hashes will
+  the owner approve for the complete release? Public preview availability does
+  not clear these gates.</li>
+</ul>
+<h2 id="what-is-available-now">What is available now?</h2>
+<p>Read the <a href="../">results and original-study index</a>, including phase-separated
+follow-up measurements, limitations and sanitized assignment downloads. Read
+the <a href="../../tutorials/first-dataset/">tutorial</a>, <a href="../../reference/parameters/">parameter reference</a>
+and <a href="../../maintainers/release/">release checklist</a>. Package installation commands
+describe the candidate workflow; no public PyPI release is claimed.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

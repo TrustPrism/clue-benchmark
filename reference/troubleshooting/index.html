@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Troubleshooting - Clue Benchmark 0.5.0rc2 — research preview</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Clue Benchmark 0.5.0rc2 — research preview</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorials/first-dataset/" class="dropdown-item">First dataset</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorials/distributed-evidence/" class="dropdown-item">Distributed evidence</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../guides/research-recipes/" class="dropdown-item">Research recipes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Explanations</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../explanations/pipeline/" class="dropdown-item">Pipeline and guarantees</a>
+</li>
+                                    
+<li>
+    <a href="../../explanations/related-work/" class="dropdown-item">Related implementations</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../parameters/" class="dropdown-item">Parameters</a>
+</li>
+                                    
+<li>
+    <a href="../predicates/" class="dropdown-item">Predicates</a>
+</li>
+                                    
+<li>
+    <a href="../interfaces/" class="dropdown-item">CLI, Python and tools</a>
+</li>
+                                    
+<li>
+    <a href="../data-dictionary/" class="dropdown-item">Data dictionary</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Troubleshooting</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/" class="nav-link">Results</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../results/open-questions/" class="nav-link">Open questions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../maintainers/release/" class="nav-link">Maintainers</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../data-dictionary/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../results/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#troubleshooting" class="nav-link">Troubleshooting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+<ul>
+<li><strong>Distinct values exhausted:</strong> expand every domain/active-value set or reduce suspects; equality families require repeated assignments.</li>
+<li><strong>Family/types disagree:</strong> restore required predicates or choose a compatible family/route. Redundant paths needs exactly n+1 reports per attribute.</li>
+<li><strong>Impossible quotas/coalition:</strong> check shared count, replication, per-agent sums and agent limits (at most eight). A retry limit does not make impossible quotas feasible.</li>
+<li><strong>Ambiguous with a sufficient subset:</strong> set sufficient bounds and minimum coalition to null; do not claim a unique answer.</li>
+<li><strong>Tokenizer absent:</strong> supply a stable-identity tokenizer via Python with workers=1, or remove token constraints. Do not silently switch tokenizers.</li>
+<li><strong>Impossible word/token bounds:</strong> raise the bound or explicitly change the requested evidence. Evidence is never truncated to fit.</li>
+<li><strong>Candidate exhaustion:</strong> inspect saved rejection reasons and choose a new output config/directory. Incomplete is exit 2, not a complete bank.</li>
+<li><strong>Solver timeout/work exhaustion:</strong> unresolved; use a declared larger offline budget on fresh outputs. Never disable certification.</li>
+<li><strong>Context overflow:</strong> reject before dispatch. Do not omit evidence or shrink an answer budget after freezing a matched study.</li>
+<li><strong>Malformed tools/missing final action:</strong> retain a protocol failure and inspect the saved finish reason separately from wrong answers.</li>
+<li><strong>Provider error/model drift/unknown usage:</strong> stop. Preserve returned identity, safe receipt and maximum reservation. Use the documented reconciliation procedure; never edit ledger balances or assume zero cost.</li>
+<li><strong>Held funds/interruption:</strong> resume with the same plan, sources and durable ledger. An unresolved dispatch must not replay automatically; zero retries is intentional.</li>
+<li><strong>Stale schema/source/config:</strong> use the frozen historical source for historical plans, or prepare a new plan/output explicitly. Do not rewrite hashes to make a plan pass.</li>
+<li><strong>Existing export/report/replay output:</strong> choose a new path. Generation alone supports identity-checked checkpoint resume.</li>
+<li><strong>Platform limitations:</strong> native provider paths/locking are separate from offline generation. Local candidate verification is macOS/Python 3.12–3.14; Hosted Linux 3.12–3.14 and macOS 3.12 checks have passed; the remaining hosted macOS checks must be confirmed in the current PR. Windows is not advertised as verified.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

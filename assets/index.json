@@ -1,0 +1,47 @@
+{
+  "pilot": {
+    "original_source": "benchmarks/pilot-episodes.jsonl",
+    "original_sha256": "b68a927b60db35e899af1b0360f302d4ee9af67dcdffd9e322c0d10baa303427",
+    "sanitized_sha256": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+    "assigned_records": 270,
+    "independent_worlds": 21,
+    "limitations": "Low thinking; 4096 output tokens. One attempt; variants and private agents are not independent worlds.",
+    "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  },
+  "hardness": {
+    "original_source": "benchmarks/hardness-episodes.jsonl",
+    "original_sha256": "b87b3f764d5b035ef3034f1e776f8495499b7f2f103cbdf0ca224be378c50491",
+    "sanitized_sha256": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+    "assigned_records": 360,
+    "independent_worlds": 30,
+    "limitations": "High thinking. Ten worlds per 32-report arm, three attempts. Certified report cost is not proof depth.",
+    "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  },
+  "flash-hard-scale": {
+    "original_source": "benchmarks/flash-hard-scale-episodes.jsonl",
+    "original_sha256": "1811f26fc76202ec984b99e0043ad95c720f70710da15dd43aa609499a8da2d2",
+    "sanitized_sha256": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+    "assigned_records": 48,
+    "independent_worlds": 48,
+    "limitations": "Fresh 48-world confirmation: 64 suspects, 455 interacting reports, 32768 output tokens including thinking. Reports are not certified individually necessary.",
+    "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  },
+  "flash-limits": {
+    "original_source": "benchmarks/flash-limits-episodes.jsonl",
+    "original_sha256": "53284b6909d8238582d4977461410d52d4cc19a1e7a16d8b1a50efd35cc09d5b",
+    "sanitized_sha256": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+    "assigned_records": 40,
+    "independent_worlds": 32,
+    "limitations": "Adaptive resource demonstration; compare matched six-world subsets only, not a new independent confirmation.",
+    "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  },
+  "qwen-sampled-screening": {
+    "original_source": "benchmarks/qwen-sampled-screening-results.json",
+    "original_sha256": "2e9e8fb66ff0192b4633a562803f0f33c9bdd8a38a3da7867ad8e21382818762",
+    "sanitized_sha256": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+    "assigned_records": 72,
+    "independent_worlds": 36,
+    "limitations": "72 assigned slots, three reused pilot responses. Completion is separate from supported correctness.",
+    "sanitization": "Positive field allowlist; no raw receipts, authorizations, local paths, ledgers, observations or model prose. Evaluator outcomes must not enter agent prompts."
+  }
+}

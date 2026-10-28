@@ -1,0 +1,80 @@
+{
+  "schema_version": "clue-documentation-experiment-index-1",
+  "updated": "2026-10-28",
+  "scope": "Eight measured study families and separate offline controls; not a pooled leaderboard.",
+  "definitions": {
+    "assigned_slots": "Includes unavailable/unattempted or reused slots where the study defines them; not a count of fresh successful model calls.",
+    "assigned_worlds": "Distinct world IDs within a family, including assigned unattempted worlds. Reused worlds across families must not be summed."
+  },
+  "families": [
+    {
+      "id": "original-controls",
+      "question": "Missing evidence, irrelevant volume and false-report count",
+      "asset": "pilot.json",
+      "sha256": "d98c2ac5f869844ee4341a73b17ea2b645c37885cda3e89d174b3953e531d907",
+      "assigned_slots": 270,
+      "assigned_worlds": 21
+    },
+    {
+      "id": "high-thinking-controls",
+      "question": "Structure, targeted corruption and truthful additions",
+      "asset": "hardness.json",
+      "sha256": "6675db815714c84c1e9de11749c4fdabf2c90b4f108d5a01f94f89934b902b47",
+      "assigned_slots": 360,
+      "assigned_worlds": 30
+    },
+    {
+      "id": "flash-stress",
+      "question": "Puzzle size, matched output budget and unavoidable-error development",
+      "asset": "flash-limits.json",
+      "sha256": "c5825831c4eea3dc8b5d5958278fc5aca4f2062fb9b800e0df3c2ffe26e79c6c",
+      "assigned_slots": 40,
+      "assigned_worlds": 32
+    },
+    {
+      "id": "fresh-hard-confirmation",
+      "question": "Fresh fixed-condition hard cases",
+      "asset": "flash-hard-scale.json",
+      "sha256": "a3f7f67827a7006f3362d8f6948fe1abe2e45b0b4930f15e33aac77d1b501416",
+      "assigned_slots": 48,
+      "assigned_worlds": 48
+    },
+    {
+      "id": "initial-development-screening",
+      "question": "Initial burden, reliability, delivery and ambiguous controls",
+      "asset": "development-screening.json",
+      "sha256": "db743231854f5c788173173394dd9135f366ec27e9a865f8206f8075ea63c56b",
+      "assigned_slots": 144,
+      "assigned_worlds": 36
+    },
+    {
+      "id": "qwen-settings-diagnostic",
+      "question": "Thinking toggle and 8K versus 32K sampled output",
+      "asset": "qwen-settings-diagnostic.json",
+      "sha256": "7a20242b63bcb4d7b50283d586f6d586eff42196ddcfc4939c71f984f9fa19e1",
+      "assigned_slots": 9,
+      "assigned_worlds": 3
+    },
+    {
+      "id": "sampled-qwen",
+      "question": "Complete sampled panel and matched completion/correctness comparison",
+      "asset": "qwen-sampled-screening.json",
+      "sha256": "0bfac8638406f3b57b4ff4ffc012ece2ccce99ebaa1fc067e337543da1084456",
+      "assigned_slots": 72,
+      "assigned_worlds": 36
+    },
+    {
+      "id": "nuisance-replication",
+      "question": "Initial replication, final expansion and exploratory combination",
+      "asset": "nuisance-extended-measurements.json",
+      "sha256": "5331d39683e968a3470e40aafb7be81969ee984007407989db8602b8c293200f",
+      "assigned_slots": 144,
+      "assigned_worlds": 12
+    }
+  ],
+  "offline_controls": {
+    "asset": "offline-controls.json",
+    "sha256": "438e29c241480ff2d289935c4bf2581cf933e799ec72750fa93ec4f8241dd03e",
+    "model_calls": 0
+  }
+}

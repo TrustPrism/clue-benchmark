@@ -1,0 +1,415 @@
+{
+  "study_id": "offline-controls-2026-10-15",
+  "model_calls": 0,
+  "provenance": [
+    {
+      "original_source": "runs/publication-v1-2026-10-15/evaluator/baseline-episodes.json",
+      "original_sha256": "88818013212941a872d404208428978e831d5af1d70139fee39f8491ea2e837f",
+      "sanitization": "Positive field allowlist; no observations, provider prose, receipts, credentials, authorizations or ledgers."
+    },
+    {
+      "original_source": "runs/publication-v1-2026-10-15/evaluator/construction-heuristic-summary.json",
+      "original_sha256": "a4af6f8a02b7c706a4f4b4c2992c5b255bef3e83a837d04f9fe78b9d822c1d18",
+      "sanitization": "Positive field allowlist; no observations, provider prose, receipts, credentials, authorizations or ledgers."
+    },
+    {
+      "original_source": "benchmarks/publication-v1-preparation.json",
+      "original_sha256": "5643b944ccb5897308a167c630ef202aa939bdc454f0ebfe625db32d18a2342d",
+      "sanitization": "Positive field allowlist; no observations, provider prose, receipts, credentials, authorizations or ledgers."
+    }
+  ],
+  "prepared_bank": {
+    "worlds": 42,
+    "variants": 96,
+    "bundles": 16
+  },
+  "solver_controls": [
+    {
+      "arm": "ambiguous",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "appropriate_abstention": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 0,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-16",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-16-noise-100",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-4",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-4-noise-100",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-8",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "branching-8-noise-100",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "cross-attribute-transfer",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "chain-one",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "appropriate_abstention": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 0,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "chain-three",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "appropriate_abstention": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 0,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "chain-three-receiver-aware",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "appropriate_abstention": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 0,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "private",
+      "assigned": 24,
+      "worlds": 6,
+      "outcomes": {
+        "appropriate_abstention": 24
+      },
+      "valid_actions": 24,
+      "supported_correct": 0,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "distributed",
+      "schedule": "star-one",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "equality_tree-16",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "equality_tree-4",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "equality_tree-8",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "false-0",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "false-1",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "false-2",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "shared-control",
+      "schedule": "complete",
+      "assigned": 6,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 6
+      },
+      "valid_actions": 6,
+      "supported_correct": 6,
+      "output_tokens": 0,
+      "local_seconds": 0
+    },
+    {
+      "arm": "shared-control",
+      "schedule": "private",
+      "assigned": 24,
+      "worlds": 6,
+      "outcomes": {
+        "supported_correct": 24
+      },
+      "valid_actions": 24,
+      "supported_correct": 24,
+      "output_tokens": 0,
+      "local_seconds": 0
+    }
+  ],
+  "construction_heuristic": {
+    "track": "public structured-input equality propagation",
+    "arms": [
+      {
+        "abstained": 6,
+        "arm": "ambiguous",
+        "assigned": 6,
+        "supported": 0
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-16",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-16-noise-100",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-4",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-4-noise-100",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-8",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "branching-8-noise-100",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 6,
+        "arm": "cross-attribute-transfer",
+        "assigned": 6,
+        "supported": 0
+      },
+      {
+        "abstained": 0,
+        "arm": "distributed",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "equality_tree-16",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "equality_tree-4",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 0,
+        "arm": "equality_tree-8",
+        "assigned": 6,
+        "supported": 6
+      },
+      {
+        "abstained": 6,
+        "arm": "false-0",
+        "assigned": 6,
+        "supported": 0
+      },
+      {
+        "abstained": 6,
+        "arm": "false-1",
+        "assigned": 6,
+        "supported": 0
+      },
+      {
+        "abstained": 6,
+        "arm": "false-2",
+        "assigned": 6,
+        "supported": 0
+      },
+      {
+        "abstained": 0,
+        "arm": "shared-control",
+        "assigned": 6,
+        "supported": 6
+      }
+    ]
+  }
+}

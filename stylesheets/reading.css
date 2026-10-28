@@ -770,3 +770,39 @@ body::before{display:none}
   color: var(--accent);
   border-color: var(--accent);
 }
+
+/* Give every experiment the same visual hierarchy. */
+.study-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+}
+.study-card h3 {
+  font-size: 1.12rem;
+  line-height: 1.35;
+  margin-top: .7rem;
+}
+.study-card p {
+  font-size: .92rem;
+  line-height: 1.65;
+}
+.study-card > p:last-child {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+.study-meta {
+  color: var(--muted);
+  font-size: .69rem;
+  letter-spacing: .05em;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+.experiment-results > h2 {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+@media (max-width: 480px) {
+  .study-card {
+    min-height: 0;
+  }
+}

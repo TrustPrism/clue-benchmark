@@ -20,7 +20,7 @@
     </details>
     <a class="toc-start" href="{{ 'tutorials/first-dataset/'|url }}">New here? Start the tutorial <span aria-hidden="true">↗</span></a>
   </aside>
-  <main id="main-content" class="reading-content{% if page.url == 'reference/parameters/' %} parameter-reference{% endif %}">
+  <main id="main-content" class="reading-content{% if page.url == 'reference/parameters/' %} parameter-reference{% endif %}{% if page.url == 'results/' %} experiment-results{% endif %}">
     <div class="page-eyebrow">RESEARCH PREVIEW <span>0.5.0rc2</span></div>
     {% include "content.html" %}
     <nav class="reading-next" aria-label="Continue reading">
